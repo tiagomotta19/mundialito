@@ -1,0 +1,138 @@
+{
+  "round_of_32": {
+    "J73": {
+      "home": "2A",
+      "away": "2B"
+    },
+    "J74": {
+      "home": "1E",
+      "away": "3_ABCDF"
+    },
+    "J75": {
+      "home": "1F",
+      "away": "2C"
+    },
+    "J76": {
+      "home": "1C",
+      "away": "2F"
+    },
+    "J77": {
+      "home": "1I",
+      "away": "3_CDFGH"
+    },
+    "J78": {
+      "home": "2E",
+      "away": "2I"
+    },
+    "J79": {
+      "home": "1A",
+      "away": "3_CEFHI"
+    },
+    "J80": {
+      "home": "1L",
+      "away": "3_EHIJK"
+    },
+    "J81": {
+      "home": "1D",
+      "away": "3_BEFIJ"
+    },
+    "J82": {
+      "home": "1G",
+      "away": "3_AEHIJ"
+    },
+    "J83": {
+      "home": "2K",
+      "away": "2L"
+    },
+    "J84": {
+      "home": "1H",
+      "away": "2J"
+    },
+    "J85": {
+      "home": "1B",
+      "away": "3_EFGIJ"
+    },
+    "J86": {
+      "home": "1J",
+      "away": "2H"
+    },
+    "J87": {
+      "home": "1K",
+      "away": "3_DEIJL"
+    },
+    "J88": {
+      "home": "2D",
+      "away": "2G"
+    }
+  },
+  "round_of_16": {
+    "O89": {
+      "home": "W_J74",
+      "away": "W_J77"
+    },
+    "O90": {
+      "home": "W_J73",
+      "away": "W_J75"
+    },
+    "O91": {
+      "home": "W_J76",
+      "away": "W_J78"
+    },
+    "O92": {
+      "home": "W_J79",
+      "away": "W_J80"
+    },
+    "O93": {
+      "home": "W_J83",
+      "away": "W_J84"
+    },
+    "O94": {
+      "home": "W_J81",
+      "away": "W_J82"
+    },
+    "O95": {
+      "home": "W_J86",
+      "away": "W_J88"
+    },
+    "O96": {
+      "home": "W_J85",
+      "away": "W_J87"
+    }
+  },
+  "quarterfinals": {
+    "Q97": {
+      "home": "W_O89",
+      "away": "W_O90"
+    },
+    "Q98": {
+      "home": "W_O93",
+      "away": "W_O94"
+    },
+    "Q99": {
+      "home": "W_O91",
+      "away": "W_O92"
+    },
+    "Q100": {
+      "home": "W_O95",
+      "away": "W_O96"
+    }
+  },
+  "semifinals": {
+    "SF101": {
+      "home": "W_Q97",
+      "away": "W_Q98"
+    },
+    "SF102": {
+      "home": "W_Q99",
+      "away": "W_Q100"
+    }
+  },
+  "third_place": {
+    "home": "L_SF101",
+    "away": "L_SF102"
+  },
+  "final": {
+    "home": "W_SF101",
+    "away": "W_SF102"
+  }
+}

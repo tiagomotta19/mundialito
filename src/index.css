@@ -1,111 +1,90 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+@import "tailwindcss";
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
 }
 
 body {
-  margin: 0;
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
   display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+  justify-content: center;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+/* Tema Retrô */
+.theme-retro {
+  --color-bg: #061204;
+  --color-text: #c8f060;
+  --color-text-secondary: #6ab840;
+  --color-text-muted: #4a8a2a;
+  --color-border: #2a5a1a;
+  --color-field: #1a5a0a;
+  --color-field-stripe: #185408;
+  --color-field-line: rgba(200, 240, 96, 0.35);
+  --color-accent: #c8f060;
+  --color-btn-primary-bg: #2a6a10;
+  --color-btn-primary-text: #c8f060;
+  --color-btn-primary-border: #4a9a1a;
+  --color-btn-secondary-border: #1a4010;
+  --color-btn-secondary-text: #4a8a2a;
+  --color-player-user: #f0e840;
+  --color-player-opponent: #e83030;
+  --color-ball: #ffffff;
+  --radius: 2px;
+  --font-main: 'Courier New', monospace;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
-
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+/* Tema Moderno */
+.theme-moderno {
+  --color-bg: #f7f7f5;
+  --color-text: #1a1a1a;
+  --color-text-secondary: #888888;
+  --color-text-muted: #bbbbbb;
+  --color-border: #e0e0d8;
+  --color-field: #2e7d32;
+  --color-field-stripe: #2a712d;
+  --color-field-line: rgba(255, 255, 255, 0.45);
+  --color-accent: #2e7d32;
+  --color-btn-primary-bg: #2e7d32;
+  --color-btn-primary-text: #ffffff;
+  --color-btn-primary-border: #2e7d32;
+  --color-btn-secondary-border: #e0e0d8;
+  --color-btn-secondary-text: #888888;
+  --color-player-user: #fff176;
+  --color-player-opponent: #ef5350;
+  --color-ball: #ffffff;
+  --radius: 10px;
+  --font-main: var(--font-sans, system-ui, sans-serif);
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+.app-shell {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-main);
+}
+
+/* Campinho com listras */
+.field-stripes {
+  background-color: var(--color-field);
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--color-field) 0px,
+    var(--color-field) 20px,
+    var(--color-field-stripe) 20px,
+    var(--color-field-stripe) 40px
+  );
+}
+
+/* Bola animada da tela inicial */
+@keyframes ball-move {
+  0% { left: 12%; top: 65%; }
+  25% { left: 70%; top: 25%; }
+  50% { left: 85%; top: 70%; }
+  75% { left: 30%; top: 80%; }
+  100% { left: 12%; top: 65%; }
+}
+
+.animate-ball {
+  animation: ball-move 6s ease-in-out infinite;
 }

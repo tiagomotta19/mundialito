@@ -1,0 +1,134 @@
+{
+  "A": {
+    "teams": [
+      "México",
+      "África do Sul",
+      "Coreia do Sul",
+      "República Tcheca"
+    ],
+    "avg_strength": 70.8,
+    "weakest": "África do Sul",
+    "weakest_strength": 65.0
+  },
+  "B": {
+    "teams": [
+      "Canadá",
+      "Bósnia",
+      "Catar",
+      "Suíça"
+    ],
+    "avg_strength": 70.9,
+    "weakest": "Catar",
+    "weakest_strength": 65.0
+  },
+  "C": {
+    "teams": [
+      "Brasil",
+      "Marrocos",
+      "Haiti",
+      "Escócia"
+    ],
+    "avg_strength": 74.3,
+    "weakest": "Haiti",
+    "weakest_strength": 67.3
+  },
+  "D": {
+    "teams": [
+      "Estados Unidos",
+      "Paraguai",
+      "Austrália",
+      "Turquia"
+    ],
+    "avg_strength": 72.7,
+    "weakest": "Austrália",
+    "weakest_strength": 68.0
+  },
+  "E": {
+    "teams": [
+      "Alemanha",
+      "Curaçao",
+      "Costa do Marfim",
+      "Equador"
+    ],
+    "avg_strength": 74.1,
+    "weakest": "Curaçao",
+    "weakest_strength": 66.9
+  },
+  "F": {
+    "teams": [
+      "Holanda",
+      "Japão",
+      "Suécia",
+      "Tunísia"
+    ],
+    "avg_strength": 74.8,
+    "weakest": "Tunísia",
+    "weakest_strength": 70.4
+  },
+  "G": {
+    "teams": [
+      "Bélgica",
+      "Egito",
+      "Irã",
+      "Nova Zelândia"
+    ],
+    "avg_strength": 70.4,
+    "weakest": "Nova Zelândia",
+    "weakest_strength": 67.0
+  },
+  "H": {
+    "teams": [
+      "Espanha",
+      "Cabo Verde",
+      "Arábia Saudita",
+      "Uruguai"
+    ],
+    "avg_strength": 74.2,
+    "weakest": "Arábia Saudita",
+    "weakest_strength": 68.1
+  },
+  "I": {
+    "teams": [
+      "França",
+      "Senegal",
+      "Iraque",
+      "Noruega"
+    ],
+    "avg_strength": 74.7,
+    "weakest": "Iraque",
+    "weakest_strength": 64.8
+  },
+  "J": {
+    "teams": [
+      "Argentina",
+      "Argélia",
+      "Áustria",
+      "Jordânia"
+    ],
+    "avg_strength": 72.5,
+    "weakest": "Jordânia",
+    "weakest_strength": 63.0
+  },
+  "K": {
+    "teams": [
+      "Portugal",
+      "RD Congo",
+      "Uzbequistão",
+      "Colômbia"
+    ],
+    "avg_strength": 73.9,
+    "weakest": "Uzbequistão",
+    "weakest_strength": 66.3
+  },
+  "L": {
+    "teams": [
+      "Inglaterra",
+      "Croácia",
+      "Gana",
+      "Panamá"
+    ],
+    "avg_strength": 74.4,
+    "weakest": "Panamá",
+    "weakest_strength": 66.8
+  }
+}
