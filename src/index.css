@@ -23,6 +23,7 @@ body {
   --color-field-stripe: #185408;
   --color-field-line: rgba(200, 240, 96, 0.35);
   --color-accent: #c8f060;
+  --color-highlight-bg: rgba(200, 240, 96, 0.08);
   --color-btn-primary-bg: #2a6a10;
   --color-btn-primary-text: #c8f060;
   --color-btn-primary-border: #4a9a1a;
@@ -46,6 +47,7 @@ body {
   --color-field-stripe: #2a712d;
   --color-field-line: rgba(255, 255, 255, 0.45);
   --color-accent: #2e7d32;
+  --color-highlight-bg: rgba(46, 125, 50, 0.08);
   --color-btn-primary-bg: #2e7d32;
   --color-btn-primary-text: #ffffff;
   --color-btn-primary-border: #2e7d32;

@@ -12,6 +12,12 @@ export const translations = {
     mode_classic: 'Modo Clássico',
     theme_retro: 'Retrô',
     theme_moderno: 'Moderno',
+    back: 'Voltar',
+    choose_mode_title: 'Como quer jogar?',
+    mode_fast_desc: 'Copa completa em minutos. Sem substituições.',
+    mode_classic_desc: 'Substitua jogadores entre jogos. Mais estratégia.',
+    choose_formation: 'Escolha a formação',
+    btn_continue: 'Continuar',
   },
   en: {
     app_name_1: 'MUNDI',
@@ -26,6 +32,12 @@ export const translations = {
     mode_classic: 'Classic Mode',
     theme_retro: 'Retro',
     theme_moderno: 'Modern',
+    back: 'Back',
+    choose_mode_title: 'How do you want to play?',
+    mode_fast_desc: 'Full cup in minutes. No substitutions.',
+    mode_classic_desc: 'Swap players between matches. More strategy.',
+    choose_formation: 'Choose your formation',
+    btn_continue: 'Continue',
   },
   es: {
     app_name_1: 'MUNDI',
@@ -40,6 +52,12 @@ export const translations = {
     mode_classic: 'Modo Clásico',
     theme_retro: 'Retro',
     theme_moderno: 'Moderno',
+    back: 'Volver',
+    choose_mode_title: '¿Cómo quieres jugar?',
+    mode_fast_desc: 'Mundial completo en minutos. Sin sustituciones.',
+    mode_classic_desc: 'Sustituye jugadores entre partidos. Más estrategia.',
+    choose_formation: 'Elige la formación',
+    btn_continue: 'Continuar',
   },
 }
 
