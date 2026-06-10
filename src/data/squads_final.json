@@ -38,7 +38,7 @@
       "position": "MID",
       "club": "RSC Anderlecht",
       "source": "eafc",
-      "league": "1A Pro League"
+      "league": "Belgian Pro League"
     },
     {
       "name": "César Montes",
@@ -54,7 +54,7 @@
       "position": "DEF",
       "club": "Fenerbahçe",
       "source": "eafc",
-      "league": "Trendyol Süper Lig"
+      "league": "Süper Lig"
     },
     {
       "name": "Erik Lira",
@@ -110,7 +110,7 @@
       "position": "DEF",
       "club": "Genoa",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Jorge Sánchez",
@@ -126,7 +126,7 @@
       "position": "FWD",
       "club": "Al Qadsiah",
       "source": "eafc",
-      "league": null
+      "league": "Saudi Pro League"
     },
     {
       "name": "Luis Chávez",
@@ -166,7 +166,7 @@
       "position": "MID",
       "club": "AEK Athens",
       "source": "eafc",
-      "league": "Hellas Liga"
+      "league": "Super League Greece"
     },
     {
       "name": "Raúl Jiménez",
@@ -198,7 +198,7 @@
       "position": "FWD",
       "club": "Milano FC",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Álvaro Fidalgo",
@@ -216,7 +216,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Premier Soccer League"
     },
     {
       "name": "Bradley Cross",
@@ -224,7 +224,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Premier Soccer League"
     },
     {
       "name": "Evidence Makgopa",
@@ -232,7 +232,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Premier Soccer League"
     },
     {
       "name": "Ime Okon",
@@ -248,7 +248,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Premier Soccer League"
     },
     {
       "name": "Jayden Adams",
@@ -256,7 +256,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Premier Soccer League"
     },
     {
       "name": "Kamogelo Sebelebele",
@@ -264,7 +264,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Premier Soccer League"
     },
     {
       "name": "Khuliso Mudau",
@@ -272,7 +272,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Premier Soccer League"
     },
     {
       "name": "Khulumani Ndamane",
@@ -280,7 +280,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Premier Soccer League"
     },
     {
       "name": "Lyle Foster",
@@ -296,7 +296,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Premier Soccer League"
     },
     {
       "name": "Nkosinathi Sibisi",
@@ -304,7 +304,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Premier Soccer League"
     },
     {
       "name": "Olwethu Makhanya",
@@ -320,7 +320,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Premier Soccer League"
     },
     {
       "name": "Relebohile Mofokeng",
@@ -328,7 +328,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Premier Soccer League"
     },
     {
       "name": "Ricardo Goss",
@@ -336,7 +336,7 @@
       "position": "GK",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Premier Soccer League"
     },
     {
       "name": "Ronwen Williams",
@@ -344,7 +344,7 @@
       "position": "GK",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Premier Soccer League"
     },
     {
       "name": "Samukelo Kabini",
@@ -352,7 +352,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Premier Soccer League"
     },
     {
       "name": "Sipho Chaine",
@@ -360,7 +360,7 @@
       "position": "GK",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Premier Soccer League"
     },
     {
       "name": "Sphephelo Sithole",
@@ -376,7 +376,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Premier Soccer League"
     },
     {
       "name": "Thabang Matuludi",
@@ -384,7 +384,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Premier Soccer League"
     },
     {
       "name": "Thalente Mbatha",
@@ -392,7 +392,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Premier Soccer League"
     },
     {
       "name": "Thapelo Maseko",
@@ -400,7 +400,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Premier Soccer League"
     },
     {
       "name": "Themba Zwane",
@@ -408,7 +408,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Premier Soccer League"
     },
     {
       "name": "Tshepang Moremi",
@@ -416,7 +416,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Premier Soccer League"
     }
   ],
   "Coreia do Sul": [
@@ -530,7 +530,7 @@
       "position": "MID",
       "club": "Ulsan",
       "source": "manual",
-      "league": null
+      "league": "K League 1"
     },
     {
       "name": "Lee Hanbeom",
@@ -660,7 +660,7 @@
       "position": "DEF",
       "club": "Beşiktaş",
       "source": "eafc",
-      "league": "Trendyol Süper Lig"
+      "league": "Süper Lig"
     },
     {
       "name": "David Zima",
@@ -724,7 +724,7 @@
       "position": "GK",
       "club": "SC Braga",
       "source": "eafc",
-      "league": null
+      "league": "Liga Portugal"
     },
     {
       "name": "Lukáš Provod",
@@ -780,7 +780,7 @@
       "position": "MID",
       "club": "OL",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Robin Hranáč",
@@ -846,7 +846,7 @@
       "position": "DEF",
       "club": "Middlesbrough",
       "source": "eafc",
-      "league": "EFL Championship"
+      "league": "Championship"
     },
     {
       "name": "Ali Ahmed",
@@ -862,7 +862,7 @@
       "position": "DEF",
       "club": "Celtic",
       "source": "eafc",
-      "league": "Scottish Prem"
+      "league": "Scottish Premiership"
     },
     {
       "name": "Alphonso Davies",
@@ -894,7 +894,7 @@
       "position": "DEF",
       "club": "Rangers",
       "source": "eafc",
-      "league": "Scottish Prem"
+      "league": "Scottish Premiership"
     },
     {
       "name": "Ismael Koné",
@@ -902,7 +902,7 @@
       "position": "MID",
       "club": "Sassuolo",
       "source": "eafc",
-      "league": null
+      "league": "Serie A"
     },
     {
       "name": "Jacob Shaffelburg",
@@ -926,7 +926,7 @@
       "position": "FWD",
       "club": "Juventus",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Jonathan Osorio",
@@ -950,7 +950,7 @@
       "position": "DEF",
       "club": "FCV Dender EH",
       "source": "eafc",
-      "league": "1A Pro League"
+      "league": "Belgian Pro League"
     },
     {
       "name": "Marcelo Flores",
@@ -982,7 +982,7 @@
       "position": "DEF",
       "club": "OGC Nice",
       "source": "eafc",
-      "league": null
+      "league": "Ligue 1"
     },
     {
       "name": "Nathan Saliba",
@@ -998,7 +998,7 @@
       "position": "DEF",
       "club": "Hajduk Split",
       "source": "eafc",
-      "league": "Liga Hrvatska"
+      "league": "HNL"
     },
     {
       "name": "Owen Goodman",
@@ -1014,7 +1014,7 @@
       "position": "FWD",
       "club": "R. Union St.-G.",
       "source": "eafc",
-      "league": "1A Pro League"
+      "league": "Belgian Pro League"
     },
     {
       "name": "Richie Laryea",
@@ -1038,7 +1038,7 @@
       "position": "MID",
       "club": "Villarreal CF",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Tani Oluwaseyi",
@@ -1046,7 +1046,7 @@
       "position": "FWD",
       "club": "Villarreal CF",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     }
   ],
   "Bósnia": [
@@ -1056,7 +1056,7 @@
       "position": "DEF",
       "club": "SL Benfica",
       "source": "eafc",
-      "league": null
+      "league": "Liga Portugal"
     },
     {
       "name": "Amar Memic",
@@ -1064,7 +1064,7 @@
       "position": "FWD",
       "club": "Viktoria Plzeň",
       "source": "eafc",
-      "league": null
+      "league": "Česká Liga"
     },
     {
       "name": "Amir Hadziahmetovic",
@@ -1072,7 +1072,7 @@
       "position": "MID",
       "club": "Hull City",
       "source": "eafc",
-      "league": null
+      "league": "Championship"
     },
     {
       "name": "Armin Gigovic",
@@ -1080,7 +1080,7 @@
       "position": "MID",
       "club": "BSC Young Boys",
       "source": "eafc",
-      "league": null
+      "league": "Swiss Super League"
     },
     {
       "name": "Benjamin Tahirovic",
@@ -1088,7 +1088,7 @@
       "position": "MID",
       "club": "Brøndby IF",
       "source": "eafc",
-      "league": null
+      "league": "Danish Superliga"
     },
     {
       "name": "Dennis Hadzikadunic",
@@ -1104,7 +1104,7 @@
       "position": "MID",
       "club": "Karlsruher SC",
       "source": "eafc",
-      "league": null
+      "league": "Bundesliga 2"
     },
     {
       "name": "Edin Dzeko",
@@ -1112,7 +1112,7 @@
       "position": "FWD",
       "club": "Fiorentina",
       "source": "eafc",
-      "league": null
+      "league": "Serie A"
     },
     {
       "name": "Ermedin Demirovic",
@@ -1120,7 +1120,7 @@
       "position": "FWD",
       "club": "VfB Stuttgart",
       "source": "eafc",
-      "league": null
+      "league": "Bundesliga"
     },
     {
       "name": "Ermin Mahmic",
@@ -1136,7 +1136,7 @@
       "position": "MID",
       "club": "PSV",
       "source": "eafc",
-      "league": null
+      "league": "Eredivisie"
     },
     {
       "name": "Haris Tabakovic",
@@ -1144,7 +1144,7 @@
       "position": "FWD",
       "club": "M'gladbach",
       "source": "eafc",
-      "league": null
+      "league": "Bundesliga"
     },
     {
       "name": "Ivan Basic",
@@ -1168,7 +1168,7 @@
       "position": "FWD",
       "club": "FC Univ. Cluj",
       "source": "eafc",
-      "league": null
+      "league": "SuperLiga Romena"
     },
     {
       "name": "Kerim Alajbegovic",
@@ -1176,7 +1176,7 @@
       "position": "FWD",
       "club": "RB Salzburg",
       "source": "eafc",
-      "league": null
+      "league": "Austrian Bundesliga"
     },
     {
       "name": "Martin Zlomislic",
@@ -1192,7 +1192,7 @@
       "position": "DEF",
       "club": "RC Lens",
       "source": "eafc",
-      "league": null
+      "league": "Ligue 1"
     },
     {
       "name": "Nihad Mujakic",
@@ -1200,7 +1200,7 @@
       "position": "DEF",
       "club": "Eyüpspor",
       "source": "eafc",
-      "league": null
+      "league": "Süper Lig"
     },
     {
       "name": "Nikola Katic",
@@ -1208,7 +1208,7 @@
       "position": "DEF",
       "club": "FC Schalke 04",
       "source": "eafc",
-      "league": null
+      "league": "Bundesliga 2"
     },
     {
       "name": "Nikola Vasilj",
@@ -1232,7 +1232,7 @@
       "position": "FWD",
       "club": "Real Zaragoza",
       "source": "eafc",
-      "league": null
+      "league": "La Liga 2"
     },
     {
       "name": "Sead Kolasinac",
@@ -1240,7 +1240,7 @@
       "position": "DEF",
       "club": "Bergamo Calcio",
       "source": "eafc",
-      "league": null
+      "league": "Serie A"
     },
     {
       "name": "Stjepan Radeljic",
@@ -1256,7 +1256,7 @@
       "position": "DEF",
       "club": "Sassuolo",
       "source": "eafc",
-      "league": null
+      "league": "Serie A"
     }
   ],
   "Catar": [
@@ -1266,7 +1266,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Ahmed Al-Ganehi",
@@ -1274,7 +1274,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Ahmed Alaa",
@@ -1282,7 +1282,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Ahmed Fathy",
@@ -1290,7 +1290,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Akram Afif",
@@ -1298,7 +1298,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Al-Hashmi Al-Hussain",
@@ -1306,7 +1306,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "AlMoez Ali",
@@ -1314,7 +1314,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Assim Madibo",
@@ -1322,7 +1322,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Ayoub Al-Alawi",
@@ -1330,7 +1330,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Boualem Khoukhi",
@@ -1338,7 +1338,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Edmilson Junior",
@@ -1346,7 +1346,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Hasan Al-Haydos",
@@ -1354,7 +1354,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Homam Ahmed",
@@ -1362,7 +1362,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Issa Laye",
@@ -1370,7 +1370,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Jassem Gaber",
@@ -1378,7 +1378,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Karim Boudiaf",
@@ -1386,7 +1386,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Lucas Mendes",
@@ -1394,7 +1394,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Mahmoud Abunada",
@@ -1402,7 +1402,7 @@
       "position": "GK",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Meshaal Barsham",
@@ -1410,7 +1410,7 @@
       "position": "GK",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Mohamed Mannaj",
@@ -1418,7 +1418,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Mohammed Muntari",
@@ -1426,7 +1426,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Pedro Miguel",
@@ -1434,7 +1434,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Salah Zakaria",
@@ -1442,7 +1442,7 @@
       "position": "GK",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Sultan Al-Brake",
@@ -1450,7 +1450,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Tahsin Mohammed",
@@ -1458,7 +1458,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Youssef Abdulrazzaq",
@@ -1466,7 +1466,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Qatar Stars League"
     }
   ],
   "Suíça": [
@@ -1476,7 +1476,7 @@
       "position": "MID",
       "club": "Milano FC",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Aurele Amenda",
@@ -1484,7 +1484,7 @@
       "position": "DEF",
       "club": "Frankfurt",
       "source": "eafc",
-      "league": null
+      "league": "Bundesliga"
     },
     {
       "name": "Breel Embolo",
@@ -1492,7 +1492,7 @@
       "position": "FWD",
       "club": "Stade Rennais FC",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Cedric Itten",
@@ -1508,7 +1508,7 @@
       "position": "MID",
       "club": "BSC Young Boys",
       "source": "eafc",
-      "league": "Brack Super League"
+      "league": "Swiss Super League"
     },
     {
       "name": "Dan Ndoye",
@@ -1524,7 +1524,7 @@
       "position": "MID",
       "club": "AS Monaco",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Djibril Sow",
@@ -1532,7 +1532,7 @@
       "position": "MID",
       "club": "Sevilla FC",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Eray Comert",
@@ -1540,7 +1540,7 @@
       "position": "DEF",
       "club": "Valencia CF",
       "source": "eafc",
-      "league": null
+      "league": "La Liga"
     },
     {
       "name": "Fabian Rieder",
@@ -1588,7 +1588,7 @@
       "position": "DEF",
       "club": "Lombardia FC",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Marvin Keller",
@@ -1596,7 +1596,7 @@
       "position": "GK",
       "club": "BSC Young Boys",
       "source": "eafc",
-      "league": "Brack Super League"
+      "league": "Swiss Super League"
     },
     {
       "name": "Michel Aebischer",
@@ -1604,7 +1604,7 @@
       "position": "MID",
       "club": "Pisa",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Miro Muheim",
@@ -1636,7 +1636,7 @@
       "position": "MID",
       "club": "Bologna",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Ricardo Rodriguez",
@@ -1644,7 +1644,7 @@
       "position": "DEF",
       "club": "Real Betis",
       "source": "eafc",
-      "league": null
+      "league": "La Liga"
     },
     {
       "name": "Ruben Vargas",
@@ -1652,7 +1652,7 @@
       "position": "MID",
       "club": "Sevilla FC",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Silvan Widmer",
@@ -1702,7 +1702,7 @@
       "position": "DEF",
       "club": "Juventus",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Bruno Guimarães",
@@ -1726,7 +1726,7 @@
       "position": "DEF",
       "club": "Rangers",
       "source": "eafc",
-      "league": "Scottish Prem"
+      "league": "Scottish Premiership"
     },
     {
       "name": "Danilo Santos",
@@ -1750,7 +1750,7 @@
       "position": "GK",
       "club": "Fenerbahçe",
       "source": "eafc",
-      "league": "Trendyol Süper Lig"
+      "league": "Süper Lig"
     },
     {
       "name": "Endrick",
@@ -1758,7 +1758,7 @@
       "position": "FWD",
       "club": "Real Madrid",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Fabinho",
@@ -1766,7 +1766,7 @@
       "position": "MID",
       "club": "Al Ittihad",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Gabriel Magalhães",
@@ -1790,7 +1790,7 @@
       "position": "DEF",
       "club": "Al Ahli",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Igor Thiago",
@@ -1830,7 +1830,7 @@
       "position": "DEF",
       "club": "Paris SG",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Matheus Cunha",
@@ -1854,7 +1854,7 @@
       "position": "FWD",
       "club": "FC Barcelona",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Rayan",
@@ -1878,7 +1878,7 @@
       "position": "MID",
       "club": "AS Roma",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Weverton",
@@ -1896,7 +1896,7 @@
       "position": "FWD",
       "club": "Real Betis",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Achraf Hakimi",
@@ -1904,7 +1904,7 @@
       "position": "DEF",
       "club": "Paris SG",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Ahmed Reda Tagnaouti",
@@ -1936,7 +1936,7 @@
       "position": "FWD",
       "club": "Olympiacos FC",
       "source": "eafc",
-      "league": "Hellas Liga"
+      "league": "Super League Greece"
     },
     {
       "name": "Ayoube Amahount",
@@ -1952,7 +1952,7 @@
       "position": "MID",
       "club": "Girona FC",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Bilal El Khannouss",
@@ -1968,7 +1968,7 @@
       "position": "FWD",
       "club": "Real Madrid",
       "source": "eafc",
-      "league": null
+      "league": "La Liga"
     },
     {
       "name": "Chadi Riad",
@@ -1992,7 +1992,7 @@
       "position": "MID",
       "club": "PSV",
       "source": "eafc",
-      "league": null
+      "league": "Eredivisie"
     },
     {
       "name": "Issa Diop",
@@ -2016,7 +2016,7 @@
       "position": "DEF",
       "club": "OM",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Neil El Aynaoui",
@@ -2024,7 +2024,7 @@
       "position": "MID",
       "club": "AS Roma",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Noussair Mazraoui",
@@ -2040,7 +2040,7 @@
       "position": "DEF",
       "club": "KV Mechelen",
       "source": "eafc",
-      "league": "1A Pro League"
+      "league": "Belgian Pro League"
     },
     {
       "name": "Samir El Mourabet",
@@ -2048,7 +2048,7 @@
       "position": "MID",
       "club": "Strasbourg",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Sofyan Amrabat",
@@ -2056,7 +2056,7 @@
       "position": "MID",
       "club": "Real Betis",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Soufiane Rahimi",
@@ -2080,7 +2080,7 @@
       "position": "GK",
       "club": "Al Hilal",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Youssef Belammari",
@@ -2096,7 +2096,7 @@
       "position": "DEF",
       "club": "KRC Genk",
       "source": "eafc",
-      "league": "1A Pro League"
+      "league": "Belgian Pro League"
     }
   ],
   "Haiti": [
@@ -2122,7 +2122,7 @@
       "position": "DEF",
       "club": "Angers SCO",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Derrick Etienne",
@@ -2130,7 +2130,7 @@
       "position": "FWD",
       "club": "Toronto FC",
       "source": "eafc",
-      "league": null
+      "league": "MLS"
     },
     {
       "name": "Dominique Simon",
@@ -2162,7 +2162,7 @@
       "position": "FWD",
       "club": "AEK Athens",
       "source": "eafc",
-      "league": "Hellas Liga"
+      "league": "Super League Greece"
     },
     {
       "name": "Hannes Delcroix",
@@ -2194,7 +2194,7 @@
       "position": "MID",
       "club": "Wolves",
       "source": "eafc",
-      "league": null
+      "league": "Premier League"
     },
     {
       "name": "Johnny Placide",
@@ -2210,7 +2210,7 @@
       "position": "FWD",
       "club": "AJ Auxerre",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Josué Duverger",
@@ -2250,7 +2250,7 @@
       "position": "FWD",
       "club": "FC Dallas",
       "source": "eafc",
-      "league": null
+      "league": "MLS"
     },
     {
       "name": "Martin Experience",
@@ -2258,7 +2258,7 @@
       "position": "DEF",
       "club": "AS Nancy Lorraine",
       "source": "eafc",
-      "league": null
+      "league": "Ligue 2"
     },
     {
       "name": "Pierre Woodenski",
@@ -2340,7 +2340,7 @@
       "position": "DEF",
       "club": "Celtic",
       "source": "eafc",
-      "league": "Scottish Prem"
+      "league": "Scottish Premiership"
     },
     {
       "name": "Ben Gannon-Doak",
@@ -2348,7 +2348,7 @@
       "position": "MID",
       "club": "Bournemouth",
       "source": "manual",
-      "league": null
+      "league": "Premier League"
     },
     {
       "name": "Billy Gilmour",
@@ -2356,7 +2356,7 @@
       "position": "MID",
       "club": "SSC Napoli",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Che Adams",
@@ -2364,7 +2364,7 @@
       "position": "FWD",
       "club": "Torino",
       "source": "eafc",
-      "league": null
+      "league": "Serie A"
     },
     {
       "name": "Craig Gordon",
@@ -2372,7 +2372,7 @@
       "position": "GK",
       "club": "Hearts",
       "source": "eafc",
-      "league": "Scottish Prem"
+      "league": "Scottish Premiership"
     },
     {
       "name": "Dom Hyam",
@@ -2388,7 +2388,7 @@
       "position": "MID",
       "club": "Rangers",
       "source": "eafc",
-      "league": "Scottish Prem"
+      "league": "Scottish Premiership"
     },
     {
       "name": "George Hirst",
@@ -2396,7 +2396,7 @@
       "position": "FWD",
       "club": "Ipswich",
       "source": "eafc",
-      "league": "EFL Championship"
+      "league": "Championship"
     },
     {
       "name": "Grant Hanley",
@@ -2404,7 +2404,7 @@
       "position": "DEF",
       "club": "Hibernian",
       "source": "eafc",
-      "league": "Scottish Prem"
+      "league": "Scottish Premiership"
     },
     {
       "name": "Jack Hendry",
@@ -2412,7 +2412,7 @@
       "position": "DEF",
       "club": "Al Ettifaq",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "John McGinn",
@@ -2428,7 +2428,7 @@
       "position": "DEF",
       "club": "Rangers",
       "source": "eafc",
-      "league": "Scottish Prem"
+      "league": "Scottish Premiership"
     },
     {
       "name": "Kenny McLean",
@@ -2436,7 +2436,7 @@
       "position": "MID",
       "club": "Norwich",
       "source": "eafc",
-      "league": "EFL Championship"
+      "league": "Championship"
     },
     {
       "name": "Kieran Tierney",
@@ -2444,7 +2444,7 @@
       "position": "DEF",
       "club": "Celtic",
       "source": "eafc",
-      "league": "Scottish Prem"
+      "league": "Scottish Premiership"
     },
     {
       "name": "Lawrence Shankland",
@@ -2452,7 +2452,7 @@
       "position": "FWD",
       "club": "Hearts",
       "source": "eafc",
-      "league": "Scottish Prem"
+      "league": "Scottish Premiership"
     },
     {
       "name": "Lewis Ferguson",
@@ -2460,7 +2460,7 @@
       "position": "MID",
       "club": "Bologna",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Liam Kelly",
@@ -2468,7 +2468,7 @@
       "position": "GK",
       "club": "Rangers",
       "source": "eafc",
-      "league": "Scottish Prem"
+      "league": "Scottish Premiership"
     },
     {
       "name": "Lyndon Dykes",
@@ -2476,7 +2476,7 @@
       "position": "FWD",
       "club": "Birmingham City",
       "source": "eafc",
-      "league": "EFL Championship"
+      "league": "Championship"
     },
     {
       "name": "Nathan Patterson",
@@ -2492,7 +2492,7 @@
       "position": "FWD",
       "club": "Southampton",
       "source": "eafc",
-      "league": "EFL Championship"
+      "league": "Championship"
     },
     {
       "name": "Ryan Christie",
@@ -2508,7 +2508,7 @@
       "position": "DEF",
       "club": "Dinamo Zagreb",
       "source": "eafc",
-      "league": "Liga Hrvatska"
+      "league": "HNL"
     },
     {
       "name": "Scott McTominay",
@@ -2516,7 +2516,7 @@
       "position": "MID",
       "club": "SSC Napoli",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     }
   ],
   "Estados Unidos": [
@@ -2550,7 +2550,7 @@
       "position": "DEF",
       "club": "Celtic",
       "source": "eafc",
-      "league": "Scottish Prem"
+      "league": "Scottish Premiership"
     },
     {
       "name": "Brenden Aaronson",
@@ -2582,7 +2582,7 @@
       "position": "FWD",
       "club": "Milano FC",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Cristian Roldan",
@@ -2598,7 +2598,7 @@
       "position": "FWD",
       "club": "AS Monaco",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Giovanni Reyna",
@@ -2614,7 +2614,7 @@
       "position": "FWD",
       "club": "Coventry City",
       "source": "eafc",
-      "league": "EFL Championship"
+      "league": "Championship"
     },
     {
       "name": "Joe Scally",
@@ -2638,7 +2638,7 @@
       "position": "DEF",
       "club": "Toulouse FC",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Matt Freese",
@@ -2694,7 +2694,7 @@
       "position": "MID",
       "club": "PSV",
       "source": "eafc",
-      "league": null
+      "league": "Eredivisie"
     },
     {
       "name": "Tim Ream",
@@ -2710,7 +2710,7 @@
       "position": "MID",
       "club": "OM",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Tyler Adams",
@@ -2726,7 +2726,7 @@
       "position": "MID",
       "club": "Juventus",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     }
   ],
   "Paraguai": [
@@ -2744,7 +2744,7 @@
       "position": "DEF",
       "club": "Guaraní",
       "source": "eafc",
-      "league": "Sudamericana"
+      "league": "Liga Paraguaya"
     },
     {
       "name": "Andrés Cubas",
@@ -2760,7 +2760,7 @@
       "position": "FWD",
       "club": "Cremonese",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Braian Ojeda",
@@ -2800,7 +2800,7 @@
       "position": "FWD",
       "club": "Independiente",
       "source": "eafc",
-      "league": "LPF"
+      "league": "Liga Profesional"
     },
     {
       "name": "Gastón Olveira",
@@ -2808,7 +2808,7 @@
       "position": "GK",
       "club": "Olimpia",
       "source": "eafc",
-      "league": "Libertadores"
+      "league": "Liga Paraguaya"
     },
     {
       "name": "Gatito Fernández",
@@ -2840,7 +2840,7 @@
       "position": "DEF",
       "club": "Cerro Porteño",
       "source": "eafc",
-      "league": "Libertadores"
+      "league": "Liga Paraguaya"
     },
     {
       "name": "Isidro Pitta",
@@ -2856,7 +2856,7 @@
       "position": "DEF",
       "club": "Lanús",
       "source": "eafc",
-      "league": "LPF"
+      "league": "Liga Profesional"
     },
     {
       "name": "Juan Cáceres",
@@ -2872,7 +2872,7 @@
       "position": "FWD",
       "club": "Strasbourg",
       "source": "eafc",
-      "league": null
+      "league": "Ligue 1"
     },
     {
       "name": "Junior Alonso",
@@ -2888,7 +2888,7 @@
       "position": "MID",
       "club": "River Plate",
       "source": "eafc",
-      "league": "LPF"
+      "league": "Liga Profesional"
     },
     {
       "name": "Mauricio",
@@ -2920,7 +2920,7 @@
       "position": "GK",
       "club": "San Lorenzo",
       "source": "eafc",
-      "league": "LPF"
+      "league": "Liga Profesional"
     },
     {
       "name": "Ramón Sosa",
@@ -2936,7 +2936,7 @@
       "position": "FWD",
       "club": "Ind. Rivadavia",
       "source": "eafc",
-      "league": null
+      "league": "Liga Profesional"
     }
   ],
   "Austrália": [
@@ -2954,7 +2954,7 @@
       "position": "MID",
       "club": "Heracles Almelo",
       "source": "eafc",
-      "league": null
+      "league": "Eredivisie"
     },
     {
       "name": "Alessandro Circati",
@@ -2962,7 +2962,7 @@
       "position": "DEF",
       "club": "Parma",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Awer Mabil",
@@ -2970,7 +2970,7 @@
       "position": "FWD",
       "club": "CD Castellón",
       "source": "eafc",
-      "league": "LALIGA HYPERMOTION"
+      "league": "La Liga 2"
     },
     {
       "name": "Aziz Behich",
@@ -2986,7 +2986,7 @@
       "position": "DEF",
       "club": "Swansea City",
       "source": "eafc",
-      "league": "EFL Championship"
+      "league": "Championship"
     },
     {
       "name": "Cameron Devlin",
@@ -2994,7 +2994,7 @@
       "position": "MID",
       "club": "Hearts",
       "source": "eafc",
-      "league": "Scottish Prem"
+      "league": "Scottish Premiership"
     },
     {
       "name": "Connor Metcalfe",
@@ -3010,7 +3010,7 @@
       "position": "FWD",
       "club": "Sassuolo",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Harry Souttar",
@@ -3018,7 +3018,7 @@
       "position": "DEF",
       "club": "Leicester City",
       "source": "eafc",
-      "league": "EFL Championship"
+      "league": "Championship"
     },
     {
       "name": "Jackson Irvine",
@@ -3034,7 +3034,7 @@
       "position": "DEF",
       "club": "Grazer AK",
       "source": "eafc",
-      "league": "Ö. Bundesliga"
+      "league": "Austrian Bundesliga"
     },
     {
       "name": "Jason Geria",
@@ -3098,7 +3098,7 @@
       "position": "FWD",
       "club": "Randers FC",
       "source": "eafc",
-      "league": null
+      "league": "Danish Superliga"
     },
     {
       "name": "Nestory Irankunda",
@@ -3106,7 +3106,7 @@
       "position": "FWD",
       "club": "Watford",
       "source": "eafc",
-      "league": "EFL Championship"
+      "league": "Championship"
     },
     {
       "name": "Nishan Velupillay",
@@ -3130,7 +3130,7 @@
       "position": "GK",
       "club": "Randers FC",
       "source": "eafc",
-      "league": "3F Superliga"
+      "league": "Danish Superliga"
     },
     {
       "name": "Paul Okon-Engstler",
@@ -3146,7 +3146,7 @@
       "position": "FWD",
       "club": "Livingston",
       "source": "eafc",
-      "league": "Scottish Prem"
+      "league": "Scottish Premiership"
     }
   ],
   "Turquia": [
@@ -3180,7 +3180,7 @@
       "position": "FWD",
       "club": "Real Madrid",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Barış Alper Yılmaz",
@@ -3188,7 +3188,7 @@
       "position": "FWD",
       "club": "Galatasaray",
       "source": "eafc",
-      "league": "Trendyol Süper Lig"
+      "league": "Süper Lig"
     },
     {
       "name": "Caglar Soyuncu",
@@ -3196,7 +3196,7 @@
       "position": "DEF",
       "club": "Fenerbahçe",
       "source": "eafc",
-      "league": null
+      "league": "Süper Lig"
     },
     {
       "name": "Can Uzun",
@@ -3220,7 +3220,7 @@
       "position": "DEF",
       "club": "Galatasaray",
       "source": "eafc",
-      "league": "Trendyol Süper Lig"
+      "league": "Süper Lig"
     },
     {
       "name": "Ferdi Kadıoğlu",
@@ -3236,7 +3236,7 @@
       "position": "MID",
       "club": "Lombardia FC",
       "source": "eafc",
-      "league": null
+      "league": "Serie A"
     },
     {
       "name": "Irfan Can Kahveci",
@@ -3244,7 +3244,7 @@
       "position": "FWD",
       "club": "Fenerbahçe",
       "source": "eafc",
-      "league": null
+      "league": "Süper Lig"
     },
     {
       "name": "Ismail Yuksek",
@@ -3252,7 +3252,7 @@
       "position": "MID",
       "club": "Fenerbahçe",
       "source": "eafc",
-      "league": null
+      "league": "Süper Lig"
     },
     {
       "name": "Kaan Ayhan",
@@ -3260,7 +3260,7 @@
       "position": "MID",
       "club": "Galatasaray",
       "source": "eafc",
-      "league": "Trendyol Süper Lig"
+      "league": "Süper Lig"
     },
     {
       "name": "Kenan Yildiz",
@@ -3276,7 +3276,7 @@
       "position": "FWD",
       "club": "Fenerbahçe",
       "source": "eafc",
-      "league": null
+      "league": "Süper Lig"
     },
     {
       "name": "Merih Demiral",
@@ -3284,7 +3284,7 @@
       "position": "DEF",
       "club": "Al Ahli",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Mert Günok",
@@ -3292,7 +3292,7 @@
       "position": "GK",
       "club": "Beşiktaş",
       "source": "eafc",
-      "league": "Trendyol Süper Lig"
+      "league": "Süper Lig"
     },
     {
       "name": "Mert Müldür",
@@ -3300,7 +3300,7 @@
       "position": "DEF",
       "club": "Fenerbahçe",
       "source": "eafc",
-      "league": "Trendyol Süper Lig"
+      "league": "Süper Lig"
     },
     {
       "name": "Oguz Aydin",
@@ -3316,7 +3316,7 @@
       "position": "MID",
       "club": "Beşiktaş",
       "source": "eafc",
-      "league": "Trendyol Süper Lig"
+      "league": "Süper Lig"
     },
     {
       "name": "Ozan Kabak",
@@ -3332,7 +3332,7 @@
       "position": "MID",
       "club": "Borussia Dortmund",
       "source": "eafc",
-      "league": null
+      "league": "Bundesliga"
     },
     {
       "name": "Ugurcan Cakir",
@@ -3348,7 +3348,7 @@
       "position": "FWD",
       "club": "Galatasaray",
       "source": "eafc",
-      "league": null
+      "league": "Süper Lig"
     },
     {
       "name": "Zeki Celik",
@@ -3356,7 +3356,7 @@
       "position": "DEF",
       "club": "AS Roma",
       "source": "eafc",
-      "league": null
+      "league": "Serie A"
     }
   ],
   "Alemanha": [
@@ -3366,7 +3366,7 @@
       "position": "DEF",
       "club": "FC Bayern München",
       "source": "eafc",
-      "league": null
+      "league": "Bundesliga"
     },
     {
       "name": "Alexander Nubel",
@@ -3374,7 +3374,7 @@
       "position": "GK",
       "club": "VfB Stuttgart",
       "source": "eafc",
-      "league": null
+      "league": "Bundesliga"
     },
     {
       "name": "Angelo Stiller",
@@ -3390,7 +3390,7 @@
       "position": "DEF",
       "club": "Real Madrid",
       "source": "eafc",
-      "league": null
+      "league": "La Liga"
     },
     {
       "name": "David Raum",
@@ -3486,7 +3486,7 @@
       "position": "MID",
       "club": "Galatasaray",
       "source": "eafc",
-      "league": "Trendyol Süper Lig"
+      "league": "Süper Lig"
     },
     {
       "name": "Malick Thiaw",
@@ -3576,7 +3576,7 @@
       "position": "MID",
       "club": "Rotherham Utd",
       "source": "eafc",
-      "league": null
+      "league": "EFL League One"
     },
     {
       "name": "Armando Obispo",
@@ -3656,7 +3656,7 @@
       "position": "MID",
       "club": "Gaziantep",
       "source": "eafc",
-      "league": "Trendyol Süper Lig"
+      "league": "Süper Lig"
     },
     {
       "name": "Juriën Gaari",
@@ -3704,7 +3704,7 @@
       "position": "MID",
       "club": "FC Zürich",
       "source": "eafc",
-      "league": "Brack Super League"
+      "league": "Swiss Super League"
     },
     {
       "name": "Riechedly Bazoer",
@@ -3712,7 +3712,7 @@
       "position": "DEF",
       "club": "Konyaspor",
       "source": "eafc",
-      "league": "Trendyol Süper Lig"
+      "league": "Süper Lig"
     },
     {
       "name": "Roshon van Eijma",
@@ -3744,7 +3744,7 @@
       "position": "FWD",
       "club": "Middlesbrough",
       "source": "eafc",
-      "league": "EFL Championship"
+      "league": "Championship"
     },
     {
       "name": "Tahith Chong",
@@ -3752,7 +3752,7 @@
       "position": "FWD",
       "club": "Sheffield Utd",
       "source": "eafc",
-      "league": "EFL Championship"
+      "league": "Championship"
     },
     {
       "name": "Trevor Doornbusch",
@@ -3786,7 +3786,7 @@
       "position": "GK",
       "club": "Panathinaikos",
       "source": "eafc",
-      "league": "Hellas Liga"
+      "league": "Super League Greece"
     },
     {
       "name": "Amad Diallo",
@@ -3794,7 +3794,7 @@
       "position": "FWD",
       "club": "Man Utd",
       "source": "eafc",
-      "league": null
+      "league": "Premier League"
     },
     {
       "name": "Ange-Yoan Bonny",
@@ -3818,7 +3818,7 @@
       "position": "MID",
       "club": "Trabzonspor",
       "source": "eafc",
-      "league": null
+      "league": "Süper Lig"
     },
     {
       "name": "Clément Akpa",
@@ -3826,7 +3826,7 @@
       "position": "DEF",
       "club": "AJ Auxerre",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Elye Wahi",
@@ -3850,7 +3850,7 @@
       "position": "DEF",
       "club": "AS Roma",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Evann Guessand",
@@ -3866,7 +3866,7 @@
       "position": "MID",
       "club": "Al Ahli",
       "source": "eafc",
-      "league": null
+      "league": "Saudi Pro League"
     },
     {
       "name": "Ghislain Konan",
@@ -3882,7 +3882,7 @@
       "position": "DEF",
       "club": "Strasbourg",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Ibrahim Sangaré",
@@ -3906,7 +3906,7 @@
       "position": "GK",
       "club": "Sp. Charleroi",
       "source": "eafc",
-      "league": "1A Pro League"
+      "league": "Belgian Pro League"
     },
     {
       "name": "Nicolas Pépé",
@@ -3914,7 +3914,7 @@
       "position": "FWD",
       "club": "Villarreal CF",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Odilon Kossounou",
@@ -3922,7 +3922,7 @@
       "position": "DEF",
       "club": "Bergamo Calcio",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Oumar Diakité",
@@ -3930,7 +3930,7 @@
       "position": "FWD",
       "club": "Cercle Brugge",
       "source": "eafc",
-      "league": "1A Pro League"
+      "league": "Belgian Pro League"
     },
     {
       "name": "Ousmane Diomande",
@@ -3946,7 +3946,7 @@
       "position": "FWD",
       "club": "Sp. Charleroi",
       "source": "eafc",
-      "league": "1A Pro League"
+      "league": "Belgian Pro League"
     },
     {
       "name": "Seko Fofana",
@@ -3954,7 +3954,7 @@
       "position": "MID",
       "club": "Stade Rennais FC",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Simon Adingra",
@@ -3970,7 +3970,7 @@
       "position": "DEF",
       "club": "Galatasaray",
       "source": "eafc",
-      "league": "Trendyol Süper Lig"
+      "league": "Süper Lig"
     },
     {
       "name": "Yahia Fofana",
@@ -3978,7 +3978,7 @@
       "position": "GK",
       "club": "Çaykur Rizespor",
       "source": "eafc",
-      "league": "Trendyol Süper Lig"
+      "league": "Süper Lig"
     },
     {
       "name": "Yan Diomande",
@@ -4004,7 +4004,7 @@
       "position": "FWD",
       "club": "Cercle Brugge",
       "source": "eafc",
-      "league": "1A Pro League"
+      "league": "Belgian Pro League"
     },
     {
       "name": "Anthony Valencia",
@@ -4012,7 +4012,7 @@
       "position": "FWD",
       "club": "Royal Antwerp FC",
       "source": "eafc",
-      "league": "1A Pro League"
+      "league": "Belgian Pro League"
     },
     {
       "name": "Denil Castillo",
@@ -4020,7 +4020,7 @@
       "position": "MID",
       "club": "FC Midtjylland",
       "source": "eafc",
-      "league": "3F Superliga"
+      "league": "Danish Superliga"
     },
     {
       "name": "Enner Valencia",
@@ -4052,7 +4052,7 @@
       "position": "GK",
       "club": "LDU Quito",
       "source": "eafc",
-      "league": "Libertadores"
+      "league": "LigaPro"
     },
     {
       "name": "Hernán Galíndez",
@@ -4060,7 +4060,7 @@
       "position": "GK",
       "club": "Huracán",
       "source": "eafc",
-      "league": "LPF"
+      "league": "Liga Profesional"
     },
     {
       "name": "Jackson Porozo",
@@ -4084,7 +4084,7 @@
       "position": "DEF",
       "club": "Club Brugge",
       "source": "eafc",
-      "league": null
+      "league": "Belgian Pro League"
     },
     {
       "name": "John Yeboah",
@@ -4092,7 +4092,7 @@
       "position": "FWD",
       "club": "Venezia",
       "source": "eafc",
-      "league": "Serie BKT"
+      "league": "Serie B"
     },
     {
       "name": "Jordy Alcívar",
@@ -4100,7 +4100,7 @@
       "position": "MID",
       "club": "IDV",
       "source": "eafc",
-      "league": "Libertadores"
+      "league": "LigaPro"
     },
     {
       "name": "Jordy Caicedo",
@@ -4108,7 +4108,7 @@
       "position": "FWD",
       "club": "R. Sporting",
       "source": "eafc",
-      "league": "LALIGA HYPERMOTION"
+      "league": "La Liga 2"
     },
     {
       "name": "Kendry Páez",
@@ -4116,7 +4116,7 @@
       "position": "MID",
       "club": "Strasbourg",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Kevin Rodríguez",
@@ -4124,7 +4124,7 @@
       "position": "FWD",
       "club": "R. Union St.-G.",
       "source": "eafc",
-      "league": "1A Pro League"
+      "league": "Belgian Pro League"
     },
     {
       "name": "Moisés Caicedo",
@@ -4148,7 +4148,7 @@
       "position": "MID",
       "club": "RSC Anderlecht",
       "source": "eafc",
-      "league": "1A Pro League"
+      "league": "Belgian Pro League"
     },
     {
       "name": "Pedro Vite",
@@ -4164,7 +4164,7 @@
       "position": "DEF",
       "club": "Milano FC",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Piero Hincapié",
@@ -4180,7 +4180,7 @@
       "position": "DEF",
       "club": "Paris SG",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Yaimar Medina",
@@ -4188,7 +4188,7 @@
       "position": "DEF",
       "club": "KRC Genk",
       "source": "eafc",
-      "league": "1A Pro League"
+      "league": "Belgian Pro League"
     },
     {
       "name": "Ángelo Preciado",
@@ -4238,7 +4238,7 @@
       "position": "DEF",
       "club": "Lombardia FC",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Donyell Malen",
@@ -4254,7 +4254,7 @@
       "position": "MID",
       "club": "FC Barcelona",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Guus Til",
@@ -4310,7 +4310,7 @@
       "position": "MID",
       "club": "Bergamo Calcio",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Mats Wieffer",
@@ -4350,7 +4350,7 @@
       "position": "FWD",
       "club": "SSC Napoli",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Quinten Timber",
@@ -4382,7 +4382,7 @@
       "position": "MID",
       "club": "Juventus",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Tijjani Reijnders",
@@ -4432,7 +4432,7 @@
       "position": "MID",
       "club": "Havre AC",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Daichi Kamada",
@@ -4448,7 +4448,7 @@
       "position": "MID",
       "club": "Celtic",
       "source": "eafc",
-      "league": "Scottish Prem"
+      "league": "Scottish Premiership"
     },
     {
       "name": "Hiroki Ito",
@@ -4464,7 +4464,7 @@
       "position": "DEF",
       "club": "F.C. København",
       "source": "eafc",
-      "league": "3F Superliga"
+      "league": "Danish Superliga"
     },
     {
       "name": "Junya Ito",
@@ -4472,7 +4472,7 @@
       "position": "FWD",
       "club": "KRC Genk",
       "source": "eafc",
-      "league": "1A Pro League"
+      "league": "Belgian Pro League"
     },
     {
       "name": "Kaishu Sano",
@@ -4480,7 +4480,7 @@
       "position": "MID",
       "club": "1. FSV Mainz 05",
       "source": "eafc",
-      "league": null
+      "league": "Bundesliga"
     },
     {
       "name": "Keisuke Goto",
@@ -4488,7 +4488,7 @@
       "position": "FWD",
       "club": "STVV",
       "source": "eafc",
-      "league": "1A Pro League"
+      "league": "Belgian Pro League"
     },
     {
       "name": "Keisuke Osako",
@@ -4504,7 +4504,7 @@
       "position": "MID",
       "club": "Stade de Reims",
       "source": "eafc",
-      "league": "Ligue 2 BKT"
+      "league": "Ligue 2"
     },
     {
       "name": "Kento Shiogai",
@@ -4544,7 +4544,7 @@
       "position": "DEF",
       "club": "STVV",
       "source": "eafc",
-      "league": "1A Pro League"
+      "league": "Belgian Pro League"
     },
     {
       "name": "Takefusa Kubo",
@@ -4552,7 +4552,7 @@
       "position": "FWD",
       "club": "Real Sociedad",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Takehiro Tomiyasu",
@@ -4616,7 +4616,7 @@
       "position": "GK",
       "club": "Parma",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     }
   ],
   "Suécia": [
@@ -4650,7 +4650,7 @@
       "position": "FWD",
       "club": "Celtic",
       "source": "eafc",
-      "league": "Scottish Prem"
+      "league": "Scottish Premiership"
     },
     {
       "name": "Besfort Zenelie",
@@ -4666,7 +4666,7 @@
       "position": "DEF",
       "club": "Celta",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Daniel Svensson",
@@ -4714,7 +4714,7 @@
       "position": "FWD",
       "club": "Club Brugge",
       "source": "eafc",
-      "league": "1A Pro League"
+      "league": "Belgian Pro League"
     },
     {
       "name": "Herman Johansson",
@@ -4738,7 +4738,7 @@
       "position": "DEF",
       "club": "Bergamo Calcio",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Jacob Zetterström",
@@ -4746,7 +4746,7 @@
       "position": "GK",
       "club": "Derby County",
       "source": "eafc",
-      "league": null
+      "league": "Championship"
     },
     {
       "name": "Jesper Karlstrom",
@@ -4754,7 +4754,7 @@
       "position": "MID",
       "club": "Udinese",
       "source": "eafc",
-      "league": null
+      "league": "Serie A"
     },
     {
       "name": "Ken Sema",
@@ -4818,7 +4818,7 @@
       "position": "GK",
       "club": "Stoke City",
       "source": "eafc",
-      "league": "EFL Championship"
+      "league": "Championship"
     },
     {
       "name": "Yasin Ayari",
@@ -4852,7 +4852,7 @@
       "position": "DEF",
       "club": "OGC Nice",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Anis Ben Slimane",
@@ -4860,7 +4860,7 @@
       "position": "MID",
       "club": "Norwich",
       "source": "eafc",
-      "league": null
+      "league": "Championship"
     },
     {
       "name": "Aymen Dahmen",
@@ -4884,7 +4884,7 @@
       "position": "DEF",
       "club": "Servette FC",
       "source": "eafc",
-      "league": "Brack Super League"
+      "league": "Swiss Super League"
     },
     {
       "name": "Elias Achouri",
@@ -4892,7 +4892,7 @@
       "position": "FWD",
       "club": "F.C. København",
       "source": "eafc",
-      "league": "3F Superliga"
+      "league": "Danish Superliga"
     },
     {
       "name": "Elias Saäd",
@@ -4900,7 +4900,7 @@
       "position": "FWD",
       "club": "FC Augsburg",
       "source": "eafc",
-      "league": null
+      "league": "Bundesliga"
     },
     {
       "name": "Ellyes Skhiri",
@@ -4964,7 +4964,7 @@
       "position": "DEF",
       "club": "FC Lorient",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Mortadha Ben Ouanes",
@@ -4972,7 +4972,7 @@
       "position": "MID",
       "club": "Kasımpaşa",
       "source": "eafc",
-      "league": "Trendyol Süper Lig"
+      "league": "Süper Lig"
     },
     {
       "name": "Moutaz Neffati",
@@ -5028,7 +5028,7 @@
       "position": "FWD",
       "club": "Celtic",
       "source": "eafc",
-      "league": "Scottish Prem"
+      "league": "Scottish Premiership"
     },
     {
       "name": "Yan Valéry",
@@ -5036,7 +5036,7 @@
       "position": "DEF",
       "club": "Sheffield Wed",
       "source": "eafc",
-      "league": null
+      "league": "Championship"
     }
   ],
   "Bélgica": [
@@ -5046,7 +5046,7 @@
       "position": "FWD",
       "club": "Milano FC",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Amadou Onana",
@@ -5070,7 +5070,7 @@
       "position": "MID",
       "club": "Girona FC",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Brandon Mechele",
@@ -5078,7 +5078,7 @@
       "position": "DEF",
       "club": "Club Brugge",
       "source": "eafc",
-      "league": "1A Pro League"
+      "league": "Belgian Pro League"
     },
     {
       "name": "Charles De Ketelaere",
@@ -5086,7 +5086,7 @@
       "position": "MID",
       "club": "Bergamo Calcio",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Courtois",
@@ -5094,7 +5094,7 @@
       "position": "GK",
       "club": "Real Madrid",
       "source": "eafc",
-      "league": null
+      "league": "La Liga"
     },
     {
       "name": "Diego Moreira",
@@ -5102,7 +5102,7 @@
       "position": "FWD",
       "club": "Strasbourg",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Dodi Lukebakio",
@@ -5110,7 +5110,7 @@
       "position": "FWD",
       "club": "SL Benfica",
       "source": "eafc",
-      "league": null
+      "league": "Liga Portugal"
     },
     {
       "name": "Hans Vanaken",
@@ -5118,7 +5118,7 @@
       "position": "MID",
       "club": "Club Brugge",
       "source": "eafc",
-      "league": "1A Pro League"
+      "league": "Belgian Pro League"
     },
     {
       "name": "Jeremy Doku",
@@ -5126,7 +5126,7 @@
       "position": "FWD",
       "club": "Manchester City",
       "source": "eafc",
-      "league": null
+      "league": "Premier League"
     },
     {
       "name": "Joaquin Seys",
@@ -5134,7 +5134,7 @@
       "position": "DEF",
       "club": "Club Brugge",
       "source": "eafc",
-      "league": "1A Pro League"
+      "league": "Belgian Pro League"
     },
     {
       "name": "Kevin De Bruyne",
@@ -5142,7 +5142,7 @@
       "position": "MID",
       "club": "SSC Napoli",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Koni De Winter",
@@ -5150,7 +5150,7 @@
       "position": "DEF",
       "club": "Milano FC",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Lammens",
@@ -5190,7 +5190,7 @@
       "position": "GK",
       "club": "Strasbourg",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Nathan Ngoy",
@@ -5198,7 +5198,7 @@
       "position": "DEF",
       "club": "LOSC Lille",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Nicolas Raskin",
@@ -5206,7 +5206,7 @@
       "position": "MID",
       "club": "Rangers",
       "source": "eafc",
-      "league": "Scottish Prem"
+      "league": "Scottish Premiership"
     },
     {
       "name": "Romelu Lukaku",
@@ -5214,7 +5214,7 @@
       "position": "FWD",
       "club": "SSC Napoli",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Thomas Meunier",
@@ -5222,7 +5222,7 @@
       "position": "DEF",
       "club": "LOSC Lille",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Timothy Castagne",
@@ -5256,7 +5256,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Egyptian Premier League"
     },
     {
       "name": "Ahmed Sayed Zizo",
@@ -5264,7 +5264,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Egyptian Premier League"
     },
     {
       "name": "El Mahdy Soliman",
@@ -5272,7 +5272,7 @@
       "position": "GK",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Egyptian Premier League"
     },
     {
       "name": "Emam Ashour",
@@ -5280,7 +5280,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Egyptian Premier League"
     },
     {
       "name": "Haitham Hassan",
@@ -5288,7 +5288,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Egyptian Premier League"
     },
     {
       "name": "Hamdi Fathi",
@@ -5296,7 +5296,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Egyptian Premier League"
     },
     {
       "name": "Hamza Abdel Karim",
@@ -5304,7 +5304,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Egyptian Premier League"
     },
     {
       "name": "Hossam Abdelmaguid",
@@ -5312,7 +5312,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Egyptian Premier League"
     },
     {
       "name": "Ibrahim Adel",
@@ -5320,7 +5320,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Egyptian Premier League"
     },
     {
       "name": "Karim Hafez",
@@ -5328,7 +5328,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Egyptian Premier League"
     },
     {
       "name": "Mahmoud Saber",
@@ -5336,7 +5336,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Egyptian Premier League"
     },
     {
       "name": "Mahmoud Trezeguet",
@@ -5344,7 +5344,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Egyptian Premier League"
     },
     {
       "name": "Marwan Attia",
@@ -5352,7 +5352,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Egyptian Premier League"
     },
     {
       "name": "Mohamed Abdelmonem",
@@ -5360,7 +5360,7 @@
       "position": "DEF",
       "club": "OGC Nice",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Mohamed Alaa",
@@ -5368,7 +5368,7 @@
       "position": "GK",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Egyptian Premier League"
     },
     {
       "name": "Mohamed El Shenawy",
@@ -5376,7 +5376,7 @@
       "position": "GK",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Egyptian Premier League"
     },
     {
       "name": "Mohamed Hany",
@@ -5384,7 +5384,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Egyptian Premier League"
     },
     {
       "name": "Mohamed Salah",
@@ -5400,7 +5400,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Egyptian Premier League"
     },
     {
       "name": "Mostafa Shobeir",
@@ -5408,7 +5408,7 @@
       "position": "GK",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Egyptian Premier League"
     },
     {
       "name": "Mostafa Ziko",
@@ -5416,7 +5416,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Egyptian Premier League"
     },
     {
       "name": "Nabil Emad Dunga",
@@ -5424,7 +5424,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Egyptian Premier League"
     },
     {
       "name": "Omar Marmoush",
@@ -5448,7 +5448,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Egyptian Premier League"
     },
     {
       "name": "Yasser Ibrahim",
@@ -5456,7 +5456,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Egyptian Premier League"
     }
   ],
   "Irã": [
@@ -5466,7 +5466,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Ali Nemati",
@@ -5474,7 +5474,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Alireza Beyranvand",
@@ -5482,7 +5482,7 @@
       "position": "GK",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Alireza Jahanbakhsh",
@@ -5490,7 +5490,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Amirhossein Hosseinzadeh",
@@ -5498,7 +5498,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Amirmohammad Razaghinia",
@@ -5506,7 +5506,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Arya Yousefi",
@@ -5514,7 +5514,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Danial Iri",
@@ -5522,7 +5522,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Denis Dargahi",
@@ -5530,7 +5530,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Ehsan Hajisafi",
@@ -5538,7 +5538,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Hosein Hoseini",
@@ -5546,7 +5546,7 @@
       "position": "GK",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Hossein Kanani",
@@ -5554,7 +5554,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Mehdi Ghayedi",
@@ -5562,7 +5562,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Mehdi Taremi",
@@ -5570,7 +5570,7 @@
       "position": "FWD",
       "club": "Olympiacos FC",
       "source": "eafc",
-      "league": "Hellas Liga"
+      "league": "Super League Greece"
     },
     {
       "name": "Mehdi Torabi",
@@ -5578,7 +5578,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Milad Mohammadi",
@@ -5586,7 +5586,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Mohammad Ghorbani",
@@ -5594,7 +5594,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Mohammad Mohebbi",
@@ -5602,7 +5602,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Payam Niazmand",
@@ -5610,7 +5610,7 @@
       "position": "GK",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Ramin Rezaeian",
@@ -5618,7 +5618,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Roozbeh Cheshmi",
@@ -5626,7 +5626,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Saeid Ezatolahi",
@@ -5634,7 +5634,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Saleh Hardani",
@@ -5642,7 +5642,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Saman Ghoddos",
@@ -5650,7 +5650,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Shahriyar Moghanloo",
@@ -5658,7 +5658,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     },
     {
       "name": "Shoja Khalilzadeh",
@@ -5666,7 +5666,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Persian Gulf Pro League"
     }
   ],
   "Nova Zelândia": [
@@ -5692,7 +5692,7 @@
       "position": "FWD",
       "club": "AS Saint-Étienne",
       "source": "eafc",
-      "league": "Ligue 2 BKT"
+      "league": "Ligue 2"
     },
     {
       "name": "Ben Waine",
@@ -5716,7 +5716,7 @@
       "position": "MID",
       "club": "Silkeborg IF",
       "source": "eafc",
-      "league": "3F Superliga"
+      "league": "Danish Superliga"
     },
     {
       "name": "Chris Wood",
@@ -5788,7 +5788,7 @@
       "position": "DEF",
       "club": "Wrexham",
       "source": "eafc",
-      "league": "EFL Championship"
+      "league": "Championship"
     },
     {
       "name": "Marko Stamenić",
@@ -5796,7 +5796,7 @@
       "position": "MID",
       "club": "Swansea City",
       "source": "eafc",
-      "league": "EFL Championship"
+      "league": "Championship"
     },
     {
       "name": "Matt Garbett",
@@ -5812,7 +5812,7 @@
       "position": "GK",
       "club": "Millwall",
       "source": "eafc",
-      "league": "EFL Championship"
+      "league": "Championship"
     },
     {
       "name": "Michael Boxall",
@@ -5876,7 +5876,7 @@
       "position": "DEF",
       "club": "Sheffield Utd",
       "source": "eafc",
-      "league": "EFL Championship"
+      "league": "Championship"
     }
   ],
   "Espanha": [
@@ -5894,7 +5894,7 @@
       "position": "DEF",
       "club": "Al Nassr",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Borja Iglesias",
@@ -5902,7 +5902,7 @@
       "position": "FWD",
       "club": "Celta",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Dani Olmo",
@@ -5910,7 +5910,7 @@
       "position": "FWD",
       "club": "FC Barcelona",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "David Raya",
@@ -5926,7 +5926,7 @@
       "position": "DEF",
       "club": "FC Barcelona",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Fabián Ruiz",
@@ -5934,7 +5934,7 @@
       "position": "MID",
       "club": "Paris SG",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Ferran Torres",
@@ -5942,7 +5942,7 @@
       "position": "FWD",
       "club": "FC Barcelona",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Gavi",
@@ -5950,7 +5950,7 @@
       "position": "MID",
       "club": "FC Barcelona",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Joan García",
@@ -5958,7 +5958,7 @@
       "position": "GK",
       "club": "FC Barcelona",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Lamine Yamal",
@@ -5966,7 +5966,7 @@
       "position": "FWD",
       "club": "FC Barcelona",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Marc Cucurella",
@@ -5982,7 +5982,7 @@
       "position": "DEF",
       "club": "Atlético de Madrid",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Martín Zubimendi",
@@ -6014,7 +6014,7 @@
       "position": "FWD",
       "club": "Athletic Club",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Pau Cubarsí",
@@ -6022,7 +6022,7 @@
       "position": "DEF",
       "club": "FC Barcelona",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Pedri",
@@ -6030,7 +6030,7 @@
       "position": "MID",
       "club": "FC Barcelona",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Pedro Porro",
@@ -6054,7 +6054,7 @@
       "position": "GK",
       "club": "Athletic Club",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Víctor Muñoz",
@@ -6062,7 +6062,7 @@
       "position": "FWD",
       "club": "CA Osasuna",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Yeremy Pino",
@@ -6078,7 +6078,7 @@
       "position": "MID",
       "club": "Atlético de Madrid",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Álex Grimaldo",
@@ -6184,7 +6184,7 @@
       "position": "DEF",
       "club": "Sounders FC",
       "source": "eafc",
-      "league": null
+      "league": "MLS"
     },
     {
       "name": "Kelvin Pires",
@@ -6216,7 +6216,7 @@
       "position": "DEF",
       "club": "Villarreal CF",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Márcio da Rosa",
@@ -6232,7 +6232,7 @@
       "position": "FWD",
       "club": "Başakşehir",
       "source": "eafc",
-      "league": "Trendyol Süper Lig"
+      "league": "Süper Lig"
     },
     {
       "name": "Roberto Lopes",
@@ -6248,7 +6248,7 @@
       "position": "FWD",
       "club": "Kocaelispor",
       "source": "eafc",
-      "league": "Trendyol Süper Lig"
+      "league": "Süper Lig"
     },
     {
       "name": "Sidny Cabral",
@@ -6280,7 +6280,7 @@
       "position": "DEF",
       "club": "Trabzonspor",
       "source": "eafc",
-      "league": "Trendyol Süper Lig"
+      "league": "Süper Lig"
     },
     {
       "name": "Willy Semedo",
@@ -6306,7 +6306,7 @@
       "position": "DEF",
       "club": "Al Nassr",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Abdullah Al Hamdan",
@@ -6314,7 +6314,7 @@
       "position": "FWD",
       "club": "Al Hilal",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Abdullah Al Khaibari",
@@ -6322,7 +6322,7 @@
       "position": "MID",
       "club": "Al Nassr",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Ahmed Al Kassar",
@@ -6330,7 +6330,7 @@
       "position": "GK",
       "club": "Al Qadsiah",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Alaa Al Hajji",
@@ -6338,7 +6338,7 @@
       "position": "MID",
       "club": "Neom",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Ali Lajami",
@@ -6346,7 +6346,7 @@
       "position": "DEF",
       "club": "Al Hilal",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Ali Majrashi",
@@ -6354,7 +6354,7 @@
       "position": "DEF",
       "club": "Al Ahli",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Ayman Yahya",
@@ -6362,7 +6362,7 @@
       "position": "MID",
       "club": "Al Nassr",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Feras Al Brikan",
@@ -6370,7 +6370,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Saudi Pro League"
     },
     {
       "name": "Hassan Kadesh",
@@ -6378,7 +6378,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Saudi Pro League"
     },
     {
       "name": "Hassan Tambakti",
@@ -6386,7 +6386,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Saudi Pro League"
     },
     {
       "name": "Jehad Thikri",
@@ -6394,7 +6394,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Saudi Pro League"
     },
     {
       "name": "Khalid Al Ghannam",
@@ -6402,7 +6402,7 @@
       "position": "DEF",
       "club": "Al Ettifaq",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Mohammed Abu Al Shamat",
@@ -6410,7 +6410,7 @@
       "position": "DEF",
       "club": "Al Qadsiah",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Mohammed Al Owais",
@@ -6418,7 +6418,7 @@
       "position": "GK",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Saudi Pro League"
     },
     {
       "name": "Mohammed Kanno",
@@ -6426,7 +6426,7 @@
       "position": "MID",
       "club": "Al Hilal",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Moteb Al Harbi",
@@ -6434,7 +6434,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Saudi Pro League"
     },
     {
       "name": "Musab Al Juwayr",
@@ -6442,7 +6442,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Saudi Pro League"
     },
     {
       "name": "Nasser Al Dawsari",
@@ -6450,7 +6450,7 @@
       "position": "MID",
       "club": "Al Hilal",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Nawaf Al Aqidi",
@@ -6458,7 +6458,7 @@
       "position": "GK",
       "club": "Al Nassr",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Nawaf Boushal",
@@ -6466,7 +6466,7 @@
       "position": "DEF",
       "club": "Al Nassr",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Saleh Al Shehri",
@@ -6474,7 +6474,7 @@
       "position": "FWD",
       "club": "Al Ittihad",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Salem Al Dawsari",
@@ -6482,7 +6482,7 @@
       "position": "FWD",
       "club": "Al Hilal",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Saud Abdulhamid",
@@ -6490,7 +6490,7 @@
       "position": "DEF",
       "club": "RC Lens",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Sultan Mandash",
@@ -6498,7 +6498,7 @@
       "position": "MID",
       "club": "Al Taawoun",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Ziyad Al Johani",
@@ -6506,7 +6506,7 @@
       "position": "MID",
       "club": "Al Ahli",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     }
   ],
   "Uruguai": [
@@ -6532,7 +6532,7 @@
       "position": "FWD",
       "club": "Al Hilal",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Emiliano Martínez",
@@ -6548,7 +6548,7 @@
       "position": "MID",
       "club": "Panathinaikos",
       "source": "eafc",
-      "league": "Hellas Liga"
+      "league": "Super League Greece"
     },
     {
       "name": "Federico Viñas",
@@ -6556,7 +6556,7 @@
       "position": "FWD",
       "club": "R. Oviedo",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Fernando Muslera",
@@ -6564,7 +6564,7 @@
       "position": "GK",
       "club": "Estudiantes",
       "source": "eafc",
-      "league": "LPF"
+      "league": "Liga Profesional"
     },
     {
       "name": "Frederico Valverde",
@@ -6572,7 +6572,7 @@
       "position": "MID",
       "club": "Real Madrid",
       "source": "eafc",
-      "league": null
+      "league": "La Liga"
     },
     {
       "name": "Giorgian De Arrascaeta",
@@ -6604,7 +6604,7 @@
       "position": "DEF",
       "club": "Atlético de Madrid",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Juan Manuel Sanabria",
@@ -6612,7 +6612,7 @@
       "position": "MID",
       "club": "Newell's",
       "source": "eafc",
-      "league": null
+      "league": "Liga Profesional"
     },
     {
       "name": "Manuel Ugarte",
@@ -6628,7 +6628,7 @@
       "position": "DEF",
       "club": "SSC Napoli",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Matías Viña",
@@ -6684,7 +6684,7 @@
       "position": "DEF",
       "club": "FC Barcelona",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Santiago Bueno",
@@ -6726,7 +6726,7 @@
       "position": "MID",
       "club": "Milano FC",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Aurélien Tchouaméni",
@@ -6734,7 +6734,7 @@
       "position": "MID",
       "club": "Real Madrid",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Bradley Barcola",
@@ -6742,7 +6742,7 @@
       "position": "FWD",
       "club": "Paris SG",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Brice Samba",
@@ -6750,7 +6750,7 @@
       "position": "GK",
       "club": "Stade Rennais FC",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Dayot Upamecano",
@@ -6766,7 +6766,7 @@
       "position": "FWD",
       "club": "Paris SG",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Ibrahima Konaté",
@@ -6790,7 +6790,7 @@
       "position": "DEF",
       "club": "FC Barcelona",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Kylian Mbappé",
@@ -6798,7 +6798,7 @@
       "position": "FWD",
       "club": "Real Madrid",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Lucas Digne",
@@ -6814,7 +6814,7 @@
       "position": "DEF",
       "club": "Paris SG",
       "source": "eafc",
-      "league": null
+      "league": "Ligue 1"
     },
     {
       "name": "Maghnès Akliouche",
@@ -6822,7 +6822,7 @@
       "position": "FWD",
       "club": "AS Monaco",
       "source": "eafc",
-      "league": null
+      "league": "Ligue 1"
     },
     {
       "name": "Malo Gusto",
@@ -6838,7 +6838,7 @@
       "position": "MID",
       "club": "AS Roma",
       "source": "eafc",
-      "league": null
+      "league": "Serie A"
     },
     {
       "name": "Marcus Thuram",
@@ -6846,7 +6846,7 @@
       "position": "FWD",
       "club": "Lombardia FC",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Maxence Lacroix",
@@ -6870,7 +6870,7 @@
       "position": "GK",
       "club": "Milano FC",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "N'Golo Kanté",
@@ -6878,7 +6878,7 @@
       "position": "MID",
       "club": "Al Ittihad",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Ousmane Dembélé",
@@ -6886,7 +6886,7 @@
       "position": "FWD",
       "club": "Paris SG",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Rayan Cherki",
@@ -6902,7 +6902,7 @@
       "position": "GK",
       "club": "RC Lens",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Theo Hernandez",
@@ -6910,7 +6910,7 @@
       "position": "DEF",
       "club": "Al Hilal",
       "source": "eafc",
-      "league": null
+      "league": "Saudi Pro League"
     },
     {
       "name": "Warren Zaïre-Emery",
@@ -6918,7 +6918,7 @@
       "position": "MID",
       "club": "Paris SG",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "William Saliba",
@@ -6944,7 +6944,7 @@
       "position": "DEF",
       "club": "OGC Nice",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Assane Diao",
@@ -6952,7 +6952,7 @@
       "position": "FWD",
       "club": "Como",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Bamba Dieng",
@@ -6960,7 +6960,7 @@
       "position": "FWD",
       "club": "FC Lorient",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Bara Sapoko Ndiaye",
@@ -6984,7 +6984,7 @@
       "position": "DEF",
       "club": "West Ham",
       "source": "eafc",
-      "league": null
+      "league": "Premier League"
     },
     {
       "name": "Habib Diarra",
@@ -7000,7 +7000,7 @@
       "position": "FWD",
       "club": "Paris SG",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Idrissa Gana Gueye",
@@ -7008,7 +7008,7 @@
       "position": "MID",
       "club": "Everton",
       "source": "eafc",
-      "league": null
+      "league": "Premier League"
     },
     {
       "name": "Iliman Ndiaye",
@@ -7024,7 +7024,7 @@
       "position": "DEF",
       "club": "Galatasaray",
       "source": "eafc",
-      "league": "Trendyol Süper Lig"
+      "league": "Süper Lig"
     },
     {
       "name": "Ismaila Sarr",
@@ -7032,7 +7032,7 @@
       "position": "FWD",
       "club": "Crystal Palace",
       "source": "eafc",
-      "league": null
+      "league": "Premier League"
     },
     {
       "name": "Kalidou Koulibaly",
@@ -7040,7 +7040,7 @@
       "position": "DEF",
       "club": "Al Hilal",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Krépin Diatta",
@@ -7048,7 +7048,7 @@
       "position": "DEF",
       "club": "AS Monaco",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Lamine Camara",
@@ -7056,7 +7056,7 @@
       "position": "MID",
       "club": "AS Monaco",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Mamadou Sarr",
@@ -7064,7 +7064,7 @@
       "position": "DEF",
       "club": "Strasbourg",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Mory Diaw",
@@ -7072,7 +7072,7 @@
       "position": "GK",
       "club": "Havre AC",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Moussa Niakhaté",
@@ -7080,7 +7080,7 @@
       "position": "DEF",
       "club": "OL",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Nicolas Jackson",
@@ -7096,7 +7096,7 @@
       "position": "MID",
       "club": "Villarreal CF",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Pape Matar Sarr",
@@ -7112,7 +7112,7 @@
       "position": "MID",
       "club": "Rayo Vallecano",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Sadio Mané",
@@ -7120,7 +7120,7 @@
       "position": "FWD",
       "club": "Al Nassr",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Yehvann Diouf",
@@ -7128,7 +7128,7 @@
       "position": "GK",
       "club": "OGC Nice",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Édouard Mendy",
@@ -7136,7 +7136,7 @@
       "position": "GK",
       "club": "Al Ahli",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     }
   ],
   "Iraque": [
@@ -7146,7 +7146,7 @@
       "position": "GK",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Iraq Stars League"
     },
     {
       "name": "Ahmed Qasim",
@@ -7154,7 +7154,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Iraq Stars League"
     },
     {
       "name": "Ahmed Yahya",
@@ -7162,7 +7162,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Iraq Stars League"
     },
     {
       "name": "Aimar Sher",
@@ -7178,7 +7178,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Iraq Stars League"
     },
     {
       "name": "Ali Al-Hamadi",
@@ -7186,7 +7186,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Iraq Stars League"
     },
     {
       "name": "Ali Jassim",
@@ -7194,7 +7194,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Iraq Stars League"
     },
     {
       "name": "Ali Yousif",
@@ -7202,7 +7202,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Iraq Stars League"
     },
     {
       "name": "Amir Al-Ammari",
@@ -7218,7 +7218,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Iraq Stars League"
     },
     {
       "name": "Fahad Talib",
@@ -7226,7 +7226,7 @@
       "position": "GK",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Iraq Stars League"
     },
     {
       "name": "Frans Putros",
@@ -7234,7 +7234,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Iraq Stars League"
     },
     {
       "name": "Hussein Ali",
@@ -7242,7 +7242,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Iraq Stars League"
     },
     {
       "name": "Ibrahim Bayesh",
@@ -7250,7 +7250,7 @@
       "position": "MID",
       "club": "Al Riyadh",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Jalal Hassan",
@@ -7258,7 +7258,7 @@
       "position": "GK",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Iraq Stars League"
     },
     {
       "name": "Kevin Yakob",
@@ -7266,7 +7266,7 @@
       "position": "MID",
       "club": "AGF",
       "source": "eafc",
-      "league": "3F Superliga"
+      "league": "Danish Superliga"
     },
     {
       "name": "Marko Farji",
@@ -7290,7 +7290,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Iraq Stars League"
     },
     {
       "name": "Munaf Younus",
@@ -7298,7 +7298,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Iraq Stars League"
     },
     {
       "name": "Mustafa Saadoun",
@@ -7306,7 +7306,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Iraq Stars League"
     },
     {
       "name": "Rebin Ghareeb",
@@ -7314,7 +7314,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Iraq Stars League"
     },
     {
       "name": "Youssef Amyn",
@@ -7322,7 +7322,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Iraq Stars League"
     },
     {
       "name": "Zaid Ismail",
@@ -7330,7 +7330,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Iraq Stars League"
     },
     {
       "name": "Zaid Tahseen",
@@ -7338,7 +7338,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Iraq Stars League"
     },
     {
       "name": "Zidane Iqbal",
@@ -7388,7 +7388,7 @@
       "position": "GK",
       "club": "Watford",
       "source": "eafc",
-      "league": "EFL Championship"
+      "league": "Championship"
     },
     {
       "name": "Erling Haaland",
@@ -7452,7 +7452,7 @@
       "position": "MID",
       "club": "Sassuolo",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Kristoffer Ajer",
@@ -7484,7 +7484,7 @@
       "position": "MID",
       "club": "Genoa",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Orjan Nyland",
@@ -7532,7 +7532,7 @@
       "position": "DEF",
       "club": "Derby County",
       "source": "eafc",
-      "league": null
+      "league": "Championship"
     },
     {
       "name": "Strand Larsen",
@@ -7540,7 +7540,7 @@
       "position": "FWD",
       "club": "Wolves",
       "source": "eafc",
-      "league": null
+      "league": "Premier League"
     },
     {
       "name": "Thelo Aasgaard",
@@ -7548,7 +7548,7 @@
       "position": "MID",
       "club": "Rangers",
       "source": "eafc",
-      "league": "Scottish Prem"
+      "league": "Scottish Premiership"
     },
     {
       "name": "Torbjorn Heggem",
@@ -7606,7 +7606,7 @@
       "position": "DEF",
       "club": "OM",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Flaco López",
@@ -7622,7 +7622,7 @@
       "position": "GK",
       "club": "OM",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Giovani Lo Celso",
@@ -7630,7 +7630,7 @@
       "position": "MID",
       "club": "Real Betis",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Giuliano Simeone",
@@ -7638,7 +7638,7 @@
       "position": "FWD",
       "club": "Atlético de Madrid",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Gonzalo Montiel",
@@ -7646,7 +7646,7 @@
       "position": "DEF",
       "club": "River Plate",
       "source": "eafc",
-      "league": "LPF"
+      "league": "Liga Profesional"
     },
     {
       "name": "Juan Musso",
@@ -7654,7 +7654,7 @@
       "position": "GK",
       "club": "Atlético de Madrid",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Julián Álvarez",
@@ -7662,7 +7662,7 @@
       "position": "FWD",
       "club": "Atlético de Madrid",
       "source": "eafc",
-      "league": null
+      "league": "La Liga"
     },
     {
       "name": "Lautaro Martínez",
@@ -7678,7 +7678,7 @@
       "position": "MID",
       "club": "Boca Juniors",
       "source": "eafc",
-      "league": "LPF"
+      "league": "Liga Profesional"
     },
     {
       "name": "Leonardo Balerdi",
@@ -7686,7 +7686,7 @@
       "position": "DEF",
       "club": "OM",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Lionel Messi",
@@ -7710,7 +7710,7 @@
       "position": "DEF",
       "club": "Atlético de Madrid",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Nico González",
@@ -7734,7 +7734,7 @@
       "position": "FWD",
       "club": "Unión",
       "source": "eafc",
-      "league": "LPF"
+      "league": "Liga Profesional"
     },
     {
       "name": "Nicolás Tagliafico",
@@ -7742,7 +7742,7 @@
       "position": "DEF",
       "club": "OL",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Rodrigo De Paul",
@@ -7758,7 +7758,7 @@
       "position": "FWD",
       "club": "Atlético de Madrid",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Valentín Barco",
@@ -7766,7 +7766,7 @@
       "position": "MID",
       "club": "Strasbourg",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     }
   ],
   "Argélia": [
@@ -7776,7 +7776,7 @@
       "position": "DEF",
       "club": "USM Alger",
       "source": "manual",
-      "league": null
+      "league": "Ligue 1 Algérie"
     },
     {
       "name": "Adil Boulbina",
@@ -7784,7 +7784,7 @@
       "position": "FWD",
       "club": "Al-Duhail",
       "source": "manual",
-      "league": null
+      "league": "Qatar Stars League"
     },
     {
       "name": "Aissa Mandi",
@@ -7792,7 +7792,7 @@
       "position": "DEF",
       "club": "LOSC Lille",
       "source": "eafc",
-      "league": null
+      "league": "Ligue 1"
     },
     {
       "name": "Amine Gouri",
@@ -7800,7 +7800,7 @@
       "position": "FWD",
       "club": "Olympique Marseille",
       "source": "manual",
-      "league": null
+      "league": "Ligue 1"
     },
     {
       "name": "Anis Hadj Moussa",
@@ -7808,7 +7808,7 @@
       "position": "FWD",
       "club": "Feyenoord",
       "source": "manual",
-      "league": null
+      "league": "Eredivisie"
     },
     {
       "name": "Farès Chaibi",
@@ -7816,7 +7816,7 @@
       "position": "MID",
       "club": "Frankfurt",
       "source": "eafc",
-      "league": null
+      "league": "Bundesliga"
     },
     {
       "name": "Farès Ghedjemis",
@@ -7824,7 +7824,7 @@
       "position": "FWD",
       "club": "Frosinone",
       "source": "eafc",
-      "league": "Serie BKT"
+      "league": "Serie B"
     },
     {
       "name": "Hicham Boudaqui",
@@ -7832,7 +7832,7 @@
       "position": "MID",
       "club": "Nice",
       "source": "manual",
-      "league": null
+      "league": "Ligue 1"
     },
     {
       "name": "Houssem Aouar",
@@ -7856,7 +7856,7 @@
       "position": "DEF",
       "club": "BSC Young Boys",
       "source": "eafc",
-      "league": "Brack Super League"
+      "league": "Swiss Super League"
     },
     {
       "name": "Luca Zidane",
@@ -7864,7 +7864,7 @@
       "position": "GK",
       "club": "Granada CF",
       "source": "eafc",
-      "league": "LALIGA HYPERMOTION"
+      "league": "La Liga 2"
     },
     {
       "name": "Melvin Mastil",
@@ -7880,7 +7880,7 @@
       "position": "FWD",
       "club": "VfL Wolfsburg",
       "source": "eafc",
-      "league": null
+      "league": "Bundesliga"
     },
     {
       "name": "Mohamed Amine Tougai",
@@ -7888,7 +7888,7 @@
       "position": "DEF",
       "club": "Espérance Tunis",
       "source": "manual",
-      "league": null
+      "league": "Ligue 1 Tunisie"
     },
     {
       "name": "Nabil Bentaleb",
@@ -7896,7 +7896,7 @@
       "position": "MID",
       "club": "LOSC Lille",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Nadhir Benbouali",
@@ -7904,7 +7904,7 @@
       "position": "FWD",
       "club": "Gyor",
       "source": "manual",
-      "league": null
+      "league": "Magyar Liga"
     },
     {
       "name": "Oussama Benbot",
@@ -7912,7 +7912,7 @@
       "position": "GK",
       "club": "USM Alger",
       "source": "manual",
-      "league": null
+      "league": "Ligue 1 Algérie"
     },
     {
       "name": "Rafik Belghali",
@@ -7920,7 +7920,7 @@
       "position": "DEF",
       "club": "Hellas Verona",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Ramiz Zerrouki",
@@ -7944,7 +7944,7 @@
       "position": "DEF",
       "club": "Manchester City",
       "source": "eafc",
-      "league": null
+      "league": "Premier League"
     },
     {
       "name": "Riyad Mahrez",
@@ -7960,7 +7960,7 @@
       "position": "DEF",
       "club": "Paris FC",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Yacine Titraoui",
@@ -7968,7 +7968,7 @@
       "position": "MID",
       "club": "Sp. Charleroi",
       "source": "eafc",
-      "league": "1A Pro League"
+      "league": "Belgian Pro League"
     },
     {
       "name": "Zineddine Belaid",
@@ -7976,7 +7976,7 @@
       "position": "DEF",
       "club": "JS Kabylie",
       "source": "manual",
-      "league": null
+      "league": "Ligue 1 Algérie"
     }
   ],
   "Áustria": [
@@ -7986,7 +7986,7 @@
       "position": "MID",
       "club": "Wolfsberger AC",
       "source": "eafc",
-      "league": "Ö. Bundesliga"
+      "league": "Austrian Bundesliga"
     },
     {
       "name": "Alexander Prass",
@@ -8026,7 +8026,7 @@
       "position": "DEF",
       "club": "Elche CF",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "David Alaba",
@@ -8034,7 +8034,7 @@
       "position": "DEF",
       "club": "Real Madrid",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Florian Grillitsch",
@@ -8098,7 +8098,7 @@
       "position": "FWD",
       "club": "Brøndby IF",
       "source": "eafc",
-      "league": "3F Superliga"
+      "league": "Danish Superliga"
     },
     {
       "name": "Michael Svoboda",
@@ -8106,7 +8106,7 @@
       "position": "DEF",
       "club": "Venezia",
       "source": "eafc",
-      "league": "Serie BKT"
+      "league": "Serie B"
     },
     {
       "name": "Nicolas Seiwald",
@@ -8122,7 +8122,7 @@
       "position": "GK",
       "club": "Brøndby IF",
       "source": "eafc",
-      "league": "3F Superliga"
+      "league": "Danish Superliga"
     },
     {
       "name": "Patrick Wimmer",
@@ -8170,7 +8170,7 @@
       "position": "FWD",
       "club": "LASK",
       "source": "eafc",
-      "league": null
+      "league": "Austrian Bundesliga"
     },
     {
       "name": "Stefan Posch",
@@ -8178,7 +8178,7 @@
       "position": "DEF",
       "club": "Como",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Xaver Schlager",
@@ -8196,7 +8196,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Abdullah Al-Fakhouri",
@@ -8204,7 +8204,7 @@
       "position": "GK",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Ali Al-Azaizeh",
@@ -8212,7 +8212,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Ali Olwan",
@@ -8220,7 +8220,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Amer Jamous",
@@ -8228,7 +8228,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Anas Badawi",
@@ -8236,7 +8236,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Husam Abu Dahab",
@@ -8244,7 +8244,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Ibrahim Sabra",
@@ -8252,7 +8252,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Ibrahim Sadeh",
@@ -8260,7 +8260,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Ihsan Haddad",
@@ -8268,7 +8268,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Mahmoud Al-Mardi",
@@ -8276,7 +8276,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Mohammad Abu Hashish",
@@ -8284,7 +8284,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Mohammad Abu Zrayq",
@@ -8292,7 +8292,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Mohammad Abualnadi",
@@ -8300,7 +8300,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Mohammad Al-Dawoud",
@@ -8308,7 +8308,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Mohannad Abu Taha",
@@ -8316,7 +8316,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Musa Al-Taamari",
@@ -8324,7 +8324,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Nizar Al-Rashdan",
@@ -8332,7 +8332,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Nour Al-Rawabdeh",
@@ -8340,7 +8340,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Nour Bani Attiah",
@@ -8348,7 +8348,7 @@
       "position": "GK",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Odeh Fakhouri",
@@ -8356,7 +8356,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Rajaei Ayed",
@@ -8364,7 +8364,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Saed Al-Rosan",
@@ -8372,7 +8372,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Saleem Obaid",
@@ -8380,7 +8380,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Yazan Al-Arab",
@@ -8388,7 +8388,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     },
     {
       "name": "Yazeed Abu Laila",
@@ -8396,7 +8396,7 @@
       "position": "GK",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Jordanian Pro League"
     }
   ],
   "Portugal": [
@@ -8422,7 +8422,7 @@
       "position": "FWD",
       "club": "Al Nassr",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Diogo Costa",
@@ -8446,7 +8446,7 @@
       "position": "FWD",
       "club": "Juventus",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Gonçalo Guedes",
@@ -8454,7 +8454,7 @@
       "position": "FWD",
       "club": "Real Sociedad",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Gonçalo Inácio",
@@ -8470,7 +8470,7 @@
       "position": "FWD",
       "club": "Paris SG",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "José Sá",
@@ -8486,7 +8486,7 @@
       "position": "DEF",
       "club": "Al Hilal",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "João Félix",
@@ -8494,7 +8494,7 @@
       "position": "FWD",
       "club": "Al Nassr",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "João Neves",
@@ -8502,7 +8502,7 @@
       "position": "MID",
       "club": "Paris SG",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Matheus Nunes",
@@ -8518,7 +8518,7 @@
       "position": "DEF",
       "club": "Paris SG",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Nélson Semedo",
@@ -8526,7 +8526,7 @@
       "position": "DEF",
       "club": "Fenerbahçe",
       "source": "eafc",
-      "league": "Trendyol Süper Lig"
+      "league": "Süper Lig"
     },
     {
       "name": "Pedro Neto",
@@ -8542,7 +8542,7 @@
       "position": "FWD",
       "club": "Milano FC",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Renato Veiga",
@@ -8550,7 +8550,7 @@
       "position": "DEF",
       "club": "Villarreal CF",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Rui Silva",
@@ -8574,7 +8574,7 @@
       "position": "MID",
       "club": "Al Hilal",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Samuel Costa",
@@ -8606,7 +8606,7 @@
       "position": "MID",
       "club": "Paris SG",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     }
   ],
   "Colômbia": [
@@ -8624,7 +8624,7 @@
       "position": "FWD",
       "club": "Alianza Lima",
       "source": "eafc",
-      "league": "Libertadores"
+      "league": "Liga 1 Peru"
     },
     {
       "name": "Daniel Muñoz",
@@ -8640,7 +8640,7 @@
       "position": "GK",
       "club": "Atl. Nacional",
       "source": "eafc",
-      "league": "Libertadores"
+      "league": "Liga BetPlay"
     },
     {
       "name": "Davinson Sánchez",
@@ -8648,7 +8648,7 @@
       "position": "DEF",
       "club": "Galatasaray",
       "source": "eafc",
-      "league": "Trendyol Süper Lig"
+      "league": "Süper Lig"
     },
     {
       "name": "Deiver Machado",
@@ -8656,7 +8656,7 @@
       "position": "DEF",
       "club": "RC Lens",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Gustavo Puerta",
@@ -8664,7 +8664,7 @@
       "position": "MID",
       "club": "R. Racing Club",
       "source": "eafc",
-      "league": "LALIGA HYPERMOTION"
+      "league": "La Liga 2"
     },
     {
       "name": "James Rodríguez",
@@ -8672,7 +8672,7 @@
       "position": "MID",
       "club": "Spurs",
       "source": "eafc",
-      "league": null
+      "league": "Premier League"
     },
     {
       "name": "Jaminton Campaz",
@@ -8680,7 +8680,7 @@
       "position": "MID",
       "club": "Rosario Central",
       "source": "eafc",
-      "league": "LPF"
+      "league": "Liga Profesional"
     },
     {
       "name": "Jefferson Lerma",
@@ -8712,7 +8712,7 @@
       "position": "DEF",
       "club": "Bologna",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Johan Mojica",
@@ -8720,7 +8720,7 @@
       "position": "DEF",
       "club": "RCD Mallorca",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Jorge Carrascal",
@@ -8736,7 +8736,7 @@
       "position": "FWD",
       "club": "Talleres",
       "source": "eafc",
-      "league": null
+      "league": "Liga Profesional"
     },
     {
       "name": "Juan Camilo Portilla",
@@ -8744,7 +8744,7 @@
       "position": "MID",
       "club": "Talleres",
       "source": "eafc",
-      "league": "LPF"
+      "league": "Liga Profesional"
     },
     {
       "name": "Juan Fernando Quintero",
@@ -8752,7 +8752,7 @@
       "position": "MID",
       "club": "River Plate",
       "source": "eafc",
-      "league": "LPF"
+      "league": "Liga Profesional"
     },
     {
       "name": "Kevin Castaño",
@@ -8760,7 +8760,7 @@
       "position": "MID",
       "club": "River Plate",
       "source": "eafc",
-      "league": "LPF"
+      "league": "Liga Profesional"
     },
     {
       "name": "Luis Díaz",
@@ -8808,7 +8808,7 @@
       "position": "DEF",
       "club": "Cagliari",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Álvaro Montero",
@@ -8816,7 +8816,7 @@
       "position": "GK",
       "club": "Vélez Sarsfield",
       "source": "eafc",
-      "league": "LPF"
+      "league": "Liga Profesional"
     }
   ],
   "RD Congo": [
@@ -8850,7 +8850,7 @@
       "position": "MID",
       "club": "CD Castellón",
       "source": "eafc",
-      "league": "LALIGA HYPERMOTION"
+      "league": "La Liga 2"
     },
     {
       "name": "Chancel Mbemba",
@@ -8866,7 +8866,7 @@
       "position": "MID",
       "club": "RCD Espanyol",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Cédric Bakambu",
@@ -8874,7 +8874,7 @@
       "position": "FWD",
       "club": "Real Betis",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Dylan Batubinsika",
@@ -8882,7 +8882,7 @@
       "position": "DEF",
       "club": "AS Saint-Étienne",
       "source": "eafc",
-      "league": "Ligue 2 BKT"
+      "league": "Ligue 2"
     },
     {
       "name": "Edo Kayembe",
@@ -8890,7 +8890,7 @@
       "position": "MID",
       "club": "Watford",
       "source": "eafc",
-      "league": "EFL Championship"
+      "league": "Championship"
     },
     {
       "name": "Fiston Mayele",
@@ -8922,7 +8922,7 @@
       "position": "DEF",
       "club": "KRC Genk",
       "source": "eafc",
-      "league": "1A Pro League"
+      "league": "Belgian Pro League"
     },
     {
       "name": "Lionel Mpasi",
@@ -8930,7 +8930,7 @@
       "position": "GK",
       "club": "Havre AC",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Matthieu Epolo",
@@ -8938,7 +8938,7 @@
       "position": "GK",
       "club": "Standard Liège",
       "source": "eafc",
-      "league": "1A Pro League"
+      "league": "Belgian Pro League"
     },
     {
       "name": "Meschack Elia",
@@ -8946,7 +8946,7 @@
       "position": "MID",
       "club": "BSC Young Boys",
       "source": "eafc",
-      "league": "Brack Super League"
+      "league": "Swiss Super League"
     },
     {
       "name": "Nathanael Mbuku",
@@ -8954,7 +8954,7 @@
       "position": "MID",
       "club": "Montpellier",
       "source": "eafc",
-      "league": null
+      "league": "Ligue 2"
     },
     {
       "name": "Ngal'ayel Mukau",
@@ -8962,7 +8962,7 @@
       "position": "MID",
       "club": "LOSC Lille",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Noah Sadiki",
@@ -8978,7 +8978,7 @@
       "position": "DEF",
       "club": "Hibernian",
       "source": "eafc",
-      "league": "Scottish Prem"
+      "league": "Scottish Premiership"
     },
     {
       "name": "Samuel Moutoussamy",
@@ -9036,7 +9036,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Abdukodir Husanov",
@@ -9044,7 +9044,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Abdulla Abdullaev",
@@ -9052,7 +9052,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Abduvohid Nematov",
@@ -9060,7 +9060,7 @@
       "position": "GK",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Akmal Mozgovoy",
@@ -9068,7 +9068,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Avazbek Ulmasaliyev",
@@ -9076,7 +9076,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Azizbek Amonov",
@@ -9084,7 +9084,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Azizjon Ganiev",
@@ -9092,7 +9092,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Behruz Karimov",
@@ -9100,7 +9100,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Botirali Ergashev",
@@ -9108,7 +9108,7 @@
       "position": "GK",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Dostonbek Kahmdamov",
@@ -9116,7 +9116,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Eldor Shomurodov",
@@ -9124,7 +9124,7 @@
       "position": "FWD",
       "club": "Başakşehir",
       "source": "eafc",
-      "league": "Trendyol Süper Lig"
+      "league": "Süper Lig"
     },
     {
       "name": "Farruh Sayfiyev",
@@ -9132,7 +9132,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Igor Sergeev",
@@ -9140,7 +9140,7 @@
       "position": "FWD",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Jahongir Orozov",
@@ -9148,7 +9148,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Jaloliddin Masharipov",
@@ -9156,7 +9156,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Jamshid Iskanderov",
@@ -9164,7 +9164,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Khojiakbar Alijonov",
@@ -9172,7 +9172,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Odijion Xamrobekov",
@@ -9180,7 +9180,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Oston Orunov",
@@ -9188,7 +9188,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Otabek Shukurov",
@@ -9196,7 +9196,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Otkir Yusupov",
@@ -9204,7 +9204,7 @@
       "position": "GK",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Rustam Ashurmatov",
@@ -9212,7 +9212,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Sherzod Esanov",
@@ -9220,7 +9220,7 @@
       "position": "MID",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Sherzod Nasrullayev",
@@ -9228,7 +9228,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     },
     {
       "name": "Umar Eshmurodov",
@@ -9236,7 +9236,7 @@
       "position": "DEF",
       "club": null,
       "source": "estimated",
-      "league": null
+      "league": "Uzbekistan Super League"
     }
   ],
   "Inglaterra": [
@@ -9326,7 +9326,7 @@
       "position": "FWD",
       "club": "Al Ahli",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "James Trafford",
@@ -9374,7 +9374,7 @@
       "position": "MID",
       "club": "Real Madrid",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Kobbie Mainoo",
@@ -9390,7 +9390,7 @@
       "position": "DEF",
       "club": "Crystal Palace",
       "source": "eafc",
-      "league": null
+      "league": "Premier League"
     },
     {
       "name": "Marcus Rashford",
@@ -9398,7 +9398,7 @@
       "position": "FWD",
       "club": "FC Barcelona",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Morgan Rogers",
@@ -9456,7 +9456,7 @@
       "position": "FWD",
       "club": "TSG Hoffenheim",
       "source": "eafc",
-      "league": null
+      "league": "Bundesliga"
     },
     {
       "name": "Ante Budimir",
@@ -9464,7 +9464,7 @@
       "position": "FWD",
       "club": "CA Osasuna",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Dominik Kotarski",
@@ -9472,7 +9472,7 @@
       "position": "GK",
       "club": "F.C. København",
       "source": "eafc",
-      "league": "3F Superliga"
+      "league": "Danish Superliga"
     },
     {
       "name": "Dominik Livakovic",
@@ -9480,7 +9480,7 @@
       "position": "GK",
       "club": "Girona FC",
       "source": "eafc",
-      "league": null
+      "league": "La Liga"
     },
     {
       "name": "Duje Caleta-Car",
@@ -9488,7 +9488,7 @@
       "position": "DEF",
       "club": "Real Sociedad",
       "source": "eafc",
-      "league": null
+      "league": "La Liga"
     },
     {
       "name": "Igor Matanovic",
@@ -9496,7 +9496,7 @@
       "position": "FWD",
       "club": "SC Freiburg",
       "source": "eafc",
-      "league": null
+      "league": "Bundesliga"
     },
     {
       "name": "Ivan Perisic",
@@ -9504,7 +9504,7 @@
       "position": "FWD",
       "club": "PSV",
       "source": "eafc",
-      "league": null
+      "league": "Eredivisie"
     },
     {
       "name": "Ivor Pandur",
@@ -9512,7 +9512,7 @@
       "position": "GK",
       "club": "Hull City",
       "source": "eafc",
-      "league": "EFL Championship"
+      "league": "Championship"
     },
     {
       "name": "Josip Stanisic",
@@ -9520,7 +9520,7 @@
       "position": "DEF",
       "club": "FC Bayern München",
       "source": "eafc",
-      "league": null
+      "league": "Bundesliga"
     },
     {
       "name": "Josip Sutalo",
@@ -9528,7 +9528,7 @@
       "position": "DEF",
       "club": "Ajax",
       "source": "eafc",
-      "league": null
+      "league": "Eredivisie"
     },
     {
       "name": "Josko Gvardiol",
@@ -9536,7 +9536,7 @@
       "position": "DEF",
       "club": "Manchester City",
       "source": "eafc",
-      "league": null
+      "league": "Premier League"
     },
     {
       "name": "Kristijan Jakic",
@@ -9544,7 +9544,7 @@
       "position": "MID",
       "club": "FC Augsburg",
       "source": "eafc",
-      "league": null
+      "league": "Bundesliga"
     },
     {
       "name": "Luka Modric",
@@ -9552,7 +9552,7 @@
       "position": "MID",
       "club": "Milano FC",
       "source": "eafc",
-      "league": null
+      "league": "Serie A"
     },
     {
       "name": "Luka Sucic",
@@ -9560,7 +9560,7 @@
       "position": "MID",
       "club": "Real Sociedad",
       "source": "eafc",
-      "league": null
+      "league": "La Liga"
     },
     {
       "name": "Luka Vuskovic",
@@ -9568,7 +9568,7 @@
       "position": "DEF",
       "club": "Hamburger SV",
       "source": "eafc",
-      "league": null
+      "league": "Bundesliga"
     },
     {
       "name": "Marco Pasalic",
@@ -9576,7 +9576,7 @@
       "position": "FWD",
       "club": "Orlando City",
       "source": "eafc",
-      "league": null
+      "league": "MLS"
     },
     {
       "name": "Marin Pongracic",
@@ -9584,7 +9584,7 @@
       "position": "DEF",
       "club": "Fiorentina",
       "source": "eafc",
-      "league": null
+      "league": "Serie A"
     },
     {
       "name": "Mario Pasalic",
@@ -9592,7 +9592,7 @@
       "position": "MID",
       "club": "Bergamo Calcio",
       "source": "eafc",
-      "league": null
+      "league": "Serie A"
     },
     {
       "name": "Martin Baturina",
@@ -9600,7 +9600,7 @@
       "position": "MID",
       "club": "Como",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Martin Erlic",
@@ -9608,7 +9608,7 @@
       "position": "DEF",
       "club": "FC Midtjylland",
       "source": "eafc",
-      "league": null
+      "league": "Danish Superliga"
     },
     {
       "name": "Mateo Kovacic",
@@ -9616,7 +9616,7 @@
       "position": "MID",
       "club": "Manchester City",
       "source": "eafc",
-      "league": null
+      "league": "Premier League"
     },
     {
       "name": "Nikola Moro",
@@ -9624,7 +9624,7 @@
       "position": "MID",
       "club": "Bologna",
       "source": "eafc",
-      "league": "Serie A Enilive"
+      "league": "Serie A"
     },
     {
       "name": "Nikola Vlasic",
@@ -9632,7 +9632,7 @@
       "position": "MID",
       "club": "Torino",
       "source": "eafc",
-      "league": null
+      "league": "Serie A"
     },
     {
       "name": "Petar Musa",
@@ -9648,7 +9648,7 @@
       "position": "MID",
       "club": "Lombardia FC",
       "source": "eafc",
-      "league": null
+      "league": "Serie A"
     },
     {
       "name": "Toni Fruk",
@@ -9666,7 +9666,7 @@
       "position": "MID",
       "club": "Leicester City",
       "source": "eafc",
-      "league": null
+      "league": "Championship"
     },
     {
       "name": "Abdul Mumin",
@@ -9674,7 +9674,7 @@
       "position": "DEF",
       "club": "Rayo Vallecano",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Alidu Seidu",
@@ -9682,7 +9682,7 @@
       "position": "DEF",
       "club": "Stade Rennais FC",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Antoine Semenyo",
@@ -9698,7 +9698,7 @@
       "position": "MID",
       "club": "AS Saint-Étienne",
       "source": "eafc",
-      "league": "Ligue 2 BKT"
+      "league": "Ligue 2"
     },
     {
       "name": "Baba Abdul Rahman",
@@ -9706,7 +9706,7 @@
       "position": "DEF",
       "club": "PAOK FC",
       "source": "eafc",
-      "league": null
+      "league": "Super League Greece"
     },
     {
       "name": "Benjamin Asare",
@@ -9722,7 +9722,7 @@
       "position": "FWD",
       "club": "Coventry City",
       "source": "eafc",
-      "league": "EFL Championship"
+      "league": "Championship"
     },
     {
       "name": "Caleb Yirenkyi",
@@ -9730,7 +9730,7 @@
       "position": "MID",
       "club": "FC Nordsjælland",
       "source": "eafc",
-      "league": "3F Superliga"
+      "league": "Danish Superliga"
     },
     {
       "name": "Christopher Bonsu Baah",
@@ -9738,7 +9738,7 @@
       "position": "FWD",
       "club": "Al Qadsiah",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Elisha Owusu",
@@ -9746,7 +9746,7 @@
       "position": "MID",
       "club": "AJ Auxerre",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Ernest Nuamah",
@@ -9754,7 +9754,7 @@
       "position": "FWD",
       "club": "OL",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Gideoh Mensah",
@@ -9770,7 +9770,7 @@
       "position": "FWD",
       "club": "Athletic Club",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Jerome Opoku",
@@ -9778,7 +9778,7 @@
       "position": "DEF",
       "club": "Başakşehir",
       "source": "eafc",
-      "league": "Trendyol Süper Lig"
+      "league": "Süper Lig"
     },
     {
       "name": "Jonas Adjetey",
@@ -9786,7 +9786,7 @@
       "position": "DEF",
       "club": "FC Basel 1893",
       "source": "eafc",
-      "league": "Brack Super League"
+      "league": "Swiss Super League"
     },
     {
       "name": "Jordan Ayew",
@@ -9794,7 +9794,7 @@
       "position": "FWD",
       "club": "Leicester City",
       "source": "eafc",
-      "league": "EFL Championship"
+      "league": "Championship"
     },
     {
       "name": "Joseph Anang",
@@ -9818,7 +9818,7 @@
       "position": "DEF",
       "club": "OGC Nice",
       "source": "eafc",
-      "league": null
+      "league": "Ligue 1"
     },
     {
       "name": "Kwasi Sibo",
@@ -9826,7 +9826,7 @@
       "position": "MID",
       "club": "R. Oviedo",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     },
     {
       "name": "Lawrence Ati-Zigi",
@@ -9842,7 +9842,7 @@
       "position": "DEF",
       "club": "AJ Auxerre",
       "source": "eafc",
-      "league": "Ligue 1 McDonald's"
+      "league": "Ligue 1"
     },
     {
       "name": "Mohammed Kudus",
@@ -9866,7 +9866,7 @@
       "position": "MID",
       "club": "Villarreal CF",
       "source": "eafc",
-      "league": "LALIGA EA SPORTS"
+      "league": "La Liga"
     }
   ],
   "Panamá": [
@@ -9892,7 +9892,7 @@
       "position": "DEF",
       "club": "LASK",
       "source": "eafc",
-      "league": "Ö. Bundesliga"
+      "league": "Austrian Bundesliga"
     },
     {
       "name": "Aníbal Godoy",
@@ -10004,7 +10004,7 @@
       "position": "DEF",
       "club": "Norwich",
       "source": "eafc",
-      "league": null
+      "league": "Championship"
     },
     {
       "name": "José Fajardo",
@@ -10012,7 +10012,7 @@
       "position": "FWD",
       "club": "U. Católica",
       "source": "eafc",
-      "league": "Sudamericana"
+      "league": "LigaPro"
     },
     {
       "name": "Luis Mejía",
@@ -10020,7 +10020,7 @@
       "position": "GK",
       "club": "Nacional",
       "source": "eafc",
-      "league": "Libertadores"
+      "league": "Primera División Uruguaya"
     },
     {
       "name": "Michael Murillo",
@@ -10036,7 +10036,7 @@
       "position": "GK",
       "club": "Al Fayha",
       "source": "eafc",
-      "league": "ROSHN Saudi League"
+      "league": "Saudi Pro League"
     },
     {
       "name": "Puma Rodríguez",

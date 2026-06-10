@@ -39,6 +39,10 @@ export function getSquadPlayers(teamName) {
   return squadsData[teamName] || []
 }
 
+export function getAllTeamNames() {
+  return Object.keys(squadsData)
+}
+
 export function buildNationalTeam(teamName, formation = '4-3-3') {
   const squad = getSquadPlayers(teamName)
   const slots = FORMATIONS[formation]
@@ -52,6 +56,21 @@ export function buildNationalTeam(teamName, formation = '4-3-3') {
   })
 
   return { name: teamName, players, formation, isUser: false }
+}
+
+/** Força média (OVR) do time titular de uma seleção, ex: 74.3 */
+export function getTeamStrength(teamName, formation = '4-3-3') {
+  const team = buildNationalTeam(teamName, formation)
+  if (!team.players.length) return 0
+  const total = team.players.reduce((sum, p) => sum + p.ovr, 0)
+  return Math.round((total / team.players.length) * 10) / 10
+}
+
+/** Classifica a dificuldade de um grupo a partir da força média. */
+export function getGroupDifficulty(avgStrength) {
+  if (avgStrength > 74) return 'hard'
+  if (avgStrength >= 72) return 'balanced'
+  return 'easy'
 }
 
 // ---------------------------------------------------------------------------
