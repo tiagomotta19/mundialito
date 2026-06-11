@@ -21,6 +21,7 @@ const REEL_TARGET = REEL_LENGTH - 3
 const REEL_DURATION = 1600
 const AUTO_DRAW_DELAY = 750
 const AUTO_FILL_STEP = 240
+const SKIPS_PER_DRAFT = 2
 
 const randomTeam = () => ALL_TEAMS[Math.floor(Math.random() * ALL_TEAMS.length)]
 
@@ -51,7 +52,7 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
   const [drawnTeam, setDrawnTeam] = useState(null)
   const [selectedPlayer, setSelectedPlayer] = useState(null)
   const [usedPlayers, setUsedPlayers] = useState(() => new Set())
-  const [skipUsed, setSkipUsed] = useState(false)
+  const [skipsLeft, setSkipsLeft] = useState(SKIPS_PER_DRAFT)
   const [lastPlaced, setLastPlaced] = useState(null) // { index, player }
   const [teamName, setTeamName] = useState('')
 
@@ -120,8 +121,8 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
   }, [phase, reel])
 
   const handleSkip = () => {
-    if (skipUsed) return
-    setSkipUsed(true)
+    if (!skipsLeft) return
+    setSkipsLeft((n) => n - 1)
     startDraw()
   }
 
@@ -440,16 +441,16 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
             <button
               type="button"
               onClick={handleSkip}
-              disabled={skipUsed}
+              disabled={!skipsLeft}
               className={`shrink-0 text-xs font-bold px-2 py-1 border-2 ${isRetro ? 'uppercase' : ''}`}
               style={{
                 borderColor: 'var(--color-btn-secondary-border)',
                 color: 'var(--color-btn-secondary-text)',
                 borderRadius: 'var(--radius)',
-                opacity: skipUsed ? 0.4 : 1,
+                opacity: skipsLeft ? 1 : 0.4,
               }}
             >
-              {skipUsed ? t('btn_skip_used') : t('btn_skip_available')}
+              {skipsLeft ? t('btn_skip_available').replace('{n}', skipsLeft) : t('btn_skip_used')}
             </button>
           </div>
         )}

@@ -180,9 +180,9 @@ Botão tracejado "⚡ Completar automaticamente" fica visível acima do campinho
 
 ### Pulo de seleção
 
-Cada montagem tem **1 pulo**. O botão aparece ao lado da seleção revelada: "Pular (1x)" → ao usar, dispara novo sorteio imediatamente e vira "Pular (usado)" (desabilitado, opacity 0.4). Não renova.
+Cada montagem tem **2 pulos** (alavanca de dificuldade calibrada: o draft típico rende um time ~79 OVR e ~4% de título; os pulos são a forma do jogador subir disso). O botão aparece ao lado da seleção revelada com contador regressivo: "Pular (2x)" → "Pular (1x)" → "Pular (usado)" (desabilitado, opacity 0.4). Ao usar, dispara novo sorteio imediatamente. Não renova.
 
-A tensão de decisão — "guardo o pulo para uma posição mais importante ou uso agora?" — é intencional e parte da experiência.
+A tensão de decisão — "guardo o pulo para uma posição mais importante ou uso agora?" — é intencional e parte da experiência. O re-sorteio automático por incompatibilidade (item 4b) **não** consome pulo.
 
 ### Regras do sorteio
 - Cada seleção pode ser sorteada mais de uma vez — o usuário pode ter 2 ou 3 jogadores do mesmo país
