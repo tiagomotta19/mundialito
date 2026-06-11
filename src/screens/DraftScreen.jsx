@@ -3,91 +3,13 @@ import { useTheme } from '../components/ThemeContext'
 import { useLang } from '../i18n/LangContext'
 import { getSquadPlayers, getAllTeamNames } from '../engine/simulator'
 import Flag from '../components/Flag'
-
-const POSITION_ORDER = ['GK', 'DEF', 'MID', 'FWD']
-
-const ROLE_TO_POSITION = {
-  GK: 'GK',
-  LB: 'DEF', RB: 'DEF', CB: 'DEF', LWB: 'DEF', RWB: 'DEF',
-  CM: 'MID', LM: 'MID', RM: 'MID', CDM: 'MID', LAM: 'MID', CAM: 'MID', RAM: 'MID',
-  ST: 'FWD', LW: 'FWD', RW: 'FWD',
-}
-
-const POSITION_COLOR = {
-  GK: 'var(--color-pos-gk)',
-  DEF: 'var(--color-pos-def)',
-  MID: 'var(--color-pos-mid)',
-  FWD: 'var(--color-pos-fwd)',
-}
-
-// Coordenadas no campinho (viewBox 0 0 105 68), defesa à esquerda, ataque à direita
-const FORMATION_LAYOUTS = {
-  '4-3-3': [
-    { role: 'GK', x: 6, y: 34 },
-    { role: 'LB', x: 22, y: 8 },
-    { role: 'CB', x: 22, y: 26 },
-    { role: 'CB', x: 22, y: 42 },
-    { role: 'RB', x: 22, y: 60 },
-    { role: 'CM', x: 50, y: 14 },
-    { role: 'CM', x: 50, y: 34 },
-    { role: 'CM', x: 50, y: 54 },
-    { role: 'LW', x: 86, y: 8 },
-    { role: 'ST', x: 86, y: 34 },
-    { role: 'RW', x: 86, y: 60 },
-  ],
-  '4-4-2': [
-    { role: 'GK', x: 6, y: 34 },
-    { role: 'LB', x: 22, y: 8 },
-    { role: 'CB', x: 22, y: 26 },
-    { role: 'CB', x: 22, y: 42 },
-    { role: 'RB', x: 22, y: 60 },
-    { role: 'LM', x: 52, y: 8 },
-    { role: 'CM', x: 52, y: 26 },
-    { role: 'CM', x: 52, y: 42 },
-    { role: 'RM', x: 52, y: 60 },
-    { role: 'ST', x: 88, y: 24 },
-    { role: 'ST', x: 88, y: 44 },
-  ],
-  '3-5-2': [
-    { role: 'GK', x: 6, y: 34 },
-    { role: 'CB', x: 22, y: 18 },
-    { role: 'CB', x: 22, y: 34 },
-    { role: 'CB', x: 22, y: 50 },
-    { role: 'LM', x: 52, y: 6 },
-    { role: 'CM', x: 52, y: 22 },
-    { role: 'CM', x: 52, y: 34 },
-    { role: 'CM', x: 52, y: 46 },
-    { role: 'RM', x: 52, y: 62 },
-    { role: 'ST', x: 88, y: 24 },
-    { role: 'ST', x: 88, y: 44 },
-  ],
-  '4-2-3-1': [
-    { role: 'GK', x: 6, y: 34 },
-    { role: 'LB', x: 22, y: 8 },
-    { role: 'CB', x: 22, y: 26 },
-    { role: 'CB', x: 22, y: 42 },
-    { role: 'RB', x: 22, y: 60 },
-    { role: 'CDM', x: 42, y: 24 },
-    { role: 'CDM', x: 42, y: 44 },
-    { role: 'LAM', x: 66, y: 10 },
-    { role: 'CAM', x: 66, y: 34 },
-    { role: 'RAM', x: 66, y: 58 },
-    { role: 'ST', x: 92, y: 34 },
-  ],
-  '5-3-2': [
-    { role: 'GK', x: 6, y: 34 },
-    { role: 'LWB', x: 24, y: 4 },
-    { role: 'CB', x: 24, y: 20 },
-    { role: 'CB', x: 24, y: 34 },
-    { role: 'CB', x: 24, y: 48 },
-    { role: 'RWB', x: 24, y: 64 },
-    { role: 'CM', x: 52, y: 14 },
-    { role: 'CM', x: 52, y: 34 },
-    { role: 'CM', x: 52, y: 54 },
-    { role: 'ST', x: 88, y: 24 },
-    { role: 'ST', x: 88, y: 44 },
-  ],
-}
+import FieldPitch from '../components/FieldPitch'
+import {
+  FORMATION_LAYOUTS,
+  ROLE_TO_POSITION,
+  POSITION_COLOR,
+  POSITION_ORDER,
+} from '../components/formationLayouts'
 
 const ALL_TEAMS = getAllTeamNames()
 
@@ -113,82 +35,6 @@ function ovrColor(ovr) {
   if (ovr >= 85) return 'var(--color-accent)'
   if (ovr >= 75) return 'var(--color-text)'
   return 'var(--color-text-secondary)'
-}
-
-function PitchLines() {
-  return (
-    <svg viewBox="0 0 105 68" className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
-      <g fill="none" stroke="var(--color-field-line)" strokeWidth="0.5">
-        <rect x="0.5" y="0.5" width="104" height="67" />
-        <line x1="52.5" y1="0" x2="52.5" y2="68" />
-        <circle cx="52.5" cy="34" r="9.15" />
-        <rect x="0.5" y="13.84" width="16.5" height="40.32" />
-        <rect x="88" y="13.84" width="16.5" height="40.32" />
-      </g>
-    </svg>
-  )
-}
-
-function FieldPitch({ slots, selectedPlayer, lastPlacedIdx, onPickSlot }) {
-  return (
-    <div
-      className="relative w-full aspect-[105/68] border-2 overflow-visible shrink-0"
-      style={{ borderColor: 'var(--color-border)', borderRadius: 'var(--radius)' }}
-    >
-      <div className="absolute inset-0 field-stripes overflow-hidden" style={{ borderRadius: 'var(--radius)' }} />
-      <PitchLines />
-
-      {slots.map((slot, i) => {
-        const filled = !!slot.player
-        const position = ROLE_TO_POSITION[slot.role]
-        const compatible = !!onPickSlot && !filled && selectedPlayer && position === selectedPlayer.position
-        const dimmed = !!onPickSlot && !filled && selectedPlayer && !compatible
-
-        return (
-          <button
-            key={i}
-            type="button"
-            onClick={() => onPickSlot && onPickSlot(i)}
-            disabled={!compatible}
-            className={`absolute -translate-x-1/2 -translate-y-1/2 flex items-center justify-center rounded-full ${
-              compatible ? 'animate-glow-pulse' : ''
-            } ${filled && i === lastPlacedIdx ? 'animate-reveal-pop' : ''}`}
-            style={{
-              left: `${(slot.x / 105) * 100}%`,
-              top: `${(slot.y / 68) * 100}%`,
-              width: '11%',
-              aspectRatio: '1 / 1',
-              color: compatible ? POSITION_COLOR[position] : 'var(--color-text-muted)',
-              background: filled ? 'var(--color-player-user)' : 'transparent',
-              border: filled
-                ? '2px solid var(--color-border)'
-                : `2px dashed ${compatible ? 'currentColor' : 'var(--color-text-muted)'}`,
-              opacity: dimmed ? 0.3 : 1,
-            }}
-          >
-            {filled && (
-              <>
-                <span className="text-[8px] font-bold leading-none" style={{ color: '#1a1a1a' }}>
-                  {slot.player.ovr}
-                </span>
-                <span
-                  className="absolute top-full mt-0.5 px-1 text-[6px] font-bold whitespace-nowrap border"
-                  style={{
-                    color: 'var(--color-text)',
-                    background: 'var(--color-bg)',
-                    borderColor: 'var(--color-border)',
-                    borderRadius: 'var(--radius)',
-                  }}
-                >
-                  {slot.player.name.split(' ').pop()}
-                </span>
-              </>
-            )}
-          </button>
-        )
-      })}
-    </div>
-  )
 }
 
 export default function DraftScreen({ formation, onBack, onContinue }) {

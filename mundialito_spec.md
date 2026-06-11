@@ -29,8 +29,8 @@ Mundialito é um jogo casual de simulação de Copa do Mundo onde o usuário mon
 | Montagem do time (titular, com pulo) | ✅ Implementada |
 | Sorteio do grupo (animação + revelação) | ✅ Implementada |
 | Motor de simulação (partida, grupos, copa completa) | ✅ Implementado em `src/engine/simulator.js` |
-| Telas da Copa (animação de jogo, tabela, chaveamento) | ⬜ Não implementadas — o botão "Começar a copa" do sorteio de grupo ainda não navega para lugar nenhum |
-| Tela de resultado / campeão / eliminação | ⬜ Não implementada |
+| Telas da Copa (animação de jogo, tabela do grupo, mata-mata) | ✅ Implementadas (`CupScreen`, `GroupStageScreen`, `KnockoutScreen`, `MatchPlay`) |
+| Tela de resultado / campeão / eliminação | ✅ Implementada (`ResultScreen`, com confetes para campeão) |
 | Reservas e substituições (Modo Clássico) | ⬜ Não implementadas (modo é escolhido mas ainda não afeta o gameplay) |
 | Salvar imagem / compartilhamento | ⬜ Não implementado |
 | Persistência (Supabase) | ⬜ Não implementada — tudo client-side, sem backend |
@@ -58,19 +58,29 @@ src/
   App.jsx              — shell do app: navegação por estado (sem router) e acúmulo do gameConfig
   index.css            — variáveis CSS dos dois temas + animações (bola, roleta, reveal, slide-in)
   screens/
-    HomeScreen.jsx     — tela inicial
-    ModeScreen.jsx     — escolha de modo + formação
-    DraftScreen.jsx    — montagem do time (sorteio de jogadores + resumo)
-    GroupScreen.jsx    — sorteio do grupo
+    HomeScreen.jsx       — tela inicial
+    ModeScreen.jsx       — escolha de modo + formação
+    DraftScreen.jsx      — montagem do time (sorteio de jogadores + resumo)
+    GroupScreen.jsx      — sorteio do grupo
+    CupScreen.jsx        — orquestrador da copa (groups | knockout | result)
+    GroupStageScreen.jsx — 3 jogos do grupo + tabela final
+    KnockoutScreen.jsx   — preview de confronto + jogos do mata-mata
+    ResultScreen.jsx     — campeão / vice / eliminado + estatísticas
   components/
-    ThemeContext.jsx   — provider de tema (retro/moderno, localStorage)
-    Flag.jsx           — bandeira de seleção via flagcdn.com (imagem PNG)
+    ThemeContext.jsx     — provider de tema (retro/moderno, localStorage)
+    Flag.jsx             — bandeira de seleção via flagcdn.com (imagem PNG)
+    MatchPlay.jsx        — animação de partida (Rápido/Clássico) + campinho simulado
+    FieldPitch.jsx       — campinho com 11 slots (draft, resumo e resultado) + PitchLines
+    formationLayouts.js  — layouts das formações, papéis e cores de posição
   i18n/
     LangContext.jsx    — provider de idioma (pt/en/es, localStorage, fallback para pt)
     translations.js    — todas as strings da interface
     flags.js           — códigos ISO 3166-1 alpha-2 por seleção (para o flagcdn)
   engine/
     simulator.js       — motor de simulação completo (ver seção 10)
+    cup.js             — orquestração da copa do usuário: USER_TEAM_NAME, runTournament,
+                         normalização de jogos (grupo = nomes, mata-mata = objetos),
+                         campaignStats e stageLabelKey
   data/                — squads_final.json, groups.json, bracket.json
 scripts/
   fix-leagues.cjs      — correção única do campo league em squads_final.json
@@ -90,7 +100,10 @@ Tela Inicial (home)
     → Montagem do Time (draft) — sorteio de jogadores até completar o titular
     → Resumo do Time — campinho + estatísticas + lista dos 11
     → Sorteio do Grupo (group) — roleta + revelação dos adversários
-    → [PRÓXIMO PASSO — não implementado] Copa: fase de grupos → mata-mata → resultado
+    → Copa (cup) — fase de grupos (3 jogos + tabela)
+        → [classificado] mata-mata: 16-avos → oitavas → quartas → semi → final
+        → [eliminado] direto para o resultado
+    → Resultado — campeão / vice / eliminado → "Jogar de novo" (reseta e volta à home)
 ```
 
 A navegação é feita por estado local em `App.jsx` (`useState('home')`), sem react-router. Cada tela recebe `onBack`/`onContinue` e o `gameConfig` é acumulado progressivamente: `{ mode, formation }` → `{ ...players }` → `{ ...groupId }`.
@@ -197,7 +210,7 @@ Acontece **depois** da montagem do time, como última etapa antes da copa.
    - **Grupo acessível** — média < 72
 4. As 4 linhas do grupo entram em cascata (`animate-slide-in`). O time do usuário **substitui a seleção mais fraca** (`group.weakest`) e aparece destacado com bandeira 🏳️, badge "VOCÊ" e força "?" (oculta); os adversários aparecem com bandeira (imagem flagcdn via componente `Flag`), **barra de força animada** (`animate-bar-grow`, escala visual OVR 62–82) e o número
 5. Nota explicativa: "Seu time entra no lugar de {seleção mais fraca}"
-6. Botão "Começar a copa" — **ainda não navega** (telas da copa não construídas); apenas grava o `groupId` no `gameConfig`
+6. Botão "Começar a copa" — grava o `groupId` no `gameConfig` e navega para a `CupScreen`
 
 **Grupos da Copa 2026:**
 
@@ -357,17 +370,31 @@ O motor da seção 9 está implementado e exporta:
 
 ---
 
-## 11. Fase de Grupos e Mata-mata (telas — a construir)
+## 11. Fase de Grupos e Mata-mata (implementado)
 
-O motor já simula tudo (seção 10); falta a camada de UI:
+A `CupScreen` chama `runTournament(gameConfig)` (`src/engine/cup.js`) **uma única vez ao montar**: a copa inteira (12 grupos + mata-mata) já está decidida antes da primeira animação — as telas apenas encenam o resultado. O time do usuário usa o nome interno fixo `__user__` (constante `USER_TEAM_NAME`), traduzido na exibição — comparações por nome no motor não podem depender do idioma.
 
-- 3 jogos do usuário na fase de grupos; demais jogos simulados em segundo plano; tabela atualizada por rodada
-- Mata-mata oficial da Copa 2026 (`bracket.json`): 16-avos → oitavas → quartas → semis → final. **Total para ser campeão: 8 jogos**
-- Entre jogos (Modo Clássico): OVR de cada jogador com seta ↑↓, botão de substituição (1 por jogo, máx. 3 na copa), reservas com OVRs
+### Fase de grupos (`GroupStageScreen`)
+- 3 jogos do usuário, um por vez, com a animação de partida (`MatchPlay`, seção 12); rótulo "Fase de grupos · Rodada n"
+- Botão "Próximo jogo →" entre os jogos, "Ver tabela →" após o 3º
+- Tabela final do grupo: colunas P/J/V/E/D/SG/GP (ordenação FIFA já vem do motor), linha do usuário destacada, posição colorida (1–2 verde, 3 âmbar, 4 vermelho)
+- Banner de status: "✅ Classificado para os 16-avos!" ou "❌ Eliminado na fase de grupos" — a classificação considera os 8 melhores terceiros
+- Botão "Continuar →" (classificado) ou "Ver resultado →" (eliminado, vai direto à `ResultScreen`)
+
+### Mata-mata (`KnockoutScreen`)
+- Percorre só os jogos do usuário: 16-avos → oitavas → quartas → semi → final. **Total para ser campeão: 8 jogos**
+- Entre jogos, tela de **preview do confronto**: chip com o nome da fase + cards "Seu Time vs {adversário}" (bandeira e força do adversário) + botão "Jogar →"
+- Prorrogação e pênaltis: marcadores no feed ("⏱ Prorrogação", "🥅 Pênaltis — X–Y") e nota "{a}–{b} nos pênaltis" sob o placar
+- Derrota → `ResultScreen` com a fase alcançada; vitória na final → `ResultScreen` com `champion = true`
+
+### Pendente (Modo Clássico — v2)
+- Entre jogos: OVR de cada jogador com seta ↑↓, botão de substituição (1 por jogo, máx. 3 na copa), reservas com OVRs
 
 ---
 
-## 12. Animação de Jogo (a construir)
+## 12. Animação de Jogo (implementada — `MatchPlay`)
+
+Componente único para os dois modos: placar no topo (nomes + gols, atualizado conforme os eventos "acontecem"), rótulo da fase, barra de progresso com o minuto corrente, feed de eventos progressivo e botão de continuar ao fim. O relógio anima 0→90' (ou 120' com prorrogação) via `requestAnimationFrame` — **~3s no Rápido, ~16s no Clássico** — e há um botão "Pular ⏩" que salta para o fim. No Clássico, o campinho simulado (`PitchSim`) entra entre o placar e o feed. Cada evento do feed tem uma barrinha colorida indicando o lado (amarelo = usuário, vermelho = adversário).
 
 ### Modo Rápido
 ```
@@ -402,9 +429,9 @@ Duração total: ~3 segundos. Sem campinho.
 ```
 Duração total: ~15-20 segundos por jogo.
 
-### Lógica de animação do campinho (Modo Clássico)
+### Lógica de animação do campinho (Modo Clássico — implementada em `PitchSim`)
 
-O resultado do jogo é pré-calculado pelo motor. A animação é uma encenação.
+O resultado do jogo é pré-calculado pelo motor. A animação é uma encenação: 11 pontinhos por time (formação do usuário de um lado, 4-3-3 espelhado para o adversário), tick de 300ms com transição CSS linear entre ticks. O estado de **oportunidade** é derivado dos gols pré-calculados (3 minutos antes de um gol, o time que vai marcar ganha a posse e converge para a área); no **gol**, o time marcador converge ao centro por ~2s e quem sofreu recomeça com a posse.
 
 **Estados do campinho:**
 - `posse_home` / `posse_away` — bola na metade do time com posse, jogadores do time avançam +10% em direção ao gol adversário
@@ -425,24 +452,21 @@ O resultado do jogo é pré-calculado pelo motor. A animação é uma encenaçã
 
 ### Feed de eventos (ambos os modos)
 
-O motor já gera ⚽ gol, 🟨 amarelo e 🟥 vermelho com minutos coerentes. Planejados para a UI: 📺 VAR e 🔄 substituição (Modo Clássico).
+O motor gera ⚽ gol, 🟨 amarelo e 🟥 vermelho com minutos coerentes — exibidos progressivamente conforme o relógio, com marcadores de "⏱ Prorrogação" e "🥅 Pênaltis — X–Y". Planejados para a UI: 📺 VAR e 🔄 substituição (Modo Clássico).
 
 ---
 
-## 13. Tela de Resultado (a construir)
+## 13. Tela de Resultado (implementada — `ResultScreen`)
 
-### Após cada jogo (Modo Clássico)
-- Placar final, destaque do jogo, OVR de cada jogador com oscilação, botão de substituição, "Próximo jogo →"
+Três variações pelo mesmo layout: emoji + título, chip da fase alcançada, placar do último jogo (com bandeiras e nota de pênaltis), campinho com os 11 titulares (`FieldPitch`), grade "Sua campanha" com 6 estatísticas (jogos, vitórias, empates, derrotas, gols feitos, gols sofridos — via `campaignStats`) e botão "Jogar de novo" (reseta o `gameConfig` e volta à home).
 
-### Eliminação
-- Placar do jogo que eliminou, time completo no campinho com nomes e OVRs, estatísticas da campanha (`getUserCampaign` já fornece os dados), "Salvar imagem", "Jogar de novo"
+- **Campeão:** 🏆 "Campeão do Mundo!" em destaque + chuva de confetes (40 partículas CSS, `animate-confetti`, cores das variáveis do tema)
+- **Vice:** 🥈 "Vice-campeão do Mundo" (derrota na final — distinção além da spec original)
+- **Eliminado:** ⚽ "Eliminado" + chip vermelho com a fase
 
-### Campeão
-- Tela comemorativa com confetes, placar da final, time no campinho, estatísticas completas, "Salvar imagem", "Jogar de novo"
-
-### Compartilhamento
-- "Salvar imagem" gera um PNG com logo, resultado, time no campinho e URL do jogo
-- Formato otimizado para Stories (9:16) e feed quadrado
+### Pendente (v2)
+- Destaque do jogo e OVRs com oscilação após cada partida (Modo Clássico)
+- "Salvar imagem" — PNG com logo, resultado, time no campinho e URL, formato Stories (9:16) e feed quadrado
 
 ---
 
@@ -556,11 +580,11 @@ Todas as strings vivem em `src/i18n/translations.js` (telas inicial, modo, monta
 - [x] Montagem do time (titular, com pulo e resumo)
 - [x] Sorteio de grupo
 - [x] Motor de simulação completo (partida, grupos, copa inteira, pênaltis, eventos)
-- [ ] Telas da copa: fase de grupos com tabela + simulação em segundo plano
-- [ ] Telas do mata-mata até a final
-- [ ] Animação Modo Rápido
-- [ ] Animação Modo Clássico com campinho
-- [ ] Tela de resultado com campinho e time
+- [x] Telas da copa: fase de grupos com tabela + simulação em segundo plano
+- [x] Telas do mata-mata até a final
+- [x] Animação Modo Rápido
+- [x] Animação Modo Clássico com campinho
+- [x] Tela de resultado com campinho e time
 - [ ] Salvar imagem para compartilhamento
 - [ ] Persistência básica no Supabase
 - [ ] Calibragem do motor via simulações (1.000+ copas automáticas)

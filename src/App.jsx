@@ -5,6 +5,7 @@ import HomeScreen from './screens/HomeScreen'
 import ModeScreen from './screens/ModeScreen'
 import DraftScreen from './screens/DraftScreen'
 import GroupScreen from './screens/GroupScreen'
+import CupScreen from './screens/CupScreen'
 import './App.css'
 
 function AppShell() {
@@ -37,7 +38,19 @@ function AppShell() {
       {screen === 'group' && (
         <GroupScreen
           onBack={() => setScreen('draft')}
-          onContinue={(groupInfo) => setGameConfig((prev) => ({ ...prev, ...groupInfo }))}
+          onContinue={(groupInfo) => {
+            setGameConfig((prev) => ({ ...prev, ...groupInfo }))
+            setScreen('cup')
+          }}
+        />
+      )}
+      {screen === 'cup' && (
+        <CupScreen
+          gameConfig={gameConfig}
+          onFinish={() => {
+            setGameConfig(null)
+            setScreen('home')
+          }}
         />
       )}
     </div>
