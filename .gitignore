@@ -12,6 +12,12 @@ dist
 dist-ssr
 *.local
 
+# Fontes de dados de desenvolvimento (não vão pro repositório)
+data-sources/
+
+# Backup local do enrich-squads (o Git já guarda a versão anterior)
+src/data/squads_final.backup.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
