@@ -251,25 +251,43 @@ Força de defesa  = média OVR dos defensores + goleiro (com oscilação do dia)
 
 O goleiro é incluído no setor defensivo para efeito de cálculo de força.
 
-A força final de cada setor é multiplicada pelo coeficiente de coesão do time:
+A força final de cada setor é multiplicada por um modificador: **coesão** para o time do usuário, **pedigree** para as seleções da IA. O time do usuário ainda recebe o **bônus de underdog** somado à média do setor antes do modificador:
 
 ```
-Força final = força do setor × coesão
+Usuário: força final = (média do setor + underdog) × coesão
+IA:      força final = média do setor × pedigree
 ```
 
-### 9.2 Coesão do time
+### 9.2 Modificadores de força
 
-A coesão representa o entrosamento e é calculada por liga:
+**Coesão (só time do usuário)** — entrosamento por liga, modificador em torno de 1.0. Montar time da mesma liga é vantagem real, não só redução de penalidade:
 
-| Situação | Bônus |
+| Situação | Valor |
 |---|---|
-| Time base (seleção real completa) | 100% |
-| Time do usuário — base | 88% |
-| +2 jogadores da mesma liga no mesmo setor | +3% |
-| +3 jogadores da mesma liga no mesmo setor | +5% |
-| Bônus máximo acumulável | até 97% |
+| Base | 0.96 |
+| 2 jogadores da mesma liga no mesmo setor | +0.03 |
+| 3 jogadores da mesma liga no mesmo setor | +0.05 |
+| 4+ jogadores da mesma liga no mesmo setor | +0.07 |
+| Teto | 1.03 |
 
-As seleções reais têm coesão 100% por padrão.
+**Pedigree de copa (só seleções da IA)** — multiplicador leve por tradição em Copas (`PEDIGREE` no simulator.js), centrado em ~1.0. Critério: títulos > finais > semis/quartas recorrentes > regularidade, com história recente pesando mais:
+
+| Faixa | Mult. | Seleções |
+|---|---|---|
+| Lendas | 1.03 | Brasil, Alemanha, Argentina, França |
+| Campeãs e finalistas | 1.02 | Espanha, Inglaterra, Uruguai, Holanda, Croácia |
+| Tradição sólida | 1.01 | Portugal, Bélgica, México, Suíça, Suécia, Colômbia, Marrocos, Senegal, Coreia do Sul, Japão |
+| Regulares | 1.00 | Estados Unidos, Paraguai, Equador, Austrália, Turquia, Áustria, Escócia, Costa do Marfim, Gana, Tunísia, Irã, Argélia, Egito, Noruega, República Tcheca |
+| Pouca/nenhuma história | 0.98 | África do Sul, Canadá, Arábia Saudita, Bósnia, Panamá, Iraque, Catar, Haiti, RD Congo, Curaçao, Nova Zelândia, Cabo Verde, Jordânia, Uzbequistão |
+
+**Bônus de underdog (só time do usuário)** — viés leve de protagonista, necessário para as metas da seção 9.9 (um time Bom é objetivamente mais fraco que ~15 seleções da IA; sem o bônus, as metas dos perfis abaixo do Elite são matematicamente inatingíveis num motor simétrico):
+
+```
+underdog = UNDERDOG_RATE × max(0, UNDERDOG_PIVOT − OVR médio dos 11)
+UNDERDOG_PIVOT = 95 | UNDERDOG_RATE = 0.52
+```
+
+A força efetiva `(1−RATE)·ovr + RATE·PIVOT` é estritamente crescente no OVR enquanto RATE < 1 — **a hierarquia entre dois times nunca inverte** (validado empiricamente: % de vitória por jogo Elite 66% > Bom 59% > Médio 48% > Fraco 39%).
 
 ### 9.3 Oscilação de OVR por jogo
 
@@ -296,6 +314,7 @@ Pressão de meio = diferença entre meios → bônus de 3-5% para o dominante
 A vantagem usa rendimento decrescente para evitar placares absurdos:
 ```
 vantagem_efetiva = log(1 + vantagem_bruta) × fator_escala
+fator_escala (ADVANTAGE_SCALE) = 9   ← calibrado de 6 para 9 (seção 9.9)
 ```
 
 ### 9.5 Geração de gols
@@ -336,14 +355,18 @@ EUA, México e Canadá recebem bônus escalonado pela força da seleção. Imple
 
 ### 9.9 Dificuldade alvo (empírica)
 
-Calibrar via simulações antes do lançamento. Metas orientativas:
+Metas e resultado da calibragem (validação com 5.000 copas por perfil via `node scripts/calibrate.js 5000`, formação 4-3-3, grupo sorteado a cada copa):
 
-| Time montado | Chance de ser campeão |
-|---|---|
-| Elite (melhores jogadores disponíveis) | ~12-15% |
-| Bom | ~5-8% |
-| Médio | ~2-4% |
-| Fraco | ~0.5-1% |
+| Time montado | Meta | Medido | % vitória/jogo |
+|---|---|---|---|
+| Elite (melhores jogadores disponíveis) | ~12-15% | 14.7% ✓ | 66.1% |
+| Bom (OVR 80-85) | ~5-8% | 7.5% ✓ | 58.5% |
+| Médio (OVR 73-79) | ~2-4% | 2.4% ✓ | 48.2% |
+| Fraco (OVR 65-72) | ~0.5-1% | 0.6% ✓ | 38.9% |
+
+Placares saudáveis em todos os perfis: ~2.7–3.2 gols/jogo no total, 0×0 raro (~2%), goleadas 4+ entre 8% e 12% (guardrail: ≤15%).
+
+Parâmetros finais da calibragem: coesão base 0.96 (9.2) · pedigree 0.98–1.03 (9.2) · underdog PIVOT 95 / RATE 0.52 (9.2) · ADVANTAGE_SCALE 9 (9.4). Geração de gols (9.5) e oscilação (9.3) não foram alteradas.
 
 ---
 

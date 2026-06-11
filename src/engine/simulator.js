@@ -74,6 +74,35 @@ export function getGroupDifficulty(avgStrength) {
 }
 
 // ---------------------------------------------------------------------------
+// Pedigree de copa (seleções da IA)
+// ---------------------------------------------------------------------------
+
+// Multiplicador leve de força por tradição em Copas do Mundo, aplicado aos
+// setores das seleções da IA (o time do usuário não tem pedigree).
+// Critério: títulos > finais > semis/quartas recorrentes > regularidade,
+// com história recente pesando mais que feitos de 70+ anos atrás.
+export const PEDIGREE = {
+  // Lendas — multicampeãs
+  'Brasil': 1.03, 'Alemanha': 1.03, 'Argentina': 1.03, 'França': 1.03,
+  // Campeãs e finalistas históricas
+  'Espanha': 1.02, 'Inglaterra': 1.02, 'Uruguai': 1.02, 'Holanda': 1.02, 'Croácia': 1.02,
+  // Tradição sólida
+  'Portugal': 1.01, 'Bélgica': 1.01, 'México': 1.01, 'Suíça': 1.01, 'Suécia': 1.01,
+  'Colômbia': 1.01, 'Marrocos': 1.01, 'Senegal': 1.01, 'Coreia do Sul': 1.01, 'Japão': 1.01,
+  // Regulares
+  'Estados Unidos': 1.0, 'Paraguai': 1.0, 'Equador': 1.0, 'Austrália': 1.0, 'Turquia': 1.0,
+  'Áustria': 1.0, 'Escócia': 1.0, 'Costa do Marfim': 1.0, 'Gana': 1.0, 'Tunísia': 1.0,
+  'Irã': 1.0, 'Argélia': 1.0, 'Egito': 1.0, 'Noruega': 1.0, 'República Tcheca': 1.0,
+  // Pouca/nenhuma história
+  'África do Sul': 0.98, 'Canadá': 0.98, 'Arábia Saudita': 0.98, 'Bósnia': 0.98,
+  'Panamá': 0.98, 'Iraque': 0.98, 'Catar': 0.98, 'Haiti': 0.98, 'RD Congo': 0.98,
+  'Curaçao': 0.98, 'Nova Zelândia': 0.98, 'Cabo Verde': 0.98, 'Jordânia': 0.98,
+  'Uzbequistão': 0.98,
+}
+
+const getPedigree = (teamName) => PEDIGREE[teamName] ?? 1.0
+
+// ---------------------------------------------------------------------------
 // Coesão e força por setor (9.1, 9.2)
 // ---------------------------------------------------------------------------
 
@@ -85,9 +114,10 @@ function buildSectors(players) {
   }
 }
 
-function calculateCohesion(sectorPlayers, isUserTeam) {
-  if (!isUserTeam) return 1.0
-
+// Coesão do time do usuário: modificador em torno de 1.0.
+// Base 0.96; jogadores da mesma liga no setor dão bônus real — montar time
+// de uma liga só vira vantagem, não só redução de penalidade. Teto 1.03.
+function calculateCohesion(sectorPlayers) {
   const leagueCounts = {}
   sectorPlayers.forEach((p) => {
     leagueCounts[p.league] = (leagueCounts[p.league] || 0) + 1
@@ -95,25 +125,42 @@ function calculateCohesion(sectorPlayers, isUserTeam) {
   const max = Math.max(0, ...Object.values(leagueCounts))
 
   let bonus = 0
-  if (max >= 3) bonus = 0.05
+  if (max >= 4) bonus = 0.07
+  else if (max >= 3) bonus = 0.05
   else if (max >= 2) bonus = 0.03
 
-  return Math.min(0.97, 0.88 + bonus)
+  return Math.min(1.03, 0.96 + bonus)
 }
 
-function getSectorStrength(sectorPlayers, isUserTeam) {
+// Bônus de underdog (só time do usuário): viés leve de protagonista — times
+// fracos jogam um pouco acima do OVR, recuperando uma fração do déficit até o
+// pivô. Força efetiva = (1-RATE)·ovr + RATE·PIVOT é estritamente crescente no
+// OVR enquanto RATE < 1, então a hierarquia entre dois times NUNCA inverte.
+const UNDERDOG_PIVOT = 95 // OVR de referência do déficit
+const UNDERDOG_RATE = 0.52 // fração do déficit recuperada
+
+function underdogBonus(players) {
+  if (!players.length) return 0
+  const avg = players.reduce((sum, p) => sum + p.ovr, 0) / players.length
+  return UNDERDOG_RATE * Math.max(0, UNDERDOG_PIVOT - avg)
+}
+
+function getSectorStrength(sectorPlayers, modifier, bonus = 0) {
   if (!sectorPlayers.length) return 0
   const oscillated = sectorPlayers.map((p) => applyOscillation(p.ovr).ovr)
   const avg = oscillated.reduce((sum, v) => sum + v, 0) / oscillated.length
-  return avg * calculateCohesion(sectorPlayers, isUserTeam)
+  return (avg + bonus) * modifier
 }
 
 export function calculateTeamStrengths(team) {
   const { def, mid, fwd } = buildSectors(team.players)
+  const bonus = team.isUser ? underdogBonus(team.players) : 0
+  const modifierFor = (sectorPlayers) =>
+    team.isUser ? calculateCohesion(sectorPlayers) : getPedigree(team.name)
   return {
-    def: getSectorStrength(def, !!team.isUser),
-    mid: getSectorStrength(mid, !!team.isUser),
-    fwd: getSectorStrength(fwd, !!team.isUser),
+    def: getSectorStrength(def, modifierFor(def), bonus),
+    mid: getSectorStrength(mid, modifierFor(mid), bonus),
+    fwd: getSectorStrength(fwd, modifierFor(fwd), bonus),
   }
 }
 
@@ -121,7 +168,7 @@ export function calculateTeamStrengths(team) {
 // Confronto entre times (9.4, 9.5)
 // ---------------------------------------------------------------------------
 
-const ADVANTAGE_SCALE = 6
+const ADVANTAGE_SCALE = 9
 const BASE_OPPORTUNITIES = 4
 
 function effectiveAdvantage(atk, def) {
