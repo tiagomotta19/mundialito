@@ -31,6 +31,7 @@ registerHooks({
 
 const { pickGroup } = await import('../src/engine/simulator.js')
 const { runTournament } = await import('../src/engine/cup.js')
+const { isCompatible, ROLE_TO_POSITION } = await import('../src/engine/compatibility.js')
 
 const squads = JSON.parse(
   readFileSync(new URL('../src/data/squads_final.json', import.meta.url), 'utf8')
@@ -71,6 +72,7 @@ const PROFILES = [
   { id: 'BOM', label: 'Bom (80-85)', pool: rangePool(80, 85), target: [5, 8] },
   { id: 'MEDIO', label: 'Médio (73-79)', pool: rangePool(73, 79), target: [2, 4] },
   { id: 'FRACO', label: 'Fraco (65-72)', pool: rangePool(65, 72), target: [0.5, 1] },
+  { id: 'GREEDY', label: 'Draft Real', greedy: true, target: null },
 ]
 
 function sample(list, count) {
@@ -94,6 +96,55 @@ function buildProfileSquad(pool) {
 }
 
 // ---------------------------------------------------------------------------
+// Perfil "Draft Real" (GREEDY): simula o draft do usuário — mesma lógica do
+// "Completar automaticamente" da DraftScreen: para cada slot, sorteia uma
+// seleção e escala o melhor jogador compatível disponível (fallback global).
+// Como no gameConfig real, position = setor do slot escalado.
+// ---------------------------------------------------------------------------
+
+const GREEDY_SLOTS = ['GK', 'LB', 'CB', 'CB', 'RB', 'CM', 'CM', 'CM', 'LW', 'ST', 'RW'] // 4-3-3
+const ALL_TEAMS = Object.keys(squads)
+const randomTeam = () => ALL_TEAMS[Math.floor(Math.random() * ALL_TEAMS.length)]
+
+function bestAvailable(team, slotRole, used) {
+  const candidates = squads[team].filter(
+    (p) => isCompatible(p, slotRole) && !used.has(`${team}::${p.name}`)
+  )
+  if (!candidates.length) return null
+  return candidates.reduce((best, p) => (p.ovr > best.ovr ? p : best))
+}
+
+function buildGreedySquad() {
+  const used = new Set()
+  const players = []
+  GREEDY_SLOTS.forEach((slotRole) => {
+    let pick = null
+    let pickTeam = null
+    for (let attempt = 0; attempt < 15 && !pick; attempt++) {
+      const team = randomTeam()
+      const best = bestAvailable(team, slotRole, used)
+      if (best) {
+        pick = best
+        pickTeam = team
+      }
+    }
+    if (!pick) {
+      ALL_TEAMS.forEach((team) => {
+        const best = bestAvailable(team, slotRole, used)
+        if (best && (!pick || best.ovr > pick.ovr)) {
+          pick = best
+          pickTeam = team
+        }
+      })
+    }
+    if (!pick) throw new Error(`Nenhum jogador compatível com ${slotRole}`)
+    used.add(`${pickTeam}::${pick.name}`)
+    players.push({ ...pick, slotRole, position: ROLE_TO_POSITION[slotRole] })
+  })
+  return players
+}
+
+// ---------------------------------------------------------------------------
 // Simulação em massa
 // ---------------------------------------------------------------------------
 
@@ -107,6 +158,9 @@ function runProfile(profile) {
     passedGroups: 0,
     outInGroups: 0,
     games: 0,
+    matchWins: 0,
+    matchDraws: 0,
+    matchLosses: 0,
     gf: 0,
     ga: 0,
     score00: 0,
@@ -117,7 +171,7 @@ function runProfile(profile) {
   }
 
   for (let i = 0; i < RUNS; i++) {
-    const players = buildProfileSquad(profile.pool)
+    const players = profile.greedy ? buildGreedySquad() : buildProfileSquad(profile.pool)
     stats.avgOvrSum += players.reduce((s, p) => s + p.ovr, 0) / players.length
 
     const { campaign } = runTournament({
@@ -135,6 +189,9 @@ function runProfile(profile) {
     campaign.matches.forEach((m) => {
       const userIsHome = m.homeName === '__user__'
       stats.games++
+      if (m.winner === '__user__') stats.matchWins++
+      else if (!m.winner) stats.matchDraws++
+      else stats.matchLosses++
       stats.gf += userIsHome ? m.goalsA : m.goalsB
       stats.ga += userIsHome ? m.goalsB : m.goalsA
 
@@ -161,6 +218,9 @@ function summarize(profile, s) {
     semi: pct(s.reachedSemi),
     passed: pct(s.passedGroups),
     out: pct(s.outInGroups),
+    winRate: pct(s.matchWins, s.games),
+    drawRate: pct(s.matchDraws, s.games),
+    lossRate: pct(s.matchLosses, s.games),
     gfPerGame: s.gf / s.games,
     gaPerGame: s.ga / s.games,
     p00: pct(s.score00, s.games),
@@ -194,12 +254,12 @@ const h1 = ['Perfil', 'OVR médio', '% campeão', 'meta', '% final', '% semi', '
 const w1 = [15, 10, 10, 9, 8, 8, 16, 14]
 console.log(h1.map((h, i) => cell(h, w1[i])).join('  '))
 results.forEach((r) => {
-  const inTarget = r.champion >= r.target[0] && r.champion <= r.target[1]
+  const inTarget = r.target && r.champion >= r.target[0] && r.champion <= r.target[1]
   const row = [
     r.label,
     f(r.avgOvr),
-    f(r.champion) + (inTarget ? ' ✓' : ' ✗'),
-    `${r.target[0]}-${r.target[1]}%`,
+    f(r.champion) + (r.target ? (inTarget ? ' ✓' : ' ✗') : ''),
+    r.target ? `${r.target[0]}-${r.target[1]}%` : '—',
     f(r.final),
     f(r.semi),
     f(r.passed),
@@ -209,11 +269,22 @@ results.forEach((r) => {
 })
 
 console.log('\n== Placares (jogos do usuário) ==\n')
-const h2 = ['Perfil', 'GF/jogo', 'GA/jogo', '% 0x0', '% 1x0', '% 2x1', '% goleada 4+']
-const w2 = [15, 8, 8, 7, 7, 7, 13]
+const h2 = ['Perfil', '% V', '% E', '% D', 'GF/jogo', 'GA/jogo', '% 0x0', '% 1x0', '% 2x1', '% goleada 4+']
+const w2 = [15, 6, 6, 6, 8, 8, 7, 7, 7, 13]
 console.log(h2.map((h, i) => cell(h, w2[i])).join('  '))
 results.forEach((r) => {
-  const row = [r.label, f(r.gfPerGame, 2), f(r.gaPerGame, 2), f(r.p00), f(r.p10), f(r.p21), f(r.pBlowout)]
+  const row = [
+    r.label,
+    f(r.winRate),
+    f(r.drawRate),
+    f(r.lossRate),
+    f(r.gfPerGame, 2),
+    f(r.gaPerGame, 2),
+    f(r.p00),
+    f(r.p10),
+    f(r.p21),
+    f(r.pBlowout),
+  ]
   console.log(row.map((v, i) => cell(v, w2[i])).join('  '))
 })
 
