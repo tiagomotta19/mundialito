@@ -6,7 +6,7 @@
 // Uso:
 //   node scripts/enrich-squads.js           → só imprime o relatório (não escreve nada)
 //   node scripts/enrich-squads.js --apply   → backup + grava squads_final.json e groups.json
-import { readFileSync, writeFileSync, copyFileSync } from 'node:fs'
+import { readFileSync, writeFileSync, copyFileSync, existsSync } from 'node:fs'
 
 const APPLY = process.argv.includes('--apply')
 
@@ -15,7 +15,13 @@ const groupsUrl = new URL('../src/data/groups.json', import.meta.url)
 const backupUrl = new URL('../src/data/squads_final.backup.json', import.meta.url)
 const csvUrl = new URL('../data-sources/EAFC26-Men-selected-columns-v2.csv', import.meta.url)
 
-const squads = JSON.parse(readFileSync(squadsUrl, 'utf8'))
+// O backup guarda o squads ORIGINAL pré-enriquecimento e é a entrada canônica
+// das re-execuções: o pipeline inteiro recalcula do zero a partir dele
+// (matching, redistribuição com seed fixa, boosts), então rodar --apply N
+// vezes dá sempre o mesmo resultado — sem redistribuir OVR em cima de OVR
+// já redistribuído.
+const inputUrl = existsSync(backupUrl) ? backupUrl : squadsUrl
+const squads = JSON.parse(readFileSync(inputUrl, 'utf8'))
 const groups = JSON.parse(readFileSync(groupsUrl, 'utf8'))
 
 // ---------------------------------------------------------------------------
@@ -138,6 +144,34 @@ const NO_MATCH = new Set([
 // squads claramente erradas — o dado do EA é a fonte.
 const OVR_FIXES = {
   'Argentina|Nicolás Paz': 79, // squads tinha 70; EA FC 26 dá 79 (Como)
+}
+
+// Ajustes editoriais do criador do jogo — valores ABSOLUTOS, aplicados como
+// etapa final (depois do matching e da redistribuição), para sobreviverem a
+// re-execuções do script. Jogadores aqui ficam FORA da redistribuição
+// aleatória: o valor abaixo é o OVR final, ponto.
+const MANUAL_BOOSTS = {
+  // Núcleo do Flamengo
+  'Brasil|Léo Pereira': { ovr: 78 }, // era 76
+  // Danilo Luiz da Silva, lateral-direito do Flamengo (não confundir com os
+  // homônimos atacantes do CSV); liga corrige resíduo do homônimo do Rangers
+  'Brasil|Danilo': { ovr: 78, league: 'Brasileirão' }, // era 73
+  'Brasil|Lucas Paquetá': { ovr: 82 }, // era 80
+  'Uruguai|Giorgian De Arrascaeta': { ovr: 88 }, // era 85
+  'Uruguai|Guillermo Varela': { ovr: 75 }, // era 72
+  'Uruguai|Nicolás De La Cruz': { ovr: 81 }, // era 79
+  'Brasil|Alex Sandro': { ovr: 79 }, // era 74
+  // Cria do Flamengo
+  'Brasil|Vinicius Junior': { ovr: 92 }, // era 91
+  // Última copa deles — boost narrativo leve
+  'Portugal|Cristiano Ronaldo': { ovr: 87 }, // era 85
+  'Argentina|Lionel Messi': { ovr: 88 }, // era 86
+  'Brasil|Neymar': { ovr: 89 }, // era 90
+  // Estimativas manuais recalibradas
+  'Holanda|Memphis Depay': { ovr: 84 }, // era 82
+  'Colômbia|James Rodríguez': { ovr: 86 }, // era 84
+  // Ajuste editorial sobre o dado do EA
+  'Espanha|Lamine Yamal': { ovr: 91 }, // EA dá 89
 }
 
 // Correções manuais de dados do squads, independentes do CSV.
@@ -276,6 +310,7 @@ const stats = {
   sectorChanged: [],
   wingersPromoted: [], // LM/RM com alternativa FWD → setor principal FWD
   dataFixes: [],
+  manualBoosts: [],
   gainedAltRoles: 0,
   crossSectorAlt: 0,
   leagueOutra: 0,
@@ -382,8 +417,16 @@ Object.entries(squads).forEach(([team, players]) => {
   })
 
   // Redistribuição de OVR dos estimados: maioria +0..+4, 2-3 destaques +6..+8.
-  const estimated = enriched.filter((p) => p.source === 'estimated' && !dataFixed.has(p))
-  if (estimated.length) {
+  // Quem tem boost editorial fica de fora — o MANUAL_BOOSTS define o valor final.
+  // Só roda em elencos FLAT (motivação original: seleções fracas com todos os
+  // estimados no mesmo OVR, ex. Jordânia 63, Catar 65). Times com estimativas
+  // manuais já diferenciadas (Holanda, Colômbia, México...) ficam intactos.
+  const estimated = enriched.filter(
+    (p) => p.source === 'estimated' && !dataFixed.has(p) && !MANUAL_BOOSTS[`${team}|${p.name}`]
+  )
+  const baseOvrs = estimated.map((p) => p.ovr)
+  const isFlat = estimated.length >= 6 && Math.max(...baseOvrs) - Math.min(...baseOvrs) <= 2
+  if (isFlat) {
     const nHighlights = Math.min(randInt(2, 3), estimated.length)
     const shuffled = [...estimated]
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -396,6 +439,16 @@ Object.entries(squads).forEach(([team, players]) => {
       p.ovr = Math.min(99, p.ovr + delta)
     })
   }
+
+  // Boosts editoriais por último, sobrescrevendo qualquer etapa anterior
+  enriched.forEach((p) => {
+    const boost = MANUAL_BOOSTS[`${team}|${p.name}`]
+    if (boost) {
+      stats.manualBoosts.push({ team, name: p.name, from: p.ovr, to: boost.ovr })
+      p.ovr = boost.ovr
+      if (boost.league) p.league = boost.league
+    }
+  })
 
   newSquads[team] = enriched
   stats.ovrAfter[team] = enriched.map((p) => p.ovr)
@@ -444,6 +497,9 @@ stats.nonExact.forEach((m) =>
 
 console.log('\n== Correções manuais de dados ==\n')
 stats.dataFixes.forEach((d) => console.log(`  ${d.name} (${d.team}): ${d.before} → ${d.after}`))
+
+console.log('\n== Boosts editoriais (MANUAL_BOOSTS) ==\n')
+stats.manualBoosts.forEach((b) => console.log(`  ${b.name} (${b.team}): ovr ${b.from} → ${b.to}`))
 
 console.log('\n== Jogadores sem match (conferir grafia) ==\n')
 let lastTeam = null
@@ -500,7 +556,8 @@ Object.entries(groups).forEach(([id, g]) => {
 // ---------------------------------------------------------------------------
 
 if (APPLY) {
-  copyFileSync(squadsUrl, backupUrl)
+  // O backup (original) nunca é sobrescrito — é a entrada das re-execuções
+  if (!existsSync(backupUrl)) copyFileSync(squadsUrl, backupUrl)
   writeFileSync(squadsUrl, JSON.stringify(newSquads, null, 2) + '\n', 'utf8')
   writeFileSync(groupsUrl, JSON.stringify(newGroups, null, 2) + '\n', 'utf8')
   console.log('\n✔ Aplicado: squads_final.json e groups.json atualizados (backup em squads_final.backup.json)')

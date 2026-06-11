@@ -2,7 +2,7 @@
   "México": [
     {
       "name": "Alexis Vega",
-      "ovr": 75,
+      "ovr": 73,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -13,7 +13,7 @@
     },
     {
       "name": "Armando González",
-      "ovr": 73,
+      "ovr": 67,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -41,7 +41,7 @@
     },
     {
       "name": "Carlos Acevedo",
-      "ovr": 74,
+      "ovr": 70,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -68,7 +68,7 @@
     },
     {
       "name": "César Montes",
-      "ovr": 76,
+      "ovr": 74,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -92,7 +92,7 @@
     },
     {
       "name": "Erik Lira",
-      "ovr": 71,
+      "ovr": 70,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -103,7 +103,7 @@
     },
     {
       "name": "Gilberto Mora",
-      "ovr": 74,
+      "ovr": 68,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -114,7 +114,7 @@
     },
     {
       "name": "Guillermo Martínez",
-      "ovr": 70,
+      "ovr": 68,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -125,7 +125,7 @@
     },
     {
       "name": "Guillermo Ochoa",
-      "ovr": 80,
+      "ovr": 76,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -147,7 +147,7 @@
     },
     {
       "name": "Jesús Gallardo",
-      "ovr": 75,
+      "ovr": 71,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -169,7 +169,7 @@
     },
     {
       "name": "Jorge Sánchez",
-      "ovr": 76,
+      "ovr": 72,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -196,7 +196,7 @@
     },
     {
       "name": "Luis Chávez",
-      "ovr": 74,
+      "ovr": 73,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -207,7 +207,7 @@
     },
     {
       "name": "Luis Romo",
-      "ovr": 75,
+      "ovr": 71,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -275,7 +275,7 @@
     },
     {
       "name": "Raúl Rangel",
-      "ovr": 72,
+      "ovr": 69,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -286,7 +286,7 @@
     },
     {
       "name": "Roberto Alvarado",
-      "ovr": 74,
+      "ovr": 72,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -308,7 +308,7 @@
     },
     {
       "name": "Álvaro Fidalgo",
-      "ovr": 75,
+      "ovr": 74,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -321,7 +321,7 @@
   "África do Sul": [
     {
       "name": "Aubrey Modiba",
-      "ovr": 69,
+      "ovr": 67,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -332,7 +332,7 @@
     },
     {
       "name": "Bradley Cross",
-      "ovr": 66,
+      "ovr": 69,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -343,7 +343,7 @@
     },
     {
       "name": "Evidence Makgopa",
-      "ovr": 68,
+      "ovr": 71,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -376,7 +376,7 @@
     },
     {
       "name": "Jayden Adams",
-      "ovr": 66,
+      "ovr": 69,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -387,7 +387,7 @@
     },
     {
       "name": "Kamogelo Sebelebele",
-      "ovr": 67,
+      "ovr": 66,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -398,7 +398,7 @@
     },
     {
       "name": "Khuliso Mudau",
-      "ovr": 68,
+      "ovr": 73,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -409,7 +409,7 @@
     },
     {
       "name": "Khulumani Ndamane",
-      "ovr": 69,
+      "ovr": 68,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -436,7 +436,7 @@
     },
     {
       "name": "Mbekezeli Mbokazi",
-      "ovr": 72,
+      "ovr": 67,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -447,7 +447,7 @@
     },
     {
       "name": "Nkosinathi Sibisi",
-      "ovr": 68,
+      "ovr": 66,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -469,7 +469,7 @@
     },
     {
       "name": "Oswin Appollis",
-      "ovr": 67,
+      "ovr": 66,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -480,7 +480,7 @@
     },
     {
       "name": "Relebohile Mofokeng",
-      "ovr": 66,
+      "ovr": 65,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -491,7 +491,7 @@
     },
     {
       "name": "Ricardo Goss",
-      "ovr": 66,
+      "ovr": 68,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -502,7 +502,7 @@
     },
     {
       "name": "Ronwen Williams",
-      "ovr": 67,
+      "ovr": 65,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -513,7 +513,7 @@
     },
     {
       "name": "Samukelo Kabini",
-      "ovr": 69,
+      "ovr": 68,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -524,7 +524,7 @@
     },
     {
       "name": "Sipho Chaine",
-      "ovr": 68,
+      "ovr": 67,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -548,7 +548,7 @@
     },
     {
       "name": "Teboho Mokoena",
-      "ovr": 65,
+      "ovr": 66,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -559,7 +559,7 @@
     },
     {
       "name": "Thabang Matuludi",
-      "ovr": 68,
+      "ovr": 69,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -570,7 +570,7 @@
     },
     {
       "name": "Thalente Mbatha",
-      "ovr": 73,
+      "ovr": 65,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -581,7 +581,7 @@
     },
     {
       "name": "Thapelo Maseko",
-      "ovr": 65,
+      "ovr": 67,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -592,7 +592,7 @@
     },
     {
       "name": "Themba Zwane",
-      "ovr": 69,
+      "ovr": 65,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -603,7 +603,7 @@
     },
     {
       "name": "Tshepang Moremi",
-      "ovr": 67,
+      "ovr": 66,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -643,7 +643,7 @@
     },
     {
       "name": "Cho Wije",
-      "ovr": 73,
+      "ovr": 65,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -724,7 +724,7 @@
     },
     {
       "name": "Kim Jingyu",
-      "ovr": 72,
+      "ovr": 66,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -757,7 +757,7 @@
     },
     {
       "name": "Kim Seung-gyu",
-      "ovr": 72,
+      "ovr": 70,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -768,7 +768,7 @@
     },
     {
       "name": "Kim Taehyeon",
-      "ovr": 69,
+      "ovr": 65,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -830,7 +830,7 @@
     },
     {
       "name": "Lee Kihyuk",
-      "ovr": 69,
+      "ovr": 67,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -969,7 +969,7 @@
     },
     {
       "name": "Alexandr Sojka",
-      "ovr": 83,
+      "ovr": 75,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -1040,7 +1040,7 @@
     },
     {
       "name": "Hugo Sochůrek",
-      "ovr": 83,
+      "ovr": 75,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -1271,7 +1271,7 @@
     },
     {
       "name": "Vladimír Darida",
-      "ovr": 79,
+      "ovr": 75,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -1451,7 +1451,7 @@
     },
     {
       "name": "Liam Miller",
-      "ovr": 79,
+      "ovr": 72,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -1476,7 +1476,7 @@
     },
     {
       "name": "Marcelo Flores",
-      "ovr": 80,
+      "ovr": 72,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -1712,7 +1712,7 @@
     },
     {
       "name": "Dennis Hadzikadunic",
-      "ovr": 77,
+      "ovr": 74,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -1799,7 +1799,7 @@
     },
     {
       "name": "Ivan Basic",
-      "ovr": 71,
+      "ovr": 72,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -1810,7 +1810,7 @@
     },
     {
       "name": "Ivan Sunjic",
-      "ovr": 71,
+      "ovr": 75,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -1848,7 +1848,7 @@
     },
     {
       "name": "Martin Zlomislic",
-      "ovr": 75,
+      "ovr": 77,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -1903,7 +1903,7 @@
     },
     {
       "name": "Osman Hadzikic",
-      "ovr": 79,
+      "ovr": 74,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -1965,7 +1965,7 @@
   "Catar": [
     {
       "name": "Abdulaziz Hatem",
-      "ovr": 68,
+      "ovr": 65,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -1976,7 +1976,7 @@
     },
     {
       "name": "Ahmed Al-Ganehi",
-      "ovr": 69,
+      "ovr": 67,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -1998,7 +1998,7 @@
     },
     {
       "name": "Ahmed Fathy",
-      "ovr": 66,
+      "ovr": 65,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -2009,7 +2009,7 @@
     },
     {
       "name": "Akram Afif",
-      "ovr": 69,
+      "ovr": 67,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -2020,7 +2020,7 @@
     },
     {
       "name": "Al-Hashmi Al-Hussain",
-      "ovr": 68,
+      "ovr": 65,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -2031,7 +2031,7 @@
     },
     {
       "name": "AlMoez Ali",
-      "ovr": 68,
+      "ovr": 65,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -2053,7 +2053,7 @@
     },
     {
       "name": "Ayoub Al-Alawi",
-      "ovr": 68,
+      "ovr": 66,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -2064,7 +2064,7 @@
     },
     {
       "name": "Boualem Khoukhi",
-      "ovr": 65,
+      "ovr": 69,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -2075,7 +2075,7 @@
     },
     {
       "name": "Edmilson Junior",
-      "ovr": 72,
+      "ovr": 69,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -2086,7 +2086,7 @@
     },
     {
       "name": "Hasan Al-Haydos",
-      "ovr": 68,
+      "ovr": 69,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -2097,7 +2097,7 @@
     },
     {
       "name": "Homam Ahmed",
-      "ovr": 65,
+      "ovr": 72,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -2130,7 +2130,7 @@
     },
     {
       "name": "Karim Boudiaf",
-      "ovr": 65,
+      "ovr": 68,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -2141,7 +2141,7 @@
     },
     {
       "name": "Lucas Mendes",
-      "ovr": 69,
+      "ovr": 67,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -2152,7 +2152,7 @@
     },
     {
       "name": "Mahmoud Abunada",
-      "ovr": 68,
+      "ovr": 66,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -2163,7 +2163,7 @@
     },
     {
       "name": "Meshaal Barsham",
-      "ovr": 65,
+      "ovr": 68,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -2174,7 +2174,7 @@
     },
     {
       "name": "Mohamed Mannaj",
-      "ovr": 65,
+      "ovr": 66,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -2185,7 +2185,7 @@
     },
     {
       "name": "Mohammed Muntari",
-      "ovr": 67,
+      "ovr": 73,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -2196,7 +2196,7 @@
     },
     {
       "name": "Pedro Miguel",
-      "ovr": 65,
+      "ovr": 69,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -2207,7 +2207,7 @@
     },
     {
       "name": "Salah Zakaria",
-      "ovr": 73,
+      "ovr": 66,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -2218,7 +2218,7 @@
     },
     {
       "name": "Sultan Al-Brake",
-      "ovr": 69,
+      "ovr": 65,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -2229,7 +2229,7 @@
     },
     {
       "name": "Tahsin Mohammed",
-      "ovr": 69,
+      "ovr": 66,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -2240,7 +2240,7 @@
     },
     {
       "name": "Youssef Abdulrazzaq",
-      "ovr": 68,
+      "ovr": 65,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -2574,7 +2574,7 @@
     },
     {
       "name": "Yvon Mvogo",
-      "ovr": 82,
+      "ovr": 74,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -2602,7 +2602,7 @@
   "Brasil": [
     {
       "name": "Alex Sandro",
-      "ovr": 82,
+      "ovr": 79,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -2661,13 +2661,13 @@
     },
     {
       "name": "Danilo",
-      "ovr": 75,
+      "ovr": 78,
       "position": "DEF",
       "altPositions": [],
       "role": null,
       "altRoles": [],
       "penalties": null,
-      "league": "Scottish Premiership",
+      "league": "Brasileirão",
       "source": "estimated"
     },
     {
@@ -2683,7 +2683,7 @@
     },
     {
       "name": "Douglas Santos",
-      "ovr": 80,
+      "ovr": 72,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -2779,7 +2779,7 @@
     },
     {
       "name": "Lucas Paquetá",
-      "ovr": 80,
+      "ovr": 82,
       "position": "MID",
       "altPositions": [],
       "role": "CM",
@@ -2793,7 +2793,7 @@
     },
     {
       "name": "Luiz Henrique",
-      "ovr": 76,
+      "ovr": 75,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -2804,7 +2804,7 @@
     },
     {
       "name": "Léo Pereira",
-      "ovr": 82,
+      "ovr": 78,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -2842,7 +2842,7 @@
     },
     {
       "name": "Neymar",
-      "ovr": 91,
+      "ovr": 89,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -2868,7 +2868,7 @@
     },
     {
       "name": "Rayan",
-      "ovr": 83,
+      "ovr": 81,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -2879,7 +2879,7 @@
     },
     {
       "name": "Vinicius Junior",
-      "ovr": 91,
+      "ovr": 92,
       "position": "FWD",
       "altPositions": [
         "MID"
@@ -2910,7 +2910,7 @@
     },
     {
       "name": "Weverton",
-      "ovr": 81,
+      "ovr": 80,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -2953,7 +2953,7 @@
     },
     {
       "name": "Ahmed Reda Tagnaouti",
-      "ovr": 79,
+      "ovr": 72,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -2979,7 +2979,7 @@
     },
     {
       "name": "Ayoub Bouaddi",
-      "ovr": 78,
+      "ovr": 76,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -3001,7 +3001,7 @@
     },
     {
       "name": "Ayoube Amahount",
-      "ovr": 79,
+      "ovr": 72,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -3107,7 +3107,7 @@
     },
     {
       "name": "Munir El Kajoui",
-      "ovr": 78,
+      "ovr": 70,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -3212,7 +3212,7 @@
     },
     {
       "name": "Yassine Bessime",
-      "ovr": 74,
+      "ovr": 70,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -3234,7 +3234,7 @@
     },
     {
       "name": "Youssef Belammari",
-      "ovr": 73,
+      "ovr": 70,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -3264,7 +3264,7 @@
   "Haiti": [
     {
       "name": "Alexandre Pierre",
-      "ovr": 69,
+      "ovr": 66,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -3317,7 +3317,7 @@
     },
     {
       "name": "Dominique Simon",
-      "ovr": 68,
+      "ovr": 66,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -3339,7 +3339,7 @@
     },
     {
       "name": "Duke Lacroix",
-      "ovr": 72,
+      "ovr": 66,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -3374,7 +3374,7 @@
     },
     {
       "name": "JK Duverne",
-      "ovr": 70,
+      "ovr": 66,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -3398,7 +3398,7 @@
     },
     {
       "name": "Jeanricner Bellegarde",
-      "ovr": 79,
+      "ovr": 75,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -3436,7 +3436,7 @@
     },
     {
       "name": "Josué Duverger",
-      "ovr": 72,
+      "ovr": 66,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -3447,7 +3447,7 @@
     },
     {
       "name": "Keeto Thermoncy",
-      "ovr": 68,
+      "ovr": 66,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -3473,7 +3473,7 @@
     },
     {
       "name": "Leverton Pierre",
-      "ovr": 68,
+      "ovr": 66,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -3515,7 +3515,7 @@
     },
     {
       "name": "Pierre Woodenski",
-      "ovr": 68,
+      "ovr": 66,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -3526,7 +3526,7 @@
     },
     {
       "name": "Ricardo Ade",
-      "ovr": 68,
+      "ovr": 66,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -3537,7 +3537,7 @@
     },
     {
       "name": "Ruben Providence",
-      "ovr": 69,
+      "ovr": 66,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -3570,7 +3570,7 @@
     },
     {
       "name": "Yassin Fortune",
-      "ovr": 72,
+      "ovr": 66,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -3689,7 +3689,7 @@
     },
     {
       "name": "Dom Hyam",
-      "ovr": 80,
+      "ovr": 73,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -3940,7 +3940,7 @@
     },
     {
       "name": "Alex Zendejas",
-      "ovr": 78,
+      "ovr": 72,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -4290,7 +4290,7 @@
   "Paraguai": [
     {
       "name": "Alejandro Romero Gamarra",
-      "ovr": 72,
+      "ovr": 75,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -4356,7 +4356,7 @@
     },
     {
       "name": "Damián Bobadilla",
-      "ovr": 77,
+      "ovr": 73,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -4428,7 +4428,7 @@
     },
     {
       "name": "Gustavo Caballero",
-      "ovr": 78,
+      "ovr": 79,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -4439,7 +4439,7 @@
     },
     {
       "name": "Gustavo Gómez",
-      "ovr": 75,
+      "ovr": 73,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -4466,7 +4466,7 @@
     },
     {
       "name": "Isidro Pitta",
-      "ovr": 75,
+      "ovr": 72,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -4488,7 +4488,7 @@
     },
     {
       "name": "Juan Cáceres",
-      "ovr": 73,
+      "ovr": 78,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -4516,7 +4516,7 @@
     },
     {
       "name": "Junior Alonso",
-      "ovr": 71,
+      "ovr": 73,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -4541,7 +4541,7 @@
     },
     {
       "name": "Mauricio",
-      "ovr": 78,
+      "ovr": 73,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -4590,7 +4590,7 @@
     },
     {
       "name": "Ramón Sosa",
-      "ovr": 74,
+      "ovr": 73,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -4779,7 +4779,7 @@
     },
     {
       "name": "Jason Geria",
-      "ovr": 69,
+      "ovr": 68,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -4832,7 +4832,7 @@
     },
     {
       "name": "Mat Ryan",
-      "ovr": 76,
+      "ovr": 68,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -4858,7 +4858,7 @@
     },
     {
       "name": "Milos Degenek",
-      "ovr": 74,
+      "ovr": 68,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -4939,7 +4939,7 @@
     },
     {
       "name": "Paul Okon-Engstler",
-      "ovr": 70,
+      "ovr": 68,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -5735,7 +5735,7 @@
     },
     {
       "name": "Deveron Fonville",
-      "ovr": 66,
+      "ovr": 69,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -5746,7 +5746,7 @@
     },
     {
       "name": "Eloy Room",
-      "ovr": 68,
+      "ovr": 66,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -5757,28 +5757,6 @@
     },
     {
       "name": "Gervane Kastaneer",
-      "ovr": 66,
-      "position": "FWD",
-      "altPositions": [],
-      "role": null,
-      "altRoles": [],
-      "penalties": null,
-      "league": "Outra",
-      "source": "estimated"
-    },
-    {
-      "name": "Godfried Romeratoe",
-      "ovr": 73,
-      "position": "MID",
-      "altPositions": [],
-      "role": null,
-      "altRoles": [],
-      "penalties": null,
-      "league": "Outra",
-      "source": "estimated"
-    },
-    {
-      "name": "Jearl Margaritha",
       "ovr": 67,
       "position": "FWD",
       "altPositions": [],
@@ -5789,8 +5767,30 @@
       "source": "estimated"
     },
     {
+      "name": "Godfried Romeratoe",
+      "ovr": 69,
+      "position": "MID",
+      "altPositions": [],
+      "role": null,
+      "altRoles": [],
+      "penalties": null,
+      "league": "Outra",
+      "source": "estimated"
+    },
+    {
+      "name": "Jearl Margaritha",
+      "ovr": 66,
+      "position": "FWD",
+      "altPositions": [],
+      "role": null,
+      "altRoles": [],
+      "penalties": null,
+      "league": "Outra",
+      "source": "estimated"
+    },
+    {
       "name": "Jeremy Antonisse",
-      "ovr": 68,
+      "ovr": 72,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -5801,7 +5801,7 @@
     },
     {
       "name": "Joshua Brenet",
-      "ovr": 66,
+      "ovr": 68,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -5826,7 +5826,7 @@
     },
     {
       "name": "Juriën Gaari",
-      "ovr": 72,
+      "ovr": 66,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -5837,7 +5837,7 @@
     },
     {
       "name": "Jürgen Locadia",
-      "ovr": 67,
+      "ovr": 70,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -5848,7 +5848,7 @@
     },
     {
       "name": "Kenji Gorré",
-      "ovr": 66,
+      "ovr": 69,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -5859,7 +5859,7 @@
     },
     {
       "name": "Kevin Felida",
-      "ovr": 73,
+      "ovr": 66,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -5870,7 +5870,7 @@
     },
     {
       "name": "Leandro Bacuna",
-      "ovr": 69,
+      "ovr": 66,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -5985,7 +5985,7 @@
     },
     {
       "name": "Trevor Doornbusch",
-      "ovr": 66,
+      "ovr": 72,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -5996,7 +5996,7 @@
     },
     {
       "name": "Tyrese Noslin",
-      "ovr": 66,
+      "ovr": 69,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -6048,7 +6048,7 @@
     },
     {
       "name": "Ange-Yoan Bonny",
-      "ovr": 82,
+      "ovr": 76,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -6213,7 +6213,7 @@
     },
     {
       "name": "Jean Michaël Seri",
-      "ovr": 83,
+      "ovr": 75,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -6373,7 +6373,7 @@
   "Equador": [
     {
       "name": "Alan Franco",
-      "ovr": 73,
+      "ovr": 72,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -6427,7 +6427,7 @@
     },
     {
       "name": "Enner Valencia",
-      "ovr": 80,
+      "ovr": 76,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -6438,7 +6438,7 @@
     },
     {
       "name": "Félix Torres",
-      "ovr": 76,
+      "ovr": 75,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -6449,7 +6449,7 @@
     },
     {
       "name": "Gonzalo Plata",
-      "ovr": 80,
+      "ovr": 74,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -6482,7 +6482,7 @@
     },
     {
       "name": "Jackson Porozo",
-      "ovr": 78,
+      "ovr": 71,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -6493,7 +6493,7 @@
     },
     {
       "name": "Jeremy Arévalo",
-      "ovr": 76,
+      "ovr": 70,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -6627,7 +6627,7 @@
     },
     {
       "name": "Pedro Vite",
-      "ovr": 73,
+      "ovr": 70,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -6917,7 +6917,7 @@
     },
     {
       "name": "Memphis Depay",
-      "ovr": 89,
+      "ovr": 84,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -7194,7 +7194,7 @@
     },
     {
       "name": "Keisuke Osako",
-      "ovr": 72,
+      "ovr": 66,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -7298,7 +7298,7 @@
     },
     {
       "name": "Takehiro Tomiyasu",
-      "ovr": 80,
+      "ovr": 79,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -7309,7 +7309,7 @@
     },
     {
       "name": "Tomoki Hayakawa",
-      "ovr": 70,
+      "ovr": 64,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -7374,7 +7374,7 @@
     },
     {
       "name": "Yuto Nagatomo",
-      "ovr": 76,
+      "ovr": 70,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -7458,7 +7458,7 @@
     },
     {
       "name": "Besfort Zenelie",
-      "ovr": 75,
+      "ovr": 68,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -7626,7 +7626,7 @@
     },
     {
       "name": "Ken Sema",
-      "ovr": 76,
+      "ovr": 70,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -7740,7 +7740,7 @@
   "Tunísia": [
     {
       "name": "Abdelmouhib Chamakh",
-      "ovr": 70,
+      "ovr": 71,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -7790,7 +7790,7 @@
     },
     {
       "name": "Aymen Dahmen",
-      "ovr": 77,
+      "ovr": 76,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -7801,7 +7801,7 @@
     },
     {
       "name": "Ben Hmida",
-      "ovr": 71,
+      "ovr": 69,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -7867,7 +7867,7 @@
     },
     {
       "name": "Firas Chawat",
-      "ovr": 72,
+      "ovr": 73,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -7892,7 +7892,7 @@
     },
     {
       "name": "Hazem Mastouri",
-      "ovr": 72,
+      "ovr": 70,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -7919,7 +7919,7 @@
     },
     {
       "name": "Khalil Ayari",
-      "ovr": 72,
+      "ovr": 69,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -7930,7 +7930,7 @@
     },
     {
       "name": "Mohamed Hadj-Mahmoud",
-      "ovr": 76,
+      "ovr": 70,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -7987,7 +7987,7 @@
     },
     {
       "name": "Omar Rekik",
-      "ovr": 70,
+      "ovr": 71,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -7998,7 +7998,7 @@
     },
     {
       "name": "Raed Chikhaoui",
-      "ovr": 72,
+      "ovr": 70,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -8022,7 +8022,7 @@
     },
     {
       "name": "Rayan Elloumi",
-      "ovr": 70,
+      "ovr": 76,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -8299,7 +8299,7 @@
     },
     {
       "name": "Mathias Fernandez-Pardo",
-      "ovr": 81,
+      "ovr": 74,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -8436,7 +8436,7 @@
   "Egito": [
     {
       "name": "Ahmed Fatouh",
-      "ovr": 68,
+      "ovr": 67,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -8447,7 +8447,7 @@
     },
     {
       "name": "Ahmed Sayed Zizo",
-      "ovr": 73,
+      "ovr": 69,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -8458,7 +8458,7 @@
     },
     {
       "name": "El Mahdy Soliman",
-      "ovr": 69,
+      "ovr": 71,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -8469,7 +8469,7 @@
     },
     {
       "name": "Emam Ashour",
-      "ovr": 74,
+      "ovr": 68,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -8480,7 +8480,7 @@
     },
     {
       "name": "Haitham Hassan",
-      "ovr": 69,
+      "ovr": 70,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -8502,7 +8502,7 @@
     },
     {
       "name": "Hamza Abdel Karim",
-      "ovr": 67,
+      "ovr": 69,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -8513,7 +8513,7 @@
     },
     {
       "name": "Hossam Abdelmaguid",
-      "ovr": 69,
+      "ovr": 67,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -8524,7 +8524,7 @@
     },
     {
       "name": "Ibrahim Adel",
-      "ovr": 69,
+      "ovr": 67,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -8535,7 +8535,7 @@
     },
     {
       "name": "Karim Hafez",
-      "ovr": 69,
+      "ovr": 71,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -8546,7 +8546,7 @@
     },
     {
       "name": "Mahmoud Saber",
-      "ovr": 68,
+      "ovr": 71,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -8557,7 +8557,7 @@
     },
     {
       "name": "Mahmoud Trezeguet",
-      "ovr": 68,
+      "ovr": 67,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -8568,7 +8568,7 @@
     },
     {
       "name": "Marwan Attia",
-      "ovr": 69,
+      "ovr": 68,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -8590,7 +8590,7 @@
     },
     {
       "name": "Mohamed Alaa",
-      "ovr": 69,
+      "ovr": 74,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -8601,7 +8601,7 @@
     },
     {
       "name": "Mohamed El Shenawy",
-      "ovr": 69,
+      "ovr": 74,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -8612,7 +8612,7 @@
     },
     {
       "name": "Mohamed Hany",
-      "ovr": 68,
+      "ovr": 69,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -8638,7 +8638,7 @@
     },
     {
       "name": "Mohannad Lasheen",
-      "ovr": 68,
+      "ovr": 69,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -8649,7 +8649,7 @@
     },
     {
       "name": "Mostafa Shobeir",
-      "ovr": 71,
+      "ovr": 70,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -8660,7 +8660,7 @@
     },
     {
       "name": "Mostafa Ziko",
-      "ovr": 69,
+      "ovr": 67,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -8671,7 +8671,7 @@
     },
     {
       "name": "Nabil Emad Dunga",
-      "ovr": 69,
+      "ovr": 67,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -8709,7 +8709,7 @@
     },
     {
       "name": "Tarek Alaa",
-      "ovr": 67,
+      "ovr": 71,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -8720,7 +8720,7 @@
     },
     {
       "name": "Yasser Ibrahim",
-      "ovr": 70,
+      "ovr": 69,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -8733,7 +8733,7 @@
   "Irã": [
     {
       "name": "Ali Alipour",
-      "ovr": 70,
+      "ovr": 71,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -8744,7 +8744,7 @@
     },
     {
       "name": "Ali Nemati",
-      "ovr": 71,
+      "ovr": 73,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -8755,7 +8755,7 @@
     },
     {
       "name": "Alireza Beyranvand",
-      "ovr": 68,
+      "ovr": 71,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -8766,7 +8766,7 @@
     },
     {
       "name": "Alireza Jahanbakhsh",
-      "ovr": 67,
+      "ovr": 68,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -8777,7 +8777,7 @@
     },
     {
       "name": "Amirhossein Hosseinzadeh",
-      "ovr": 71,
+      "ovr": 75,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -8788,7 +8788,7 @@
     },
     {
       "name": "Amirmohammad Razaghinia",
-      "ovr": 68,
+      "ovr": 67,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -8810,7 +8810,7 @@
     },
     {
       "name": "Danial Iri",
-      "ovr": 69,
+      "ovr": 71,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -8821,7 +8821,7 @@
     },
     {
       "name": "Denis Dargahi",
-      "ovr": 69,
+      "ovr": 71,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -8832,7 +8832,7 @@
     },
     {
       "name": "Ehsan Hajisafi",
-      "ovr": 75,
+      "ovr": 69,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -8843,7 +8843,7 @@
     },
     {
       "name": "Hosein Hoseini",
-      "ovr": 71,
+      "ovr": 68,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -8854,7 +8854,7 @@
     },
     {
       "name": "Hossein Kanani",
-      "ovr": 67,
+      "ovr": 70,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -8887,7 +8887,7 @@
     },
     {
       "name": "Mehdi Torabi",
-      "ovr": 69,
+      "ovr": 71,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -8898,7 +8898,7 @@
     },
     {
       "name": "Milad Mohammadi",
-      "ovr": 69,
+      "ovr": 67,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -8909,7 +8909,7 @@
     },
     {
       "name": "Mohammad Ghorbani",
-      "ovr": 74,
+      "ovr": 71,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -8931,7 +8931,7 @@
     },
     {
       "name": "Payam Niazmand",
-      "ovr": 71,
+      "ovr": 70,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -8942,7 +8942,7 @@
     },
     {
       "name": "Ramin Rezaeian",
-      "ovr": 67,
+      "ovr": 71,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -8953,7 +8953,7 @@
     },
     {
       "name": "Roozbeh Cheshmi",
-      "ovr": 70,
+      "ovr": 71,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -8975,7 +8975,7 @@
     },
     {
       "name": "Saleh Hardani",
-      "ovr": 69,
+      "ovr": 71,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -8986,7 +8986,7 @@
     },
     {
       "name": "Saman Ghoddos",
-      "ovr": 69,
+      "ovr": 68,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -9008,7 +9008,7 @@
     },
     {
       "name": "Shoja Khalilzadeh",
-      "ovr": 71,
+      "ovr": 69,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -9118,7 +9118,7 @@
     },
     {
       "name": "Eli Just",
-      "ovr": 68,
+      "ovr": 65,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -9244,7 +9244,7 @@
     },
     {
       "name": "Matt Garbett",
-      "ovr": 71,
+      "ovr": 65,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -9312,7 +9312,7 @@
     },
     {
       "name": "Sarpreet Singh",
-      "ovr": 72,
+      "ovr": 65,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -9338,7 +9338,7 @@
     },
     {
       "name": "Tommy Smith",
-      "ovr": 71,
+      "ovr": 65,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -9499,7 +9499,7 @@
     },
     {
       "name": "Lamine Yamal",
-      "ovr": 89,
+      "ovr": 91,
       "position": "FWD",
       "altPositions": [
         "MID"
@@ -9758,7 +9758,7 @@
     },
     {
       "name": "Deroy Duarte",
-      "ovr": 69,
+      "ovr": 67,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -9769,7 +9769,7 @@
     },
     {
       "name": "Edilson Borges",
-      "ovr": 70,
+      "ovr": 67,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -9780,7 +9780,7 @@
     },
     {
       "name": "Garry Rodrigues",
-      "ovr": 71,
+      "ovr": 67,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -9791,7 +9791,7 @@
     },
     {
       "name": "Gilson Benchimol",
-      "ovr": 71,
+      "ovr": 67,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -9802,7 +9802,7 @@
     },
     {
       "name": "Hélio Varela",
-      "ovr": 71,
+      "ovr": 67,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -9813,7 +9813,7 @@
     },
     {
       "name": "Ianique Tavares",
-      "ovr": 71,
+      "ovr": 67,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -9837,7 +9837,7 @@
     },
     {
       "name": "Josimar Dias",
-      "ovr": 71,
+      "ovr": 67,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -9865,7 +9865,7 @@
     },
     {
       "name": "João Paulo Fernandes",
-      "ovr": 74,
+      "ovr": 70,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -9876,7 +9876,7 @@
     },
     {
       "name": "Kelvin Pires",
-      "ovr": 68,
+      "ovr": 67,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -9887,7 +9887,7 @@
     },
     {
       "name": "Kevin Pina",
-      "ovr": 75,
+      "ovr": 67,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -9898,7 +9898,7 @@
     },
     {
       "name": "Laros Duarte",
-      "ovr": 75,
+      "ovr": 67,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -9920,7 +9920,7 @@
     },
     {
       "name": "Márcio da Rosa",
-      "ovr": 75,
+      "ovr": 67,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -9969,7 +9969,7 @@
     },
     {
       "name": "Sidny Cabral",
-      "ovr": 69,
+      "ovr": 67,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -10034,7 +10034,7 @@
     },
     {
       "name": "Yannick Semedo",
-      "ovr": 70,
+      "ovr": 67,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -10153,7 +10153,7 @@
     },
     {
       "name": "Feras Al Brikan",
-      "ovr": 70,
+      "ovr": 67,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -10164,7 +10164,7 @@
     },
     {
       "name": "Hassan Kadesh",
-      "ovr": 75,
+      "ovr": 74,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -10186,7 +10186,7 @@
     },
     {
       "name": "Jehad Thikri",
-      "ovr": 68,
+      "ovr": 69,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -10228,7 +10228,7 @@
     },
     {
       "name": "Mohammed Al Owais",
-      "ovr": 68,
+      "ovr": 73,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -10253,7 +10253,7 @@
     },
     {
       "name": "Moteb Al Harbi",
-      "ovr": 68,
+      "ovr": 67,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -10264,7 +10264,7 @@
     },
     {
       "name": "Musab Al Juwayr",
-      "ovr": 75,
+      "ovr": 71,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -10391,7 +10391,7 @@
   "Uruguai": [
     {
       "name": "Agustín Canobbio",
-      "ovr": 75,
+      "ovr": 74,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -10402,7 +10402,7 @@
     },
     {
       "name": "Brian Rodríguez",
-      "ovr": 74,
+      "ovr": 72,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -10489,7 +10489,7 @@
     },
     {
       "name": "Giorgian De Arrascaeta",
-      "ovr": 93,
+      "ovr": 88,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -10500,7 +10500,7 @@
     },
     {
       "name": "Guillermo Varela",
-      "ovr": 76,
+      "ovr": 75,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -10511,7 +10511,7 @@
     },
     {
       "name": "Joaquín Piquerez",
-      "ovr": 78,
+      "ovr": 75,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -10533,7 +10533,7 @@
     },
     {
       "name": "Juan Manuel Sanabria",
-      "ovr": 73,
+      "ovr": 71,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -10568,7 +10568,7 @@
     },
     {
       "name": "Matías Viña",
-      "ovr": 74,
+      "ovr": 73,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -10596,7 +10596,7 @@
     },
     {
       "name": "Nicolás De La Cruz",
-      "ovr": 79,
+      "ovr": 81,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -10607,7 +10607,7 @@
     },
     {
       "name": "Rodrigo Aguirre",
-      "ovr": 72,
+      "ovr": 71,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -10680,7 +10680,7 @@
     },
     {
       "name": "Sebastián Cáceres",
-      "ovr": 74,
+      "ovr": 73,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -10691,7 +10691,7 @@
     },
     {
       "name": "Sergio Rochet",
-      "ovr": 84,
+      "ovr": 78,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -11061,7 +11061,7 @@
   "Senegal": [
     {
       "name": "Abdoulaye Seck",
-      "ovr": 78,
+      "ovr": 71,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -11115,7 +11115,7 @@
     },
     {
       "name": "Bara Sapoko Ndiaye",
-      "ovr": 82,
+      "ovr": 74,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -11126,7 +11126,7 @@
     },
     {
       "name": "Chérif Ndiaye",
-      "ovr": 77,
+      "ovr": 70,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -11402,7 +11402,7 @@
   "Iraque": [
     {
       "name": "Ahmed Basil",
-      "ovr": 65,
+      "ovr": 64,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -11413,7 +11413,7 @@
     },
     {
       "name": "Ahmed Qasim",
-      "ovr": 66,
+      "ovr": 67,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -11424,7 +11424,7 @@
     },
     {
       "name": "Ahmed Yahya",
-      "ovr": 70,
+      "ovr": 65,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -11448,7 +11448,7 @@
     },
     {
       "name": "Akam Hashim",
-      "ovr": 64,
+      "ovr": 66,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -11470,7 +11470,7 @@
     },
     {
       "name": "Ali Jassim",
-      "ovr": 71,
+      "ovr": 67,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -11481,7 +11481,7 @@
     },
     {
       "name": "Ali Yousif",
-      "ovr": 66,
+      "ovr": 65,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -11505,7 +11505,7 @@
     },
     {
       "name": "Aymen Hussein",
-      "ovr": 65,
+      "ovr": 64,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -11516,7 +11516,7 @@
     },
     {
       "name": "Fahad Talib",
-      "ovr": 70,
+      "ovr": 65,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -11527,7 +11527,7 @@
     },
     {
       "name": "Frans Putros",
-      "ovr": 66,
+      "ovr": 64,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -11538,7 +11538,7 @@
     },
     {
       "name": "Hussein Ali",
-      "ovr": 68,
+      "ovr": 70,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -11566,7 +11566,7 @@
     },
     {
       "name": "Jalal Hassan",
-      "ovr": 64,
+      "ovr": 65,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -11620,7 +11620,7 @@
     },
     {
       "name": "Mohanad Ali",
-      "ovr": 65,
+      "ovr": 64,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -11631,7 +11631,7 @@
     },
     {
       "name": "Munaf Younus",
-      "ovr": 68,
+      "ovr": 65,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -11642,7 +11642,7 @@
     },
     {
       "name": "Mustafa Saadoun",
-      "ovr": 64,
+      "ovr": 67,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -11664,7 +11664,7 @@
     },
     {
       "name": "Youssef Amyn",
-      "ovr": 68,
+      "ovr": 66,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -11675,7 +11675,7 @@
     },
     {
       "name": "Zaid Ismail",
-      "ovr": 64,
+      "ovr": 65,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -11686,7 +11686,7 @@
     },
     {
       "name": "Zaid Tahseen",
-      "ovr": 68,
+      "ovr": 70,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -11844,7 +11844,7 @@
     },
     {
       "name": "Holmgren Pedersen",
-      "ovr": 78,
+      "ovr": 72,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -12150,7 +12150,7 @@
     },
     {
       "name": "Flaco López",
-      "ovr": 82,
+      "ovr": 76,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -12275,7 +12275,7 @@
     },
     {
       "name": "Lionel Messi",
-      "ovr": 86,
+      "ovr": 88,
       "position": "FWD",
       "altPositions": [
         "MID"
@@ -12419,7 +12419,7 @@
   "Argélia": [
     {
       "name": "Achref Abada",
-      "ovr": 66,
+      "ovr": 62,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -12430,7 +12430,7 @@
     },
     {
       "name": "Adil Boulbina",
-      "ovr": 67,
+      "ovr": 66,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -12454,7 +12454,7 @@
     },
     {
       "name": "Amine Gouri",
-      "ovr": 75,
+      "ovr": 68,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -12512,7 +12512,7 @@
     },
     {
       "name": "Hicham Boudaqui",
-      "ovr": 74,
+      "ovr": 71,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -12575,7 +12575,7 @@
     },
     {
       "name": "Melvin Mastil",
-      "ovr": 76,
+      "ovr": 70,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -12627,7 +12627,7 @@
     },
     {
       "name": "Nadhir Benbouali",
-      "ovr": 72,
+      "ovr": 69,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -12638,7 +12638,7 @@
     },
     {
       "name": "Oussama Benbot",
-      "ovr": 66,
+      "ovr": 63,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -12751,7 +12751,7 @@
     },
     {
       "name": "Zineddine Belaid",
-      "ovr": 63,
+      "ovr": 62,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -12796,7 +12796,7 @@
     },
     {
       "name": "Alexander Schelager",
-      "ovr": 76,
+      "ovr": 68,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -12807,7 +12807,7 @@
     },
     {
       "name": "Carney Chukwuenmeka",
-      "ovr": 80,
+      "ovr": 74,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -12940,7 +12940,7 @@
     },
     {
       "name": "Marko Arnautović",
-      "ovr": 84,
+      "ovr": 78,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -13042,7 +13042,7 @@
     },
     {
       "name": "Philipp Mwene",
-      "ovr": 72,
+      "ovr": 70,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -13107,72 +13107,6 @@
   "Jordânia": [
     {
       "name": "Abdallah Nasib",
-      "ovr": 70,
-      "position": "DEF",
-      "altPositions": [],
-      "role": null,
-      "altRoles": [],
-      "penalties": null,
-      "league": "Jordanian Pro League",
-      "source": "estimated"
-    },
-    {
-      "name": "Abdullah Al-Fakhouri",
-      "ovr": 67,
-      "position": "GK",
-      "altPositions": [],
-      "role": null,
-      "altRoles": [],
-      "penalties": null,
-      "league": "Jordanian Pro League",
-      "source": "estimated"
-    },
-    {
-      "name": "Ali Al-Azaizeh",
-      "ovr": 70,
-      "position": "FWD",
-      "altPositions": [],
-      "role": null,
-      "altRoles": [],
-      "penalties": null,
-      "league": "Jordanian Pro League",
-      "source": "estimated"
-    },
-    {
-      "name": "Ali Olwan",
-      "ovr": 71,
-      "position": "FWD",
-      "altPositions": [],
-      "role": null,
-      "altRoles": [],
-      "penalties": null,
-      "league": "Jordanian Pro League",
-      "source": "estimated"
-    },
-    {
-      "name": "Amer Jamous",
-      "ovr": 66,
-      "position": "MID",
-      "altPositions": [],
-      "role": null,
-      "altRoles": [],
-      "penalties": null,
-      "league": "Jordanian Pro League",
-      "source": "estimated"
-    },
-    {
-      "name": "Anas Badawi",
-      "ovr": 67,
-      "position": "DEF",
-      "altPositions": [],
-      "role": null,
-      "altRoles": [],
-      "penalties": null,
-      "league": "Jordanian Pro League",
-      "source": "estimated"
-    },
-    {
-      "name": "Husam Abu Dahab",
       "ovr": 65,
       "position": "DEF",
       "altPositions": [],
@@ -13183,8 +13117,19 @@
       "source": "estimated"
     },
     {
-      "name": "Ibrahim Sabra",
-      "ovr": 67,
+      "name": "Abdullah Al-Fakhouri",
+      "ovr": 65,
+      "position": "GK",
+      "altPositions": [],
+      "role": null,
+      "altRoles": [],
+      "penalties": null,
+      "league": "Jordanian Pro League",
+      "source": "estimated"
+    },
+    {
+      "name": "Ali Al-Azaizeh",
+      "ovr": 66,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -13194,7 +13139,18 @@
       "source": "estimated"
     },
     {
-      "name": "Ibrahim Sadeh",
+      "name": "Ali Olwan",
+      "ovr": 66,
+      "position": "FWD",
+      "altPositions": [],
+      "role": null,
+      "altRoles": [],
+      "penalties": null,
+      "league": "Jordanian Pro League",
+      "source": "estimated"
+    },
+    {
+      "name": "Amer Jamous",
       "ovr": 63,
       "position": "MID",
       "altPositions": [],
@@ -13205,8 +13161,52 @@
       "source": "estimated"
     },
     {
+      "name": "Anas Badawi",
+      "ovr": 64,
+      "position": "DEF",
+      "altPositions": [],
+      "role": null,
+      "altRoles": [],
+      "penalties": null,
+      "league": "Jordanian Pro League",
+      "source": "estimated"
+    },
+    {
+      "name": "Husam Abu Dahab",
+      "ovr": 71,
+      "position": "DEF",
+      "altPositions": [],
+      "role": null,
+      "altRoles": [],
+      "penalties": null,
+      "league": "Jordanian Pro League",
+      "source": "estimated"
+    },
+    {
+      "name": "Ibrahim Sabra",
+      "ovr": 65,
+      "position": "FWD",
+      "altPositions": [],
+      "role": null,
+      "altRoles": [],
+      "penalties": null,
+      "league": "Jordanian Pro League",
+      "source": "estimated"
+    },
+    {
+      "name": "Ibrahim Sadeh",
+      "ovr": 65,
+      "position": "MID",
+      "altPositions": [],
+      "role": null,
+      "altRoles": [],
+      "penalties": null,
+      "league": "Jordanian Pro League",
+      "source": "estimated"
+    },
+    {
       "name": "Ihsan Haddad",
-      "ovr": 67,
+      "ovr": 65,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -13217,7 +13217,7 @@
     },
     {
       "name": "Mahmoud Al-Mardi",
-      "ovr": 63,
+      "ovr": 66,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -13228,7 +13228,7 @@
     },
     {
       "name": "Mohammad Abu Hashish",
-      "ovr": 66,
+      "ovr": 65,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -13239,7 +13239,7 @@
     },
     {
       "name": "Mohammad Abu Zrayq",
-      "ovr": 66,
+      "ovr": 64,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -13250,7 +13250,7 @@
     },
     {
       "name": "Mohammad Abualnadi",
-      "ovr": 64,
+      "ovr": 65,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -13272,7 +13272,7 @@
     },
     {
       "name": "Mohannad Abu Taha",
-      "ovr": 65,
+      "ovr": 67,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -13283,7 +13283,7 @@
     },
     {
       "name": "Musa Al-Taamari",
-      "ovr": 65,
+      "ovr": 66,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -13294,7 +13294,7 @@
     },
     {
       "name": "Nizar Al-Rashdan",
-      "ovr": 65,
+      "ovr": 64,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -13305,7 +13305,7 @@
     },
     {
       "name": "Nour Al-Rawabdeh",
-      "ovr": 66,
+      "ovr": 64,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -13316,7 +13316,7 @@
     },
     {
       "name": "Nour Bani Attiah",
-      "ovr": 64,
+      "ovr": 63,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -13327,7 +13327,7 @@
     },
     {
       "name": "Odeh Fakhouri",
-      "ovr": 65,
+      "ovr": 63,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -13338,7 +13338,7 @@
     },
     {
       "name": "Rajaei Ayed",
-      "ovr": 63,
+      "ovr": 69,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -13349,7 +13349,7 @@
     },
     {
       "name": "Saed Al-Rosan",
-      "ovr": 63,
+      "ovr": 69,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -13360,7 +13360,7 @@
     },
     {
       "name": "Saleem Obaid",
-      "ovr": 65,
+      "ovr": 64,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -13423,7 +13423,7 @@
     },
     {
       "name": "Cristiano Ronaldo",
-      "ovr": 85,
+      "ovr": 87,
       "position": "FWD",
       "altPositions": [],
       "role": "ST",
@@ -13700,7 +13700,7 @@
     },
     {
       "name": "Samuel Costa",
-      "ovr": 82,
+      "ovr": 74,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -13852,7 +13852,7 @@
     },
     {
       "name": "James Rodríguez",
-      "ovr": 91,
+      "ovr": 86,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -13912,7 +13912,7 @@
     },
     {
       "name": "Jhon Córdoba",
-      "ovr": 78,
+      "ovr": 74,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -13949,7 +13949,7 @@
     },
     {
       "name": "Jorge Carrascal",
-      "ovr": 79,
+      "ovr": 75,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -13960,7 +13960,7 @@
     },
     {
       "name": "Juan Camilo Hernández",
-      "ovr": 75,
+      "ovr": 73,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -14056,7 +14056,7 @@
     },
     {
       "name": "Santiago Arias",
-      "ovr": 77,
+      "ovr": 71,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -14067,7 +14067,7 @@
     },
     {
       "name": "Willer Ditta",
-      "ovr": 73,
+      "ovr": 71,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -14161,7 +14161,7 @@
     },
     {
       "name": "Chancel Mbemba",
-      "ovr": 78,
+      "ovr": 72,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -14220,7 +14220,7 @@
     },
     {
       "name": "Fiston Mayele",
-      "ovr": 72,
+      "ovr": 77,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -14231,7 +14231,7 @@
     },
     {
       "name": "Gaël Kakuta",
-      "ovr": 72,
+      "ovr": 76,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -14242,7 +14242,7 @@
     },
     {
       "name": "Gédéon Kalulu",
-      "ovr": 73,
+      "ovr": 72,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -14389,7 +14389,7 @@
     },
     {
       "name": "Thimothy Fayulu",
-      "ovr": 73,
+      "ovr": 77,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -14400,7 +14400,7 @@
     },
     {
       "name": "Théo Bongonda",
-      "ovr": 78,
+      "ovr": 71,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -14435,7 +14435,7 @@
     },
     {
       "name": "Abdukodir Husanov",
-      "ovr": 69,
+      "ovr": 67,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -14446,7 +14446,7 @@
     },
     {
       "name": "Abdulla Abdullaev",
-      "ovr": 68,
+      "ovr": 66,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -14457,7 +14457,7 @@
     },
     {
       "name": "Abduvohid Nematov",
-      "ovr": 69,
+      "ovr": 66,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -14468,7 +14468,7 @@
     },
     {
       "name": "Akmal Mozgovoy",
-      "ovr": 67,
+      "ovr": 68,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -14479,7 +14479,7 @@
     },
     {
       "name": "Avazbek Ulmasaliyev",
-      "ovr": 68,
+      "ovr": 69,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -14490,7 +14490,7 @@
     },
     {
       "name": "Azizbek Amonov",
-      "ovr": 70,
+      "ovr": 69,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -14501,7 +14501,7 @@
     },
     {
       "name": "Azizjon Ganiev",
-      "ovr": 69,
+      "ovr": 70,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -14523,7 +14523,7 @@
     },
     {
       "name": "Botirali Ergashev",
-      "ovr": 69,
+      "ovr": 66,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -14534,7 +14534,7 @@
     },
     {
       "name": "Dostonbek Kahmdamov",
-      "ovr": 68,
+      "ovr": 70,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -14567,7 +14567,7 @@
     },
     {
       "name": "Igor Sergeev",
-      "ovr": 68,
+      "ovr": 73,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -14578,7 +14578,7 @@
     },
     {
       "name": "Jahongir Orozov",
-      "ovr": 66,
+      "ovr": 68,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -14589,7 +14589,7 @@
     },
     {
       "name": "Jaloliddin Masharipov",
-      "ovr": 70,
+      "ovr": 68,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -14600,7 +14600,7 @@
     },
     {
       "name": "Jamshid Iskanderov",
-      "ovr": 72,
+      "ovr": 70,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -14611,7 +14611,7 @@
     },
     {
       "name": "Khojiakbar Alijonov",
-      "ovr": 67,
+      "ovr": 70,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -14633,7 +14633,7 @@
     },
     {
       "name": "Oston Orunov",
-      "ovr": 69,
+      "ovr": 68,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -14644,7 +14644,7 @@
     },
     {
       "name": "Otabek Shukurov",
-      "ovr": 74,
+      "ovr": 68,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -14666,7 +14666,7 @@
     },
     {
       "name": "Rustam Ashurmatov",
-      "ovr": 66,
+      "ovr": 69,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -14677,7 +14677,7 @@
     },
     {
       "name": "Sherzod Esanov",
-      "ovr": 68,
+      "ovr": 66,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -14688,7 +14688,7 @@
     },
     {
       "name": "Sherzod Nasrullayev",
-      "ovr": 70,
+      "ovr": 74,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -15380,7 +15380,7 @@
     },
     {
       "name": "Toni Fruk",
-      "ovr": 74,
+      "ovr": 68,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -15481,7 +15481,7 @@
     },
     {
       "name": "Benjamin Asare",
-      "ovr": 70,
+      "ovr": 62,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -15563,7 +15563,7 @@
     },
     {
       "name": "Gideoh Mensah",
-      "ovr": 77,
+      "ovr": 70,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -15753,7 +15753,7 @@
   "Panamá": [
     {
       "name": "Adalberto Carrasquilla",
-      "ovr": 66,
+      "ovr": 67,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -15764,7 +15764,7 @@
     },
     {
       "name": "Alberto Quintero",
-      "ovr": 69,
+      "ovr": 68,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -15799,7 +15799,7 @@
     },
     {
       "name": "Azarias Londoño",
-      "ovr": 69,
+      "ovr": 67,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -15827,7 +15827,7 @@
     },
     {
       "name": "Cecílio Waterman",
-      "ovr": 70,
+      "ovr": 72,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -15838,7 +15838,7 @@
     },
     {
       "name": "Cesar Blackman",
-      "ovr": 74,
+      "ovr": 66,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -15849,7 +15849,7 @@
     },
     {
       "name": "Cristian Martínez",
-      "ovr": 67,
+      "ovr": 68,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -15860,7 +15860,7 @@
     },
     {
       "name": "César Samudio",
-      "ovr": 67,
+      "ovr": 68,
       "position": "GK",
       "altPositions": [],
       "role": null,
@@ -15871,7 +15871,7 @@
     },
     {
       "name": "César Yanis",
-      "ovr": 66,
+      "ovr": 67,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -15882,7 +15882,7 @@
     },
     {
       "name": "Edgardo Fariña",
-      "ovr": 66,
+      "ovr": 74,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -15893,7 +15893,7 @@
     },
     {
       "name": "Fidel Escobar",
-      "ovr": 68,
+      "ovr": 69,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -15904,7 +15904,7 @@
     },
     {
       "name": "Ismael Díaz",
-      "ovr": 68,
+      "ovr": 67,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -15915,7 +15915,7 @@
     },
     {
       "name": "Jiovany Ramos",
-      "ovr": 68,
+      "ovr": 66,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -15926,7 +15926,7 @@
     },
     {
       "name": "Jorge Gutiérrez",
-      "ovr": 70,
+      "ovr": 68,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -15975,7 +15975,7 @@
     },
     {
       "name": "Michael Murillo",
-      "ovr": 73,
+      "ovr": 69,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -15997,7 +15997,7 @@
     },
     {
       "name": "Puma Rodríguez",
-      "ovr": 68,
+      "ovr": 70,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -16008,7 +16008,7 @@
     },
     {
       "name": "Roderick Miller",
-      "ovr": 74,
+      "ovr": 70,
       "position": "DEF",
       "altPositions": [],
       "role": null,
@@ -16019,7 +16019,7 @@
     },
     {
       "name": "Tomás Rodríguez",
-      "ovr": 66,
+      "ovr": 70,
       "position": "FWD",
       "altPositions": [],
       "role": null,
@@ -16030,7 +16030,7 @@
     },
     {
       "name": "Yoel Bárcenas",
-      "ovr": 69,
+      "ovr": 74,
       "position": "MID",
       "altPositions": [],
       "role": null,
@@ -16041,7 +16041,7 @@
     },
     {
       "name": "Éric Davis",
-      "ovr": 68,
+      "ovr": 70,
       "position": "DEF",
       "altPositions": [],
       "role": null,

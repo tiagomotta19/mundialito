@@ -6,9 +6,9 @@
       "Coreia do Sul",
       "República Tcheca"
     ],
-    "avg_strength": 72.2,
+    "avg_strength": 71.3,
     "weakest": "África do Sul",
-    "weakest_strength": 67.4
+    "weakest_strength": 67
   },
   "B": {
     "teams": [
@@ -17,9 +17,9 @@
       "Catar",
       "Suíça"
     ],
-    "avg_strength": 72,
+    "avg_strength": 71.7,
     "weakest": "Catar",
-    "weakest_strength": 67.7
+    "weakest_strength": 67.3
   },
   "C": {
     "teams": [
@@ -28,9 +28,9 @@
       "Haiti",
       "Escócia"
     ],
-    "avg_strength": 75.4,
+    "avg_strength": 74.5,
     "weakest": "Haiti",
-    "weakest_strength": 68.9
+    "weakest_strength": 67.3
   },
   "D": {
     "teams": [
@@ -39,9 +39,9 @@
       "Austrália",
       "Turquia"
     ],
-    "avg_strength": 73.3,
+    "avg_strength": 73,
     "weakest": "Austrália",
-    "weakest_strength": 68.7
+    "weakest_strength": 68
   },
   "E": {
     "teams": [
@@ -50,9 +50,9 @@
       "Costa do Marfim",
       "Equador"
     ],
-    "avg_strength": 74.8,
+    "avg_strength": 74.5,
     "weakest": "Curaçao",
-    "weakest_strength": 68.2
+    "weakest_strength": 68.3
   },
   "F": {
     "teams": [
@@ -61,9 +61,9 @@
       "Suécia",
       "Tunísia"
     ],
-    "avg_strength": 75.6,
+    "avg_strength": 75.2,
     "weakest": "Tunísia",
-    "weakest_strength": 72
+    "weakest_strength": 71.8
   },
   "G": {
     "teams": [
@@ -72,9 +72,9 @@
       "Irã",
       "Nova Zelândia"
     ],
-    "avg_strength": 71.8,
+    "avg_strength": 71.6,
     "weakest": "Nova Zelândia",
-    "weakest_strength": 67.9
+    "weakest_strength": 67
   },
   "H": {
     "teams": [
@@ -83,9 +83,9 @@
       "Arábia Saudita",
       "Uruguai"
     ],
-    "avg_strength": 75.2,
-    "weakest": "Arábia Saudita",
-    "weakest_strength": 69.1
+    "avg_strength": 74.4,
+    "weakest": "Cabo Verde",
+    "weakest_strength": 68.7
   },
   "I": {
     "teams": [
@@ -94,9 +94,9 @@
       "Iraque",
       "Noruega"
     ],
-    "avg_strength": 75.4,
+    "avg_strength": 75,
     "weakest": "Iraque",
-    "weakest_strength": 66.6
+    "weakest_strength": 66.1
   },
   "J": {
     "teams": [
@@ -105,9 +105,9 @@
       "Áustria",
       "Jordânia"
     ],
-    "avg_strength": 73.8,
+    "avg_strength": 73.1,
     "weakest": "Jordânia",
-    "weakest_strength": 65.6
+    "weakest_strength": 65.2
   },
   "K": {
     "teams": [
@@ -116,7 +116,7 @@
       "Uzbequistão",
       "Colômbia"
     ],
-    "avg_strength": 75,
+    "avg_strength": 74.7,
     "weakest": "Uzbequistão",
     "weakest_strength": 68.5
   },
@@ -127,8 +127,8 @@
       "Gana",
       "Panamá"
     ],
-    "avg_strength": 75.1,
+    "avg_strength": 74.9,
     "weakest": "Panamá",
-    "weakest_strength": 68.8
+    "weakest_strength": 68.9
   }
 }
