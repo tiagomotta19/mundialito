@@ -18,6 +18,9 @@ data-sources/
 # Backup local do enrich-squads (o Git já guarda a versão anterior)
 src/data/squads_final.backup.json
 
+# Saída gerada pelos scripts de desenvolvimento
+scripts/enrich-report.txt
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
