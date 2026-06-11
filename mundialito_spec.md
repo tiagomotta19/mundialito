@@ -203,7 +203,7 @@ Planejado: após o titular, sortear 3 reservas (1 DEF, 1 MID, 1 FWD) pelo mesmo 
 Acontece **depois** da montagem do time, como última etapa antes da copa.
 
 1. Ao entrar na tela, o sorteio já começa: uma **grade com as 12 fichas A–L** e um destaque que salta de ficha em ficha em sequência, desacelerando (cadeia única de timeouts com easing cúbico, ~2–3s) até **parar no grupo sorteado**, que pulsa em destaque antes da revelação
-2. O grupo é sorteado por `pickGroup()` — **peso inverso pela força média** (`1 / avg_strength`): grupos mais difíceis têm ligeiramente mais chance
+2. O grupo é sorteado por `pickGroup()` — **sorteio uniforme**: cada grupo com exatamente 1/12 de chance
 3. Revelação: "Grupo X" em destaque (`animate-reveal-pop`) + **chip de dificuldade colorido** (difícil = `--color-danger`, equilibrado = `--color-warn`, acessível = `--color-ok`) derivado da força média:
    - **Grupo difícil** — média > 74
    - **Grupo equilibrado** — média 72–74
@@ -356,7 +356,7 @@ O motor da seção 9 está implementado e exporta:
 | `calculateTeamStrengths(team)` | Força por setor com oscilação e coesão (9.1, 9.2) |
 | `simulateMatch(a, b, { knockout })` | Partida completa: gols, prorrogação, pênaltis, eventos (9.4–9.7) |
 | `simulatePenalties(a, b)` | Disputa de pênaltis com rodadas extras em caso de empate |
-| `pickGroup()` / `getGroup(id)` / `getGroupOpponents(id)` | Sorteio ponderado e leitura dos grupos |
+| `pickGroup()` / `getGroup(id)` / `getGroupOpponents(id)` | Sorteio uniforme e leitura dos grupos |
 | `simulateGroupStage(groupId, userTeam)` | Fase de grupos do grupo do usuário (round-robin, tabela ordenada) |
 | `simulateFullTournament(userTeam, groupId)` | Copa completa: 12 grupos + 8 melhores terceiros + mata-mata + final + 3º lugar |
 | `getUserCampaign(tournament, userTeam)` | Resumo da campanha do usuário: jogos, fase alcançada, eliminado/campeão |

@@ -311,16 +311,8 @@ export function simulateMatch(teamA, teamB, { knockout = false } = {}) {
 // ---------------------------------------------------------------------------
 
 export function pickGroup() {
-  const entries = Object.entries(groupsData)
-  const weights = entries.map(([, group]) => 1 / group.avg_strength)
-  const total = weights.reduce((sum, w) => sum + w, 0)
-
-  let r = Math.random() * total
-  for (let i = 0; i < entries.length; i++) {
-    r -= weights[i]
-    if (r <= 0) return entries[i][0]
-  }
-  return entries[entries.length - 1][0]
+  const ids = Object.keys(groupsData)
+  return ids[Math.floor(Math.random() * ids.length)]
 }
 
 export function getGroup(groupId) {
