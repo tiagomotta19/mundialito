@@ -3,12 +3,8 @@
 
 export const POSITION_ORDER = ['GK', 'DEF', 'MID', 'FWD']
 
-export const ROLE_TO_POSITION = {
-  GK: 'GK',
-  LB: 'DEF', RB: 'DEF', CB: 'DEF', LWB: 'DEF', RWB: 'DEF',
-  CM: 'MID', LM: 'MID', RM: 'MID', CDM: 'MID', LAM: 'MID', CAM: 'MID', RAM: 'MID',
-  ST: 'FWD', LW: 'FWD', RW: 'FWD',
-}
+// O mapa slot → setor vive no motor junto da compatibilidade por papel
+export { ROLE_TO_POSITION } from '../engine/compatibility'
 
 export const POSITION_COLOR = {
   GK: 'var(--color-pos-gk)',

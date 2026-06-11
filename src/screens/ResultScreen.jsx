@@ -49,7 +49,7 @@ function Confetti() {
   )
 }
 
-export default function ResultScreen({ campaign, players, formation, onPlayAgain }) {
+export default function ResultScreen({ campaign, players, formation, teamName, onPlayAgain }) {
   const { theme } = useTheme()
   const { t } = useLang()
   const isRetro = theme === 'retro'
@@ -62,7 +62,7 @@ export default function ResultScreen({ campaign, players, formation, onPlayAgain
   const layout = FORMATION_LAYOUTS[formation] || FORMATION_LAYOUTS['4-3-3']
   const slots = layout.map((slot, i) => ({ ...slot, player: players[i] }))
 
-  const label = (name) => (name === USER_TEAM_NAME ? t('your_team') : name)
+  const label = (name) => (name === USER_TEAM_NAME ? teamName || t('your_team') : name)
 
   const statCards = [
     { key: 'stat_matches', value: stats.played },

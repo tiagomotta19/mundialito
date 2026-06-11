@@ -37,6 +37,7 @@ function AppShell() {
       )}
       {screen === 'group' && (
         <GroupScreen
+          gameConfig={gameConfig}
           onBack={() => setScreen('draft')}
           onContinue={(groupInfo) => {
             setGameConfig((prev) => ({ ...prev, ...groupInfo }))

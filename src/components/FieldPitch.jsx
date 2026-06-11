@@ -1,4 +1,5 @@
 import { ROLE_TO_POSITION, POSITION_COLOR } from './formationLayouts'
+import { isCompatible } from '../engine/compatibility'
 
 export function PitchLines() {
   return (
@@ -26,7 +27,10 @@ export default function FieldPitch({ slots, selectedPlayer, lastPlacedIdx, onPic
       {slots.map((slot, i) => {
         const filled = !!slot.player
         const position = ROLE_TO_POSITION[slot.role]
-        const compatible = !!onPickSlot && !filled && selectedPlayer && position === selectedPlayer.position
+        // Compatibilidade por papel (role + altRoles); o glow usa a cor do
+        // setor do PRÓPRIO slot — um ponta com altRole de meio acende slots
+        // de ataque e de meio, cada um na cor do seu setor
+        const compatible = !!onPickSlot && !filled && selectedPlayer && isCompatible(selectedPlayer, slot.role)
         const dimmed = !!onPickSlot && !filled && selectedPlayer && !compatible
 
         return (

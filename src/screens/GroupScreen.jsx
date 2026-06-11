@@ -15,10 +15,17 @@ const DIFFICULTY_COLOR = {
 // Faixa visual das barras de força (OVR médio típico fica entre ~62 e ~82)
 const strengthPct = (strength) => Math.max(8, Math.min(100, ((strength - 62) / 20) * 100))
 
-export default function GroupScreen({ onBack, onContinue }) {
+export default function GroupScreen({ gameConfig, onBack, onContinue }) {
   const { theme } = useTheme()
   const { t } = useLang()
   const isRetro = theme === 'retro'
+
+  // Força real do time do usuário: média de OVR dos 11, mesma conta dos adversários
+  const userStrength = gameConfig?.players?.length
+    ? Math.round(
+        (gameConfig.players.reduce((sum, p) => sum + p.ovr, 0) / gameConfig.players.length) * 10
+      ) / 10
+    : null
 
   const [phase, setPhase] = useState('drawing') // drawing | landed | revealed
   const [activeIdx, setActiveIdx] = useState(0)
@@ -56,7 +63,7 @@ export default function GroupScreen({ onBack, onContinue }) {
   const rows = group
     ? group.teams.map((name) =>
         name === group.weakest
-          ? { isUser: true, name: t('your_team') }
+          ? { isUser: true, name: gameConfig?.teamName || t('your_team'), strength: userStrength }
           : { isUser: false, name, strength: getTeamStrength(name) }
       )
     : []
@@ -181,33 +188,29 @@ export default function GroupScreen({ onBack, onContinue }) {
                     </span>
                   )}
                 </span>
-                {row.isUser ? (
-                  <span className="text-sm font-bold" style={{ color: 'var(--color-btn-primary-text)' }}>
-                    ?
-                  </span>
-                ) : (
-                  <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2">
+                  <div
+                    className="w-14 h-1.5 overflow-hidden rounded-full"
+                    style={{ background: 'var(--color-highlight-bg)' }}
+                  >
                     <div
-                      className="w-14 h-1.5 overflow-hidden rounded-full"
-                      style={{ background: 'var(--color-highlight-bg)' }}
-                    >
-                      <div
-                        className="h-full rounded-full animate-bar-grow"
-                        style={{
-                          animationDelay: `${400 + i * 150}ms`,
-                          width: `${strengthPct(row.strength)}%`,
-                          background: 'var(--color-accent)',
-                        }}
-                      />
-                    </div>
-                    <span
-                      className="w-8 text-right text-sm font-bold"
-                      style={{ color: 'var(--color-text-secondary)' }}
-                    >
-                      {row.strength}
-                    </span>
+                      className="h-full rounded-full animate-bar-grow"
+                      style={{
+                        animationDelay: `${400 + i * 150}ms`,
+                        width: `${strengthPct(row.strength)}%`,
+                        background: row.isUser ? 'var(--color-btn-primary-text)' : 'var(--color-accent)',
+                      }}
+                    />
                   </div>
-                )}
+                  <span
+                    className="w-8 text-right text-sm font-bold"
+                    style={{
+                      color: row.isUser ? 'var(--color-btn-primary-text)' : 'var(--color-text-secondary)',
+                    }}
+                  >
+                    {row.strength}
+                  </span>
+                </div>
               </div>
             ))}
           </div>

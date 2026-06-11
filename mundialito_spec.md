@@ -151,27 +151,32 @@ A navegação é feita por estado local em `App.jsx` (`useState('home')`), sem r
 
 ## 7. Montagem do Time (`DraftScreen`)
 
-A formação escolhida define um **layout fixo de 11 slots com papéis específicos** (ex.: 4-3-3 = GK, LB, CB, CB, RB, CM×3, LW, ST, RW), cada um com coordenadas no campinho (viewBox 105×68, defesa à esquerda). Os papéis mapeiam para 4 setores via `ROLE_TO_POSITION`: GK / DEF (LB, RB, CB, LWB, RWB) / MID (CM, LM, RM, CDM, LAM, CAM, RAM) / FWD (ST, LW, RW). A compatibilidade jogador↔slot é por **setor**, não por papel exato — qualquer DEF pode ocupar qualquer slot de defesa vago.
+A formação escolhida define um **layout fixo de 11 slots com papéis específicos** (ex.: 4-3-3 = GK, LB, CB, CB, RB, CM×3, LW, ST, RW), cada um com coordenadas no campinho (viewBox 105×68, defesa à esquerda). Os papéis mapeiam para 4 setores via `ROLE_TO_POSITION`: GK / DEF (LB, RB, CB, LWB, RWB) / MID (CM, LM, RM, CDM, LAM, CAM, RAM) / FWD (ST, LW, RW).
+
+A compatibilidade jogador↔slot é por **papel real** (`SLOT_COMPAT` em `src/engine/compatibility.js`): cada slot aceita uma lista de papéis (ex.: LB aceita LB/LWB; CM aceita CM/CDM/CAM; LW aceita LW/LM; ST aceita ST/CF; LAM/RAM do 4-2-3-1 aceitam CAM + ponta/meia do lado). Um jogador é compatível se **qualquer papel dele** (`role` + `altRoles`) está na lista do slot — um lateral não entra na zaga, mas Salah (RM com altRole RW) acende ataque e meio. **Jogadores estimados** (source `estimated`, sem `role`, ~390 de seleções menores) seguem a regra antiga: compatíveis com qualquer slot do seu setor (`position`).
+
+Ao escalar, o `position` do jogador gravado no `gameConfig` passa a ser o **setor do slot** (Salah escalado no meio conta como MID no motor; escalado no ataque, FWD) e o papel do slot fica em `slotRole`. As seleções da IA continuam montadas por setor (`buildNationalTeam`, sem mudança).
 
 ### Fluxo de sorteio (implementado)
 
 1. O usuário toca em **"Sortear seleção"** — uma **roleta de slot machine**: fita horizontal de bandeiras que desacelera (rAF com ease-out cúbico, ~1,6s) até parar na seleção sorteada, dentro de uma janela com moldura central e máscaras de fade nas laterais
 2. A seleção sorteada é revelada (bandeira + nome + dica contextual); qualquer uma das 48 seleções pode sair, com pesos iguais, e pode se repetir
-3. A lista exibe o elenco completo da seleção, ordenado por posição (GK → DEF → MID → FWD) e por OVR decrescente; cada jogador com badge de posição colorido (cores por setor em variáveis CSS por tema), nome, clube · liga (com fallback "—" quando faltam dados) e OVR com cor por faixa (85+ accent, 75–84 normal, <75 secundário)
-4. **O usuário toca primeiro no jogador** que quer — slots compatíveis vagos no campinho acendem com glow pulsante **na cor da posição**; slots incompatíveis ficam esmaecidos
+3. A lista exibe o elenco completo da seleção, ordenado por setor principal (GK → DEF → MID → FWD) e por OVR decrescente; cada jogador com badge de setor colorido + papéis discretos abaixo (ex.: "ST · LW"), nome, liga (com fallback "—") e OVR com cor por faixa (85+ accent, 75–84 normal, <75 secundário)
+4. **O usuário toca primeiro no jogador** que quer — os slots compatíveis vagos (pelo `SLOT_COMPAT`) acendem com glow pulsante, cada um **na cor do setor do próprio slot** (papéis em setores diferentes acendem os dois setores); slots incompatíveis ficam esmaecidos
+4b. Se a seleção sorteada não tem **nenhum** jogador compatível com nenhum slot vago, re-sorteia automaticamente sem consumir o pulo (aviso rápido "Nenhuma posição compatível — novo sorteio")
 5. O usuário toca no slot iluminado → o jogador entra na posição (pop de confirmação "{nome} escalado!")
 6. **O próximo sorteio começa automaticamente** ~750ms após a escalação — o usuário só toca em "Sortear seleção" na primeira vez
 7. Repete até completar os 11 titulares (contador "n/11" + barra de progresso no header)
 
 ### Completar automaticamente
 
-Botão tracejado "⚡ Completar automaticamente" fica visível acima do campinho durante toda a montagem (exceto durante a roleta). Ao tocar, preenche todas as vagas restantes em sequência animada (uma a cada ~240ms): para cada vaga, sorteia uma seleção aleatória e escala **o melhor jogador disponível daquela posição** nessa seleção (com fallback para o melhor disponível global se a seleção sorteada não tiver ninguém da posição). Respeita os jogadores já usados e mantém o equilíbrio do sorteio — não monta um "time dos sonhos" determinístico.
+Botão tracejado "⚡ Completar automaticamente" fica visível acima do campinho durante toda a montagem (exceto durante a roleta). Ao tocar, preenche todas as vagas restantes em sequência animada (uma a cada ~240ms): para cada vaga, sorteia uma seleção aleatória e escala **o melhor jogador disponível compatível com o papel do slot** nessa seleção (com fallback para o melhor compatível global se a seleção sorteada não tiver ninguém). Respeita os jogadores já usados e mantém o equilíbrio do sorteio — não monta um "time dos sonhos" determinístico.
 
 > **Decisão de design:** a interação foi invertida em relação à spec original (que previa tocar na posição primeiro e filtrar a lista). Selecionar o jogador primeiro e iluminar os slots compatíveis se mostrou mais direto no mobile.
 
-**Autonomia de posição:** o usuário preenche qualquer setor vago na ordem que quiser.
+**Autonomia de posição:** o usuário preenche qualquer slot vago na ordem que quiser.
 
-**Posições já completas:** jogadores de setores cheios (e jogadores já escolhidos) aparecem com opacity 0.35 e desabilitados.
+**Sem vaga compatível:** jogadores sem nenhum slot compatível vago (e jogadores já escolhidos) aparecem com opacity 0.35 e desabilitados.
 
 ### Pulo de seleção
 
@@ -189,7 +194,8 @@ A própria `DraftScreen` troca para a visão de resumo:
 - Título + chip com a formação escolhida
 - Campinho com os 11 posicionados (bolinha amarela `--color-player-user` com OVR dentro e sobrenome em chip legível abaixo)
 - 3 cards de estatística (entrada em cascata): **Geral** (média dos 11) · **Ataque** (média de MID+FWD) · **Defesa** (média de GK+DEF)
-- Lista rolável dos 11 com badge de posição colorido, nome, **liga** (campo relevante para a coesão — não o clube) e OVR
+- Lista rolável dos 11 com badge do **papel do slot** (LB, CM, ST...) colorido por setor, nome, **liga** (campo relevante para a coesão — não o clube) e OVR
+- Campo de texto opcional **"Nome do time"** (máx. 20 caracteres, placeholder "Galáticos FC") — gravado em `gameConfig.teamName` e usado em todas as telas que mostram o time do usuário (sorteio do grupo, placares, tabela, chaveamento, resultado); vazio = fallback `t('your_team')`
 - Botão "Continuar →" (leva ao sorteio do grupo)
 
 ### Reservas (Modo Clássico — não implementado)
@@ -208,7 +214,7 @@ Acontece **depois** da montagem do time, como última etapa antes da copa.
    - **Grupo difícil** — média > 74
    - **Grupo equilibrado** — média 72–74
    - **Grupo acessível** — média < 72
-4. As 4 linhas do grupo entram em cascata (`animate-slide-in`). O time do usuário **substitui a seleção mais fraca** (`group.weakest`) e aparece destacado com bandeira 🏳️, badge "VOCÊ" e força "?" (oculta); os adversários aparecem com bandeira (imagem flagcdn via componente `Flag`), **barra de força animada** (`animate-bar-grow`, escala visual OVR 62–82) e o número
+4. As 4 linhas do grupo entram em cascata (`animate-slide-in`). O time do usuário **substitui a seleção mais fraca** (`group.weakest`) e aparece destacado com bandeira 🏳️, badge "VOCÊ", o nome escolhido (`gameConfig.teamName`, fallback "Seu Time") e a **força real** (média de OVR dos 11, mesma conta dos adversários) com barra animada; os adversários aparecem com bandeira (imagem flagcdn via componente `Flag`), **barra de força animada** (`animate-bar-grow`, escala visual OVR 62–82) e o número
 5. Nota explicativa: "Seu time entra no lugar de {seleção mais fraca}"
 6. Botão "Começar a copa" — grava o `groupId` no `gameConfig` e navega para a `CupScreen`
 

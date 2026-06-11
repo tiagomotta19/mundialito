@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useTheme } from '../components/ThemeContext'
 import { useLang } from '../i18n/LangContext'
 import { getSquadPlayers, getAllTeamNames } from '../engine/simulator'
+import { isCompatible, playerRoles } from '../engine/compatibility'
 import Flag from '../components/Flag'
 import FieldPitch from '../components/FieldPitch'
 import {
@@ -23,9 +24,9 @@ const AUTO_FILL_STEP = 240
 
 const randomTeam = () => ALL_TEAMS[Math.floor(Math.random() * ALL_TEAMS.length)]
 
-function bestAvailable(team, position, used) {
+function bestAvailable(team, slotRole, used) {
   const candidates = getSquadPlayers(team).filter(
-    (p) => p.position === position && !used.has(`${team}::${p.name}`)
+    (p) => isCompatible(p, slotRole) && !used.has(`${team}::${p.name}`)
   )
   if (!candidates.length) return null
   return candidates.reduce((best, p) => (p.ovr > best.ovr ? p : best))
@@ -52,6 +53,7 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
   const [usedPlayers, setUsedPlayers] = useState(() => new Set())
   const [skipUsed, setSkipUsed] = useState(false)
   const [lastPlaced, setLastPlaced] = useState(null) // { index, player }
+  const [teamName, setTeamName] = useState('')
 
   const stripRef = useRef(null)
   const timersRef = useRef([])
@@ -67,8 +69,22 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
   const filledCount = slots.filter((s) => s.player).length
   const allFilled = filledCount === slots.length
 
-  const isCategoryFull = (position) =>
-    !slots.some((s) => !s.player && ROLE_TO_POSITION[s.role] === position)
+  const hasVacantCompatibleSlot = (player) =>
+    slots.some((s) => !s.player && isCompatible(player, s.role))
+
+  const squadHasCompatible = (team) =>
+    getSquadPlayers(team).some(
+      (p) => !usedPlayers.has(`${team}::${p.name}`) && hasVacantCompatibleSlot(p)
+    )
+
+  const startDraw = () => {
+    setSelectedPlayer(null)
+    setDrawnTeam(null)
+    const team = randomTeam()
+    const cells = Array.from({ length: REEL_LENGTH }, (_, i) => (i === REEL_TARGET ? team : randomTeam()))
+    setReel({ cells, id: Date.now() })
+    setPhase('spinning')
+  }
 
   // Roleta: anima a fita de bandeiras com desaceleração (ease-out cúbico) até o alvo
   useEffect(() => {
@@ -84,22 +100,24 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
       if (p < 1) {
         raf = requestAnimationFrame(frame)
       } else {
-        setDrawnTeam(reel.cells[REEL_TARGET])
-        setPhase('drawn')
+        const team = reel.cells[REEL_TARGET]
+        if (squadHasCompatible(team)) {
+          setDrawnTeam(team)
+          setPhase('drawn')
+        } else {
+          // Nenhum jogador compatível com os slots vagos: re-sorteia
+          // automaticamente sem consumir o pulo, após um aviso rápido
+          setPhase('redraw')
+          pushTimer(setTimeout(startDraw, 1400))
+        }
       }
     }
     raf = requestAnimationFrame(frame)
     return () => cancelAnimationFrame(raf)
+    // squadHasCompatible muda de identidade a cada render; incluí-la reiniciaria
+    // a animação da fita. Durante o spin os valores que ela lê não mudam.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, reel])
-
-  const startDraw = () => {
-    setSelectedPlayer(null)
-    setDrawnTeam(null)
-    const team = randomTeam()
-    const cells = Array.from({ length: REEL_LENGTH }, (_, i) => (i === REEL_TARGET ? team : randomTeam()))
-    setReel({ cells, id: Date.now() })
-    setPhase('spinning')
-  }
 
   const handleSkip = () => {
     if (skipUsed) return
@@ -109,13 +127,13 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
 
   const handleSelectPlayer = (player) => {
     if (usedPlayers.has(`${drawnTeam}::${player.name}`)) return
-    if (isCategoryFull(player.position)) return
+    if (!hasVacantCompatibleSlot(player)) return
     setSelectedPlayer((prev) => (prev?.name === player.name ? null : player))
   }
 
   const handlePickSlot = (index) => {
     if (!selectedPlayer || slots[index].player) return
-    if (ROLE_TO_POSITION[slots[index].role] !== selectedPlayer.position) return
+    if (!isCompatible(selectedPlayer, slots[index].role)) return
 
     const player = selectedPlayer
     setSlots((prev) => prev.map((s, i) => (i === index ? { ...s, player } : s)))
@@ -147,13 +165,12 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
 
     slots.forEach((slot, index) => {
       if (slot.player) return
-      const position = ROLE_TO_POSITION[slot.role]
       let pick = null
       let pickTeam = null
 
       for (let attempt = 0; attempt < 15 && !pick; attempt++) {
         const team = randomTeam()
-        const best = bestAvailable(team, position, used)
+        const best = bestAvailable(team, slot.role, used)
         if (best) {
           pick = best
           pickTeam = team
@@ -161,7 +178,7 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
       }
       if (!pick) {
         ALL_TEAMS.forEach((team) => {
-          const best = bestAvailable(team, position, used)
+          const best = bestAvailable(team, slot.role, used)
           if (best && (!pick || best.ovr > pick.ovr)) {
             pick = best
             pickTeam = team
@@ -274,7 +291,7 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
                     borderRadius: 'var(--radius)',
                   }}
                 >
-                  {position}
+                  {slot.role}
                 </span>
                 <div className="flex-1 flex flex-col">
                   <span className="text-sm font-bold">{slot.player.name}</span>
@@ -290,9 +307,35 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
           })}
         </div>
 
+        <input
+          type="text"
+          value={teamName}
+          onChange={(e) => setTeamName(e.target.value)}
+          maxLength={20}
+          placeholder={`${t('team_name_label')} · ${t('team_name_placeholder')}`}
+          className="w-full px-3 py-2 text-sm font-bold border-2 bg-transparent outline-none"
+          style={{
+            borderColor: teamName ? 'var(--color-accent)' : 'var(--color-border)',
+            color: 'var(--color-text)',
+            borderRadius: 'var(--radius)',
+          }}
+        />
+
         <button
           type="button"
-          onClick={() => onContinue({ players: slots.map((s) => ({ role: s.role, ...s.player })) })}
+          onClick={() =>
+            onContinue({
+              // position do jogador escalado = setor do SLOT (Salah no meio
+              // conta como MID no motor); o papel original fica em role e o
+              // do slot em slotRole
+              players: slots.map((s) => ({
+                ...s.player,
+                slotRole: s.role,
+                position: ROLE_TO_POSITION[s.role],
+              })),
+              teamName: teamName.trim() || null,
+            })
+          }
           className={`w-full py-3 font-bold border-2 ${isRetro ? 'uppercase' : ''}`}
           style={{
             background: 'var(--color-btn-primary-bg)',
@@ -411,6 +454,15 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
           </div>
         )}
 
+        {phase === 'redraw' && (
+          <div className="flex items-center gap-2 animate-reveal-pop">
+            <span className="text-xl leading-none" style={{ color: 'var(--color-warn)' }}>↻</span>
+            <span className={`text-sm font-bold ${isRetro ? 'uppercase' : ''}`}>
+              {t('draft_no_compatible')}
+            </span>
+          </div>
+        )}
+
         {phase === 'placed' && lastPlaced && (
           <div className="flex items-center gap-2 animate-reveal-pop">
             <span className="text-xl leading-none" style={{ color: 'var(--color-accent)' }}>✓</span>
@@ -432,9 +484,9 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
         {phase === 'drawn' &&
           drawnSquad.map((p) => {
             const used = usedPlayers.has(`${drawnTeam}::${p.name}`)
-            const categoryFull = isCategoryFull(p.position)
-            const disabled = used || categoryFull
+            const disabled = used || !hasVacantCompatibleSlot(p)
             const isSelected = selectedPlayer?.name === p.name
+            const roles = playerRoles(p)
             return (
               <button
                 key={p.name}
@@ -449,20 +501,27 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
                   opacity: disabled ? 0.35 : 1,
                 }}
               >
-                <span
-                  className="shrink-0 w-9 text-center text-[9px] font-bold px-1 py-0.5 border"
-                  style={{
-                    color: POSITION_COLOR[p.position],
-                    borderColor: POSITION_COLOR[p.position],
-                    borderRadius: 'var(--radius)',
-                  }}
-                >
-                  {p.position}
+                <span className="shrink-0 w-9 flex flex-col items-center gap-0.5">
+                  <span
+                    className="w-full text-center text-[9px] font-bold px-1 py-0.5 border"
+                    style={{
+                      color: POSITION_COLOR[p.position],
+                      borderColor: POSITION_COLOR[p.position],
+                      borderRadius: 'var(--radius)',
+                    }}
+                  >
+                    {p.position}
+                  </span>
+                  {roles.length > 0 && (
+                    <span className="text-[8px] leading-none" style={{ color: 'var(--color-text-muted)' }}>
+                      {roles.join(' · ')}
+                    </span>
+                  )}
                 </span>
                 <div className="flex-1 flex flex-col">
                   <span className="text-sm font-bold">{p.name}</span>
                   <span className="text-[10px]" style={{ color: 'var(--color-text-muted)' }}>
-                    {[p.club, p.league].filter(Boolean).join(' · ') || '—'}
+                    {p.league || '—'}
                   </span>
                 </div>
                 <span className="text-sm font-bold" style={{ color: ovrColor(p.ovr) }}>{p.ovr}</span>

@@ -183,7 +183,7 @@ function PitchSim({ match, minute, finished, userFormation }) {
 // ---------------------------------------------------------------------------
 // Partida completa: placar + progresso + (campinho no Clássico) + feed
 // ---------------------------------------------------------------------------
-export default function MatchPlay({ match, mode, stageLabel, continueLabel, onContinue, userFormation }) {
+export default function MatchPlay({ match, mode, stageLabel, continueLabel, onContinue, userFormation, teamName }) {
   const { theme } = useTheme()
   const { t } = useLang()
   const isRetro = theme === 'retro'
@@ -219,7 +219,7 @@ export default function MatchPlay({ match, mode, stageLabel, continueLabel, onCo
     setMinute(maxMinute)
   }
 
-  const label = (name) => (name === USER_TEAM_NAME ? t('your_team') : name)
+  const label = (name) => (name === USER_TEAM_NAME ? teamName || t('your_team') : name)
 
   const events = useMemo(
     () => [...match.events].sort((a, b) => a.minute - b.minute),

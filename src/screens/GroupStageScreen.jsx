@@ -7,7 +7,7 @@ import { USER_TEAM_NAME } from '../engine/cup'
 
 const TABLE_COLS = ['th_pts', 'th_played', 'th_wins', 'th_draws', 'th_losses', 'th_gd', 'th_gf']
 
-export default function GroupStageScreen({ groupId, matches, table, qualified, mode, userFormation, onComplete }) {
+export default function GroupStageScreen({ groupId, matches, table, qualified, mode, userFormation, teamName, onComplete }) {
   const { theme } = useTheme()
   const { t } = useLang()
   const isRetro = theme === 'retro'
@@ -24,6 +24,7 @@ export default function GroupStageScreen({ groupId, matches, table, qualified, m
           match={matches[idx]}
           mode={mode}
           userFormation={userFormation}
+          teamName={teamName}
           stageLabel={`${t('stage_group')} · ${t('round_label').replace('{n}', idx + 1)}`}
           continueLabel={isLast ? t('btn_view_table') : t('btn_next_match')}
           onContinue={() => (isLast ? setView('table') : setIdx(idx + 1))}
@@ -96,7 +97,7 @@ export default function GroupStageScreen({ groupId, matches, table, qualified, m
                 className={`flex-1 text-xs font-bold truncate ${isRetro ? 'uppercase' : ''}`}
                 style={{ color: isUser ? 'var(--color-btn-primary-text)' : 'var(--color-text)' }}
               >
-                {isUser ? t('your_team') : row.team.name}
+                {isUser ? teamName || t('your_team') : row.team.name}
               </span>
               {cells.map((v, c) => (
                 <span

@@ -26,6 +26,7 @@ export default function CupScreen({ gameConfig, onFinish }) {
         qualified={qualified}
         mode={gameConfig.mode}
         userFormation={gameConfig.formation}
+        teamName={gameConfig.teamName}
         onComplete={() => setPhase(qualified ? 'knockout' : 'result')}
       />
     )
@@ -37,6 +38,7 @@ export default function CupScreen({ gameConfig, onFinish }) {
         matches={knockoutMatches}
         mode={gameConfig.mode}
         userFormation={gameConfig.formation}
+        teamName={gameConfig.teamName}
         onComplete={() => setPhase('result')}
       />
     )
@@ -47,6 +49,7 @@ export default function CupScreen({ gameConfig, onFinish }) {
       campaign={campaign}
       players={gameConfig.players}
       formation={gameConfig.formation}
+      teamName={gameConfig.teamName}
       onPlayAgain={onFinish}
     />
   )

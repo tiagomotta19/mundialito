@@ -6,7 +6,7 @@ import Flag from '../components/Flag'
 import { getTeamStrength } from '../engine/simulator'
 import { USER_TEAM_NAME, stageLabelKey } from '../engine/cup'
 
-export default function KnockoutScreen({ matches, mode, userFormation, onComplete }) {
+export default function KnockoutScreen({ matches, mode, userFormation, teamName, onComplete }) {
   const { theme } = useTheme()
   const { t } = useLang()
   const isRetro = theme === 'retro'
@@ -49,7 +49,7 @@ export default function KnockoutScreen({ matches, mode, userFormation, onComplet
                 className={`text-sm font-bold text-center ${isRetro ? 'uppercase' : ''}`}
                 style={{ color: 'var(--color-btn-primary-text)' }}
               >
-                {t('your_team')}
+                {teamName || t('your_team')}
               </span>
             </div>
 
@@ -98,6 +98,7 @@ export default function KnockoutScreen({ matches, mode, userFormation, onComplet
         match={match}
         mode={mode}
         userFormation={userFormation}
+        teamName={teamName}
         stageLabel={stageTitle}
         continueLabel={!userWon || isFinal ? t('btn_view_result') : t('btn_continue')}
         onContinue={() => {
