@@ -1,186 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTheme } from './ThemeContext'
 import { useLang } from '../i18n/LangContext'
-import { PitchLines } from './FieldPitch'
-import { FORMATION_LAYOUTS } from './formationLayouts'
 import { USER_TEAM_NAME } from '../engine/cup'
+import PitchSim from './PitchSim'
 import DeskHeader from './DeskHeader'
 import { useMediaQuery, DESK_QUERY } from './useMediaQuery'
 
 const EVENT_ICONS = { goal: '⚽', yellow: '🟨' }
 const FAST_DURATION = 3000
 const CLASSIC_DURATION = 16000
-const SIM_TICK = 300
-
-// ---------------------------------------------------------------------------
-// Campinho animado (Modo Clássico) — encenação do resultado pré-calculado
-// ---------------------------------------------------------------------------
-function PitchSim({ match, minute, finished, userFormation }) {
-  const layouts = useMemo(() => {
-    const layoutFor = (name) =>
-      FORMATION_LAYOUTS[name === USER_TEAM_NAME ? userFormation : '4-3-3'] || FORMATION_LAYOUTS['4-3-3']
-    return {
-      home: layoutFor(match.homeName).map((p) => ({ x: p.x, y: p.y })),
-      away: layoutFor(match.awayName).map((p) => ({ x: 105 - p.x, y: p.y })),
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  const [dots, setDots] = useState(() => ({
-    home: layouts.home.map((p) => ({ ...p })),
-    away: layouts.away.map((p) => ({ ...p })),
-    ball: { x: 52.5, y: 34 },
-  }))
-
-  const simRef = useRef({
-    possession: 'home',
-    ballTarget: { x: 62, y: 34 },
-    targetTicks: 6,
-    goalFlash: null, // { side, ticks }
-    seenGoals: 0,
-  })
-  const minuteRef = useRef(0)
-  minuteRef.current = minute
-  const goalsRef = useRef(
-    match.events.filter((e) => e.type === 'goal').sort((a, b) => a.minute - b.minute)
-  )
-
-  useEffect(() => {
-    if (finished) return
-    const id = setInterval(() => {
-      const sim = simRef.current
-      const m = minuteRef.current
-      const goals = goalsRef.current
-
-      // Gol aconteceu: time marcador converge ao centro por ~2s
-      while (sim.seenGoals < goals.length && goals[sim.seenGoals].minute <= m) {
-        const side = goals[sim.seenGoals].side
-        sim.goalFlash = { side, ticks: Math.round(2000 / SIM_TICK) }
-        sim.possession = side === 'home' ? 'away' : 'home' // quem sofreu recomeça
-        sim.seenGoals++
-      }
-
-      // Gol iminente: estado de oportunidade para o lado que vai marcar
-      const next = goals[sim.seenGoals]
-      const opportunity = next && next.minute - m <= 3 && next.minute - m >= 0 ? next.side : null
-      if (opportunity) sim.possession = opportunity
-      else if (!sim.goalFlash && Math.random() < 0.15) {
-        sim.possession = sim.possession === 'home' ? 'away' : 'home'
-      }
-
-      setDots((prev) => {
-        const moveTeam = (teamKey) =>
-          prev[teamKey].map((p, i) => {
-            const base = layouts[teamKey][i]
-            const isGK = i === 0
-            let tx = base.x
-            let ty = base.y
-
-            if (sim.goalFlash && sim.goalFlash.ticks > 0 && teamKey === sim.goalFlash.side) {
-              tx = 52.5
-              ty = 34
-            } else if (!isGK) {
-              const attacking = teamKey === sim.possession
-              const dir = teamKey === 'home' ? 1 : -1
-              if (attacking) tx = base.x + 10.5 * dir
-              if (opportunity && attacking) {
-                tx = teamKey === 'home' ? Math.min(95, base.x + 25) : Math.max(10, base.x - 25)
-                ty = 34 + (base.y - 34) * 0.5
-              }
-            }
-
-            // Atração pela bola (raio < 15% do campo)
-            let pullX = 0
-            let pullY = 0
-            if (!isGK) {
-              const dist = Math.hypot(prev.ball.x - p.x, prev.ball.y - p.y)
-              if (dist < 16) {
-                pullX = (prev.ball.x - p.x) * 0.15
-                pullY = (prev.ball.y - p.y) * 0.15
-              }
-            }
-
-            const noise = isGK ? 0.8 : 3
-            const nx = p.x + (tx - p.x) * 0.35 + pullX + (Math.random() * 2 - 1) * noise
-            const ny = p.y + (ty - p.y) * 0.35 + pullY + (Math.random() * 2 - 1) * noise
-            return { x: Math.max(2, Math.min(103, nx)), y: Math.max(3, Math.min(65, ny)) }
-          })
-
-        // Bola: alvo dentro da metade do time com posse, novo alvo a cada 5-8 ticks
-        sim.targetTicks--
-        const reached = Math.hypot(sim.ballTarget.x - prev.ball.x, sim.ballTarget.y - prev.ball.y) < 3
-        if (sim.targetTicks <= 0 || reached) {
-          sim.targetTicks = 5 + Math.floor(Math.random() * 4)
-          if (opportunity) {
-            sim.ballTarget = { x: sim.possession === 'home' ? 97 : 8, y: 29 + Math.random() * 10 }
-          } else {
-            const [minX, maxX] = sim.possession === 'home' ? [50, 100] : [5, 55]
-            sim.ballTarget = { x: minX + Math.random() * (maxX - minX), y: 8 + Math.random() * 52 }
-          }
-        }
-        if (sim.goalFlash) {
-          sim.goalFlash.ticks--
-          if (sim.goalFlash.ticks <= 0) sim.goalFlash = null
-        }
-
-        return {
-          home: moveTeam('home'),
-          away: moveTeam('away'),
-          ball: {
-            x: prev.ball.x + (sim.ballTarget.x - prev.ball.x) * 0.3,
-            y: prev.ball.y + (sim.ballTarget.y - prev.ball.y) * 0.3,
-          },
-        }
-      })
-    }, SIM_TICK)
-    return () => clearInterval(id)
-  }, [finished, layouts])
-
-  const homeColor =
-    match.homeName === USER_TEAM_NAME ? 'var(--color-player-user)' : 'var(--color-player-opponent)'
-  const awayColor =
-    match.awayName === USER_TEAM_NAME ? 'var(--color-player-user)' : 'var(--color-player-opponent)'
-
-  const dot = (p, color, key) => (
-    <span
-      key={key}
-      className="absolute rounded-full -translate-x-1/2 -translate-y-1/2"
-      style={{
-        left: `${(p.x / 105) * 100}%`,
-        top: `${(p.y / 68) * 100}%`,
-        width: '3.5%',
-        aspectRatio: '1 / 1',
-        background: color,
-        border: '1px solid rgba(0, 0, 0, 0.35)',
-        transition: `left ${SIM_TICK}ms linear, top ${SIM_TICK}ms linear`,
-      }}
-    />
-  )
-
-  return (
-    <div
-      className="relative w-full aspect-[105/68] border-2 overflow-hidden shrink-0"
-      style={{ borderColor: 'var(--color-border)', borderRadius: 'var(--radius)' }}
-    >
-      <div className="absolute inset-0 field-stripes" />
-      <PitchLines />
-      {dots.home.map((p, i) => dot(p, homeColor, `h${i}`))}
-      {dots.away.map((p, i) => dot(p, awayColor, `a${i}`))}
-      <span
-        className="absolute rounded-full -translate-x-1/2 -translate-y-1/2 z-10"
-        style={{
-          left: `${(dots.ball.x / 105) * 100}%`,
-          top: `${(dots.ball.y / 68) * 100}%`,
-          width: '2.2%',
-          aspectRatio: '1 / 1',
-          background: 'var(--color-ball)',
-          boxShadow: '0 0 3px rgba(0, 0, 0, 0.5)',
-          transition: `left ${SIM_TICK}ms linear, top ${SIM_TICK}ms linear`,
-        }}
-      />
-    </div>
-  )
-}
 
 // ---------------------------------------------------------------------------
 // Partida completa: placar + progresso + (campinho no Clássico) + feed
@@ -421,7 +249,13 @@ export default function MatchPlay({ match, mode, stageLabel, continueLabel, onCo
           {isClassic && (
             <main className="flex flex-col items-center min-w-0">
               <div className="w-full max-w-[720px]">
-                <PitchSim match={match} minute={minute} finished={finished} userFormation={userFormation} />
+                <PitchSim
+                  match={match}
+                  minute={minute}
+                  finished={finished}
+                  userFormation={userFormation}
+                  durationMs={CLASSIC_DURATION}
+                />
               </div>
             </main>
           )}
@@ -500,7 +334,15 @@ export default function MatchPlay({ match, mode, stageLabel, continueLabel, onCo
       </div>
 
       {/* Campinho animado (Modo Clássico) */}
-      {isClassic && <PitchSim match={match} minute={minute} finished={finished} userFormation={userFormation} />}
+      {isClassic && (
+        <PitchSim
+          match={match}
+          minute={minute}
+          finished={finished}
+          userFormation={userFormation}
+          durationMs={CLASSIC_DURATION}
+        />
+      )}
 
       {/* Progresso */}
       {progressBlock}

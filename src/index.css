@@ -198,6 +198,47 @@ body {
   animation: confetti-fall 3s linear infinite;
 }
 
+/* ---------------------------------------------------------------------------
+   Campinho do Modo Clássico (PitchSim)
+--------------------------------------------------------------------------- */
+
+/* Anel de bola roubada (interceptação) */
+@keyframes steal-ring {
+  0% { transform: scale(0.4); opacity: 0.9; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+.animate-steal-ring {
+  animation: steal-ring 0.55s ease-out both;
+}
+
+/* Pulinhos do time que marcou */
+@keyframes celebrate-hop {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-60%); }
+}
+
+.animate-celebrate-hop {
+  animation: celebrate-hop 0.55s ease-in-out infinite;
+}
+
+/* Flash de campo no gol */
+@keyframes pitch-flash {
+  0% { opacity: 0.85; }
+  100% { opacity: 0; }
+}
+
+.animate-pitch-flash {
+  animation: pitch-flash 0.5s ease-out both;
+}
+
+/* Bola lançada: cresce no meio do voo sugerindo altura (aplicada inline com
+   a duração do passe) */
+@keyframes ball-loft {
+  0%, 100% { transform: scale(1); }
+  45% { transform: scale(1.6); }
+}
+
 /* Máscaras laterais da roleta de bandeiras */
 .reel-fade-left {
   background: linear-gradient(90deg, var(--color-bg), transparent);
