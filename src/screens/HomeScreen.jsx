@@ -79,7 +79,7 @@ export default function HomeScreen({ onPlay }) {
   // ---------------------------------------------------------------------------
   if (isDesk) {
     return (
-      <div className="min-h-screen w-full flex flex-col">
+      <div className="min-h-dvh w-full flex flex-col">
         <div className="w-full max-w-[1280px] mx-auto px-8 pt-6 flex items-center justify-end gap-2 text-xs shrink-0">
           {langSelect}
           {themeButton}
@@ -156,7 +156,7 @@ export default function HomeScreen({ onPlay }) {
   // Layout mobile
   // ---------------------------------------------------------------------------
   return (
-    <div className="flex flex-col h-screen w-full px-4 py-3">
+    <div className="flex flex-col h-dvh w-full px-4 py-3">
       {/* Topbar */}
       <div className="flex items-center justify-between text-xs mb-2">
         {langSelect}
@@ -179,19 +179,21 @@ export default function HomeScreen({ onPlay }) {
         <DecorativeField />
       </div>
 
-      {/* Como jogar */}
-      <div className="text-sm flex-1">
-        <h2 className={`mb-2 font-bold ${isRetro ? 'uppercase' : ''}`}>{t('how_to')}</h2>
-        <ol className="space-y-2">
+      {/* Como jogar — centralizado no espaço restante até o botão */}
+      <div className="text-base flex-1 flex flex-col justify-center">
+        <h2 className={`mb-3 font-bold ${isRetro ? 'uppercase' : ''}`}>{t('how_to')}</h2>
+        <ol className="space-y-3">
           {steps.map((step, i) => (
-            <li key={i} className="flex gap-2">
+            <li key={i} className="flex gap-2.5">
               <span
-                className="shrink-0 flex items-center justify-center w-5 h-5 text-xs font-bold border"
+                className="shrink-0 flex items-center justify-center w-6 h-6 text-sm font-bold border"
                 style={{ borderColor: 'var(--color-border)', borderRadius: 'var(--radius)' }}
               >
                 {i + 1}
               </span>
-              <span style={{ color: 'var(--color-text-secondary)' }}>{step}</span>
+              <span className="leading-snug" style={{ color: 'var(--color-text-secondary)' }}>
+                {step}
+              </span>
             </li>
           ))}
         </ol>

@@ -46,7 +46,7 @@ export default function KnockoutScreen({ matches, mode, userFormation, teamName,
     // -----------------------------------------------------------------------
     if (isDesk) {
       return (
-        <div className="min-h-screen w-full flex flex-col">
+        <div className="min-h-dvh w-full flex flex-col">
           <DeskHeader
             right={
               <span
@@ -124,10 +124,10 @@ export default function KnockoutScreen({ matches, mode, userFormation, teamName,
     }
 
     return (
-      <div className="flex flex-col h-screen w-full px-4 py-3">
+      <div className="flex flex-col h-dvh w-full px-4 py-3">
         <div className="flex-1 flex flex-col items-center justify-center gap-8">
           <span
-            className={`text-xl font-bold px-4 py-2 border-2 animate-reveal-pop ${isRetro ? 'uppercase' : ''}`}
+            className={`text-2xl font-black px-5 py-2.5 border-2 animate-reveal-pop ${isRetro ? 'uppercase' : ''}`}
             style={{
               color: 'var(--color-accent)',
               borderColor: 'var(--color-accent)',
@@ -137,39 +137,39 @@ export default function KnockoutScreen({ matches, mode, userFormation, teamName,
             {stageTitle}
           </span>
 
-          <div className="w-full flex items-center justify-center gap-3">
+          <div className="w-full flex items-stretch justify-center gap-3">
             <div
-              className="flex-1 flex flex-col items-center gap-2 p-3 border-2 animate-slide-in"
+              className="flex-1 flex flex-col items-center justify-center gap-3 px-3 py-6 border-2 animate-slide-in"
               style={{
                 borderColor: 'var(--color-btn-primary-border)',
                 background: 'var(--color-btn-primary-bg)',
                 borderRadius: 'var(--radius)',
               }}
             >
-              <span className="text-3xl leading-none">🏳️</span>
+              <span className="text-5xl leading-none">🏳️</span>
               <span
-                className={`text-sm font-bold text-center ${isRetro ? 'uppercase' : ''}`}
+                className={`text-base font-black text-center ${isRetro ? 'uppercase' : ''}`}
                 style={{ color: 'var(--color-btn-primary-text)' }}
               >
                 {teamName || t('your_team')}
               </span>
             </div>
 
-            <span className="text-lg font-bold shrink-0" style={{ color: 'var(--color-text-muted)' }}>
+            <span className="self-center text-lg font-bold shrink-0" style={{ color: 'var(--color-text-muted)' }}>
               {t('vs')}
             </span>
 
             <div
-              className="flex-1 flex flex-col items-center gap-2 p-3 border-2 animate-slide-in"
+              className="flex-1 flex flex-col items-center justify-center gap-3 px-3 py-6 border-2 animate-slide-in"
               style={{
                 animationDelay: '150ms',
                 borderColor: 'var(--color-border)',
                 borderRadius: 'var(--radius)',
               }}
             >
-              <Flag team={opponent} width={36} />
-              <span className={`text-sm font-bold text-center ${isRetro ? 'uppercase' : ''}`}>{opponent}</span>
-              <span className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+              <Flag team={opponent} width={56} />
+              <span className={`text-base font-black text-center ${isRetro ? 'uppercase' : ''}`}>{opponent}</span>
+              <span className="text-sm font-bold" style={{ color: 'var(--color-text-secondary)' }}>
                 {getTeamStrength(opponent)}
               </span>
             </div>
@@ -202,5 +202,5 @@ export default function KnockoutScreen({ matches, mode, userFormation, teamName,
   )
   // No desktop o MatchPlay traz o próprio cabeçalho e ocupa a tela toda
   if (isDesk) return matchEl
-  return <div className="flex flex-col h-screen w-full px-4 py-3">{matchEl}</div>
+  return <div className="flex flex-col h-dvh w-full px-4 py-3">{matchEl}</div>
 }

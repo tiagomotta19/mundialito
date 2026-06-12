@@ -46,7 +46,7 @@ export default function ModeScreen({ onBack, onContinue }) {
   // ---------------------------------------------------------------------------
   if (isDesk) {
     return (
-      <div className="min-h-screen w-full flex flex-col">
+      <div className="min-h-dvh w-full flex flex-col">
         <DeskHeader onBack={onBack} />
 
         <div className="flex-1 w-full max-w-[760px] mx-auto px-8 py-12 flex flex-col justify-center gap-8">
@@ -115,7 +115,7 @@ export default function ModeScreen({ onBack, onContinue }) {
   }
 
   return (
-    <div className="flex flex-col h-screen w-full px-4 py-3">
+    <div className="flex flex-col h-dvh w-full px-4 py-3">
       {/* Header */}
       <div className="flex items-center gap-3 mb-5">
         <button

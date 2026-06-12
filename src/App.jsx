@@ -25,7 +25,7 @@ function AppShell() {
   const [gameConfig, setGameConfig] = useState(null)
 
   return (
-    <div className={`theme-${theme} app-shell min-h-screen w-full flex flex-col`}>
+    <div className={`theme-${theme} app-shell min-h-dvh w-full flex flex-col`}>
       {screen === 'home' && (
         <Frame>
           <HomeScreen onPlay={() => setScreen('mode')} />

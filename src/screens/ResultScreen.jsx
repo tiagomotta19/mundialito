@@ -94,41 +94,40 @@ export default function ResultScreen({ campaign, players, formation, teamName, g
     </span>
   )
 
+  // Uma linha por time (nome inteiro + gols à direita) — evita truncar o
+  // nome do time do usuário na largura mobile
   const lastMatchCard = lastMatch && (
     <div
-      className="flex items-center justify-between gap-2 p-3 border-2 animate-rise-in"
+      className="flex flex-col p-3 border-2 animate-rise-in"
       style={{ animationDelay: '250ms', borderColor: 'var(--color-border)', borderRadius: 'var(--radius)' }}
     >
-      <span className={`flex-1 flex items-center gap-1.5 text-xs font-bold truncate ${isRetro ? 'uppercase' : ''}`}>
-        {lastMatch.homeName === USER_TEAM_NAME ? (
-          <span className="text-base leading-none">🏳️</span>
-        ) : (
-          <Flag team={lastMatch.homeName} width={20} />
-        )}
-        <span className="truncate">{label(lastMatch.homeName)}</span>
-      </span>
-      <span className="shrink-0 flex flex-col items-center">
-        <span className="text-xl font-bold tabular-nums">
-          {lastMatch.goalsA} <span style={{ color: 'var(--color-text-muted)' }}>×</span> {lastMatch.goalsB}
-        </span>
-        {lastMatch.penalties && (
-          <span className="text-[10px] font-bold" style={{ color: 'var(--color-accent)' }}>
-            {t('score_pens')
-              .replace('{a}', lastMatch.penalties.scoreA)
-              .replace('{b}', lastMatch.penalties.scoreB)}
+      {[
+        { name: lastMatch.homeName, goals: lastMatch.goalsA },
+        { name: lastMatch.awayName, goals: lastMatch.goalsB },
+      ].map((side, i) => (
+        <div
+          key={side.name}
+          className={`flex items-center justify-between gap-3 py-1.5 ${i === 0 ? 'border-b' : ''}`}
+          style={{ borderColor: 'var(--color-border)' }}
+        >
+          <span className={`flex items-center gap-2 min-w-0 text-sm font-bold ${isRetro ? 'uppercase' : ''}`}>
+            {side.name === USER_TEAM_NAME ? (
+              <span className="text-base leading-none">🏳️</span>
+            ) : (
+              <Flag team={side.name} width={22} />
+            )}
+            <span className="truncate">{label(side.name)}</span>
           </span>
-        )}
-      </span>
-      <span
-        className={`flex-1 flex items-center justify-end gap-1.5 text-xs font-bold truncate ${isRetro ? 'uppercase' : ''}`}
-      >
-        <span className="truncate">{label(lastMatch.awayName)}</span>
-        {lastMatch.awayName === USER_TEAM_NAME ? (
-          <span className="text-base leading-none">🏳️</span>
-        ) : (
-          <Flag team={lastMatch.awayName} width={20} />
-        )}
-      </span>
+          <span className="shrink-0 text-2xl font-black tabular-nums leading-none">{side.goals}</span>
+        </div>
+      ))}
+      {lastMatch.penalties && (
+        <span className="mt-1.5 text-center text-[10px] font-bold" style={{ color: 'var(--color-accent)' }}>
+          {t('score_pens')
+            .replace('{a}', lastMatch.penalties.scoreA)
+            .replace('{b}', lastMatch.penalties.scoreB)}
+        </span>
+      )}
     </div>
   )
 
@@ -167,7 +166,7 @@ export default function ResultScreen({ campaign, players, formation, teamName, g
   if (isDesk) {
     const eyebrowStyle = { color: 'var(--color-text-secondary)' }
     return (
-      <div className="relative min-h-screen w-full flex flex-col">
+      <div className="relative min-h-dvh w-full flex flex-col">
         {champion && <Confetti />}
 
         <DeskHeader right={stageChip} />
@@ -238,7 +237,7 @@ export default function ResultScreen({ campaign, players, formation, teamName, g
   }
 
   return (
-    <div className="relative flex flex-col h-screen w-full px-4 py-3 gap-3 overflow-y-auto">
+    <div className="relative flex flex-col h-dvh w-full px-4 py-3 gap-3 overflow-y-auto">
       {champion && <Confetti />}
 
       {/* Título */}
@@ -272,18 +271,18 @@ export default function ResultScreen({ campaign, players, formation, teamName, g
         {statCards.map((stat, i) => (
           <div
             key={stat.key}
-            className="flex flex-col items-center justify-center py-2 border-2 animate-rise-in"
+            className="flex flex-col items-center justify-center py-3 border-2 animate-rise-in"
             style={{
               animationDelay: `${300 + i * 80}ms`,
               borderColor: 'var(--color-border)',
               borderRadius: 'var(--radius)',
             }}
           >
-            <span className="text-lg font-bold" style={{ color: 'var(--color-accent)' }}>
+            <span className="text-2xl font-black tabular-nums" style={{ color: 'var(--color-accent)' }}>
               {stat.value}
             </span>
             <span
-              className={`text-[10px] text-center ${isRetro ? 'uppercase' : ''}`}
+              className={`text-[11px] text-center ${isRetro ? 'uppercase' : ''}`}
               style={{ color: 'var(--color-text-secondary)' }}
             >
               {t(stat.key)}

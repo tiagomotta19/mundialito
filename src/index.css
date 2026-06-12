@@ -88,6 +88,8 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-main);
+  /* Respiro acima da barra de gestos/chrome do browser mobile */
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* Campinho com listras */

@@ -85,7 +85,20 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
     setSelectedPlayer(null)
     setDrawnTeam(null)
     const team = randomTeam()
-    const cells = Array.from({ length: REEL_LENGTH }, (_, i) => (i === REEL_TARGET ? team : randomTeam()))
+    // Fita sem bandeiras repetidas lado a lado: re-sorteia colisões com a
+    // célula anterior e com a célula-alvo (vizinha seguinte)
+    const cells = []
+    for (let i = 0; i < REEL_LENGTH; i++) {
+      if (i === REEL_TARGET) {
+        cells.push(team)
+        continue
+      }
+      let pick = randomTeam()
+      while (pick === cells[i - 1] || (i + 1 === REEL_TARGET && pick === team)) {
+        pick = randomTeam()
+      }
+      cells.push(pick)
+    }
     setReel({ cells, id: Date.now() })
     setPhase('spinning')
   }
@@ -332,7 +345,7 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
     const eyebrowStyle = { color: 'var(--color-text-secondary)' }
 
     return (
-      <div className="min-h-screen w-full flex flex-col">
+      <div className="min-h-dvh w-full flex flex-col">
         <DeskHeader
           onBack={onBack}
           right={
@@ -657,7 +670,7 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
   // -------------------------------------------------------------------------
   if (allFilled) {
     return (
-      <div className="flex flex-col h-screen w-full px-4 py-3 gap-3">
+      <div className="flex flex-col h-dvh w-full px-4 py-3 gap-3">
         <div className="flex items-center justify-center gap-2">
           <h1 className={`text-lg font-bold text-center ${isRetro ? 'uppercase' : ''}`}>
             {t('summary_title')}
@@ -776,7 +789,7 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
   // Montagem em andamento
   // -------------------------------------------------------------------------
   return (
-    <div className="flex flex-col h-screen w-full px-4 py-3 gap-3">
+    <div className="flex flex-col h-dvh w-full px-4 py-3 gap-3">
       {/* Header + progresso */}
       <div>
         <div className="flex items-center gap-3">

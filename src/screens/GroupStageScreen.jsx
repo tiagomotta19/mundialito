@@ -31,7 +31,7 @@ export default function GroupStageScreen({ groupId, matches, table, qualified, m
     )
     // No desktop o MatchPlay traz o próprio cabeçalho e ocupa a tela toda
     if (isDesk) return matchEl
-    return <div className="flex flex-col h-screen w-full px-4 py-3">{matchEl}</div>
+    return <div className="flex flex-col h-dvh w-full px-4 py-3">{matchEl}</div>
   }
 
   const statusBanner = (
@@ -69,7 +69,7 @@ export default function GroupStageScreen({ groupId, matches, table, qualified, m
   // ---------------------------------------------------------------------------
   if (isDesk) {
     return (
-      <div className="min-h-screen w-full flex flex-col">
+      <div className="min-h-dvh w-full flex flex-col">
         <DeskHeader
           right={
             <span
@@ -98,18 +98,17 @@ export default function GroupStageScreen({ groupId, matches, table, qualified, m
   }
 
   return (
-    <div className="flex flex-col h-screen w-full px-4 py-3">
-      <h1 className={`text-center text-lg font-bold mb-4 ${isRetro ? 'uppercase' : ''}`}>
-        {t('group_label')} {groupId}
-      </h1>
+    <div className="flex flex-col h-dvh w-full px-4 py-3">
+      {/* Bloco centralizado verticalmente, como no desktop */}
+      <div className="flex-1 flex flex-col justify-center gap-4">
+        <h1 className={`text-center text-2xl font-black ${isRetro ? 'uppercase' : ''}`}>
+          {t('group_label')} {groupId}
+        </h1>
 
-      <div className="mb-4">
         <GroupTable table={table} teamName={teamName} />
+
+        {statusBanner}
       </div>
-
-      {statusBanner}
-
-      <div className="flex-1" />
 
       {continueButton}
     </div>

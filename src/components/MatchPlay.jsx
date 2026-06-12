@@ -256,6 +256,11 @@ export default function MatchPlay({ match, mode, stageLabel, continueLabel, onCo
           .replace('{b}', match.penalties.scoreB)
       : null
 
+  const sides = [
+    { name: match.homeName, side: 'home', goals: goalsHome },
+    { name: match.awayName, side: 'away', goals: goalsAway },
+  ]
+
   // Blocos compartilhados entre os layouts mobile e desktop
   const progressBlock = (
     <div className="flex items-center gap-2">
@@ -302,18 +307,18 @@ export default function MatchPlay({ match, mode, stageLabel, continueLabel, onCo
     ) : (
       <div
         key={`${e.minute}-${e.type}-${e.player}-${i}`}
-        className="flex items-center gap-2 px-2 py-1.5 border animate-rise-in"
+        className="flex items-center gap-2 px-2.5 py-2 border animate-rise-in"
         style={{ borderColor: 'var(--color-border)', borderRadius: 'var(--radius)' }}
       >
         <span
           className="shrink-0 w-1.5 h-4"
           style={{ background: sideColor(e.side), borderRadius: 'var(--radius)' }}
         />
-        <span className="w-8 text-[11px] font-bold tabular-nums" style={{ color: 'var(--color-text-secondary)' }}>
+        <span className="w-8 text-xs font-bold tabular-nums" style={{ color: 'var(--color-text-secondary)' }}>
           {e.minute}'
         </span>
         <span className="text-sm leading-none">{EVENT_ICONS[e.type]}</span>
-        <span className="flex-1 text-xs font-bold truncate">{e.player}</span>
+        <span className="flex-1 text-sm font-bold truncate">{e.player}</span>
       </div>
     )
   )
@@ -339,12 +344,8 @@ export default function MatchPlay({ match, mode, stageLabel, continueLabel, onCo
   // centro (Modo Clássico) e feed de lances à direita. Mesmo estado do mobile.
   // -------------------------------------------------------------------------
   if (isDesk) {
-    const sides = [
-      { name: match.homeName, goals: goalsHome },
-      { name: match.awayName, goals: goalsAway },
-    ]
     return (
-      <div className="min-h-screen w-full flex flex-col">
+      <div className="min-h-dvh w-full flex flex-col">
         <DeskHeader
           right={
             <span
@@ -459,27 +460,40 @@ export default function MatchPlay({ match, mode, stageLabel, continueLabel, onCo
   // -------------------------------------------------------------------------
   return (
     <div className="flex flex-col flex-1 min-h-0 w-full gap-3">
-      {/* Placar */}
+      {/* Placar: uma linha por time (nome inteiro + gols grandes), como no desktop */}
       <div
-        className="flex flex-col items-center gap-1 p-3 border-2"
+        className="flex flex-col p-3 border-2"
         style={{ borderColor: 'var(--color-border)', borderRadius: 'var(--radius)' }}
       >
-        <div className="w-full flex items-center justify-between gap-2">
-          <span className={`flex-1 text-sm font-bold truncate text-left ${isRetro ? 'uppercase' : ''}`}>
-            {label(match.homeName)}
-          </span>
-          <span className="shrink-0 text-2xl font-bold tabular-nums">
-            {goalsHome} <span style={{ color: 'var(--color-text-muted)' }}>×</span> {goalsAway}
-          </span>
-          <span className={`flex-1 text-sm font-bold truncate text-right ${isRetro ? 'uppercase' : ''}`}>
-            {label(match.awayName)}
-          </span>
-        </div>
-        <span className={`text-[11px] ${isRetro ? 'uppercase' : ''}`} style={{ color: 'var(--color-text-secondary)' }}>
+        <span
+          className="text-[10px] font-bold uppercase tracking-[0.14em]"
+          style={{ color: 'var(--color-text-secondary)' }}
+        >
           {stageLabel}
         </span>
+        <div className="mt-1 flex flex-col">
+          {sides.map((s, i) => (
+            <div
+              key={s.side}
+              className={`flex items-center justify-between gap-3 py-2 ${i === 0 ? 'border-b' : ''}`}
+              style={{ borderColor: 'var(--color-border)' }}
+            >
+              <span className={`flex items-center gap-2 min-w-0 text-sm font-bold ${isRetro ? 'uppercase' : ''}`}>
+                <span
+                  className="shrink-0 w-1.5 h-4"
+                  style={{ background: sideColor(s.side), borderRadius: 'var(--radius)' }}
+                />
+                <span className="truncate">{label(s.name)}</span>
+              </span>
+              <span className="shrink-0 text-3xl font-black tabular-nums leading-none">{s.goals}</span>
+            </div>
+          ))}
+        </div>
         {pensNote && (
-          <span className="text-[11px] font-bold animate-rise-in" style={{ color: 'var(--color-accent)' }}>
+          <span
+            className="mt-1.5 text-center text-[11px] font-bold animate-rise-in"
+            style={{ color: 'var(--color-accent)' }}
+          >
             {pensNote}
           </span>
         )}
