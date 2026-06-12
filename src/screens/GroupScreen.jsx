@@ -3,6 +3,8 @@ import { useTheme } from '../components/ThemeContext'
 import { useLang } from '../i18n/LangContext'
 import { pickGroup, getGroup, getTeamStrength, getGroupDifficulty } from '../engine/simulator'
 import Flag from '../components/Flag'
+import DeskHeader from '../components/DeskHeader'
+import { useMediaQuery, DESK_QUERY } from '../components/useMediaQuery'
 
 const GROUP_IDS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L']
 
@@ -19,6 +21,7 @@ export default function GroupScreen({ gameConfig, onBack, onContinue }) {
   const { theme } = useTheme()
   const { t } = useLang()
   const isRetro = theme === 'retro'
+  const isDesk = useMediaQuery(DESK_QUERY)
 
   // Força real do time do usuário: média de OVR dos 11, mesma conta dos adversários
   const userStrength = gameConfig?.players?.length
@@ -68,34 +71,19 @@ export default function GroupScreen({ gameConfig, onBack, onContinue }) {
       )
     : []
 
-  return (
-    <div className="flex flex-col h-screen w-full px-4 py-3">
-      {/* Header */}
-      <div className="flex items-center gap-3 mb-5">
-        <button
-          type="button"
-          onClick={onBack}
-          aria-label={t('back')}
-          className="flex items-center justify-center w-8 h-8 border-2 text-lg leading-none"
-          style={{ borderColor: 'var(--color-border)', borderRadius: 'var(--radius)' }}
-        >
-          ←
-        </button>
-        <h1 className={`text-lg font-bold ${isRetro ? 'uppercase' : ''}`}>{t('group_title')}</h1>
-      </div>
-
-      {(phase === 'drawing' || phase === 'landed') && (
-        <div className="flex-1 flex flex-col items-center justify-center gap-6">
-          <div className="grid grid-cols-4 gap-2 w-full">
-            {GROUP_IDS.map((id, i) => {
-              const isLanded = phase === 'landed' && i === activeIdx
-              const isActive = phase === 'drawing' && i === activeIdx
-              return (
-                <div
-                  key={id}
-                  className={`flex items-center justify-center h-12 text-lg font-bold border-2 transition-transform duration-100 ${
-                    isActive ? 'scale-110' : ''
-                  } ${isLanded ? 'animate-reveal-pop' : ''}`}
+  // Blocos compartilhados entre os layouts mobile e desktop (só muda a escala)
+  const drawingBlock = (phase === 'drawing' || phase === 'landed') && (
+    <div className="flex-1 flex flex-col items-center justify-center gap-6">
+      <div className={`grid grid-cols-4 w-full ${isDesk ? 'gap-3' : 'gap-2'}`}>
+        {GROUP_IDS.map((id, i) => {
+          const isLanded = phase === 'landed' && i === activeIdx
+          const isActive = phase === 'drawing' && i === activeIdx
+          return (
+            <div
+              key={id}
+              className={`flex items-center justify-center font-bold border-2 transition-transform duration-100 ${
+                isDesk ? 'h-16 text-2xl' : 'h-12 text-lg'
+              } ${isActive ? 'scale-110' : ''} ${isLanded ? 'animate-reveal-pop' : ''}`}
                   style={{
                     borderColor: isLanded
                       ? 'var(--color-btn-primary-border)'
@@ -127,18 +115,18 @@ export default function GroupScreen({ gameConfig, onBack, onContinue }) {
             {t('group_drawing')}
           </span>
         </div>
-      )}
+  )
 
-      {phase === 'revealed' && group && (
-        <>
-          {/* Grupo + dificuldade */}
-          <div className="flex flex-col items-center gap-2 mb-5">
-            <span
-              className={`text-5xl font-bold animate-reveal-pop ${isRetro ? 'uppercase' : ''}`}
-              style={{ color: 'var(--color-accent)' }}
-            >
-              {t('group_label')} {groupId}
-            </span>
+  const revealedBlock = phase === 'revealed' && group && (
+    <>
+      {/* Grupo + dificuldade */}
+      <div className="flex flex-col items-center gap-2 mb-5">
+        <span
+          className={`font-bold animate-reveal-pop ${isDesk ? 'text-6xl' : 'text-5xl'} ${isRetro ? 'uppercase' : ''}`}
+          style={{ color: 'var(--color-accent)' }}
+        >
+          {t('group_label')} {groupId}
+        </span>
             <span
               className={`text-xs font-bold px-2 py-1 border-2 animate-rise-in ${isRetro ? 'uppercase' : ''}`}
               style={{
@@ -222,24 +210,59 @@ export default function GroupScreen({ gameConfig, onBack, onContinue }) {
             {t('group_replaces').replace('{team}', group.weakest)}
           </p>
 
-          <div className="flex-1" />
+      {!isDesk && <div className="flex-1" />}
 
-          <button
-            type="button"
-            onClick={() => onContinue({ groupId })}
-            className={`w-full py-3 font-bold border-2 animate-rise-in ${isRetro ? 'uppercase' : ''}`}
-            style={{
-              animationDelay: '900ms',
-              background: 'var(--color-btn-primary-bg)',
-              color: 'var(--color-btn-primary-text)',
-              borderColor: 'var(--color-btn-primary-border)',
-              borderRadius: 'var(--radius)',
-            }}
-          >
-            {t('btn_start_cup')}
-          </button>
-        </>
-      )}
+      <button
+        type="button"
+        onClick={() => onContinue({ groupId })}
+        className={`w-full py-3 font-bold border-2 animate-rise-in ${isDesk ? 'mt-4' : ''} ${isRetro ? 'uppercase' : ''}`}
+        style={{
+          animationDelay: '900ms',
+          background: 'var(--color-btn-primary-bg)',
+          color: 'var(--color-btn-primary-text)',
+          borderColor: 'var(--color-btn-primary-border)',
+          borderRadius: 'var(--radius)',
+        }}
+      >
+        {t('btn_start_cup')}
+      </button>
+    </>
+  )
+
+  // ---------------------------------------------------------------------------
+  // Layout desktop (>900px): sorteio e revelação centralizados em coluna única
+  // sob o cabeçalho editorial
+  // ---------------------------------------------------------------------------
+  if (isDesk) {
+    return (
+      <div className="min-h-screen w-full flex flex-col">
+        <DeskHeader onBack={onBack} />
+        <div className="flex-1 w-full max-w-[640px] mx-auto px-8 py-12 flex flex-col justify-center">
+          {drawingBlock}
+          {revealedBlock}
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="flex flex-col h-screen w-full px-4 py-3">
+      {/* Header */}
+      <div className="flex items-center gap-3 mb-5">
+        <button
+          type="button"
+          onClick={onBack}
+          aria-label={t('back')}
+          className="flex items-center justify-center w-8 h-8 border-2 text-lg leading-none"
+          style={{ borderColor: 'var(--color-border)', borderRadius: 'var(--radius)' }}
+        >
+          ←
+        </button>
+        <h1 className={`text-lg font-bold ${isRetro ? 'uppercase' : ''}`}>{t('group_title')}</h1>
+      </div>
+
+      {drawingBlock}
+      {revealedBlock}
     </div>
   )
 }

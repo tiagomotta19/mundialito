@@ -5,6 +5,8 @@ import { getSquadPlayers, getAllTeamNames } from '../engine/simulator'
 import { isCompatible, playerRoles } from '../engine/compatibility'
 import Flag from '../components/Flag'
 import FieldPitch from '../components/FieldPitch'
+import DeskHeader from '../components/DeskHeader'
+import { useMediaQuery, DESK_QUERY } from '../components/useMediaQuery'
 import {
   FORMATION_LAYOUTS,
   ROLE_TO_POSITION,
@@ -43,6 +45,7 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
   const { theme } = useTheme()
   const { t } = useLang()
   const isRetro = theme === 'retro'
+  const isDesk = useMediaQuery(DESK_QUERY)
 
   const layout = FORMATION_LAYOUTS[formation] || FORMATION_LAYOUTS['4-3-3']
 
@@ -210,19 +213,449 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
       })
     : []
 
+  // Médias parciais durante a montagem (box score do desktop) — viram as
+  // médias finais do resumo quando os 11 estão escalados
+  const avgOvr = (list) =>
+    list.length
+      ? Math.round((list.reduce((sum, s) => sum + s.player.ovr, 0) / list.length) * 10) / 10
+      : null
+  const overall = avgOvr(slots.filter((s) => s.player))
+  const attack = avgOvr(
+    slots.filter((s) => s.player && ['MID', 'FWD'].includes(ROLE_TO_POSITION[s.role]))
+  )
+  const defense = avgOvr(
+    slots.filter((s) => s.player && ['GK', 'DEF'].includes(ROLE_TO_POSITION[s.role]))
+  )
+
+  const handleContinue = () =>
+    onContinue({
+      // position do jogador escalado = setor do SLOT (Salah no meio conta
+      // como MID no motor); o papel original fica em role e o do slot em
+      // slotRole
+      players: slots.map((s) => ({
+        ...s.player,
+        slotRole: s.role,
+        position: ROLE_TO_POSITION[s.role],
+      })),
+      teamName: teamName.trim() || null,
+    })
+
+  // Blocos compartilhados entre os layouts mobile e desktop (renderizados em
+  // um único lugar por vez)
+  const reelBlock = phase === 'spinning' && reel && (
+    <div className="relative h-16 overflow-hidden" style={{ width: REEL_WINDOW }}>
+      <div ref={stripRef} className="flex h-full items-center will-change-transform">
+        {reel.cells.map((team, i) => (
+          <span
+            key={`${reel.id}-${i}`}
+            className="flex items-center justify-center shrink-0"
+            style={{ width: REEL_CELL }}
+          >
+            <Flag team={team} width={44} />
+          </span>
+        ))}
+      </div>
+      <div
+        className="pointer-events-none absolute inset-y-0 left-1/2 -translate-x-1/2 border-2"
+        style={{ width: REEL_CELL, borderColor: 'var(--color-accent)', borderRadius: 'var(--radius)' }}
+      />
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-16 reel-fade-left" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-16 reel-fade-right" />
+    </div>
+  )
+
+  const statusBlock = (
+    <>
+      {phase === 'redraw' && (
+        <div className="flex items-center gap-2 animate-reveal-pop">
+          <span className="text-xl leading-none" style={{ color: 'var(--color-warn)' }}>↻</span>
+          <span className={`text-sm font-bold ${isRetro ? 'uppercase' : ''}`}>
+            {t('draft_no_compatible')}
+          </span>
+        </div>
+      )}
+      {phase === 'placed' && lastPlaced && (
+        <div className="flex items-center gap-2 animate-reveal-pop">
+          <span className="text-xl leading-none" style={{ color: 'var(--color-accent)' }}>✓</span>
+          <span className="text-sm font-bold">
+            {t('draft_placed').replace('{name}', lastPlaced.player.name)}
+          </span>
+        </div>
+      )}
+      {phase === 'auto' && (
+        <span className={`text-sm font-bold animate-pulse ${isRetro ? 'uppercase' : ''}`}>
+          {t('auto_filling')}
+        </span>
+      )}
+    </>
+  )
+
+  const skipButton = (
+    <button
+      type="button"
+      onClick={handleSkip}
+      disabled={!skipsLeft}
+      className={`shrink-0 text-xs font-bold px-2 py-1 border-2 ${isRetro ? 'uppercase' : ''}`}
+      style={{
+        borderColor: 'var(--color-btn-secondary-border)',
+        color: 'var(--color-btn-secondary-text)',
+        borderRadius: 'var(--radius)',
+        opacity: skipsLeft ? 1 : 0.4,
+      }}
+    >
+      {skipsLeft ? t('btn_skip_available').replace('{n}', skipsLeft) : t('btn_skip_used')}
+    </button>
+  )
+
+  const autoCompleteButton = phase !== 'spinning' && phase !== 'auto' && (
+    <button
+      type="button"
+      onClick={handleAutoComplete}
+      className={`w-full py-2 text-xs font-bold border-2 border-dashed ${isRetro ? 'uppercase' : ''}`}
+      style={{
+        borderColor: 'var(--color-border)',
+        color: 'var(--color-text-secondary)',
+        borderRadius: 'var(--radius)',
+        background: 'transparent',
+      }}
+    >
+      ⚡ {t('btn_auto_complete')}
+    </button>
+  )
+
   // -------------------------------------------------------------------------
-  // Resumo do time completo
+  // Layout desktop (>900px): três colunas estilo caderno esportivo —
+  // sorteio e lista à esquerda, campo vertical grande no centro, box score
+  // editorial à direita. Mesmo estado e fluxo do mobile.
+  // -------------------------------------------------------------------------
+  if (isDesk) {
+    const eyebrowStyle = { color: 'var(--color-text-secondary)' }
+
+    return (
+      <div className="min-h-screen w-full flex flex-col">
+        <DeskHeader
+          onBack={onBack}
+          right={
+            <>
+              <span
+                className="text-xs font-bold px-2.5 py-1 border-2"
+                style={{
+                  borderColor: 'var(--color-border)',
+                  color: 'var(--color-text-secondary)',
+                  borderRadius: 'var(--radius)',
+                }}
+              >
+                {formation || '4-3-3'}
+              </span>
+              <span className="text-2xl font-black tabular-nums leading-none">
+                {filledCount}
+                <span style={{ color: 'var(--color-text-muted)' }}>/{slots.length}</span>
+              </span>
+            </>
+          }
+        />
+
+        <div className="w-full max-w-[1280px] mx-auto px-8 py-10 grid grid-cols-[minmax(264px,330px)_minmax(0,1fr)_minmax(230px,290px)] gap-10 items-start flex-1">
+          {/* Coluna esquerda: sorteio + escolha do jogador */}
+          <aside className="flex flex-col gap-5 min-w-0">
+            {allFilled ? (
+              <>
+                <div
+                  className="p-5 border-2 animate-rise-in"
+                  style={{ borderColor: 'var(--color-border)', borderRadius: 'var(--radius)' }}
+                >
+                  <span
+                    className="block text-[10px] font-bold uppercase tracking-[0.18em]"
+                    style={eyebrowStyle}
+                  >
+                    {t('lineup_complete')}
+                  </span>
+                  <span className="block text-5xl font-black tabular-nums mt-2 leading-none">
+                    {filledCount}/{slots.length}
+                  </span>
+                </div>
+
+                <input
+                  type="text"
+                  value={teamName}
+                  onChange={(e) => setTeamName(e.target.value)}
+                  maxLength={20}
+                  placeholder={`${t('team_name_label')} · ${t('team_name_placeholder')}`}
+                  className="w-full px-4 py-3 text-sm font-bold border-2 bg-transparent outline-none"
+                  style={{
+                    borderColor: teamName ? 'var(--color-accent)' : 'var(--color-border)',
+                    color: 'var(--color-text)',
+                    borderRadius: 'var(--radius)',
+                  }}
+                />
+
+                <button
+                  type="button"
+                  onClick={handleContinue}
+                  className={`w-full py-5 text-lg font-black border-2 animate-rise-in ${isRetro ? 'uppercase' : ''}`}
+                  style={{
+                    background: 'var(--color-btn-primary-bg)',
+                    color: 'var(--color-btn-primary-text)',
+                    borderColor: 'var(--color-btn-primary-border)',
+                    borderRadius: 'var(--radius)',
+                  }}
+                >
+                  {t('btn_continue')} →
+                </button>
+              </>
+            ) : (
+              <>
+                {phase === 'idle' && (
+                  <button
+                    type="button"
+                    onClick={startDraw}
+                    className={`w-full py-4 font-bold border-2 ${isRetro ? 'uppercase' : ''}`}
+                    style={{
+                      background: 'var(--color-btn-primary-bg)',
+                      color: 'var(--color-btn-primary-text)',
+                      borderColor: 'var(--color-btn-primary-border)',
+                      borderRadius: 'var(--radius)',
+                    }}
+                  >
+                    {t('btn_draw_squad')}
+                  </button>
+                )}
+
+                {phase === 'spinning' && (
+                  <div
+                    className="p-4 border-2 flex justify-center"
+                    style={{ borderColor: 'var(--color-border)', borderRadius: 'var(--radius)' }}
+                  >
+                    {reelBlock}
+                  </div>
+                )}
+
+                {phase === 'drawn' && (
+                  <div
+                    className="p-5 border-2 animate-reveal-pop"
+                    style={{ borderColor: 'var(--color-border)', borderRadius: 'var(--radius)' }}
+                  >
+                    <span
+                      className="block text-[10px] font-bold uppercase tracking-[0.18em] mb-3"
+                      style={eyebrowStyle}
+                    >
+                      {t('drawn_label')}
+                    </span>
+                    <div className="flex items-center gap-3">
+                      <Flag team={drawnTeam} width={46} />
+                      <span className={`text-2xl font-black leading-none ${isRetro ? 'uppercase' : ''}`}>
+                        {drawnTeam}
+                      </span>
+                    </div>
+                    <div className="mt-4 flex items-center justify-between gap-3">
+                      <span className="text-[11px]" style={{ color: 'var(--color-text-secondary)' }}>
+                        {selectedPlayer ? t('draft_pick_field') : t('draft_select_player')}
+                      </span>
+                      {skipButton}
+                    </div>
+                  </div>
+                )}
+
+                {(phase === 'redraw' || phase === 'placed' || phase === 'auto') && (
+                  <div
+                    className="min-h-[56px] p-4 border-2 flex items-center justify-center"
+                    style={{ borderColor: 'var(--color-border)', borderRadius: 'var(--radius)' }}
+                  >
+                    {statusBlock}
+                  </div>
+                )}
+
+                {phase === 'drawn' && (
+                  <div className="flex flex-col gap-1.5 overflow-y-auto max-h-[46vh] pr-1">
+                    {drawnSquad.map((p) => {
+                      const used = usedPlayers.has(`${drawnTeam}::${p.name}`)
+                      const disabled = used || !hasVacantCompatibleSlot(p)
+                      const isSelected = selectedPlayer?.name === p.name
+                      const roles = playerRoles(p)
+                      return (
+                        <button
+                          key={p.name}
+                          type="button"
+                          disabled={disabled}
+                          onClick={() => handleSelectPlayer(p)}
+                          className={`flex items-center gap-3 px-3 py-2.5 border-2 text-left transition-colors duration-150 ${
+                            disabled || isSelected ? '' : 'hover:bg-[var(--color-highlight-bg)]'
+                          }`}
+                          style={{
+                            borderColor: isSelected
+                              ? 'var(--color-btn-primary-border)'
+                              : 'var(--color-border)',
+                            background: isSelected ? 'var(--color-btn-primary-bg)' : undefined,
+                            borderRadius: 'var(--radius)',
+                            opacity: disabled ? 0.35 : 1,
+                          }}
+                        >
+                          <span className="shrink-0 w-10 flex flex-col items-center gap-0.5">
+                            <span
+                              className="w-full text-center text-[9px] font-bold px-1 py-0.5 border"
+                              style={{
+                                color: isSelected
+                                  ? 'var(--color-btn-primary-text)'
+                                  : POSITION_COLOR[p.position],
+                                borderColor: isSelected
+                                  ? 'var(--color-btn-primary-text)'
+                                  : POSITION_COLOR[p.position],
+                                borderRadius: 'var(--radius)',
+                              }}
+                            >
+                              {p.position}
+                            </span>
+                            {roles.length > 0 && (
+                              <span
+                                className="text-[8px] leading-none"
+                                style={{
+                                  color: isSelected
+                                    ? 'var(--color-btn-primary-text)'
+                                    : 'var(--color-text-muted)',
+                                }}
+                              >
+                                {roles.join(' · ')}
+                              </span>
+                            )}
+                          </span>
+                          <div className="flex-1 min-w-0 flex flex-col">
+                            <span
+                              className="text-sm font-bold truncate"
+                              style={{
+                                color: isSelected ? 'var(--color-btn-primary-text)' : 'var(--color-text)',
+                              }}
+                            >
+                              {p.name}
+                            </span>
+                            <span
+                              className="text-[10px] truncate"
+                              style={{
+                                color: isSelected
+                                  ? 'var(--color-btn-primary-text)'
+                                  : 'var(--color-text-muted)',
+                              }}
+                            >
+                              {p.league || '—'}
+                            </span>
+                          </div>
+                          <span
+                            className="text-xl font-black tabular-nums"
+                            style={{
+                              color: isSelected ? 'var(--color-btn-primary-text)' : ovrColor(p.ovr),
+                            }}
+                          >
+                            {p.ovr}
+                          </span>
+                        </button>
+                      )
+                    })}
+                  </div>
+                )}
+
+                {autoCompleteButton}
+              </>
+            )}
+          </aside>
+
+          {/* Coluna central: campo vertical grande */}
+          <main className="flex flex-col items-center min-w-0">
+            <div className="w-full max-w-[460px]">
+              <FieldPitch
+                vertical
+                slots={slots}
+                selectedPlayer={allFilled ? null : selectedPlayer}
+                lastPlacedIdx={lastPlaced?.index}
+                onPickSlot={allFilled ? undefined : handlePickSlot}
+              />
+            </div>
+          </main>
+
+          {/* Coluna direita: box score editorial */}
+          <aside className="flex flex-col min-w-0">
+            <div
+              className="flex items-end justify-between gap-2 pb-2"
+              style={{ borderBottom: '3px solid var(--color-text)' }}
+            >
+              <span
+                className="text-[10px] font-bold uppercase tracking-[0.18em] pb-1"
+                style={eyebrowStyle}
+              >
+                {t('lineup_label')} · {filledCount}/{slots.length}
+              </span>
+              <span
+                className="text-4xl font-black tabular-nums leading-none"
+                style={{ color: overall != null ? 'var(--color-text)' : 'var(--color-text-muted)' }}
+              >
+                {overall ?? '—'}
+              </span>
+            </div>
+
+            <div
+              className="flex items-baseline justify-end gap-4 py-2.5 mb-1 border-b"
+              style={{ borderColor: 'var(--color-border)' }}
+            >
+              <span className="flex items-baseline gap-1.5">
+                <span className="text-lg font-black tabular-nums">{attack ?? '—'}</span>
+                <span className="text-[9px] font-bold uppercase tracking-[0.14em]" style={eyebrowStyle}>
+                  {t('summary_attack')}
+                </span>
+              </span>
+              <span className="flex items-baseline gap-1.5">
+                <span className="text-lg font-black tabular-nums">{defense ?? '—'}</span>
+                <span className="text-[9px] font-bold uppercase tracking-[0.14em]" style={eyebrowStyle}>
+                  {t('summary_defense')}
+                </span>
+              </span>
+            </div>
+
+            <div className="flex flex-col">
+              {slots.map((slot, i) => (
+                <div
+                  key={slot.player ? `${i}-${slot.player.name}` : `empty-${i}`}
+                  className={`flex items-center gap-2 py-2 border-b ${slot.player ? 'animate-slide-in' : ''}`}
+                  style={{ borderColor: 'var(--color-border)' }}
+                >
+                  <span
+                    className="w-9 shrink-0 text-[10px] font-bold"
+                    style={{ color: POSITION_COLOR[ROLE_TO_POSITION[slot.role]] }}
+                  >
+                    {slot.role}
+                  </span>
+                  {slot.player ? (
+                    <>
+                      <div className="flex-1 min-w-0 flex flex-col">
+                        <span className={`text-sm font-bold truncate ${isRetro ? 'uppercase' : ''}`}>
+                          {slot.player.name}
+                        </span>
+                        <span className="text-[10px] truncate" style={{ color: 'var(--color-text-muted)' }}>
+                          {slot.player.league || '—'}
+                        </span>
+                      </div>
+                      <span
+                        className="text-base font-black tabular-nums"
+                        style={{ color: ovrColor(slot.player.ovr) }}
+                      >
+                        {slot.player.ovr}
+                      </span>
+                    </>
+                  ) : (
+                    <span className="flex-1 text-sm leading-7" style={{ color: 'var(--color-text-muted)' }}>
+                      —
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </aside>
+        </div>
+      </div>
+    )
+  }
+
+  // -------------------------------------------------------------------------
+  // Resumo do time completo (mobile)
   // -------------------------------------------------------------------------
   if (allFilled) {
-    const average = (values) => Math.round((values.reduce((sum, v) => sum + v, 0) / values.length) * 10) / 10
-    const overall = average(slots.map((s) => s.player.ovr))
-    const attack = average(
-      slots.filter((s) => ['MID', 'FWD'].includes(ROLE_TO_POSITION[s.role])).map((s) => s.player.ovr)
-    )
-    const defense = average(
-      slots.filter((s) => ['GK', 'DEF'].includes(ROLE_TO_POSITION[s.role])).map((s) => s.player.ovr)
-    )
-
     return (
       <div className="flex flex-col h-screen w-full px-4 py-3 gap-3">
         <div className="flex items-center justify-center gap-2">
@@ -324,19 +757,7 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
 
         <button
           type="button"
-          onClick={() =>
-            onContinue({
-              // position do jogador escalado = setor do SLOT (Salah no meio
-              // conta como MID no motor); o papel original fica em role e o
-              // do slot em slotRole
-              players: slots.map((s) => ({
-                ...s.player,
-                slotRole: s.role,
-                position: ROLE_TO_POSITION[s.role],
-              })),
-              teamName: teamName.trim() || null,
-            })
-          }
+          onClick={handleContinue}
           className={`w-full py-3 font-bold border-2 ${isRetro ? 'uppercase' : ''}`}
           style={{
             background: 'var(--color-btn-primary-bg)',
@@ -405,27 +826,7 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
           </button>
         )}
 
-        {phase === 'spinning' && reel && (
-          <div className="relative h-16 overflow-hidden" style={{ width: REEL_WINDOW }}>
-            <div ref={stripRef} className="flex h-full items-center will-change-transform">
-              {reel.cells.map((team, i) => (
-                <span
-                  key={`${reel.id}-${i}`}
-                  className="flex items-center justify-center shrink-0"
-                  style={{ width: REEL_CELL }}
-                >
-                  <Flag team={team} width={44} />
-                </span>
-              ))}
-            </div>
-            <div
-              className="pointer-events-none absolute inset-y-0 left-1/2 -translate-x-1/2 border-2"
-              style={{ width: REEL_CELL, borderColor: 'var(--color-accent)', borderRadius: 'var(--radius)' }}
-            />
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-16 reel-fade-left" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-16 reel-fade-right" />
-          </div>
-        )}
+        {reelBlock}
 
         {phase === 'drawn' && (
           <div className="w-full flex items-center justify-between animate-reveal-pop">
@@ -438,46 +839,11 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
                 </span>
               </div>
             </div>
-            <button
-              type="button"
-              onClick={handleSkip}
-              disabled={!skipsLeft}
-              className={`shrink-0 text-xs font-bold px-2 py-1 border-2 ${isRetro ? 'uppercase' : ''}`}
-              style={{
-                borderColor: 'var(--color-btn-secondary-border)',
-                color: 'var(--color-btn-secondary-text)',
-                borderRadius: 'var(--radius)',
-                opacity: skipsLeft ? 1 : 0.4,
-              }}
-            >
-              {skipsLeft ? t('btn_skip_available').replace('{n}', skipsLeft) : t('btn_skip_used')}
-            </button>
+            {skipButton}
           </div>
         )}
 
-        {phase === 'redraw' && (
-          <div className="flex items-center gap-2 animate-reveal-pop">
-            <span className="text-xl leading-none" style={{ color: 'var(--color-warn)' }}>↻</span>
-            <span className={`text-sm font-bold ${isRetro ? 'uppercase' : ''}`}>
-              {t('draft_no_compatible')}
-            </span>
-          </div>
-        )}
-
-        {phase === 'placed' && lastPlaced && (
-          <div className="flex items-center gap-2 animate-reveal-pop">
-            <span className="text-xl leading-none" style={{ color: 'var(--color-accent)' }}>✓</span>
-            <span className="text-sm font-bold">
-              {t('draft_placed').replace('{name}', lastPlaced.player.name)}
-            </span>
-          </div>
-        )}
-
-        {phase === 'auto' && (
-          <span className={`text-sm font-bold animate-pulse ${isRetro ? 'uppercase' : ''}`}>
-            {t('auto_filling')}
-          </span>
-        )}
+        {statusBlock}
       </div>
 
       {/* Lista de jogadores da seleção sorteada */}
@@ -532,21 +898,7 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
       </div>
 
       {/* Auto-completar */}
-      {phase !== 'spinning' && phase !== 'auto' && (
-        <button
-          type="button"
-          onClick={handleAutoComplete}
-          className={`w-full py-2 text-xs font-bold border-2 border-dashed ${isRetro ? 'uppercase' : ''}`}
-          style={{
-            borderColor: 'var(--color-border)',
-            color: 'var(--color-text-secondary)',
-            borderRadius: 'var(--radius)',
-            background: 'transparent',
-          }}
-        >
-          ⚡ {t('btn_auto_complete')}
-        </button>
-      )}
+      {autoCompleteButton}
 
       {/* Campinho */}
       <FieldPitch

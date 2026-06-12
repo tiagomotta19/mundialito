@@ -1,10 +1,20 @@
 @import "tailwindcss";
 
+/* Breakpoint do layout desktop (acima dele as telas adaptadas abrem em
+   colunas; abaixo, tudo segue o layout mobile de 360px) */
+@theme {
+  --breakpoint-desk: 900px;
+}
+
 html,
 body,
 #root {
   height: 100%;
   margin: 0;
+}
+
+#root {
+  width: 100%;
 }
 
 body {
@@ -89,6 +99,18 @@ body {
     var(--color-field) 20px,
     var(--color-field-stripe) 20px,
     var(--color-field-stripe) 40px
+  );
+}
+
+/* Variante do campo vertical (desktop): listras perpendiculares ao ataque */
+.field-stripes-portrait {
+  background-color: var(--color-field);
+  background-image: repeating-linear-gradient(
+    0deg,
+    var(--color-field) 0px,
+    var(--color-field) 28px,
+    var(--color-field-stripe) 28px,
+    var(--color-field-stripe) 56px
   );
 }
 
