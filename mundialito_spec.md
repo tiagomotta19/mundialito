@@ -162,7 +162,7 @@ Ao escalar, o `position` do jogador gravado no `gameConfig` passa a ser o **seto
 1. O usuário toca em **"Sortear seleção"** — uma **roleta de slot machine**: fita horizontal de bandeiras que desacelera (rAF com ease-out cúbico, ~1,6s) até parar na seleção sorteada, dentro de uma janela com moldura central e máscaras de fade nas laterais
 2. A seleção sorteada é revelada (bandeira + nome + dica contextual); qualquer uma das 48 seleções pode sair, com pesos iguais, e pode se repetir
 3. A lista exibe o elenco completo da seleção, ordenado por setor principal (GK → DEF → MID → FWD) e por OVR decrescente; cada jogador com badge de setor colorido + papéis discretos abaixo (ex.: "ST · LW"), nome, liga (com fallback "—") e OVR com cor por faixa (85+ accent, 75–84 normal, <75 secundário)
-4. **O usuário toca primeiro no jogador** que quer — os slots compatíveis vagos (pelo `SLOT_COMPAT`) acendem com glow pulsante, cada um **na cor do setor do próprio slot** (papéis em setores diferentes acendem os dois setores); slots incompatíveis ficam esmaecidos
+4. **O usuário toca primeiro no jogador** que quer — os slots compatíveis vagos (pelo `SLOT_COMPAT`) são **preenchidos sólidos na cor do setor do próprio slot**, com leve pulso de opacidade (`animate-fill-pulse` — muito mais visível no mobile que o glow de contorno anterior; papéis em setores diferentes acendem os dois setores); slots incompatíveis ficam esmaecidos. Em repouso (sem jogador selecionado), o slot vago é **discreto**: círculo menor que a bolinha de jogador escalado, borda tracejada fina na cor do setor e a **sigla do papel** (LB, CM, ST...) centralizada dentro, sem preenchimento
 4b. Se a seleção sorteada não tem **nenhum** jogador compatível com nenhum slot vago, re-sorteia automaticamente sem consumir o pulo (aviso rápido "Nenhuma posição compatível — novo sorteio")
 5. O usuário toca no slot iluminado → o jogador entra na posição (pop de confirmação "{nome} escalado!")
 6. **O próximo sorteio começa automaticamente** ~750ms após a escalação — o usuário só toca em "Sortear seleção" na primeira vez
@@ -208,13 +208,13 @@ Planejado: após o titular, sortear 3 reservas (1 DEF, 1 MID, 1 FWD) pelo mesmo 
 
 Acontece **depois** da montagem do time, como última etapa antes da copa.
 
-1. Ao entrar na tela, o sorteio já começa: uma **grade com as 12 fichas A–L** e um destaque que salta de ficha em ficha em sequência, desacelerando (cadeia única de timeouts com easing cúbico, ~2–3s) até **parar no grupo sorteado**, que pulsa em destaque antes da revelação
+1. Ao entrar na tela, o sorteio já começa: uma **grade com as 12 fichas A–L** e um destaque que salta de ficha em ficha em sequência, desacelerando (cadeia única de timeouts com easing cúbico, ~1,5s) até **parar no grupo sorteado**, que pulsa em destaque antes da revelação
 2. O grupo é sorteado por `pickGroup()` — **sorteio uniforme**: cada grupo com exatamente 1/12 de chance
 3. Revelação: "Grupo X" em destaque (`animate-reveal-pop`) + **chip de dificuldade colorido** (difícil = `--color-danger`, equilibrado = `--color-warn`, acessível = `--color-ok`) derivado da força média:
    - **Grupo difícil** — média > 74
    - **Grupo equilibrado** — média 72–74
    - **Grupo acessível** — média < 72
-4. As 4 linhas do grupo entram em cascata (`animate-slide-in`). O time do usuário **substitui a seleção mais fraca** (`group.weakest`) e aparece destacado com bandeira 🏳️, badge "VOCÊ", o nome escolhido (`gameConfig.teamName`, fallback "Seu Time") e a **força real** (média de OVR dos 11, mesma conta dos adversários) com barra animada; os adversários aparecem com bandeira (imagem flagcdn via componente `Flag`), **barra de força animada** (`animate-bar-grow`, escala visual OVR 62–82) e o número
+4. As 4 linhas do grupo entram em cascata (`animate-slide-in`). O time do usuário **substitui a seleção mais fraca** (`group.weakest`) e aparece destacado com bandeira 🏳️, badge "VOCÊ", o nome escolhido (`gameConfig.teamName`, fallback "Seleção") e a **força real** (média de OVR dos 11, mesma conta dos adversários) com barra animada; os adversários aparecem com bandeira (imagem flagcdn via componente `Flag`), **barra de força animada** (`animate-bar-grow`, escala visual OVR 62–82) e o número
 5. Nota explicativa: "Seu time entra no lugar de {seleção mais fraca}"
 6. Botão "Começar a copa" — grava o `groupId` no `gameConfig` e navega para a `CupScreen`
 
@@ -425,6 +425,10 @@ A `CupScreen` chama `runTournament(gameConfig)` (`src/engine/cup.js`) **uma úni
 
 Componente único para os dois modos: placar no topo (nomes + gols, atualizado conforme os eventos "acontecem"), rótulo da fase, barra de progresso com o minuto corrente, feed de eventos progressivo e botão de continuar ao fim. O relógio anima 0→90' (ou 120' com prorrogação) via `requestAnimationFrame` — **~3s no Rápido, ~16s no Clássico** — e há um botão "Pular ⏩" que salta para o fim. No Clássico, o campinho simulado (`PitchSim`) entra entre o placar e o feed. Cada evento do feed tem uma barrinha colorida indicando o lado (amarelo = usuário, vermelho = adversário).
 
+> **Regra de design:** nada aparece na tela sem ser verdade na simulação. Todo elemento visual (evento de feed, placar, marcador) reflete algo que o motor de fato calculou — sem enfeites mecanicamente vazios.
+
+**Orientação do placar:** o time do usuário fica **sempre à esquerda** (lado "home" de exibição) em todos os placares — MatchPlay, feed, resultado e chaveamento — independente do mando sorteado pelo motor. A normalização acontece uma única vez em `cup.js#normalizeMatch`: se o usuário for o visitante, o jogo é espelhado (nomes, gols, lados dos eventos e pênaltis).
+
 ### Modo Rápido
 ```
 ┌─────────────────────────────┐
@@ -481,13 +485,17 @@ O resultado do jogo é pré-calculado pelo motor. A animação é uma encenaçã
 
 ### Feed de eventos (ambos os modos)
 
-O motor gera ⚽ gol, 🟨 amarelo e 🟥 vermelho com minutos coerentes — exibidos progressivamente conforme o relógio, com marcadores de "⏱ Prorrogação" e "🥅 Pênaltis — X–Y". Planejados para a UI: 📺 VAR e 🔄 substituição (Modo Clássico).
+O motor gera ⚽ gol e 🟨 amarelo com minutos coerentes — exibidos progressivamente conforme o relógio, com marcadores de "⏱ Prorrogação" e "🥅 Pênaltis — X–Y". O amarelo fica por ser narrativo por natureza (como no futebol real); o **🟥 vermelho foi removido** pela regra de design acima — não tinha efeito mecânico. Volta no Modo Clássico com mecânica real (penalidade de força + suspensão, nunca no goleiro). Planejados para a UI: 📺 VAR e 🔄 substituição (Modo Clássico).
 
 ---
 
 ## 13. Tela de Resultado (implementada — `ResultScreen`)
 
-Três variações pelo mesmo layout: emoji + título, chip da fase alcançada, placar do último jogo (com bandeiras e nota de pênaltis), campinho com os 11 titulares (`FieldPitch`), grade "Sua campanha" com 6 estatísticas (jogos, vitórias, empates, derrotas, gols feitos, gols sofridos — via `campaignStats`) e botão "Jogar de novo" (reseta o `gameConfig` e volta à home).
+Três variações pelo mesmo layout: emoji + título, chip da fase alcançada, contexto do desfecho (ver abaixo), campinho com os 11 titulares (`FieldPitch` com prop `large` — bolinhas e nomes maiores, sangrando parte do padding lateral, legíveis em tela de 360px), grade "Sua campanha" com 6 estatísticas (jogos, vitórias, empates, derrotas, gols feitos, gols sofridos — via `campaignStats`) e botão "Jogar de novo" (reseta o `gameConfig` e volta à home).
+
+**Contexto do desfecho:**
+- **Eliminação na fase de grupos:** mostra a **tabela final do grupo** (componente `GroupTable`, o mesmo da `GroupStageScreen`, com a linha do usuário destacada) — o placar do último jogo confundia, pois podia ter sido vitória
+- **Demais casos (mata-mata, vice, campeão):** placar do último jogo, com bandeiras e nota de pênaltis
 
 - **Campeão:** 🏆 "Campeão do Mundo!" em destaque + chuva de confetes (40 partículas CSS, `animate-confetti`, cores das variáveis do tema)
 - **Vice:** 🥈 "Vice-campeão do Mundo" (derrota na final — distinção além da spec original)

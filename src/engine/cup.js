@@ -17,16 +17,34 @@ export function buildUserTeam(gameConfig) {
 
 // No motor, os jogos da fase de grupos têm home/away como strings e os do
 // mata-mata como objetos de time — normaliza tudo para nomes.
+// Convenção de exibição: o time do usuário fica SEMPRE à esquerda (home) em
+// todos os placares, independente do mando sorteado pelo motor — se o usuário
+// for o visitante, o jogo inteiro é espelhado (nomes, gols, lados dos eventos
+// e pênaltis).
 function normalizeMatch(m) {
+  const homeName = typeof m.home === 'string' ? m.home : m.home.name
+  const awayName = typeof m.away === 'string' ? m.away : m.away.name
+  const flip = awayName === USER_TEAM_NAME
+
   return {
     stage: m.stage,
-    homeName: typeof m.home === 'string' ? m.home : m.home.name,
-    awayName: typeof m.away === 'string' ? m.away : m.away.name,
-    goalsA: m.goalsA,
-    goalsB: m.goalsB,
+    homeName: flip ? awayName : homeName,
+    awayName: flip ? homeName : awayName,
+    goalsA: flip ? m.goalsB : m.goalsA,
+    goalsB: flip ? m.goalsA : m.goalsB,
     extraTime: m.extraTime,
-    penalties: m.penalties,
-    events: m.events,
+    penalties:
+      m.penalties && flip
+        ? {
+            ...m.penalties,
+            scoreA: m.penalties.scoreB,
+            scoreB: m.penalties.scoreA,
+            rounds: m.penalties.rounds.map((r) => ({ a: r.b, b: r.a })),
+          }
+        : m.penalties,
+    events: flip
+      ? m.events.map((e) => ({ ...e, side: e.side === 'home' ? 'away' : 'home' }))
+      : m.events,
     winner: m.winner,
   }
 }

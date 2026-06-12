@@ -283,6 +283,11 @@ function generateMatchEvents(teamA, teamB, goalsA, goalsB, extraTime) {
   addGoals(teamA, 'home', goalsA)
   addGoals(teamB, 'away', goalsB)
 
+  // Regra de design: nada aparece na tela sem ser verdade na simulação.
+  // Amarelos são narrativos por natureza (como no futebol real) e ficam.
+  // Cartão vermelho foi removido por não ter efeito mecânico — volta no
+  // Modo Clássico com mecânica real (penalidade de força + suspensão,
+  // nunca no goleiro).
   ;[
     [teamA, 'home'],
     [teamB, 'away'],
@@ -291,14 +296,6 @@ function generateMatchEvents(teamA, teamB, goalsA, goalsB, extraTime) {
       events.push({
         minute: 1 + Math.floor(Math.random() * maxMinute),
         type: 'yellow',
-        side,
-        player: randomFrom(team.players).name,
-      })
-    }
-    if (Math.random() < 0.05) {
-      events.push({
-        minute: 1 + Math.floor(Math.random() * maxMinute),
-        type: 'red',
         side,
         player: randomFrom(team.players).name,
       })

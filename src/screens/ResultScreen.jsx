@@ -3,6 +3,7 @@ import { useTheme } from '../components/ThemeContext'
 import { useLang } from '../i18n/LangContext'
 import FieldPitch from '../components/FieldPitch'
 import Flag from '../components/Flag'
+import GroupTable from '../components/GroupTable'
 import { FORMATION_LAYOUTS } from '../components/formationLayouts'
 import { USER_TEAM_NAME, campaignStats, stageLabelKey } from '../engine/cup'
 
@@ -49,7 +50,7 @@ function Confetti() {
   )
 }
 
-export default function ResultScreen({ campaign, players, formation, teamName, onPlayAgain }) {
+export default function ResultScreen({ campaign, players, formation, teamName, groupId, groupTable, onPlayAgain }) {
   const { theme } = useTheme()
   const { t } = useLang()
   const isRetro = theme === 'retro'
@@ -57,7 +58,10 @@ export default function ResultScreen({ campaign, players, formation, teamName, o
   const champion = campaign.champion
   const runnerUp = !champion && campaign.stageReached === 'final'
   const stats = campaignStats(campaign.matches)
-  const lastMatch = campaign.matches[campaign.matches.length - 1]
+  // Eliminação na fase de grupos mostra a TABELA FINAL do grupo (o placar do
+  // último jogo confunde — pode ter sido vitória); no mata-mata, o placar.
+  const groupStageExit = campaign.stageReached === 'group_stage'
+  const lastMatch = groupStageExit ? null : campaign.matches[campaign.matches.length - 1]
 
   const layout = FORMATION_LAYOUTS[formation] || FORMATION_LAYOUTS['4-3-3']
   const slots = layout.map((slot, i) => ({ ...slot, player: players[i] }))
@@ -101,7 +105,20 @@ export default function ResultScreen({ campaign, players, formation, teamName, o
         </span>
       </div>
 
-      {/* Placar do último jogo */}
+      {/* Eliminado em grupos: tabela final do grupo */}
+      {groupStageExit && groupTable && (
+        <div className="animate-rise-in" style={{ animationDelay: '250ms' }}>
+          <p
+            className={`text-center text-xs font-bold mb-1 ${isRetro ? 'uppercase' : ''}`}
+            style={{ color: 'var(--color-text-secondary)' }}
+          >
+            {t('group_label')} {groupId}
+          </p>
+          <GroupTable table={groupTable} teamName={teamName} />
+        </div>
+      )}
+
+      {/* Placar do último jogo (mata-mata) */}
       {lastMatch && (
         <div
           className="flex items-center justify-between gap-2 p-3 border-2 animate-rise-in"
@@ -140,8 +157,10 @@ export default function ResultScreen({ campaign, players, formation, teamName, o
         </div>
       )}
 
-      {/* Time no campinho */}
-      <FieldPitch slots={slots} />
+      {/* Time no campinho — versão ampliada, sangrando parte do padding lateral */}
+      <div className="-mx-2">
+        <FieldPitch slots={slots} large />
+      </div>
 
       {/* Estatísticas da campanha */}
       <h2 className={`text-sm font-bold mt-1 ${isRetro ? 'uppercase' : ''}`}>{t('campaign_title')}</h2>

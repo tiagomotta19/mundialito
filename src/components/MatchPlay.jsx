@@ -5,7 +5,7 @@ import { PitchLines } from './FieldPitch'
 import { FORMATION_LAYOUTS } from './formationLayouts'
 import { USER_TEAM_NAME } from '../engine/cup'
 
-const EVENT_ICONS = { goal: '⚽', yellow: '🟨', red: '🟥' }
+const EVENT_ICONS = { goal: '⚽', yellow: '🟨' }
 const FAST_DURATION = 3000
 const CLASSIC_DURATION = 16000
 const SIM_TICK = 300

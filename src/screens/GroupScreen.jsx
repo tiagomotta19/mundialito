@@ -33,11 +33,11 @@ export default function GroupScreen({ gameConfig, onBack, onContinue }) {
   const timersRef = useRef([])
 
   // Sorteio: o destaque percorre as fichas A-L desacelerando até parar no
-  // grupo sorteado (cadeia única de timeouts — sem interval paralelo)
+  // grupo sorteado (cadeia única de timeouts — sem interval paralelo), ~1,5s
   useEffect(() => {
     const result = pickGroup()
     const targetIdx = GROUP_IDS.indexOf(result)
-    const totalSteps = GROUP_IDS.length * 2 + targetIdx
+    const totalSteps = GROUP_IDS.length + targetIdx
     let step = 0
 
     const tick = () => {
@@ -49,7 +49,7 @@ export default function GroupScreen({ gameConfig, onBack, onContinue }) {
         return
       }
       const progress = step / totalSteps
-      const delay = 45 + 240 * progress ** 3
+      const delay = 38 + 130 * progress ** 3
       step++
       timersRef.current.push(setTimeout(tick, delay))
     }
