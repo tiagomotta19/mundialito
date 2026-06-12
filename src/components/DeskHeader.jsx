@@ -24,7 +24,7 @@ export default function DeskHeader({ onBack, right }) {
           )}
           <span className="text-3xl font-black tracking-tight leading-none whitespace-nowrap">
             {t('app_name_1')}
-            <span style={{ color: 'var(--color-accent)' }}>{t('app_name_2')}</span>
+            {t('app_name_2')}
           </span>
           <span
             className="hidden lg:block text-[10px] font-bold uppercase tracking-[0.22em] truncate self-end pb-1"

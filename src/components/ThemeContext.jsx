@@ -5,7 +5,7 @@ const ThemeContext = createContext(null)
 const STORAGE_KEY = 'mundialito_theme'
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(() => localStorage.getItem(STORAGE_KEY) || 'moderno')
+  const [theme, setTheme] = useState(() => localStorage.getItem(STORAGE_KEY) || 'retro')
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, theme)
