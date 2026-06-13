@@ -300,10 +300,12 @@ A cada jogo, cada jogador recebe uma oscilação aleatória no OVR:
 
 | Faixa de OVR | Range de oscilação | Chance de oscilar |
 |---|---|---|
-| 0–69 | -3 a +3 | 30% |
-| 70–79 | -2 a +2 | 20% |
-| 80–89 | -1 a +2 | 15% |
-| 90–100 | -1 a +1 | 5% |
+| 0–69 | -3 a +3 | 45% |
+| 70–79 | -2 a +2 | 40% |
+| 80–89 | -1 a +2 | 30% |
+| 90–100 | -1 a +1 | 18% |
+
+> **Calibragem de visibilidade (2026-06-13):** as chances foram elevadas de 30/20/15/5% para 45/40/30/18% (ranges mantidos) porque a tela entre-jogos do Modo Clássico ficava cheia de "—" — a oscilação comparada ao jogo anterior raramente mudava, esvaziando a decisão de substituição. Agora um craque (90+) mostra variação em ~1/3 dos jogos e um mediano (80-89) em ~metade, mantendo a hierarquia (elite mais estável que mediano). Reaplicado nos dois pontos do código (`applyOscillation` e `gameDelta` do `classic.js`) e revalidado: as metas de título da 9.9 (Rápido) e a curva do Clássico ficaram dentro do ruído — mais visível, não mais aleatório no agregado.
 
 Jogadores bons têm leve assimetria positiva (range inclui +2 na faixa 80-89).  
 O OVR exibido ao usuário no Modo Clássico reflete a oscilação do jogo atual, com seta indicando variação em relação ao jogo anterior.

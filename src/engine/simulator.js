@@ -20,10 +20,10 @@ export const FORMATIONS = {
 
 export function applyOscillation(ovr) {
   let tier
-  if (ovr <= 69) tier = { chance: 0.30, min: -3, max: 3 }
-  else if (ovr <= 79) tier = { chance: 0.20, min: -2, max: 2 }
-  else if (ovr <= 89) tier = { chance: 0.15, min: -1, max: 2 }
-  else tier = { chance: 0.05, min: -1, max: 1 }
+  if (ovr <= 69) tier = { chance: 0.45, min: -3, max: 3 }
+  else if (ovr <= 79) tier = { chance: 0.40, min: -2, max: 2 }
+  else if (ovr <= 89) tier = { chance: 0.30, min: -1, max: 2 }
+  else tier = { chance: 0.18, min: -1, max: 1 }
 
   if (Math.random() > tier.chance) return { ovr, delta: 0 }
 

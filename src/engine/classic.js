@@ -55,10 +55,10 @@ const fatiguePositiveFactor = (ovr) => (ovr >= 85 ? 0.6 : ovr >= 75 ? 0.45 : 0.3
 // oscilação positiva sair (efeito da fadiga).
 function gameDelta(ovr, positiveFactor = 1) {
   let tier
-  if (ovr <= 69) tier = { chance: 0.3, min: -3, max: 3 }
-  else if (ovr <= 79) tier = { chance: 0.2, min: -2, max: 2 }
-  else if (ovr <= 89) tier = { chance: 0.15, min: -1, max: 2 }
-  else tier = { chance: 0.05, min: -1, max: 1 }
+  if (ovr <= 69) tier = { chance: 0.45, min: -3, max: 3 }
+  else if (ovr <= 79) tier = { chance: 0.4, min: -2, max: 2 }
+  else if (ovr <= 89) tier = { chance: 0.3, min: -1, max: 2 }
+  else tier = { chance: 0.18, min: -1, max: 1 }
 
   if (Math.random() > tier.chance) return 0
   let delta = Math.floor(Math.random() * (tier.max - tier.min + 1)) + tier.min
