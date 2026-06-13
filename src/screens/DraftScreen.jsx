@@ -23,13 +23,30 @@ const REEL_TARGET = REEL_LENGTH - 3
 const REEL_DURATION = 1600
 const AUTO_DRAW_DELAY = 750
 const AUTO_FILL_STEP = 240
-const SKIPS_PER_DRAFT = 2
+// Pulos: Rápido tem 2; Clássico tem 1 só, compartilhado entre titulares e
+// reservas — ter reservas já é uma vantagem.
+const SKIPS_FAST = 2
+const SKIPS_CLASSIC = 1
+const RESERVE_SECTORS = ['DEF', 'MID', 'FWD']
 
 const randomTeam = () => ALL_TEAMS[Math.floor(Math.random() * ALL_TEAMS.length)]
+
+// Um jogador cobre um setor de reserva se for daquele setor ou tiver um papel
+// que mapeie para ele (goleiros ficam de fora — não há reserva de GK).
+const playerCoversSector = (p, sector) =>
+  p.position === sector || playerRoles(p).some((r) => ROLE_TO_POSITION[r] === sector)
 
 function bestAvailable(team, slotRole, used) {
   const candidates = getSquadPlayers(team).filter(
     (p) => isCompatible(p, slotRole) && !used.has(`${team}::${p.name}`)
+  )
+  if (!candidates.length) return null
+  return candidates.reduce((best, p) => (p.ovr > best.ovr ? p : best))
+}
+
+function bestAvailableSector(team, sector, used) {
+  const candidates = getSquadPlayers(team).filter(
+    (p) => playerCoversSector(p, sector) && !used.has(`${team}::${p.name}`)
   )
   if (!candidates.length) return null
   return candidates.reduce((best, p) => (p.ovr > best.ovr ? p : best))
@@ -41,22 +58,26 @@ function ovrColor(ovr) {
   return 'var(--color-text-secondary)'
 }
 
-export default function DraftScreen({ formation, onBack, onContinue }) {
+export default function DraftScreen({ formation, mode, onBack, onContinue }) {
   const { theme } = useTheme()
   const { t } = useLang()
   const isRetro = theme === 'retro'
   const isDesk = useMediaQuery(DESK_QUERY)
+  const isClassic = mode === 'classic'
 
   const layout = FORMATION_LAYOUTS[formation] || FORMATION_LAYOUTS['4-3-3']
 
   const [slots, setSlots] = useState(() => layout.map((slot) => ({ ...slot, player: null })))
+  const [reserveSlots, setReserveSlots] = useState(() =>
+    isClassic ? RESERVE_SECTORS.map((sector) => ({ sector, player: null })) : []
+  )
   const [phase, setPhase] = useState('idle') // idle | spinning | drawn | placed | auto
   const [reel, setReel] = useState(null)
   const [drawnTeam, setDrawnTeam] = useState(null)
   const [selectedPlayer, setSelectedPlayer] = useState(null)
   const [usedPlayers, setUsedPlayers] = useState(() => new Set())
-  const [skipsLeft, setSkipsLeft] = useState(SKIPS_PER_DRAFT)
-  const [lastPlaced, setLastPlaced] = useState(null) // { index, player }
+  const [skipsLeft, setSkipsLeft] = useState(isClassic ? SKIPS_CLASSIC : SKIPS_FAST)
+  const [lastPlaced, setLastPlaced] = useState(null) // { index, player } | { reserve, sector, player }
   const [teamName, setTeamName] = useState('')
 
   const stripRef = useRef(null)
@@ -71,10 +92,28 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
   useEffect(() => clearTimers, [])
 
   const filledCount = slots.filter((s) => s.player).length
-  const allFilled = filledCount === slots.length
+  const allTitularFilled = filledCount === slots.length
+  const reservesFilled = reserveSlots.filter((s) => s.player).length
+  const allReservesFilled = !isClassic || reservesFilled === reserveSlots.length
+  // Fase de reservas: titular pronto, faltam reservas (só no Clássico)
+  const draftingReserves = isClassic && allTitularFilled && !allReservesFilled
+  // Resumo final: titular + reservas completos
+  const allFilled = allTitularFilled && allReservesFilled
 
   const hasVacantCompatibleSlot = (player) =>
-    slots.some((s) => !s.player && isCompatible(player, s.role))
+    draftingReserves
+      ? reserveSlots.some((s) => !s.player && playerCoversSector(player, s.sector))
+      : slots.some((s) => !s.player && isCompatible(player, s.role))
+
+  // Dica contextual da seleção sorteada e progresso do header por fase
+  const pickHint = selectedPlayer
+    ? draftingReserves
+      ? t('draft_pick_reserve')
+      : t('draft_pick_field')
+    : t('draft_select_player')
+  const headerCount = draftingReserves ? reservesFilled : filledCount
+  const headerTotal = draftingReserves ? reserveSlots.length : slots.length
+  const headerTitle = draftingReserves ? t('reserves_title') : t('draft_title')
 
   const squadHasCompatible = (team) =>
     getSquadPlayers(team).some(
@@ -159,7 +198,29 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
     setDrawnTeam(null)
     setLastPlaced({ index, player })
 
-    if (filledCount + 1 < slots.length) {
+    // Próximo sorteio automático enquanto faltar titular; no Clássico, ao
+    // completar o titular, segue direto para o sorteio das reservas.
+    if (filledCount + 1 < slots.length || isClassic) {
+      setPhase('placed')
+      pushTimer(setTimeout(startDraw, AUTO_DRAW_DELAY))
+    } else {
+      setPhase('idle')
+    }
+  }
+
+  const handlePickReserveSlot = (index) => {
+    const slot = reserveSlots[index]
+    if (!selectedPlayer || slot.player) return
+    if (!playerCoversSector(selectedPlayer, slot.sector)) return
+
+    const player = { ...selectedPlayer, sector: slot.sector }
+    setReserveSlots((prev) => prev.map((s, i) => (i === index ? { ...s, player } : s)))
+    setUsedPlayers((prev) => new Set(prev).add(`${drawnTeam}::${selectedPlayer.name}`))
+    setSelectedPlayer(null)
+    setDrawnTeam(null)
+    setLastPlaced({ reserve: true, sector: slot.sector, player: selectedPlayer })
+
+    if (reservesFilled + 1 < reserveSlots.length) {
       setPhase('placed')
       pushTimer(setTimeout(startDraw, AUTO_DRAW_DELAY))
     } else {
@@ -178,6 +239,51 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
     setDrawnTeam(null)
 
     const used = new Set(usedPlayers)
+
+    // Fase de reservas: preenche os setores vagos com o melhor disponível
+    if (draftingReserves) {
+      const plan = []
+      reserveSlots.forEach((slot, index) => {
+        if (slot.player) return
+        let pick = null
+        let pickTeam = null
+        for (let attempt = 0; attempt < 15 && !pick; attempt++) {
+          const team = randomTeam()
+          const best = bestAvailableSector(team, slot.sector, used)
+          if (best) {
+            pick = best
+            pickTeam = team
+          }
+        }
+        if (!pick) {
+          ALL_TEAMS.forEach((team) => {
+            const best = bestAvailableSector(team, slot.sector, used)
+            if (best && (!pick || best.ovr > pick.ovr)) {
+              pick = best
+              pickTeam = team
+            }
+          })
+        }
+        if (!pick) return
+        used.add(`${pickTeam}::${pick.name}`)
+        plan.push({ index, player: { ...pick, sector: slot.sector } })
+      })
+
+      setUsedPlayers(used)
+      plan.forEach((step, k) => {
+        pushTimer(
+          setTimeout(() => {
+            setReserveSlots((prev) =>
+              prev.map((s, i) => (i === step.index ? { ...s, player: step.player } : s))
+            )
+            setLastPlaced({ reserve: true, sector: step.player.sector, player: step.player })
+            if (k === plan.length - 1) setPhase('idle')
+          }, (k + 1) * AUTO_FILL_STEP)
+        )
+      })
+      return
+    }
+
     const plan = []
 
     slots.forEach((slot, index) => {
@@ -214,6 +320,8 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
         setTimeout(() => {
           setSlots((prev) => prev.map((s, i) => (i === step.index ? { ...s, player: step.player } : s)))
           setLastPlaced(step)
+          // No Clássico, terminar o titular libera o sorteio das reservas
+          if (k === plan.length - 1) setPhase('idle')
         }, (k + 1) * AUTO_FILL_STEP)
       )
     })
@@ -250,6 +358,10 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
         slotRole: s.role,
         position: ROLE_TO_POSITION[s.role],
       })),
+      // Reservas (Modo Clássico): 1 por setor, com o setor explícito
+      reserves: isClassic
+        ? reserveSlots.map((s) => ({ ...s.player, sector: s.sector }))
+        : [],
       teamName: teamName.trim() || null,
     })
 
@@ -336,6 +448,69 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
     </button>
   )
 
+  // Faixa das 3 reservas (Modo Clássico): durante o sorteio das reservas, o
+  // setor compatível com o jogador selecionado acende e fica clicável.
+  const reservesStrip = isClassic && allTitularFilled && (
+    <div className="flex items-center gap-2 w-full">
+      <span
+        className={`text-[10px] font-bold shrink-0 ${isRetro ? 'uppercase' : ''}`}
+        style={{ color: 'var(--color-text-secondary)' }}
+      >
+        {t('reserves_title')}
+      </span>
+      <div className="flex-1 grid grid-cols-3 gap-1.5">
+        {reserveSlots.map((slot, i) => {
+          const compatible =
+            draftingReserves &&
+            selectedPlayer &&
+            !slot.player &&
+            playerCoversSector(selectedPlayer, slot.sector)
+          return (
+            <button
+              key={slot.sector}
+              type="button"
+              disabled={!compatible}
+              onClick={() => handlePickReserveSlot(i)}
+              className={`flex items-center gap-1.5 px-2 py-1.5 border-2 text-left ${compatible ? 'animate-fill-pulse' : ''}`}
+              style={{
+                borderColor: compatible ? POSITION_COLOR[slot.sector] : 'var(--color-border)',
+                background: compatible ? 'var(--color-highlight-bg)' : 'transparent',
+                borderRadius: 'var(--radius)',
+                opacity: !slot.player && draftingReserves && !compatible ? 0.55 : 1,
+              }}
+            >
+              <span
+                className="text-[9px] font-bold px-1 py-0.5 border shrink-0"
+                style={{
+                  color: POSITION_COLOR[slot.sector],
+                  borderColor: POSITION_COLOR[slot.sector],
+                  borderRadius: 'var(--radius)',
+                }}
+              >
+                {slot.sector}
+              </span>
+              {slot.player ? (
+                <>
+                  <span className="flex-1 text-[11px] font-bold truncate">{slot.player.name}</span>
+                  <span
+                    className="text-xs font-bold tabular-nums"
+                    style={{ color: ovrColor(slot.player.ovr) }}
+                  >
+                    {slot.player.ovr}
+                  </span>
+                </>
+              ) : (
+                <span className="flex-1 text-[10px]" style={{ color: 'var(--color-text-muted)' }}>
+                  —
+                </span>
+              )}
+            </button>
+          )
+        })}
+      </div>
+    </div>
+  )
+
   // -------------------------------------------------------------------------
   // Layout desktop (>900px): três colunas estilo caderno esportivo —
   // sorteio e lista à esquerda, campo vertical grande no centro, box score
@@ -361,8 +536,8 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
                 {formation || '4-3-3'}
               </span>
               <span className="text-2xl font-black tabular-nums leading-none">
-                {filledCount}
-                <span style={{ color: 'var(--color-text-muted)' }}>/{slots.length}</span>
+                {headerCount}
+                <span style={{ color: 'var(--color-text-muted)' }}>/{headerTotal}</span>
               </span>
             </>
           }
@@ -462,7 +637,7 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
                     </div>
                     <div className="mt-4 flex items-center justify-between gap-3">
                       <span className="text-[11px]" style={{ color: 'var(--color-text-secondary)' }}>
-                        {selectedPlayer ? t('draft_pick_field') : t('draft_select_player')}
+                        {pickHint}
                       </span>
                       {skipButton}
                     </div>
@@ -570,17 +745,18 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
             )}
           </aside>
 
-          {/* Coluna central: campo vertical grande */}
-          <main className="flex flex-col items-center min-w-0">
+          {/* Coluna central: campo vertical grande + reservas (Clássico) */}
+          <main className="flex flex-col items-center min-w-0 gap-4">
             <div className="w-full max-w-[460px]">
               <FieldPitch
                 vertical
                 slots={slots}
-                selectedPlayer={allFilled ? null : selectedPlayer}
+                selectedPlayer={allFilled || draftingReserves ? null : selectedPlayer}
                 lastPlacedIdx={lastPlaced?.index}
-                onPickSlot={allFilled ? undefined : handlePickSlot}
+                onPickSlot={allFilled || draftingReserves ? undefined : handlePickSlot}
               />
             </div>
+            {reservesStrip && <div className="w-full max-w-[460px]">{reservesStrip}</div>}
           </main>
 
           {/* Coluna direita: box score editorial */}
@@ -754,6 +930,8 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
           })}
         </div>
 
+        {reservesStrip}
+
         <input
           type="text"
           value={teamName}
@@ -802,12 +980,12 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
           >
             ←
           </button>
-          <h1 className={`flex-1 text-lg font-bold ${isRetro ? 'uppercase' : ''}`}>{t('draft_title')}</h1>
+          <h1 className={`flex-1 text-lg font-bold ${isRetro ? 'uppercase' : ''}`}>{headerTitle}</h1>
           <span
             className="text-sm font-bold px-2 py-1 border-2"
             style={{ borderColor: 'var(--color-border)', borderRadius: 'var(--radius)' }}
           >
-            {filledCount}/{slots.length}
+            {headerCount}/{headerTotal}
           </span>
         </div>
         <div
@@ -816,7 +994,7 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
         >
           <div
             className="h-full rounded-full transition-all duration-500"
-            style={{ width: `${(filledCount / slots.length) * 100}%`, background: 'var(--color-accent)' }}
+            style={{ width: `${(headerCount / headerTotal) * 100}%`, background: 'var(--color-accent)' }}
           />
         </div>
       </div>
@@ -848,7 +1026,7 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
               <div className="flex flex-col">
                 <span className={`text-base font-bold ${isRetro ? 'uppercase' : ''}`}>{drawnTeam}</span>
                 <span className="text-[11px]" style={{ color: 'var(--color-text-secondary)' }}>
-                  {selectedPlayer ? t('draft_pick_field') : t('draft_select_player')}
+                  {pickHint}
                 </span>
               </div>
             </div>
@@ -913,12 +1091,15 @@ export default function DraftScreen({ formation, onBack, onContinue }) {
       {/* Auto-completar */}
       {autoCompleteButton}
 
+      {/* Reservas (Modo Clássico) */}
+      {reservesStrip}
+
       {/* Campinho */}
       <FieldPitch
         slots={slots}
-        selectedPlayer={selectedPlayer}
+        selectedPlayer={draftingReserves ? null : selectedPlayer}
         lastPlacedIdx={lastPlaced?.index}
-        onPickSlot={handlePickSlot}
+        onPickSlot={draftingReserves ? undefined : handlePickSlot}
       />
     </div>
   )

@@ -1,6 +1,6 @@
 # Mundialito — Especificação de Produto
 
-**Versão:** 1.1 (atualizada em 2026-06-10 para refletir o estado atual da implementação)
+**Versão:** 1.2 (atualizada em 2026-06-13 — Modo Clássico completo: reservas, entre-jogos, boost, fadiga, cartões e OVR visível)
 **Stack:** React + Vite + Tailwind CSS (Supabase + Vercel planejados)
 **Plataforma principal:** Mobile (360px). Desktop responsivo.
 **Idiomas:** Português (padrão), Inglês, Espanhol
@@ -31,7 +31,7 @@ Mundialito é um jogo casual de simulação de Copa do Mundo onde o usuário mon
 | Motor de simulação (partida, grupos, copa completa) | ✅ Implementado em `src/engine/simulator.js` |
 | Telas da Copa (animação de jogo, tabela do grupo, mata-mata) | ✅ Implementadas (`CupScreen`, `GroupStageScreen`, `KnockoutScreen`, `MatchPlay`) |
 | Tela de resultado / campeão / eliminação | ✅ Implementada (`ResultScreen`, com confetes para campeão) |
-| Reservas e substituições (Modo Clássico) | ⬜ Não implementadas (modo é escolhido mas ainda não afeta o gameplay) |
+| Reservas e substituições (Modo Clássico) | ✅ Implementadas — draft de 3 reservas, tela entre-jogos, trocas, boost progressivo, fadiga, cartões com suspensão e OVR visível (`classic.js`, `ClassicCupScreen`, `BetweenGamesScreen`) |
 | Salvar imagem / compartilhamento | ⬜ Não implementado |
 | Persistência (Supabase) | ⬜ Não implementada — tudo client-side, sem backend |
 
@@ -62,8 +62,10 @@ src/
     ModeScreen.jsx       — escolha de modo + formação
     DraftScreen.jsx      — montagem do time (sorteio de jogadores + resumo)
     GroupScreen.jsx      — sorteio do grupo
-    CupScreen.jsx        — orquestrador da copa (groups | knockout | result)
-    GroupStageScreen.jsx — 3 jogos do grupo + tabela final
+    CupScreen.jsx        — orquestrador da copa: ramifica por modo (Rápido | Clássico)
+    ClassicCupScreen.jsx — fluxo do Modo Clássico (entre-jogos → partida → tabela → resultado)
+    BetweenGamesScreen.jsx — gestão do elenco entre jogos (14 jogadores, OVR+seta, trocas)
+    GroupStageScreen.jsx — 3 jogos do grupo + tabela final (Modo Rápido)
     KnockoutScreen.jsx   — preview de confronto + jogos do mata-mata
     ResultScreen.jsx     — campeão / vice / eliminado + estatísticas
   components/
@@ -78,9 +80,10 @@ src/
     flags.js           — códigos ISO 3166-1 alpha-2 por seleção (para o flagcdn)
   engine/
     simulator.js       — motor de simulação completo (ver seção 10)
-    cup.js             — orquestração da copa do usuário: USER_TEAM_NAME, runTournament,
-                         normalização de jogos (grupo = nomes, mata-mata = objetos),
+    cup.js             — orquestração da copa do Modo Rápido: USER_TEAM_NAME, runTournament,
+                         normalizeMatch (grupo = nomes, mata-mata = objetos),
                          campaignStats e stageLabelKey
+    classic.js         — orquestrador incremental do Modo Clássico (ver seções 9.8 e 10)
   data/                — squads_final.json, groups.json, bracket.json
 scripts/
   fix-leagues.cjs      — correção única do campo league em squads_final.json
@@ -139,13 +142,13 @@ A navegação é feita por estado local em `App.jsx` (`useState('home')`), sem r
   - 4-3-3 · 4-4-2 · 3-5-2 · 4-2-3-1 · 5-3-2
 - Botão "Continuar" só habilita com modo **e** formação selecionados
 
-**Nota:** o modo escolhido é guardado no `gameConfig` mas ainda não altera o gameplay — as diferenças (substituições, fatores ocultos, animação) entram com as telas da copa.
+**Nota:** o modo escolhido define duas experiências distintas a partir do draft. No Rápido, a copa inteira é simulada de uma vez (`cup.js`) e as telas encenam o resultado. No Clássico, a copa é jogada incrementalmente (`classic.js` / `ClassicCupScreen`): cada jogo do usuário roda com o elenco daquele jogo.
 
-### Comportamento esperado dos modos (a implementar nas telas da copa)
+### Comportamento dos modos
 
-**Modo Rápido:** sem substituições, fatores ocultos mínimos, animação só com placar + barra de progresso + feed (~3s por jogo), chance de título ligeiramente maior (~6-8% com time bom).
+**Modo Rápido:** sem substituições, animação só com placar + barra de progresso + feed (~3s por jogo). Calibração da seção 9.9.
 
-**Modo Clássico:** substituições manuais entre jogos, todos os fatores ocultos ativos, animação com campinho + pontinhos + feed (~15-20s por jogo), chance de título menor (~4-5% com time bom).
+**Modo Clássico:** 1 pulo só no draft (titular + reservas), draft adicional de 3 reservas, gestão de elenco entre jogos, animação com campinho (~16s por jogo) e todas as mecânicas da seção 9.8 (boost progressivo no mata-mata, fadiga, cartões com suspensão, OVR visível com variação).
 
 ---
 
@@ -198,9 +201,11 @@ A própria `DraftScreen` troca para a visão de resumo:
 - Campo de texto opcional **"Nome do time"** (máx. 20 caracteres, placeholder "Galáticos FC") — gravado em `gameConfig.teamName` e usado em todas as telas que mostram o time do usuário (sorteio do grupo, placares, tabela, chaveamento, resultado); vazio = fallback `t('your_team')`
 - Botão "Continuar →" (leva ao sorteio do grupo)
 
-### Reservas (Modo Clássico — não implementado)
+### Reservas (Modo Clássico — implementado)
 
-Planejado: após o titular, sortear 3 reservas (1 DEF, 1 MID, 1 FWD) pelo mesmo processo, com 1 pulo adicional.
+Após completar os 11 titulares, o Modo Clássico entra numa fase de **reservas**: 3 slots (1 DEF, 1 MID, 1 FWD), preenchidos pela mesma roleta, com compatibilidade **por setor** (um reserva DEF cobre qualquer papel defensivo; goleiros não entram). A faixa das reservas acende o setor compatível quando um jogador é selecionado. As 3 reservas aparecem no resumo do time, abaixo do campinho, antes do sorteio do grupo, e são gravadas em `gameConfig.reserves` (cada uma com seu `sector`).
+
+> **Pulos no Clássico:** o draft inteiro (titular + reservas) compartilha **1 único pulo** — ter reservas já é uma vantagem. O Modo Rápido mantém 2 pulos e não tem fase de reservas.
 
 ---
 
@@ -342,16 +347,21 @@ Chance mínima = 0.60 | Chance máxima = 0.92
 
 Cobrador sempre favorito. Goleiro pode surpreender.
 
-### 9.8 Fatores adicionais (Modo Clássico — v1)
+### 9.8 Mecânicas do Modo Clássico (implementadas em `src/engine/classic.js`)
 
-**Substituição no momento certo:**  
-Se um jogador oscilou negativamente em 2 jogos seguidos e o usuário o substitui pelo reserva da mesma posição, o substituto recebe bônus de +2 OVR no primeiro jogo ("frescor").
+A copa do Clássico é jogada incrementalmente: tudo que **não** envolve o usuário (os 11 outros grupos e as sub-chaves adversárias do mata-mata) é pré-simulado; os jogos do usuário rodam um a um com o elenco daquele jogo. As cinco mecânicas só afetam os jogos e os jogadores do usuário.
 
-**Fadiga nas fases finais:**  
-Jogadores que disputaram todos os jogos sem substituição acumulam -1 OVR nas semifinais e final.
+**OVR visível com variação:** a cada jogo, cada um dos 14 jogadores recebe a oscilação do jogo (9.3), calculada **fora** do motor para ser exibida na tela entre-jogos com seta e delta (`↑+2` / `↓-1` / `—`) em relação ao jogo anterior. O motor usa exatamente esses valores (o time do usuário entra com `teamAOscillate: false`).
 
-**Fator sede (v2 — não implementar na v1):**  
-EUA, México e Canadá recebem bônus escalonado pela força da seleção. Implementar após calibragem.
+**Boost progressivo no mata-mata:** a partir das oitavas, as seleções principais (Brasil, Argentina, França, Espanha, Alemanha, Inglaterra, Portugal, Holanda, Bélgica) recebem boost acumulado de OVR **antes** do motor calcular: oitavas +0.5 · quartas +1.0 · semis +1.5 · final +2.0 (16-avos sem boost).
+
+**Fadiga (duas camadas) nas semis/final:** jogadores que chegam à semifinal sem nunca ter sido rodados (nunca saíram do XI nem ficaram no banco) entram na fadiga. Camada 1 — chance de ser afetado: OVR 85+ 5% · 75–84 40% · <75 70%. Camada 2 — se afetado, a chance de oscilação **positiva** cai para 60% (85+) / 45% (75–84) / 30% (<75) do normal. Quem foi substituído/rodado em qualquer momento é imune.
+
+**Cartão amarelo com suspensão:** amarelo a 15% por time/jogo (nunca no goleiro). 2 amarelos acumulados na copa → suspenso no jogo seguinte, substituído automaticamente pelo reserva do mesmo setor (ou do setor mais próximo). O usuário nunca começa um jogo com 10.
+
+**Substituições manuais entre jogos:** até 3 trocas titular↔reserva por jogo (mesmo setor), em cima do XI já ajustado por suspensões. Qualquer jogador pode entrar ou sair, sem restrição de histórico.
+
+**Fator sede (v2 — não implementado):** EUA, México e Canadá receberiam bônus escalonado. Implementar após calibragem.
 
 ### 9.9 Dificuldade alvo (empírica)
 
@@ -389,7 +399,11 @@ O motor da seção 9 está implementado e exporta:
 | `simulateGroupStage(groupId, userTeam)` | Fase de grupos do grupo do usuário (round-robin, tabela ordenada) |
 | `simulateFullTournament(userTeam, groupId)` | Copa completa: 12 grupos + 8 melhores terceiros + mata-mata + final + 3º lugar |
 | `getUserCampaign(tournament, userTeam)` | Resumo da campanha do usuário: jogos, fase alcançada, eliminado/campeão |
-| `applyFreshnessBonus(player)` / `applyFatigue(player)` | Fatores do Modo Clássico (9.8) — ainda sem UI |
+| `calculateTeamStrengths(team, { oscillate })` / `simulateMatch(a, b, { teamAOscillate, teamBOscillate, yellowRate })` | Opções retrocompatíveis usadas pelo Modo Clássico (oscilação por time já calculada fora, taxa de amarelo) |
+| `buildGroupTable` / `simulateRoundRobin` / `pickBestThirds` / `assignThirdPlaceSlots` | Helpers de tabela e seeding reusados por `classic.js` |
+| `applyFreshnessBonus(player)` / `applyFatigue(player)` | Helpers legados (9.8 v1) — superados pela lógica de fadiga em `classic.js` |
+
+O Modo Clássico vive em **`src/engine/classic.js`** (`createClassicGame(gameConfig)`): pré-simula a copa adversária, joga os jogos do usuário um a um (`matchInfo`, `play`), resolve os adversários do mata-mata pelas sub-chaves opostas do `bracket.json`, e aplica boost/fadiga/cartões/oscilação (9.8).
 
 **Eventos de partida gerados:** gols (atribuídos a MID/FWD com peso pelo OVR), cartão amarelo (40% de chance por time), cartão vermelho (5%), distribuídos em minutos aleatórios e ordenados cronologicamente.
 
@@ -416,8 +430,8 @@ A `CupScreen` chama `runTournament(gameConfig)` (`src/engine/cup.js`) **uma úni
 - Prorrogação e pênaltis: marcadores no feed ("⏱ Prorrogação", "🥅 Pênaltis — X–Y") e nota "{a}–{b} nos pênaltis" sob o placar
 - Derrota → `ResultScreen` com a fase alcançada; vitória na final → `ResultScreen` com `champion = true`
 
-### Pendente (Modo Clássico — v2)
-- Entre jogos: OVR de cada jogador com seta ↑↓, botão de substituição (1 por jogo, máx. 3 na copa), reservas com OVRs
+### Modo Clássico (implementado — `ClassicCupScreen`)
+A copa do Clássico não usa `runTournament`: `ClassicCupScreen` mantém um controlador (`createClassicGame`) e, antes de cada jogo do usuário, mostra a `BetweenGamesScreen` (OVR de cada jogador com seta ↑↓, suspensões/fadiga, até 3 trocas mesmo setor). O motor roda com o elenco confirmado e a partida é animada pelo `MatchPlay`. Os adversários do mata-mata são resolvidos sob demanda pelas sub-chaves opostas do `bracket.json`. Derrota na semi encerra a campanha (sem disputa de 3º), mantendo os 8 jogos para ser campeão.
 
 ---
 
@@ -485,7 +499,7 @@ O resultado do jogo é pré-calculado pelo motor. A animação é uma encenaçã
 
 ### Feed de eventos (ambos os modos)
 
-O motor gera ⚽ gol e 🟨 amarelo com minutos coerentes — exibidos progressivamente conforme o relógio, com marcadores de "⏱ Prorrogação" e "🥅 Pênaltis — X–Y". O amarelo fica por ser narrativo por natureza (como no futebol real); o **🟥 vermelho foi removido** pela regra de design acima — não tinha efeito mecânico. Volta no Modo Clássico com mecânica real (penalidade de força + suspensão, nunca no goleiro). Planejados para a UI: 📺 VAR e 🔄 substituição (Modo Clássico).
+O motor gera ⚽ gol e 🟨 amarelo com minutos coerentes — exibidos progressivamente conforme o relógio, com marcadores de "⏱ Prorrogação" e "🥅 Pênaltis — X–Y". O amarelo fica por ser narrativo por natureza (como no futebol real) e nunca sai no goleiro. No Modo Clássico ele ganha consequência real: a taxa cai para 15% por time/jogo e 2 amarelos acumulados na copa suspendem o jogador no jogo seguinte (seção 9.8). Planejados para a UI: 📺 VAR.
 
 ---
 
@@ -627,8 +641,9 @@ Todas as strings vivem em `src/i18n/translations.js` (telas inicial, modo, monta
 - [ ] Calibragem do motor via simulações (1.000+ copas automáticas)
 
 ### v2 — Pós-lançamento
-- Reservas e substituições no Modo Clássico (helpers de frescor/fadiga já existem no motor)
-- Fadiga e memória de oscilação
+- [x] Reservas e substituições no Modo Clássico (`classic.js`)
+- [x] Fadiga (duas camadas), boost progressivo, cartões com suspensão, OVR visível
+- Calibragem empírica do Modo Clássico (alvo de % de título por perfil, como na 9.9)
 - Fator sede (EUA, México, Canadá)
 - Ranking global ("quem está na final hoje?")
 - URL de compartilhamento com copa do usuário

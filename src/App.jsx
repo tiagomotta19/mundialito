@@ -46,6 +46,7 @@ function AppShell() {
         <Frame>
           <DraftScreen
             formation={gameConfig?.formation}
+            mode={gameConfig?.mode}
             onBack={() => setScreen('mode')}
             onContinue={(draftInfo) => {
               setGameConfig((prev) => ({ ...prev, ...draftInfo }))

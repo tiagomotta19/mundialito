@@ -3,12 +3,22 @@ import { runTournament } from '../engine/cup'
 import GroupStageScreen from './GroupStageScreen'
 import KnockoutScreen from './KnockoutScreen'
 import ResultScreen from './ResultScreen'
+import ClassicCupScreen from './ClassicCupScreen'
 
 /**
- * Orquestrador da copa: simula o torneio completo UMA vez ao montar
- * (o resultado já existe — as animações são encenação) e percorre as fases.
+ * Orquestrador da copa. No Modo Rápido a copa inteira é simulada UMA vez ao
+ * montar (as animações encenam o resultado pronto). No Modo Clássico a copa é
+ * jogada incrementalmente — os jogos do usuário dependem do elenco de cada
+ * partida — então delega para a ClassicCupScreen.
  */
 export default function CupScreen({ gameConfig, onFinish }) {
+  if (gameConfig.mode === 'classic') {
+    return <ClassicCupScreen gameConfig={gameConfig} onFinish={onFinish} />
+  }
+  return <FastCupScreen gameConfig={gameConfig} onFinish={onFinish} />
+}
+
+function FastCupScreen({ gameConfig, onFinish }) {
   const [game] = useState(() => runTournament(gameConfig))
   const [phase, setPhase] = useState('groups') // groups | knockout | result
 

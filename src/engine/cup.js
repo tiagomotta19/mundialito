@@ -21,7 +21,7 @@ export function buildUserTeam(gameConfig) {
 // todos os placares, independente do mando sorteado pelo motor — se o usuário
 // for o visitante, o jogo inteiro é espelhado (nomes, gols, lados dos eventos
 // e pênaltis).
-function normalizeMatch(m) {
+export function normalizeMatch(m) {
   const homeName = typeof m.home === 'string' ? m.home : m.home.name
   const awayName = typeof m.away === 'string' ? m.away : m.away.name
   const flip = awayName === USER_TEAM_NAME

@@ -145,22 +145,27 @@ function underdogBonus(players) {
   return UNDERDOG_RATE * Math.max(0, UNDERDOG_PIVOT - avg)
 }
 
-function getSectorStrength(sectorPlayers, modifier, bonus = 0) {
+function getSectorStrength(sectorPlayers, modifier, bonus = 0, oscillate = true) {
   if (!sectorPlayers.length) return 0
-  const oscillated = sectorPlayers.map((p) => applyOscillation(p.ovr).ovr)
-  const avg = oscillated.reduce((sum, v) => sum + v, 0) / oscillated.length
+  // No Modo Clássico a oscilação do time do usuário é calculada FORA (para ser
+  // exibida com seta entre jogos), então os OVRs já chegam como os do jogo —
+  // oscillate=false evita oscilar de novo.
+  const values = oscillate
+    ? sectorPlayers.map((p) => applyOscillation(p.ovr).ovr)
+    : sectorPlayers.map((p) => p.ovr)
+  const avg = values.reduce((sum, v) => sum + v, 0) / values.length
   return (avg + bonus) * modifier
 }
 
-export function calculateTeamStrengths(team) {
+export function calculateTeamStrengths(team, { oscillate = true } = {}) {
   const { def, mid, fwd } = buildSectors(team.players)
   const bonus = team.isUser ? underdogBonus(team.players) : 0
   const modifierFor = (sectorPlayers) =>
     team.isUser ? calculateCohesion(sectorPlayers) : getPedigree(team.name)
   return {
-    def: getSectorStrength(def, modifierFor(def), bonus),
-    mid: getSectorStrength(mid, modifierFor(mid), bonus),
-    fwd: getSectorStrength(fwd, modifierFor(fwd), bonus),
+    def: getSectorStrength(def, modifierFor(def), bonus, oscillate),
+    mid: getSectorStrength(mid, modifierFor(mid), bonus, oscillate),
+    fwd: getSectorStrength(fwd, modifierFor(fwd), bonus, oscillate),
   }
 }
 
@@ -262,7 +267,7 @@ function weightedPick(players) {
   return players[players.length - 1]
 }
 
-function generateMatchEvents(teamA, teamB, goalsA, goalsB, extraTime) {
+function generateMatchEvents(teamA, teamB, goalsA, goalsB, extraTime, yellowRate = 0.4) {
   const maxMinute = extraTime ? 120 : 90
   const events = []
 
@@ -292,12 +297,15 @@ function generateMatchEvents(teamA, teamB, goalsA, goalsB, extraTime) {
     [teamA, 'home'],
     [teamB, 'away'],
   ].forEach(([team, side]) => {
-    if (Math.random() < 0.40) {
+    if (Math.random() < yellowRate) {
+      // Goleiros nunca recebem cartão (regra da spec)
+      const eligible = team.players.filter((p) => p.position !== 'GK')
+      const pool = eligible.length ? eligible : team.players
       events.push({
         minute: 1 + Math.floor(Math.random() * maxMinute),
         type: 'yellow',
         side,
-        player: randomFrom(team.players).name,
+        player: randomFrom(pool).name,
       })
     }
   })
@@ -309,9 +317,13 @@ function generateMatchEvents(teamA, teamB, goalsA, goalsB, extraTime) {
 // Simulação de uma partida (9.4 - 9.7)
 // ---------------------------------------------------------------------------
 
-export function simulateMatch(teamA, teamB, { knockout = false } = {}) {
-  const strA = calculateTeamStrengths(teamA)
-  const strB = calculateTeamStrengths(teamB)
+export function simulateMatch(
+  teamA,
+  teamB,
+  { knockout = false, teamAOscillate = true, teamBOscillate = true, yellowRate = 0.4 } = {}
+) {
+  const strA = calculateTeamStrengths(teamA, { oscillate: teamAOscillate })
+  const strB = calculateTeamStrengths(teamB, { oscillate: teamBOscillate })
   const midBonus = midPressureBonus(strA.mid, strB.mid)
 
   let goalsA = generateGoals(strA.fwd, strB.def, midBonus.a)
@@ -330,7 +342,7 @@ export function simulateMatch(teamA, teamB, { knockout = false } = {}) {
     }
   }
 
-  const events = generateMatchEvents(teamA, teamB, goalsA, goalsB, extraTime)
+  const events = generateMatchEvents(teamA, teamB, goalsA, goalsB, extraTime, yellowRate)
 
   let winner = null
   if (penalties) winner = penalties.winner
@@ -431,7 +443,26 @@ function sortStandings(standings, matches) {
   })
 }
 
-function simulateRoundRobin(teams) {
+/**
+ * Monta a tabela de classificação de um grupo a partir de resultados já
+ * decididos (usado pelo Modo Clássico, onde os jogos do usuário são jogados um
+ * a um). `results` = [{ teamA, teamB, goalsA, goalsB }] com os times como
+ * objetos. Reutiliza exatamente os mesmos critérios de desempate do motor.
+ */
+export function buildGroupTable(teams, results) {
+  const standings = {}
+  teams.forEach((team) => {
+    standings[team.name] = { team, points: 0, gf: 0, ga: 0, played: 0, wins: 0, draws: 0, losses: 0 }
+  })
+  const matchesForSort = []
+  results.forEach(({ teamA, teamB, goalsA, goalsB }) => {
+    updateStandings(standings, teamA, teamB, { goalsA, goalsB })
+    matchesForSort.push({ home: teamA.name, away: teamB.name, goalsA, goalsB })
+  })
+  return sortStandings(Object.values(standings), matchesForSort)
+}
+
+export function simulateRoundRobin(teams) {
   const standings = {}
   teams.forEach((team) => {
     standings[team.name] = { team, points: 0, gf: 0, ga: 0, played: 0, wins: 0, draws: 0, losses: 0 }
@@ -465,7 +496,7 @@ export function simulateGroupStage(groupId, userTeam) {
 // Mata-mata (11)
 // ---------------------------------------------------------------------------
 
-function pickBestThirds(thirds) {
+export function pickBestThirds(thirds) {
   return [...thirds]
     .sort((a, b) => {
       if (b.points !== a.points) return b.points - a.points
@@ -477,7 +508,7 @@ function pickBestThirds(thirds) {
     .slice(0, 8)
 }
 
-function assignThirdPlaceSlots(pool, bestThirds) {
+export function assignThirdPlaceSlots(pool, bestThirds) {
   const slotCodes = new Set()
   Object.values(bracketData.round_of_32).forEach((match) => {
     ;[match.home, match.away].forEach((code) => {
