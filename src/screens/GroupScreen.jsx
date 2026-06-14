@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTheme } from '../components/ThemeContext'
+import { useSound } from '../audio/SoundContext'
 import { useLang } from '../i18n/LangContext'
 import { pickGroup, getGroup, getTeamStrength, getGroupDifficulty } from '../engine/simulator'
 import Flag from '../components/Flag'
@@ -19,6 +20,7 @@ const strengthPct = (strength) => Math.max(8, Math.min(100, ((strength - 62) / 2
 
 export default function GroupScreen({ gameConfig, onBack, onContinue }) {
   const { theme } = useTheme()
+  const { play } = useSound()
   const { t } = useLang()
   const isRetro = theme === 'retro'
   const isDesk = useMediaQuery(DESK_QUERY)
@@ -48,9 +50,11 @@ export default function GroupScreen({ gameConfig, onBack, onContinue }) {
       if (step >= totalSteps) {
         setGroupId(result)
         setPhase('landed')
+        play('reelLand')
         timersRef.current.push(setTimeout(() => setPhase('revealed'), 750))
         return
       }
+      play('reelTick')
       const progress = step / totalSteps
       const delay = 38 + 130 * progress ** 3
       step++
@@ -59,6 +63,7 @@ export default function GroupScreen({ gameConfig, onBack, onContinue }) {
     tick()
 
     return () => timersRef.current.forEach(clearTimeout)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const group = groupId ? getGroup(groupId) : null

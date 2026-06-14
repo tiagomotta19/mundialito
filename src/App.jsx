@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { ThemeProvider, useTheme } from './components/ThemeContext'
 import { LangProvider } from './i18n/LangContext'
+import { SoundProvider } from './audio/SoundContext'
+import SoundToggle from './components/SoundToggle'
 import HomeScreen from './screens/HomeScreen'
 import ModeScreen from './screens/ModeScreen'
 import DraftScreen from './screens/DraftScreen'
@@ -26,6 +28,12 @@ function AppShell() {
 
   return (
     <div className={`theme-${theme} app-shell min-h-dvh w-full flex flex-col`}>
+      {/* Toggle de som: nas telas de jogo o mobile usa este botão fixo; o
+          desktop o exibe no DeskHeader (desk:hidden esconde este lá). A Home
+          tem o seu próprio inline na barra de controles. */}
+      {screen !== 'home' && (
+        <SoundToggle className="desk:hidden fixed top-2 right-2 z-30" />
+      )}
       {screen === 'home' && (
         <Frame>
           <HomeScreen onPlay={() => setScreen('mode')} />
@@ -86,7 +94,9 @@ function App() {
   return (
     <ThemeProvider>
       <LangProvider>
-        <AppShell />
+        <SoundProvider>
+          <AppShell />
+        </SoundProvider>
       </LangProvider>
     </ThemeProvider>
   )

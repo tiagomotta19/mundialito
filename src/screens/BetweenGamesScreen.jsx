@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { useTheme } from '../components/ThemeContext'
+import { useSound } from '../audio/SoundContext'
 import { useLang } from '../i18n/LangContext'
 import Flag from '../components/Flag'
 import { POSITION_COLOR } from '../components/formationLayouts'
@@ -22,6 +23,7 @@ function DeltaArrow({ delta }) {
 
 export default function BetweenGamesScreen({ info, teamName, onPlay }) {
   const { theme } = useTheme()
+  const { play } = useSound()
   const { t } = useLang()
   const isRetro = theme === 'retro'
 
@@ -85,6 +87,7 @@ export default function BetweenGamesScreen({ info, teamName, onPlay }) {
         fresh = info.roster.find((r) => r.id === benchRow.id)?.fresh === true
       }
       setSwaps((prev) => [...prev, { outId: starterRow.id, inId: benchRow.id, fresh }])
+      play('substitution')
       setWork((prev) =>
         prev.map((r) => {
           if (r.id === benchRow.id) return { ...r, starter: true, fresh }

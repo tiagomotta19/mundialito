@@ -5,6 +5,7 @@ import { LANGUAGES } from '../i18n/translations'
 import { PitchLines } from '../components/FieldPitch'
 import { useMediaQuery, DESK_QUERY } from '../components/useMediaQuery'
 import PixSupport from '../components/PixSupport'
+import SoundToggle from '../components/SoundToggle'
 
 const PITCH_TICK = 320
 
@@ -385,6 +386,7 @@ export default function HomeScreen({ onPlay }) {
         <div className="w-full max-w-[1280px] mx-auto px-8 pt-6 flex items-center justify-end gap-2 text-xs shrink-0">
           {langSelect}
           {themeButton}
+          <SoundToggle />
         </div>
 
         <div className="flex-1 w-full max-w-[1280px] mx-auto px-8 pb-14 flex flex-col items-center justify-center gap-9">
@@ -473,7 +475,10 @@ export default function HomeScreen({ onPlay }) {
       {/* Topbar */}
       <div className="flex items-center justify-between text-xs mb-2">
         {langSelect}
-        {themeButton}
+        <div className="flex items-center gap-2">
+          {themeButton}
+          <SoundToggle />
+        </div>
       </div>
 
       {/* Logo, campo e passos: a folga vertical da tela vira espaçamento

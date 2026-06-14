@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTheme } from './ThemeContext'
+import { useSound } from '../audio/SoundContext'
 import { useLang } from '../i18n/LangContext'
 import { USER_TEAM_NAME } from '../engine/cup'
 import PitchSim from './PitchSim'
@@ -15,6 +16,7 @@ const CLASSIC_DURATION = 16000
 // ---------------------------------------------------------------------------
 export default function MatchPlay({ match, mode, stageLabel, continueLabel, onContinue, userFormation, teamName }) {
   const { theme } = useTheme()
+  const { play } = useSound()
   const { t } = useLang()
   const isRetro = theme === 'retro'
   const isDesk = useMediaQuery(DESK_QUERY)
@@ -59,6 +61,32 @@ export default function MatchPlay({ match, mode, stageLabel, continueLabel, onCo
   const visible = events.filter((e) => e.minute <= minute)
   const goalsHome = visible.filter((e) => e.type === 'goal' && e.side === 'home').length
   const goalsAway = visible.filter((e) => e.type === 'goal' && e.side === 'away').length
+
+  // Apito inicial ao começar a partida (o MatchPlay remonta a cada jogo)
+  useEffect(() => {
+    play('kickoff')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // Gol: toca a cada novo gol revelado; ao Pular, os gols restantes aparecem
+  // todos de uma vez — aí silenciamos e deixamos só o apito final.
+  const goalsTotal = goalsHome + goalsAway
+  const prevGoalsRef = useRef(0)
+  useEffect(() => {
+    if (goalsTotal > prevGoalsRef.current && !skippedRef.current) play('goal')
+    prevGoalsRef.current = goalsTotal
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [goalsTotal])
+
+  // Apito final, uma vez
+  const fulltimeRef = useRef(false)
+  useEffect(() => {
+    if (finished && !fulltimeRef.current) {
+      fulltimeRef.current = true
+      play('fulltime')
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [finished])
 
   const feed = []
   visible.forEach((e) => {

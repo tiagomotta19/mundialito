@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTheme } from '../components/ThemeContext'
+import { useSound } from '../audio/SoundContext'
 import { useLang } from '../i18n/LangContext'
 import { getSquadPlayers, getAllTeamNames } from '../engine/simulator'
 import { isCompatible, playerRoles } from '../engine/compatibility'
@@ -60,6 +61,7 @@ function ovrColor(ovr) {
 
 export default function DraftScreen({ formation, mode, onBack, onContinue }) {
   const { theme } = useTheme()
+  const { play } = useSound()
   const { t } = useLang()
   const isRetro = theme === 'retro'
   const isDesk = useMediaQuery(DESK_QUERY)
@@ -149,10 +151,18 @@ export default function DraftScreen({ formation, mode, onBack, onContinue }) {
     const start = performance.now()
     const finalX = REEL_TARGET * REEL_CELL - (REEL_WINDOW - REEL_CELL) / 2
     let raf
+    // Tick a cada bandeira que cruza o centro — naturalmente desacelera junto
+    // com o ease-out da fita, dando o ritmo de roleta.
+    let lastCell = -1
     const frame = (now) => {
       const p = Math.min(1, (now - start) / REEL_DURATION)
       const eased = 1 - Math.pow(1 - p, 3)
       if (strip) strip.style.transform = `translateX(${-finalX * eased}px)`
+      const cell = Math.floor((finalX * eased) / REEL_CELL)
+      if (cell !== lastCell) {
+        lastCell = cell
+        play('reelTick')
+      }
       if (p < 1) {
         raf = requestAnimationFrame(frame)
       } else {
@@ -174,6 +184,12 @@ export default function DraftScreen({ formation, mode, onBack, onContinue }) {
     // a animação da fita. Durante o spin os valores que ela lê não mudam.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, reel])
+
+  // Som da roleta parando na seleção sorteada
+  useEffect(() => {
+    if (phase === 'drawn') play('reelLand')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase])
 
   const handleSkip = () => {
     if (!skipsLeft) return
@@ -197,6 +213,7 @@ export default function DraftScreen({ formation, mode, onBack, onContinue }) {
     setSelectedPlayer(null)
     setDrawnTeam(null)
     setLastPlaced({ index, player })
+    play('place')
 
     // Próximo sorteio automático enquanto faltar titular; no Clássico, ao
     // completar o titular, segue direto para o sorteio das reservas.
@@ -219,6 +236,7 @@ export default function DraftScreen({ formation, mode, onBack, onContinue }) {
     setSelectedPlayer(null)
     setDrawnTeam(null)
     setLastPlaced({ reserve: true, sector: slot.sector, player: selectedPlayer })
+    play('place')
 
     if (reservesFilled + 1 < reserveSlots.length) {
       setPhase('placed')
@@ -277,6 +295,7 @@ export default function DraftScreen({ formation, mode, onBack, onContinue }) {
               prev.map((s, i) => (i === step.index ? { ...s, player: step.player } : s))
             )
             setLastPlaced({ reserve: true, sector: step.player.sector, player: step.player })
+            play('place', { soft: true })
             if (k === plan.length - 1) setPhase('idle')
           }, (k + 1) * AUTO_FILL_STEP)
         )
@@ -320,6 +339,7 @@ export default function DraftScreen({ formation, mode, onBack, onContinue }) {
         setTimeout(() => {
           setSlots((prev) => prev.map((s, i) => (i === step.index ? { ...s, player: step.player } : s)))
           setLastPlaced(step)
+          play('place', { soft: true })
           // No Clássico, terminar o titular libera o sorteio das reservas
           if (k === plan.length - 1) setPhase('idle')
         }, (k + 1) * AUTO_FILL_STEP)

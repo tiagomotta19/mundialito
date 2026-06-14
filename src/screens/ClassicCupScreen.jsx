@@ -1,5 +1,6 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTheme } from '../components/ThemeContext'
+import { useSound } from '../audio/SoundContext'
 import { useLang } from '../i18n/LangContext'
 import { createClassicGame } from '../engine/classic'
 import MatchPlay from '../components/MatchPlay'
@@ -17,6 +18,7 @@ import { useMediaQuery, DESK_QUERY } from '../components/useMediaQuery'
  */
 export default function ClassicCupScreen({ gameConfig, onFinish }) {
   const { theme } = useTheme()
+  const { play } = useSound()
   const { t } = useLang()
   const isRetro = theme === 'retro'
   const isDesk = useMediaQuery(DESK_QUERY)
@@ -29,6 +31,12 @@ export default function ClassicCupScreen({ gameConfig, onFinish }) {
   const [info, setInfo] = useState(() => game.matchInfo())
   const [played, setPlayed] = useState(null) // resultado do último jogo + rótulos
   const [step, setStep] = useState(0) // chave de remontagem do MatchPlay
+
+  // Tom de classificado/eliminado ao revelar a tabela final do grupo
+  useEffect(() => {
+    if (view === 'groupTable') play(game.isQualified() ? 'qualified' : 'eliminated')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [view])
 
   const matchStageLabel = (i) =>
     i.isKnockout

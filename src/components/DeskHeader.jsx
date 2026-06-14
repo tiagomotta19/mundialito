@@ -1,4 +1,5 @@
 import { useLang } from '../i18n/LangContext'
+import SoundToggle from './SoundToggle'
 
 /**
  * Cabeçalho editorial do layout desktop (>900px): wordmark tipográfico com
@@ -33,7 +34,10 @@ export default function DeskHeader({ onBack, right }) {
             {t('tagline')}
           </span>
         </div>
-        {right && <div className="flex items-center gap-3 shrink-0">{right}</div>}
+        <div className="flex items-center gap-3 shrink-0">
+          <SoundToggle />
+          {right}
+        </div>
       </div>
     </header>
   )

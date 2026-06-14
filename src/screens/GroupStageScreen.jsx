@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTheme } from '../components/ThemeContext'
+import { useSound } from '../audio/SoundContext'
 import { useLang } from '../i18n/LangContext'
 import MatchPlay from '../components/MatchPlay'
 import GroupTable from '../components/GroupTable'
@@ -8,12 +9,19 @@ import { useMediaQuery, DESK_QUERY } from '../components/useMediaQuery'
 
 export default function GroupStageScreen({ groupId, matches, table, qualified, mode, userFormation, teamName, onComplete }) {
   const { theme } = useTheme()
+  const { play } = useSound()
   const { t } = useLang()
   const isRetro = theme === 'retro'
   const isDesk = useMediaQuery(DESK_QUERY)
 
   const [idx, setIdx] = useState(0)
   const [view, setView] = useState('match') // match | table
+
+  // Tom de classificado/eliminado ao revelar a tabela final do grupo
+  useEffect(() => {
+    if (view === 'table') play(qualified ? 'qualified' : 'eliminated')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [view])
 
   if (view === 'match') {
     const isLast = idx === matches.length - 1

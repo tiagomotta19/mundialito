@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useTheme } from '../components/ThemeContext'
+import { useSound } from '../audio/SoundContext'
 import { useLang } from '../i18n/LangContext'
 import MatchPlay from '../components/MatchPlay'
 import Flag from '../components/Flag'
@@ -10,6 +11,7 @@ import { USER_TEAM_NAME, stageLabelKey } from '../engine/cup'
 
 export default function KnockoutScreen({ matches, mode, userFormation, teamName, onComplete }) {
   const { theme } = useTheme()
+  const { play } = useSound()
   const { t } = useLang()
   const isRetro = theme === 'retro'
   const isDesk = useMediaQuery(DESK_QUERY)
@@ -194,6 +196,7 @@ export default function KnockoutScreen({ matches, mode, userFormation, teamName,
         if (!userWon || isFinal) {
           onComplete()
         } else {
+          play('advance')
           setIdx(idx + 1)
           setView('preview')
         }

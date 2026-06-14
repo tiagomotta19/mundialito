@@ -1,5 +1,6 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useTheme } from '../components/ThemeContext'
+import { useSound } from '../audio/SoundContext'
 import { useLang } from '../i18n/LangContext'
 import FieldPitch from '../components/FieldPitch'
 import Flag from '../components/Flag'
@@ -57,12 +58,19 @@ function Confetti() {
 
 export default function ResultScreen({ campaign, players, formation, teamName, groupId, groupTable, onPlayAgain }) {
   const { theme } = useTheme()
+  const { play } = useSound()
   const { t } = useLang()
   const isRetro = theme === 'retro'
   const isDesk = useMediaQuery(DESK_QUERY)
   const [showPix, setShowPix] = useState(false)
 
   const champion = campaign.champion
+
+  // Fanfarra de campeão, ou cadência de fim de jornada sem o título
+  useEffect(() => {
+    play(champion ? 'champion' : 'defeat')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   const runnerUp = !champion && campaign.stageReached === 'final'
   const stats = campaignStats(campaign.matches)
   // Eliminação na fase de grupos mostra a TABELA FINAL do grupo (o placar do
