@@ -7,7 +7,7 @@ import { FORMATION_LAYOUTS } from '../components/formationLayouts'
 // bandeira do adversário do flagcdn (emoji de bandeira não renderiza no Windows).
 const W = 1080
 const H = 1920
-const SITE_URL = 'mundialito-theta.vercel.app'
+const SITE_URL = 'mundialito26pro.vercel.app'
 
 function lastName(name) {
   return name.split(' ').pop()
