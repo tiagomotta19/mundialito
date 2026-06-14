@@ -39,10 +39,16 @@ const KNOCKOUT_BOOST = {
 const MAX_SWAPS = 3
 const CLASSIC_YELLOW_RATE = 0.15
 const SECTORS = ['DEF', 'MID', 'FWD']
-// Frescor: reserva que ENTRA no XI (troca manual ou cobertura de suspensão)
-// joga o primeiro jogo com este bônus de OVR — recompensa rodar/substituir.
-// Só no jogo em que entra; se permanece, deixa de valer.
+// Frescor: reserva que ENTRA no XI joga o jogo com este bônus de OVR, só no jogo
+// em que entra. Agora é PROBABILÍSTICO, não garantido — vira aposta/leitura:
+// - chance ALTA quando a entrada tem mérito: cobre suspensão (forçada) ou
+//   substitui um titular em baixa (seta ↓ neste jogo);
+// - chance BAIXA na rotação "à toa" (titular que não caiu).
+// O dado é travado por reserva no jogo (cobertura: aqui; troca manual: na tela),
+// então desfazer e repor o mesmo jogador não re-rola (sem save-scum).
 const FRESHNESS_BONUS = 2
+const FRESH_CHANCE_MERIT = 0.75
+const FRESH_CHANCE_RANDOM = 0.3
 
 const clampOvr = (v) => Math.min(99, Math.max(30, v))
 
@@ -296,13 +302,19 @@ export function createClassicGame(gameConfig) {
     // 1. Suspensões: tira o titular suspenso e promove um reserva (mesmo setor
     //    ou o mais próximo). O usuário nunca começa com 10 — se não houver
     //    reserva, o suspenso permanece (caso de borda raríssimo a 15%).
+    // Frescor realizado neste jogo, por id de quem ENTRA. Cobertura de suspensão
+    // é entrada forçada → conta como mérito (chance alta). Trocas manuais entram
+    // depois, com o dado rolado na tela (em `play`).
+    const freshById = new Map()
     const autoSubs = []
     slots
       .filter((s) => s.player.suspendedNext)
       .forEach((slot) => {
         const repl = pickReserveFor(slot.sector)
         if (repl) {
-          autoSubs.push({ outId: slot.player.id, inId: repl.id, role: slot.role })
+          const fresh = Math.random() < FRESH_CHANCE_MERIT
+          freshById.set(repl.id, fresh)
+          autoSubs.push({ outId: slot.player.id, inId: repl.id, role: slot.role, fresh })
           moveIntoSlot(slot, repl)
         }
       })
@@ -334,6 +346,7 @@ export function createClassicGame(gameConfig) {
       gameOvr,
       afflicted,
       autoSubs,
+      freshById,
       prevXI,
     }
     return pending
@@ -353,7 +366,9 @@ export function createClassicGame(gameConfig) {
       suspended: player.suspendedNext,
       autoSubIn: p.autoSubs.some((a) => a.inId === player.id),
       fatigued: p.afflicted.has(player.id),
-      fresh: !!slot && !p.prevXI.has(player.id),
+      // Frescor realizado (cobertura de suspensão). Trocas manuais resolvem o
+      // dado na tela; aqui só os titulares pré-trocas (entradas automáticas).
+      fresh: !!slot && p.freshById.get(player.id) === true,
       yellowCount: player.yellowCount,
     })
     return [
@@ -373,6 +388,8 @@ export function createClassicGame(gameConfig) {
       boost: p.boost,
       maxSwaps: MAX_SWAPS,
       freshnessBonus: FRESHNESS_BONUS,
+      freshChanceMerit: FRESH_CHANCE_MERIT,
+      freshChanceRandom: FRESH_CHANCE_RANDOM,
       roster: rosterView(),
     }
   }
@@ -393,18 +410,29 @@ export function createClassicGame(gameConfig) {
     const prep = prepareMatch()
     applySwaps(swaps)
 
+    // Frescor realizado: coberturas de suspensão (roladas em prepareMatch) +
+    // trocas manuais (o dado foi rolado na tela, sem save-scum, e chega em `fresh`).
+    // A troca manual só decide para quem entra DE FATO no XI — recolocar um
+    // titular do jogo anterior ou um já coberto por suspensão não sobrescreve.
+    const freshMap = new Map(prep.freshById)
+    swaps.forEach(({ inId, fresh }) => {
+      if (prep.prevXI.has(inId) || prep.freshById.has(inId)) return
+      freshMap.set(inId, fresh === true)
+    })
+
     const userTeam = {
       name: USER_TEAM_NAME,
       formation,
       isUser: true,
       // position = setor TÁTICO do slot; ovr = OVR do jogo (já exibido) + frescor
-      // para quem entrou no XI neste jogo (não estava no XI anterior)
+      // só para quem entrou no XI neste jogo E teve o frescor confirmado
       players: slots.map((s) => {
         const entered = !prep.prevXI.has(s.player.id)
+        const fresh = entered && freshMap.get(s.player.id) === true
         return {
           ...s.player,
           position: s.sector,
-          ovr: prep.gameOvr.get(s.player.id) + (entered ? FRESHNESS_BONUS : 0),
+          ovr: prep.gameOvr.get(s.player.id) + (fresh ? FRESHNESS_BONUS : 0),
         }
       }),
     }

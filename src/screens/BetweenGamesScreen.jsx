@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useTheme } from '../components/ThemeContext'
 import { useLang } from '../i18n/LangContext'
 import Flag from '../components/Flag'
@@ -29,7 +29,13 @@ export default function BetweenGamesScreen({ info, teamName, onPlay }) {
   const [swaps, setSwaps] = useState([])
   const [selected, setSelected] = useState(null)
 
-  // Titulares originais (antes das trocas): quem entra no XI ganha frescor
+  // Dado de frescor por reserva, travado no jogo: desfazer e repor o mesmo
+  // jogador não re-rola (sem save-scum). Vive enquanto a tela do jogo existir.
+  const manualFreshRef = useRef(new Map())
+
+  // XI do jogo anterior (titulares ao abrir a tela, já com coberturas de
+  // suspensão). Recolocar um deles na própria vaga NÃO é entrada nova → sem
+  // frescor; só reserva que não estava no XI ganha o dado.
   const originalStarters = new Set(info.roster.filter((r) => r.starter).map((r) => r.id))
 
   const selectedItem = work.find((r) => r.id === selected) || null
@@ -56,13 +62,35 @@ export default function BetweenGamesScreen({ info, teamName, onPlay }) {
       return
     }
     if (isSwapTarget(row)) {
-      const starterId = selectedItem.starter ? selectedItem.id : row.id
-      const benchId = selectedItem.starter ? row.id : selectedItem.id
-      setSwaps((prev) => [...prev, { outId: starterId, inId: benchId }])
+      const starterRow = selectedItem.starter ? selectedItem : row
+      const benchRow = selectedItem.starter ? row : selectedItem
+      // Só rola frescor para quem ENTRA de fato no XI (não estava entre os
+      // titulares ao abrir a tela). Recolocar um titular original na própria
+      // vaga não dá frescor — preserva o frescor de origem (ex.: cobertura).
+      const isGenuineEntry = !originalStarters.has(benchRow.id)
+      let fresh
+      if (isGenuineEntry) {
+        // Mérito = o titular que sai está em baixa (↓ neste jogo). Rola o dado
+        // uma vez por reserva e trava no cache (sem save-scum ao refazer).
+        const meritful = starterRow.delta != null && starterRow.delta < 0
+        const cache = manualFreshRef.current
+        if (cache.has(benchRow.id)) {
+          fresh = cache.get(benchRow.id)
+        } else {
+          const chance = meritful ? info.freshChanceMerit : info.freshChanceRandom
+          fresh = Math.random() < chance
+          cache.set(benchRow.id, fresh)
+        }
+      } else {
+        fresh = info.roster.find((r) => r.id === benchRow.id)?.fresh === true
+      }
+      setSwaps((prev) => [...prev, { outId: starterRow.id, inId: benchRow.id, fresh }])
       setWork((prev) =>
-        prev.map((r) =>
-          r.id === row.id || r.id === selectedItem.id ? { ...r, starter: !r.starter } : r
-        )
+        prev.map((r) => {
+          if (r.id === benchRow.id) return { ...r, starter: true, fresh }
+          if (r.id === starterRow.id) return { ...r, starter: false, fresh: false }
+          return r
+        })
       )
       setSelected(null)
     } else {
@@ -124,7 +152,7 @@ export default function BetweenGamesScreen({ info, teamName, onPlay }) {
               <span style={{ color: 'var(--color-danger)' }}>⛔ {t('badge_suspended')}</span>
             )}
             {row.autoSubIn && <span style={{ color: 'var(--color-ok)' }}>↑ {t('badge_in')}</span>}
-            {row.starter && (row.fresh || !originalStarters.has(row.id)) && (
+            {row.starter && row.fresh && (
               <span style={{ color: 'var(--color-ok)' }}>
                 ✨ {t('badge_fresh')} +{info.freshnessBonus}
               </span>
