@@ -21,6 +21,9 @@ src/data/squads_final.backup.json
 # Saída gerada pelos scripts de desenvolvimento
 scripts/enrich-report.txt
 
+# Imagens de referência visual (ficam só no disco local)
+src/assets/references/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
