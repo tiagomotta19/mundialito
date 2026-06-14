@@ -267,17 +267,22 @@ function weightedPick(players) {
   return players[players.length - 1]
 }
 
-function generateMatchEvents(teamA, teamB, goalsA, goalsB, extraTime, yellowRate = 0.4) {
+function generateMatchEvents(teamA, teamB, breakdown, extraTime, yellowRate = 0.4) {
   const maxMinute = extraTime ? 120 : 90
   const events = []
 
-  const addGoals = (team, side, count) => {
+  // Os minutos respeitam ONDE o gol saiu: gols do tempo normal vão para 1–90 e
+  // os da prorrogação para 91–120. Sem isso, um gol do 1º tempo poderia cair no
+  // minuto 100 (e vice-versa), fazendo o placar exibido aos 90' não bater com o
+  // empate que de fato disparou a prorrogação.
+  const addGoals = (team, side, count, minMinute, maxMin) => {
     const scorers = team.players.filter((p) => p.position === 'FWD' || p.position === 'MID')
     const pool = scorers.length ? scorers : team.players
+    const span = maxMin - minMinute + 1
     for (let i = 0; i < count; i++) {
       const scorer = weightedPick(pool)
       events.push({
-        minute: 1 + Math.floor(Math.random() * maxMinute),
+        minute: minMinute + Math.floor(Math.random() * span),
         type: 'goal',
         side,
         player: scorer.name,
@@ -285,8 +290,12 @@ function generateMatchEvents(teamA, teamB, goalsA, goalsB, extraTime, yellowRate
     }
   }
 
-  addGoals(teamA, 'home', goalsA)
-  addGoals(teamB, 'away', goalsB)
+  addGoals(teamA, 'home', breakdown.regA, 1, 90)
+  addGoals(teamB, 'away', breakdown.regB, 1, 90)
+  if (extraTime) {
+    addGoals(teamA, 'home', breakdown.etA, 91, 120)
+    addGoals(teamB, 'away', breakdown.etB, 91, 120)
+  }
 
   // Regra de design: nada aparece na tela sem ser verdade na simulação.
   // Amarelos são narrativos por natureza (como no futebol real) e ficam.
@@ -329,20 +338,29 @@ export function simulateMatch(
   let goalsA = generateGoals(strA.fwd, strB.def, midBonus.a)
   let goalsB = generateGoals(strB.fwd, strA.def, midBonus.b)
 
+  // Placar do tempo normal: é ele que precisa estar empatado para haver
+  // prorrogação, e é ele que a animação mostra aos 90'.
+  const regA = goalsA
+  const regB = goalsB
+  let etA = 0
+  let etB = 0
+
   let extraTime = false
   let penalties = null
 
   if (knockout && goalsA === goalsB) {
     extraTime = true
-    goalsA += generateGoals(strA.fwd, strB.def, midBonus.a, 1 + Math.round(Math.random()))
-    goalsB += generateGoals(strB.fwd, strA.def, midBonus.b, 1 + Math.round(Math.random()))
+    etA = generateGoals(strA.fwd, strB.def, midBonus.a, 1 + Math.round(Math.random()))
+    etB = generateGoals(strB.fwd, strA.def, midBonus.b, 1 + Math.round(Math.random()))
+    goalsA += etA
+    goalsB += etB
 
     if (goalsA === goalsB) {
       penalties = simulatePenalties(teamA, teamB)
     }
   }
 
-  const events = generateMatchEvents(teamA, teamB, goalsA, goalsB, extraTime, yellowRate)
+  const events = generateMatchEvents(teamA, teamB, { regA, regB, etA, etB }, extraTime, yellowRate)
 
   let winner = null
   if (penalties) winner = penalties.winner
