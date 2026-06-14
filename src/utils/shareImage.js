@@ -253,17 +253,47 @@ export async function generateShareImage({
   return canvas
 }
 
+function canvasToBlob(canvas) {
+  return new Promise((resolve) => canvas.toBlob(resolve, 'image/png'))
+}
+
+// Download direto do PNG (comportamento de fallback no desktop / browsers sem
+// Web Share API)
+function downloadBlob(blob) {
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = 'mundialito.png'
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+  setTimeout(() => URL.revokeObjectURL(url), 1000)
+}
+
 export async function downloadShareImage(opts) {
   const canvas = await generateShareImage(opts)
-  canvas.toBlob((blob) => {
-    if (!blob) return
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = 'mundialito.png'
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
-    setTimeout(() => URL.revokeObjectURL(url), 1000)
-  }, 'image/png')
+  const blob = await canvasToBlob(canvas)
+  if (!blob) return
+
+  // Mobile com Web Share API: abre o sheet nativo do sistema (WhatsApp,
+  // Instagram, etc.). Precisa do canShare com o arquivo — nem todo browser que
+  // tem share() suporta compartilhar arquivos.
+  const file = new File([blob], 'mundialito.png', { type: 'image/png' })
+  if (navigator.canShare && navigator.canShare({ files: [file] })) {
+    try {
+      await navigator.share({
+        files: [file],
+        title: 'Mundialito',
+        text: [opts.teamName, opts.resultLabel].filter(Boolean).join(' · '),
+      })
+      return
+    } catch (err) {
+      // Usuário cancelou o sheet → não faz nada; qualquer outra falha cai no
+      // download como rede de segurança.
+      if (err && err.name === 'AbortError') return
+    }
+  }
+
+  // Fallback: download direto do PNG
+  downloadBlob(blob)
 }
