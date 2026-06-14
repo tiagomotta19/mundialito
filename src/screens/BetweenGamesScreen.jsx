@@ -158,6 +158,9 @@ export default function BetweenGamesScreen({ info, teamName, onPlay }) {
               </span>
             )}
             {row.fatigued && <span style={{ color: 'var(--color-warn)' }}>💤 {t('badge_fatigue')}</span>}
+            {row.starter && row.comMoral && (
+              <span style={{ color: 'var(--color-ok)' }}>🔥 {t('badge_morale')}</span>
+            )}
             {row.yellowCount === 1 && !row.suspended && (
               <span style={{ color: 'var(--color-warn)' }}>🟨</span>
             )}

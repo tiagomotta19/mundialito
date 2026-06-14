@@ -50,6 +50,16 @@ const FRESHNESS_BONUS = 2
 const FRESH_CHANCE_MERIT = 0.75
 const FRESH_CHANCE_RANDOM = 0.3
 
+// "Com moral": o reserva que entrou, teve o frescor CONFIRMADO e se firmou no XI
+// joga o(s) próximo(s) jogo(s) embalado — oscilação enviesada pro positivo
+// (negativos quase sempre anulados). NÃO é buff permanente: ~90% de pegar moral
+// no 1º jogo como titular pleno e só ~10% de esticar pra um 2º; depois normaliza.
+// Mesma força média de ~1 jogo do modelo fixo, porém com cauda (momentos raros de
+// "mão quente"). O momentum não sobrevive ao banco: sentar zera a moral.
+const MORALE_FACTOR = 0.8 // prob. de anular um delta NEGATIVO quando com moral
+const MORALE_GRANT_CHANCE = 0.9 // frescor pegou → moral no próximo jogo
+const MORALE_EXTEND_CHANCE = 0.1 // jogou com moral → estica mais um jogo
+
 const clampOvr = (v) => Math.min(99, Math.max(30, v))
 
 // ---------------------------------------------------------------------------
@@ -62,8 +72,9 @@ const fatigueAfflictChance = (ovr) => (ovr >= 85 ? 0.05 : ovr >= 75 ? 0.4 : 0.7)
 const fatiguePositiveFactor = (ovr) => (ovr >= 85 ? 0.6 : ovr >= 75 ? 0.45 : 0.3)
 
 // Retorna o delta de OVR do jogo. positiveFactor < 1 reduz a chance de uma
-// oscilação positiva sair (efeito da fadiga).
-function gameDelta(ovr, positiveFactor = 1) {
+// oscilação positiva sair (efeito da fadiga). moraleFactor > 0 anula deltas
+// negativos com essa probabilidade (efeito do "com moral") — espelho da fadiga.
+function gameDelta(ovr, positiveFactor = 1, moraleFactor = 0) {
   let tier
   if (ovr <= 69) tier = { chance: 0.45, min: -3, max: 3 }
   else if (ovr <= 79) tier = { chance: 0.4, min: -2, max: 2 }
@@ -72,7 +83,8 @@ function gameDelta(ovr, positiveFactor = 1) {
 
   if (Math.random() > tier.chance) return 0
   let delta = Math.floor(Math.random() * (tier.max - tier.min + 1)) + tier.min
-  if (delta > 0 && Math.random() > positiveFactor) delta = 0
+  if (delta > 0 && Math.random() > positiveFactor) delta = 0 // fadiga anula positivos
+  if (delta < 0 && Math.random() < moraleFactor) delta = 0 // moral anula negativos
   return delta
 }
 
@@ -169,6 +181,7 @@ export function createClassicGame(gameConfig) {
     yellowCount: 0,
     suspendedNext: false,
     rotated: false, // já saiu/foi reserva em algum jogo → imune à fadiga
+    comMoral: false, // momentum pós-frescor: oscila enviesado pro positivo no jogo
     lastShownOvr: null,
   })
 
@@ -319,18 +332,34 @@ export function createClassicGame(gameConfig) {
         }
       })
 
-    // 2. Oscilação do jogo para os 14 (fadiga só na semi/final, para quem nunca
-    //    foi rodado). Calculada aqui para ser exibida; o motor usa estes valores.
+    // 2. Oscilação do jogo. SÓ titulares que vinham do XI oscilam: reserva no
+    //    banco e quem ENTRA agora (cobertura de suspensão ou troca manual) jogam
+    //    liso — quem entra é representado pelo FRESCOR, não por oscilação. Fadiga
+    //    só na semi/final, para quem nunca foi rodado. "Com moral" enviesa a
+    //    oscilação do titular embalado pro positivo. Calculada aqui para ser
+    //    exibida; o motor usa estes valores.
     const fatigueActive = round === 'semifinals' || round === 'final'
+    const slotIds = new Set(slots.map((s) => s.player.id))
     const gameOvr = new Map()
     const afflicted = new Set()
+    const moraleActive = new Set()
     allPlayers().forEach((p) => {
+      const carriedOver = slotIds.has(p.id) && prevXI.has(p.id)
+      if (!carriedOver) {
+        gameOvr.set(p.id, clampOvr(p.ovr))
+        return
+      }
       let factor = 1
       if (fatigueActive && !p.rotated && Math.random() < fatigueAfflictChance(p.ovr)) {
         factor = fatiguePositiveFactor(p.ovr)
         afflicted.add(p.id)
       }
-      gameOvr.set(p.id, clampOvr(p.ovr + gameDelta(p.ovr, factor)))
+      let moraleFactor = 0
+      if (p.comMoral) {
+        moraleActive.add(p.id)
+        moraleFactor = MORALE_FACTOR
+      }
+      gameOvr.set(p.id, clampOvr(p.ovr + gameDelta(p.ovr, factor, moraleFactor)))
     })
 
     const opponent = isKnockout ? applyBoost(knockoutOpponent(), round) : opponents[groupMatchday]
@@ -345,6 +374,7 @@ export function createClassicGame(gameConfig) {
       boost: isKnockout ? KNOCKOUT_BOOST[round] || 0 : 0,
       gameOvr,
       afflicted,
+      moraleActive,
       autoSubs,
       freshById,
       prevXI,
@@ -369,6 +399,8 @@ export function createClassicGame(gameConfig) {
       // Frescor realizado (cobertura de suspensão). Trocas manuais resolvem o
       // dado na tela; aqui só os titulares pré-trocas (entradas automáticas).
       fresh: !!slot && p.freshById.get(player.id) === true,
+      // "Com moral": titular embalado neste jogo (oscilação enviesada pro positivo).
+      comMoral: p.moraleActive.has(player.id),
       yellowCount: player.yellowCount,
     })
     return [
@@ -462,10 +494,29 @@ export function createClassicGame(gameConfig) {
         }
       })
 
-    // Quem está no banco serviu eventual suspensão e foi rodado (imune à fadiga)
+    // "Com moral": atualizado ao fim do jogo e travado no jogador (sem save-scum —
+    // acompanha o avanço da campanha). Quem ENTROU com frescor confirmado tem 90%
+    // de embalar no próximo jogo; quem JÁ jogou com moral tem 10% de esticar mais
+    // um, senão encerra. enteredFresh usa o XI definitivo (pós-trocas manuais).
+    const enteredFresh = new Set(
+      slots
+        .filter((s) => !prep.prevXI.has(s.player.id) && freshMap.get(s.player.id) === true)
+        .map((s) => s.player.id)
+    )
+    allPlayers().forEach((pl) => {
+      if (prep.moraleActive.has(pl.id)) {
+        pl.comMoral = Math.random() < MORALE_EXTEND_CHANCE
+      } else if (enteredFresh.has(pl.id)) {
+        pl.comMoral = Math.random() < MORALE_GRANT_CHANCE
+      }
+    })
+
+    // Quem está no banco serviu eventual suspensão e foi rodado (imune à fadiga).
+    // O momentum não sobrevive ao banco: sentar zera a moral.
     bench.forEach((pl) => {
       pl.suspendedNext = false
       pl.rotated = true
+      pl.comMoral = false
     })
 
     // Registra o OVR exibido deste jogo (base da seta do próximo)
