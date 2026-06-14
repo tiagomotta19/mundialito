@@ -363,6 +363,10 @@ A copa do Clássico é jogada incrementalmente: tudo que **não** envolve o usu�
 
 **Substituições manuais entre jogos:** até 3 trocas titular↔reserva por jogo (mesmo setor), em cima do XI já ajustado por suspensões. Qualquer jogador pode entrar ou sair, sem restrição de histórico.
 
+**Frescor (recompensa por gerir o elenco):** todo reserva que **entra no XI** num jogo (troca manual ou cobertura de suspensão) joga essa partida com **+2 OVR** de frescor — pernas descansadas entram afiadas. Vale só no jogo em que entra; se permanecer, deixa de valer. A tela entre-jogos mostra o badge `✨ Frescor +2` em quem vai entrar. Num jogo de draft o banco é por construção mais fraco que o XI, então a gestão é "controle de dano" e o frescor a torna uma decisão real sem virar dominante (ver calibragem abaixo).
+
+> **Calibragem do Clássico (5.000 copas/perfil, `node scripts/calibrate-classic.js 5000 [engaged|max]`):** o Clássico é estritamente mais difícil que o Rápido e a dificuldade é progressiva — fase de grupos idêntica ao Rápido, divergência crescendo até a final (boost + fadiga). Curva de título (piso sem trocas → teto com rotação máxima): Elite 11.5→12.5 · Bom 6.6→6.8 · Médio 2.4→2.5 · Fraco 0.7→0.9 · Draft Real 3.4→5.1. Empilhar craques continua mais difícil que no Rápido mesmo jogando perfeito; só o **Draft Real** (time sorteado, o caso de uso real) supera o Rápido com gestão ativa (4.5–5.1 vs 4.3). O frescor +2 não é explorável em dominância (o "exploit de alternância" rende no máximo ~+1 pt de título).
+
 **Fator sede (v2 — não implementado):** EUA, México e Canadá receberiam bônus escalonado. Implementar após calibragem.
 
 ### 9.9 Dificuldade alvo (empírica)
@@ -403,7 +407,7 @@ O motor da seção 9 está implementado e exporta:
 | `getUserCampaign(tournament, userTeam)` | Resumo da campanha do usuário: jogos, fase alcançada, eliminado/campeão |
 | `calculateTeamStrengths(team, { oscillate })` / `simulateMatch(a, b, { teamAOscillate, teamBOscillate, yellowRate })` | Opções retrocompatíveis usadas pelo Modo Clássico (oscilação por time já calculada fora, taxa de amarelo) |
 | `buildGroupTable` / `simulateRoundRobin` / `pickBestThirds` / `assignThirdPlaceSlots` | Helpers de tabela e seeding reusados por `classic.js` |
-| `applyFreshnessBonus(player)` / `applyFatigue(player)` | Helpers legados (9.8 v1) — superados pela lógica de fadiga em `classic.js` |
+| `applyFreshnessBonus(player)` / `applyFatigue(player)` | Helpers legados (9.8 v1) — superados pela lógica de frescor e fadiga em `classic.js` |
 
 O Modo Clássico vive em **`src/engine/classic.js`** (`createClassicGame(gameConfig)`): pré-simula a copa adversária, joga os jogos do usuário um a um (`matchInfo`, `play`), resolve os adversários do mata-mata pelas sub-chaves opostas do `bracket.json`, e aplica boost/fadiga/cartões/oscilação (9.8).
 

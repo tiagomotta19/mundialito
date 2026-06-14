@@ -29,6 +29,9 @@ export default function BetweenGamesScreen({ info, teamName, onPlay }) {
   const [swaps, setSwaps] = useState([])
   const [selected, setSelected] = useState(null)
 
+  // Titulares originais (antes das trocas): quem entra no XI ganha frescor
+  const originalStarters = new Set(info.roster.filter((r) => r.starter).map((r) => r.id))
+
   const selectedItem = work.find((r) => r.id === selected) || null
   const maxReached = swaps.length >= info.maxSwaps
 
@@ -121,6 +124,11 @@ export default function BetweenGamesScreen({ info, teamName, onPlay }) {
               <span style={{ color: 'var(--color-danger)' }}>⛔ {t('badge_suspended')}</span>
             )}
             {row.autoSubIn && <span style={{ color: 'var(--color-ok)' }}>↑ {t('badge_in')}</span>}
+            {row.starter && (row.fresh || !originalStarters.has(row.id)) && (
+              <span style={{ color: 'var(--color-ok)' }}>
+                ✨ {t('badge_fresh')} +{info.freshnessBonus}
+              </span>
+            )}
             {row.fatigued && <span style={{ color: 'var(--color-warn)' }}>💤 {t('badge_fatigue')}</span>}
             {row.yellowCount === 1 && !row.suspended && (
               <span style={{ color: 'var(--color-warn)' }}>🟨</span>

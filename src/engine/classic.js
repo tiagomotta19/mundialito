@@ -39,6 +39,10 @@ const KNOCKOUT_BOOST = {
 const MAX_SWAPS = 3
 const CLASSIC_YELLOW_RATE = 0.15
 const SECTORS = ['DEF', 'MID', 'FWD']
+// Frescor: reserva que ENTRA no XI (troca manual ou cobertura de suspensão)
+// joga o primeiro jogo com este bônus de OVR — recompensa rodar/substituir.
+// Só no jogo em que entra; se permanece, deixa de valer.
+const FRESHNESS_BONUS = 2
 
 const clampOvr = (v) => Math.min(99, Math.max(30, v))
 
@@ -285,6 +289,10 @@ export function createClassicGame(gameConfig) {
     const isKnockout = phase === 'knockout'
     const round = currentRound()
 
+    // XI persistido do jogo anterior — quem não estava nele e entra agora
+    // (cobertura de suspensão ou troca manual) ganha o frescor.
+    const prevXI = new Set(slots.map((s) => s.player.id))
+
     // 1. Suspensões: tira o titular suspenso e promove um reserva (mesmo setor
     //    ou o mais próximo). O usuário nunca começa com 10 — se não houver
     //    reserva, o suspenso permanece (caso de borda raríssimo a 15%).
@@ -326,6 +334,7 @@ export function createClassicGame(gameConfig) {
       gameOvr,
       afflicted,
       autoSubs,
+      prevXI,
     }
     return pending
   }
@@ -344,6 +353,7 @@ export function createClassicGame(gameConfig) {
       suspended: player.suspendedNext,
       autoSubIn: p.autoSubs.some((a) => a.inId === player.id),
       fatigued: p.afflicted.has(player.id),
+      fresh: !!slot && !p.prevXI.has(player.id),
       yellowCount: player.yellowCount,
     })
     return [
@@ -362,6 +372,7 @@ export function createClassicGame(gameConfig) {
       opponent: p.opponent,
       boost: p.boost,
       maxSwaps: MAX_SWAPS,
+      freshnessBonus: FRESHNESS_BONUS,
       roster: rosterView(),
     }
   }
@@ -386,12 +397,16 @@ export function createClassicGame(gameConfig) {
       name: USER_TEAM_NAME,
       formation,
       isUser: true,
-      // position = setor TÁTICO do slot; ovr = OVR do jogo (já exibido)
-      players: slots.map((s) => ({
-        ...s.player,
-        position: s.sector,
-        ovr: prep.gameOvr.get(s.player.id),
-      })),
+      // position = setor TÁTICO do slot; ovr = OVR do jogo (já exibido) + frescor
+      // para quem entrou no XI neste jogo (não estava no XI anterior)
+      players: slots.map((s) => {
+        const entered = !prep.prevXI.has(s.player.id)
+        return {
+          ...s.player,
+          position: s.sector,
+          ovr: prep.gameOvr.get(s.player.id) + (entered ? FRESHNESS_BONUS : 0),
+        }
+      }),
     }
 
     const result = simulateMatch(userTeam, prep.opponentTeam, {

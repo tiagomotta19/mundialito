@@ -181,6 +181,34 @@ function buildGreedyTeam() {
 
 const RUNS = Number(process.argv[2]) || 1000
 const ENGAGED = process.argv.includes('engaged')
+const MAXROT = process.argv.includes('max')
+
+// Política agressiva: a cada jogo troca o titular mais fraco de cada setor pelo
+// reserva daquele setor. Como o trocado vai pro banco e volta no jogo seguinte,
+// os dois alternam e ficam SEMPRE "entrando" — mede o teto do frescor (exploit
+// de alternância) e o risco de balanceamento.
+function maxRotationPolicy(info) {
+  const starters = info.roster.filter((r) => r.starter)
+  const benchBySector = {}
+  info.roster
+    .filter((r) => !r.starter && !r.suspended)
+    .forEach((b) => (benchBySector[b.sector] = b))
+  const swaps = []
+  const used = new Set()
+  for (const sector of ['DEF', 'MID', 'FWD']) {
+    if (swaps.length >= info.maxSwaps) break
+    const res = benchBySector[sector]
+    if (!res) continue
+    const cand = starters
+      .filter((r) => r.sector === sector && !used.has(r.id))
+      .sort((a, b) => a.ovr - b.ovr)[0]
+    if (cand) {
+      swaps.push({ outId: cand.id, inId: res.id })
+      used.add(cand.id)
+    }
+  }
+  return swaps
+}
 const STAGE_ORDER = ['group_stage', 'round_of_32', 'round_of_16', 'quarterfinals', 'semifinals', 'final']
 const stageIdx = (s) => STAGE_ORDER.indexOf(s)
 const KO_FROM_R16 = ['round_of_16', 'quarterfinals', 'semifinals', 'final']
@@ -271,7 +299,11 @@ function runProfile(profile) {
     while (true) {
       if (++guard > 40) throw new Error('loop')
       const info = game.matchInfo()
-      const swaps = ENGAGED ? engagedPolicy(info, baseById, streak) : []
+      const swaps = MAXROT
+        ? maxRotationPolicy(info)
+        : ENGAGED
+          ? engagedPolicy(info, baseById, streak)
+          : []
       s.swaps += swaps.length
       const res = game.play(swaps)
       if (res.finished || (res.groupDone && !res.qualified)) break

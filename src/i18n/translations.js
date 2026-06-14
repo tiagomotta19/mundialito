@@ -97,6 +97,7 @@ export const translations = {
     badge_suspended: 'Suspenso',
     badge_in: 'Entrou',
     badge_fatigue: 'Fadiga',
+    badge_fresh: 'Frescor',
   },
   en: {
     app_name_1: 'MUNDI',
@@ -196,6 +197,7 @@ export const translations = {
     badge_suspended: 'Suspended',
     badge_in: 'In',
     badge_fatigue: 'Fatigue',
+    badge_fresh: 'Fresh',
   },
   es: {
     app_name_1: 'MUNDI',
@@ -295,6 +297,7 @@ export const translations = {
     badge_suspended: 'Suspendido',
     badge_in: 'Entró',
     badge_fatigue: 'Fatiga',
+    badge_fresh: 'Descanso',
   },
 }
 
