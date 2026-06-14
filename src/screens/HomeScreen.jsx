@@ -4,6 +4,7 @@ import { useLang } from '../i18n/LangContext'
 import { LANGUAGES } from '../i18n/translations'
 import { PitchLines } from '../components/FieldPitch'
 import { useMediaQuery, DESK_QUERY } from '../components/useMediaQuery'
+import PixSupport from '../components/PixSupport'
 
 const PITCH_TICK = 320
 
@@ -299,6 +300,33 @@ export default function HomeScreen({ onPlay }) {
   const { lang, setLang, t } = useLang()
   const isRetro = theme === 'retro'
   const isDesk = useMediaQuery(DESK_QUERY)
+  const [showPix, setShowPix] = useState(false)
+
+  // Rodapé discreto: crédito ao 7a0 + link de apoio (abre o modal Pix)
+  const footer = (
+    <div
+      className="flex flex-col items-center gap-1 text-center text-xs shrink-0"
+      style={{ color: 'var(--color-text-secondary)' }}
+    >
+      <a
+        href="https://7a0.com.br"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:underline"
+        style={{ color: 'inherit' }}
+      >
+        {t('inspired_by')}
+      </a>
+      <button
+        type="button"
+        onClick={() => setShowPix(true)}
+        className="hover:underline"
+        style={{ color: 'inherit' }}
+      >
+        {t('support_cta')}
+      </button>
+    </div>
+  )
 
   const langSelect = (
     <select
@@ -428,7 +456,11 @@ export default function HomeScreen({ onPlay }) {
           >
             {playLabel}
           </button>
+
+          {footer}
         </div>
+
+        {showPix && <PixSupport onClose={() => setShowPix(false)} />}
       </div>
     )
   }
@@ -501,6 +533,10 @@ export default function HomeScreen({ onPlay }) {
       >
         {playLabel}
       </button>
+
+      <div className="mt-3">{footer}</div>
+
+      {showPix && <PixSupport onClose={() => setShowPix(false)} />}
     </div>
   )
 }

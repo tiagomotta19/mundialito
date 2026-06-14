@@ -1,13 +1,16 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useTheme } from '../components/ThemeContext'
 import { useLang } from '../i18n/LangContext'
 import FieldPitch from '../components/FieldPitch'
 import Flag from '../components/Flag'
 import GroupTable from '../components/GroupTable'
 import DeskHeader from '../components/DeskHeader'
+import PixSupport from '../components/PixSupport'
 import { useMediaQuery, DESK_QUERY } from '../components/useMediaQuery'
 import { FORMATION_LAYOUTS } from '../components/formationLayouts'
 import { USER_TEAM_NAME, campaignStats, stageLabelKey } from '../engine/cup'
+import { getFlagCode } from '../i18n/flags'
+import { downloadShareImage } from '../utils/shareImage'
 
 const CONFETTI_COLORS = [
   'var(--color-accent)',
@@ -57,6 +60,7 @@ export default function ResultScreen({ campaign, players, formation, teamName, g
   const { t } = useLang()
   const isRetro = theme === 'retro'
   const isDesk = useMediaQuery(DESK_QUERY)
+  const [showPix, setShowPix] = useState(false)
 
   const champion = campaign.champion
   const runnerUp = !champion && campaign.stageReached === 'final'
@@ -159,6 +163,62 @@ export default function ResultScreen({ campaign, players, formation, teamName, g
     </button>
   )
 
+  // Placar do último jogo da campanha (a final, se campeão; senão a eliminação),
+  // sempre na ótica do usuário: "Seu time  gols × gols  Adversário [bandeira]"
+  const buildLastScore = () => {
+    const m = campaign.matches[campaign.matches.length - 1]
+    if (!m) return null
+    const userIsHome = m.homeName === USER_TEAM_NAME
+    const oppName = userIsHome ? m.awayName : m.homeName
+    return {
+      teamName: teamName || t('your_team'),
+      userGoals: userIsHome ? m.goalsA : m.goalsB,
+      oppGoals: userIsHome ? m.goalsB : m.goalsA,
+      oppName,
+      oppCode: getFlagCode(oppName),
+    }
+  }
+
+  const handleShare = () =>
+    downloadShareImage({
+      slots,
+      formation,
+      champion,
+      resultLabel: champion ? t('share_champion') : t(stageLabelKey(campaign.stageReached)),
+      teamName: teamName || t('your_team'),
+      stats: statCards.map((s) => ({ label: t(s.key), value: s.value })),
+      lastScore: buildLastScore(),
+    })
+
+  // Botão "Salvar imagem" (gera o PNG 9:16) — borda secundária, discreto
+  const shareButton = (
+    <button
+      type="button"
+      onClick={handleShare}
+      className={`w-full py-3 font-bold border-2 shrink-0 ${isRetro ? 'uppercase' : ''}`}
+      style={{
+        background: 'transparent',
+        color: 'var(--color-text)',
+        borderColor: 'var(--color-border)',
+        borderRadius: 'var(--radius)',
+      }}
+    >
+      📸 {t('share_image')}
+    </button>
+  )
+
+  // Link de texto para o modal de apoio
+  const supportButton = (
+    <button
+      type="button"
+      onClick={() => setShowPix(true)}
+      className={`mx-auto text-xs hover:underline ${isRetro ? 'uppercase' : ''}`}
+      style={{ color: 'var(--color-text-secondary)' }}
+    >
+      {t('support_cta')}
+    </button>
+  )
+
   // ---------------------------------------------------------------------------
   // Layout desktop (>900px): resultado e último capítulo à esquerda, campinho
   // vertical grande no centro e a campanha em lista editorial à direita
@@ -193,6 +253,8 @@ export default function ResultScreen({ campaign, players, formation, teamName, g
             {groupTableBlock}
             {lastMatchCard}
             {playAgainButton}
+            {shareButton}
+            {supportButton}
           </aside>
 
           {/* Coluna central: time no campinho vertical */}
@@ -232,6 +294,8 @@ export default function ResultScreen({ campaign, players, formation, teamName, g
             ))}
           </aside>
         </div>
+
+        {showPix && <PixSupport onClose={() => setShowPix(false)} />}
       </div>
     )
   }
@@ -291,9 +355,17 @@ export default function ResultScreen({ campaign, players, formation, teamName, g
         ))}
       </div>
 
+      {/* Apoio ao projeto — link de texto discreto abaixo das estatísticas */}
+      <div className="flex justify-center mt-1">{supportButton}</div>
+
       <div className="flex-1" />
 
-      {playAgainButton}
+      <div className="flex flex-col gap-2 shrink-0">
+        {shareButton}
+        {playAgainButton}
+      </div>
+
+      {showPix && <PixSupport onClose={() => setShowPix(false)} />}
     </div>
   )
 }
