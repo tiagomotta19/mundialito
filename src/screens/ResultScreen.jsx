@@ -84,13 +84,19 @@ export default function ResultScreen({ campaign, players, formation, teamName, g
   const label = (name) => (name === USER_TEAM_NAME ? teamName || t('your_team') : name)
 
   const statCards = [
-    { key: 'stat_matches', value: stats.played },
-    { key: 'stat_wins', value: stats.wins },
-    { key: 'stat_draws', value: stats.draws },
-    { key: 'stat_losses', value: stats.losses },
-    { key: 'stat_gf', value: stats.gf },
-    { key: 'stat_ga', value: stats.ga },
+    { key: 'stat_matches', value: stats.played, tone: 'neutral' },
+    { key: 'stat_wins', value: stats.wins, tone: 'pos' },
+    { key: 'stat_draws', value: stats.draws, tone: 'neutral' },
+    { key: 'stat_losses', value: stats.losses, tone: 'neg' },
+    { key: 'stat_gf', value: stats.gf, tone: 'pos' },
+    { key: 'stat_ga', value: stats.ga, tone: 'neg' },
   ]
+
+  // Força do time (média de OVR dos titulares) — exibida no card compartilhado
+  const lineup = players.filter(Boolean)
+  const forca = lineup.length
+    ? Math.round(lineup.reduce((sum, p) => sum + p.ovr, 0) / lineup.length)
+    : null
 
   const stageChip = (
     <span
@@ -194,8 +200,12 @@ export default function ResultScreen({ campaign, players, formation, teamName, g
       champion,
       resultLabel: champion ? t('share_champion') : t(stageLabelKey(campaign.stageReached)),
       teamName: teamName || t('your_team'),
-      stats: statCards.map((s) => ({ label: t(s.key), value: s.value })),
+      forca,
+      stats: statCards.map((s) => ({ label: t(s.key), value: s.value, tone: s.tone })),
       lastScore: buildLastScore(),
+      strengthLabel: t('share_strength'),
+      ctaLabel: t('share_cta'),
+      shareCaption: t('share_caption'),
     })
 
   // Botão "Salvar imagem" (gera o PNG 9:16) — borda secundária, discreto

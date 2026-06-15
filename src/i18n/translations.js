@@ -112,6 +112,9 @@ export const translations = {
     share_champion: 'CAMPEÃO DO MUNDO',
     share_eliminated: 'Eliminado',
     share_my_team: 'MEU TIME',
+    share_strength: 'FORÇA',
+    share_cta: 'Monte o seu',
+    share_caption: 'Jogue agora o Mundialito!',
   },
   en: {
     app_name_1: 'MUNDI',
@@ -226,6 +229,9 @@ export const translations = {
     share_champion: 'WORLD CHAMPION',
     share_eliminated: 'Eliminated',
     share_my_team: 'MY TEAM',
+    share_strength: 'OVR',
+    share_cta: 'Build yours',
+    share_caption: 'Play Mundialito now!',
   },
   es: {
     app_name_1: 'MUNDI',
@@ -340,6 +346,9 @@ export const translations = {
     share_champion: 'CAMPEÓN DEL MUNDO',
     share_eliminated: 'Eliminado',
     share_my_team: 'MI EQUIPO',
+    share_strength: 'FUERZA',
+    share_cta: 'Arma el tuyo',
+    share_caption: '¡Juega Mundialito ahora!',
   },
 }
 

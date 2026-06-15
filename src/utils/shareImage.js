@@ -13,6 +13,33 @@ function lastName(name) {
   return name.split(' ').pop()
 }
 
+// Reduz o tamanho da fonte até o texto caber em maxWidth (o verdito pode ser
+// longo: "CAMPEÃO DO MUNDO", "16-AVOS DE FINAL"). Devolve o tamanho usado.
+function fitFont(ctx, text, weight, maxWidth, startPx) {
+  let size = startPx
+  ctx.font = `${weight} ${size}px system-ui, sans-serif`
+  while (ctx.measureText(text).width > maxWidth && size > 12) {
+    size -= 2
+    ctx.font = `${weight} ${size}px system-ui, sans-serif`
+  }
+  return size
+}
+
+// Texto com espaçamento entre letras (tracking), centralizado em cx
+function drawTracked(ctx, str, cx, y, tracking) {
+  const prev = ctx.textAlign
+  ctx.textAlign = 'left'
+  let total = 0
+  for (const ch of str) total += ctx.measureText(ch).width + tracking
+  total -= tracking
+  let x = cx - total / 2
+  for (const ch of str) {
+    ctx.fillText(ch, x, y)
+    x += ctx.measureText(ch).width + tracking
+  }
+  ctx.textAlign = prev
+}
+
 function roundRect(ctx, x, y, w, h, r) {
   const rr = Math.min(r, w / 2, h / 2)
   ctx.beginPath()
@@ -42,9 +69,12 @@ export async function generateShareImage({
   champion,
   resultLabel,
   teamName,
+  forca,
   stats,
   lastScore,
   themeEl,
+  strengthLabel = 'FORÇA',
+  ctaLabel = 'Monte o seu',
 }) {
   const css = getComputedStyle(themeEl || document.querySelector('.app-shell') || document.documentElement)
   const c = (name) => css.getPropertyValue(name).trim() || '#000'
@@ -53,6 +83,7 @@ export async function generateShareImage({
   const text = c('--color-text')
   const textSec = c('--color-text-secondary')
   const accent = c('--color-accent')
+  const danger = c('--color-danger') || accent
   const field = c('--color-field')
   const fieldStripe = c('--color-field-stripe')
   const fieldLine = c('--color-field-line') || 'rgba(255,255,255,0.4)'
@@ -75,30 +106,61 @@ export async function generateShareImage({
 
   ctx.textAlign = 'center'
 
-  // Hierarquia tipográfica: logo discreta no topo, veredito (fase) em
-  // destaque intermediário, nome do time logo abaixo
-  ctx.fillStyle = text
-  ctx.font = '900 72px system-ui, sans-serif'
-  ctx.fillText('MUNDIALITO', W / 2, 130)
+  // ----- Topo: marca discreta + fase em destaque + nome do time com força -----
+  // Assinatura MUNDIALITO espaçada e secundária
+  ctx.fillStyle = textSec
+  ctx.font = '800 34px system-ui, sans-serif'
+  drawTracked(ctx, 'MUNDIALITO', W / 2, 100, 8)
 
-  // Veredito (campeão ou fase alcançada)
+  // Veredito (campeão ou fase): protagonista, com auto-ajuste de tamanho
+  const verdict = resultLabel.toUpperCase()
   ctx.fillStyle = champion ? accent : text
-  ctx.font = '800 60px system-ui, sans-serif'
-  ctx.fillText(resultLabel.toUpperCase(), W / 2, 210)
+  fitFont(ctx, verdict, '900', W - 120, 104)
+  ctx.fillText(verdict, W / 2, 215)
 
-  // Nome do time
+  // Nome do time + badge de Força na mesma linha (grupo centralizado)
   if (teamName) {
-    ctx.fillStyle = textSec
-    ctx.font = '700 38px system-ui, sans-serif'
-    ctx.fillText(teamName, W / 2, 262)
+    const rowY = 285
+    ctx.font = '700 44px system-ui, sans-serif'
+    const nameW = ctx.measureText(teamName).width
+
+    const hasForca = forca != null
+    const badgeText = hasForca ? `${strengthLabel} ${forca}` : ''
+    ctx.font = '800 30px system-ui, sans-serif'
+    const badgeTextW = hasForca ? ctx.measureText(badgeText).width : 0
+    const badgePadX = 22
+    const badgeW = hasForca ? badgeTextW + badgePadX * 2 : 0
+    const badgeH = 50
+    const gap = hasForca ? 20 : 0
+    const groupW = nameW + gap + badgeW
+    let gx = (W - groupW) / 2
+
+    ctx.textAlign = 'left'
+    ctx.textBaseline = 'middle'
+    ctx.fillStyle = text
+    ctx.font = '700 44px system-ui, sans-serif'
+    ctx.fillText(teamName, gx, rowY)
+    gx += nameW + gap
+
+    if (hasForca) {
+      ctx.fillStyle = accent
+      roundRect(ctx, gx, rowY - badgeH / 2, badgeW, badgeH, 25)
+      ctx.fill()
+      ctx.fillStyle = bg
+      ctx.font = '800 30px system-ui, sans-serif'
+      ctx.fillText(badgeText, gx + badgePadX, rowY + 1)
+    }
+
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'alphabetic'
   }
 
-  // ----- Placar do último jogo (entre o nome do time e o campinho) -----
+  // ----- Placar do último jogo -----
   // "Time  2 × 1  Adversário [bandeira]" — centralizado, com o placar em destaque
   if (lastScore) {
-    const scoreY = 330
+    const scoreY = 360
     const nameFont = '700 36px system-ui, sans-serif'
-    const scoreFont = '800 44px system-ui, sans-serif'
+    const scoreFont = '800 46px system-ui, sans-serif'
     const scoreStr = ` ${lastScore.userGoals} × ${lastScore.oppGoals} `
     const flagH = 36
     const flagW = flagImg ? Math.round(flagH * (flagImg.width / flagImg.height)) : 0
@@ -133,11 +195,11 @@ export async function generateShareImage({
     ctx.textAlign = 'center'
   }
 
-  // ----- Campinho vertical (viewBox 68×105) — reduzido para abrir espaço -----
-  const pitchW = 680
+  // ----- Campinho vertical (viewBox 68×105) -----
+  const pitchW = 640
   const pitchH = pitchW * (105 / 68)
   const pitchX = (W - pitchW) / 2
-  const pitchY = 375
+  const pitchY = 405
 
   // Faixas do gramado
   ctx.save()
@@ -173,7 +235,7 @@ export async function generateShareImage({
   // Jogadores: mesma transformação do FieldPitch vertical
   // left = slot.y/68 ; top = (105 - slot.x)/105
   const layout = FORMATION_LAYOUTS[formation] || FORMATION_LAYOUTS['4-3-3']
-  const dotR = 33
+  const dotR = 32
   layout.forEach((slot, i) => {
     const player = slots[i]?.player
     const cx = pitchX + (slot.y / 68) * pitchW
@@ -218,37 +280,66 @@ export async function generateShareImage({
     }
   })
 
-  // ----- Histórico da campanha (abaixo do campo) — 2 linhas × 3 colunas -----
+  // ----- Quadro da campanha (abaixo do campo) — 2 linhas × 3 colunas -----
+  // Cores por significado: pos = accent, neg = danger, neutral = text
   const items = stats || []
   if (items.length) {
-    const statsTop = pitchY + pitchH + 78
+    const boxX = 80
+    const boxW = W - 160
+    const boxY = pitchY + pitchH + 38
     const cols = 3
-    const colW = W / cols
-    const rowGap = 125
+    const rows = Math.ceil(items.length / cols)
+    const cellW = boxW / cols
+    const cellH = 140
+    const boxH = cellH * rows
+
+    ctx.strokeStyle = border
+    ctx.lineWidth = 2
+    roundRect(ctx, boxX, boxY, boxW, boxH, 16)
+    ctx.stroke()
+
+    // Divisórias internas (linha horizontal entre as fileiras + verticais)
+    ctx.beginPath()
+    for (let r = 1; r < rows; r++) {
+      ctx.moveTo(boxX, boxY + cellH * r)
+      ctx.lineTo(boxX + boxW, boxY + cellH * r)
+    }
+    for (let col = 1; col < cols; col++) {
+      ctx.moveTo(boxX + cellW * col, boxY + 18)
+      ctx.lineTo(boxX + cellW * col, boxY + boxH - 18)
+    }
+    ctx.stroke()
+
+    const toneColor = (tone) => (tone === 'pos' ? accent : tone === 'neg' ? danger : text)
     items.forEach((item, i) => {
       const col = i % cols
       const row = Math.floor(i / cols)
-      const cx = colW * col + colW / 2
-      const cy = statsTop + row * rowGap
-      ctx.fillStyle = accent
-      ctx.font = '900 60px system-ui, sans-serif'
+      const cx = boxX + cellW * col + cellW / 2
+      const cy = boxY + cellH * row + 66
+      ctx.fillStyle = toneColor(item.tone)
+      ctx.font = '900 64px system-ui, sans-serif'
       ctx.fillText(String(item.value), cx, cy)
       ctx.fillStyle = textSec
-      ctx.font = '600 27px system-ui, sans-serif'
-      ctx.fillText(item.label, cx, cy + 40)
+      ctx.font = '600 26px system-ui, sans-serif'
+      ctx.fillText(item.label, cx, cy + 42)
     })
   }
 
-  // URL no rodapé, com padding e separador — fora da área do campo
-  ctx.strokeStyle = border
-  ctx.lineWidth = 2
-  ctx.beginPath()
-  ctx.moveTo(W / 2 - 200, H - 150)
-  ctx.lineTo(W / 2 + 200, H - 150)
-  ctx.stroke()
+  // ----- Rodapé como CTA (pílula): "Monte o seu · site" -----
+  const ctaText = `${ctaLabel}  ·  ${SITE_URL}`
+  ctx.font = '800 36px system-ui, sans-serif'
+  const ctaTextW = ctx.measureText(ctaText).width
+  const ctaW = ctaTextW + 80
+  const ctaH = 84
+  const ctaX = (W - ctaW) / 2
+  const ctaY = H - 180
   ctx.fillStyle = accent
-  ctx.font = '800 44px system-ui, sans-serif'
-  ctx.fillText(SITE_URL, W / 2, H - 90)
+  roundRect(ctx, ctaX, ctaY, ctaW, ctaH, ctaH / 2)
+  ctx.fill()
+  ctx.fillStyle = bg
+  ctx.textBaseline = 'middle'
+  ctx.fillText(ctaText, W / 2, ctaY + ctaH / 2 + 2)
+  ctx.textBaseline = 'alphabetic'
 
   return canvas
 }
@@ -281,10 +372,13 @@ export async function downloadShareImage(opts) {
   const file = new File([blob], 'mundialito.png', { type: 'image/png' })
   if (navigator.canShare && navigator.canShare({ files: [file] })) {
     try {
+      // Link vai DENTRO do texto (e não no campo `url`): com arquivo anexado o
+      // WhatsApp mantém imagem + legenda, mas costuma descartar `url`.
+      const caption = opts.shareCaption || 'Jogue agora o Mundialito!'
       await navigator.share({
         files: [file],
         title: 'Mundialito',
-        text: [opts.teamName, opts.resultLabel].filter(Boolean).join(' · '),
+        text: `${caption} https://${SITE_URL}`,
       })
       return
     } catch (err) {
