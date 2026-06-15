@@ -88,6 +88,20 @@ function gameDelta(ovr, positiveFactor = 1, moraleFactor = 0) {
   return delta
 }
 
+// Goleiro: oscilação SÓ positiva. Não há reserva de goleiro (o draft de reservas
+// é 1 DEF/1 MID/1 FWD), então uma queda seria castigo sem saída — diferente do
+// jogador de linha, que pode ser substituído ou rodado. Não sofrer gol no jogo
+// anterior (clean sheet) rende +1 garantido, com 50% de virar +2; senão (ou no
+// 1º jogo, sem histórico) há uma leve chance de +1. Substitui a oscilação padrão
+// e fica fora da fadiga e do "com moral".
+const GK_CLEAN_SHEET_DOUBLE = 0.5 // após clean sheet: chance de +2 em vez de +1
+const GK_RANDOM_UP_CHANCE = 0.35 // sem clean sheet (ou 1º jogo): chance de +1
+
+function goalkeeperDelta(cleanSheet) {
+  if (cleanSheet) return Math.random() < GK_CLEAN_SHEET_DOUBLE ? 2 : 1
+  return Math.random() < GK_RANDOM_UP_CHANCE ? 1 : 0
+}
+
 // ---------------------------------------------------------------------------
 // Boost do adversário (camada 3)
 // ---------------------------------------------------------------------------
@@ -235,6 +249,9 @@ export function createClassicGame(gameConfig) {
   let stageReached = 'group_stage'
   let eliminated = false
   let champion = false
+  // Gols sofridos pelo usuário no jogo anterior — base do bônus de clean sheet
+  // do goleiro. null = ainda não houve jogo (tratado como "não foi clean sheet").
+  let lastConceded = null
 
   let pending = null // snapshot do jogo atual (memo entre renders)
 
@@ -336,8 +353,9 @@ export function createClassicGame(gameConfig) {
     //    banco e quem ENTRA agora (cobertura de suspensão ou troca manual) jogam
     //    liso — quem entra é representado pelo FRESCOR, não por oscilação. Fadiga
     //    só na semi/final, para quem nunca foi rodado. "Com moral" enviesa a
-    //    oscilação do titular embalado pro positivo. Calculada aqui para ser
-    //    exibida; o motor usa estes valores.
+    //    oscilação do titular embalado pro positivo. O goleiro tem modelo próprio
+    //    (só-positivo, com clean sheet), fora da fadiga e do "com moral".
+    //    Calculada aqui para ser exibida; o motor usa estes valores.
     const fatigueActive = round === 'semifinals' || round === 'final'
     const slotIds = new Set(slots.map((s) => s.player.id))
     const gameOvr = new Map()
@@ -347,6 +365,11 @@ export function createClassicGame(gameConfig) {
       const carriedOver = slotIds.has(p.id) && prevXI.has(p.id)
       if (!carriedOver) {
         gameOvr.set(p.id, clampOvr(p.ovr))
+        return
+      }
+      // Goleiro: modelo próprio só-positivo (clean sheet), sem fadiga nem moral.
+      if (p.position === 'GK') {
+        gameOvr.set(p.id, clampOvr(p.ovr + goalkeeperDelta(lastConceded === 0)))
         return
       }
       let factor = 1
@@ -385,24 +408,35 @@ export function createClassicGame(gameConfig) {
   // Snapshot dos 14 jogadores para a tela entre-jogos
   function rosterView() {
     const p = prepareMatch()
-    const view = (player, slot) => ({
-      id: player.id,
-      name: player.name,
-      sector: slot ? slot.sector : player.sector,
-      ovr: p.gameOvr.get(player.id),
-      delta: player.lastShownOvr == null ? null : p.gameOvr.get(player.id) - player.lastShownOvr,
-      slotRole: slot ? slot.role : null,
-      starter: !!slot,
-      suspended: player.suspendedNext,
-      autoSubIn: p.autoSubs.some((a) => a.inId === player.id),
-      fatigued: p.afflicted.has(player.id),
-      // Frescor realizado (cobertura de suspensão). Trocas manuais resolvem o
-      // dado na tela; aqui só os titulares pré-trocas (entradas automáticas).
-      fresh: !!slot && p.freshById.get(player.id) === true,
-      // "Com moral": titular embalado neste jogo (oscilação enviesada pro positivo).
-      comMoral: p.moraleActive.has(player.id),
-      yellowCount: player.yellowCount,
-    })
+    const view = (player, slot) => {
+      const ovr = p.gameOvr.get(player.id)
+      // Seta: reserva nunca mostra (não oscila — joga no OVR-base). Goleiro mostra
+      // relativa ao OVR-base (bônus do jogo: 0/+1/+2), nunca negativa, coerente com
+      // a oscilação só-positiva. Demais titulares: variação vs jogo anterior.
+      let delta = null
+      if (slot) {
+        if (player.position === 'GK') delta = ovr - player.ovr
+        else if (player.lastShownOvr != null) delta = ovr - player.lastShownOvr
+      }
+      return {
+        id: player.id,
+        name: player.name,
+        sector: slot ? slot.sector : player.sector,
+        ovr,
+        delta,
+        slotRole: slot ? slot.role : null,
+        starter: !!slot,
+        suspended: player.suspendedNext,
+        autoSubIn: p.autoSubs.some((a) => a.inId === player.id),
+        fatigued: p.afflicted.has(player.id),
+        // Frescor realizado (cobertura de suspensão). Trocas manuais resolvem o
+        // dado na tela; aqui só os titulares pré-trocas (entradas automáticas).
+        fresh: !!slot && p.freshById.get(player.id) === true,
+        // "Com moral": titular embalado neste jogo (oscilação enviesada pro positivo).
+        comMoral: p.moraleActive.has(player.id),
+        yellowCount: player.yellowCount,
+      }
+    }
     return [
       ...slots.map((s) => view(s.player, s)),
       ...bench.map((pl) => view(pl, null)),
@@ -523,6 +557,9 @@ export function createClassicGame(gameConfig) {
     allPlayers().forEach((pl) => {
       pl.lastShownOvr = prep.gameOvr.get(pl.id)
     })
+
+    // Gols sofridos neste jogo: base do bônus de clean sheet do goleiro no próximo.
+    lastConceded = result.goalsB
 
     pending = null
 

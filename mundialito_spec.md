@@ -310,6 +310,10 @@ A cada jogo, cada jogador recebe uma oscilação aleatória no OVR:
 Jogadores bons têm leve assimetria positiva (range inclui +2 na faixa 80-89).  
 O OVR exibido ao usuário no Modo Clássico reflete a oscilação do jogo atual, com seta indicando variação em relação ao jogo anterior.
 
+> **Goleiro (Modo Clássico, 2026-06-15):** o goleiro não pode ser substituído (o draft de reservas é 1 DEF/1 MID/1 FWD — sem goleiro), então puni-lo com queda seria castigo sem saída. Sua oscilação é **só positiva**: nunca cai abaixo do OVR-base e fica **fora da fadiga**. Não sofrer gol no jogo anterior (*clean sheet*) rende **+1 garantido, com 50% de virar +2**; caso tenha sofrido gol (ou no 1º jogo, sem histórico) há ~35% de chance de +1. A seta do goleiro é relativa ao OVR-base (`—`/`↑+1`/`↑+2`), **nunca vermelha**.
+
+> **Reservas não oscilam (2026-06-15):** só quem está no XI atual oscila. O reserva joga no **OVR-base** e **não mostra seta** — a seta de variação só aparece em titulares. (Antes, um titular rebaixado ao banco exibia uma seta-fantasma ao "voltar" do valor oscilado para o base.)
+
 ### 9.4 Confronto entre times
 
 ```
@@ -353,11 +357,11 @@ Cobrador sempre favorito. Goleiro pode surpreender.
 
 A copa do Clássico é jogada incrementalmente: tudo que **não** envolve o usuário (os 11 outros grupos e as sub-chaves adversárias do mata-mata) é pré-simulado; os jogos do usuário rodam um a um com o elenco daquele jogo. As cinco mecânicas só afetam os jogos e os jogadores do usuário.
 
-**OVR visível com variação:** a cada jogo, cada um dos 14 jogadores recebe a oscilação do jogo (9.3), calculada **fora** do motor para ser exibida na tela entre-jogos com seta e delta (`↑+2` / `↓-1` / `—`) em relação ao jogo anterior. O motor usa exatamente esses valores (o time do usuário entra com `teamAOscillate: false`).
+**OVR visível com variação:** a cada jogo, cada **titular** recebe a oscilação do jogo (9.3), calculada **fora** do motor para ser exibida na tela entre-jogos com seta e delta (`↑+2` / `↓-1` / `—`) em relação ao jogo anterior. O motor usa exatamente esses valores (o time do usuário entra com `teamAOscillate: false`). **Reservas não oscilam** (jogam no OVR-base, sem seta) e o **goleiro** tem oscilação só-positiva com bônus de *clean sheet*, fora da fadiga, com seta relativa ao OVR-base e nunca vermelha (ver 9.3).
 
 **Boost progressivo no mata-mata:** a partir das oitavas, as seleções principais (Brasil, Argentina, França, Espanha, Alemanha, Inglaterra, Portugal, Holanda, Bélgica) recebem boost acumulado de OVR **antes** do motor calcular: oitavas +0.5 · quartas +1.0 · semis +1.5 · final +2.0 (16-avos sem boost).
 
-**Fadiga (duas camadas) nas semis/final:** jogadores que chegam à semifinal sem nunca ter sido rodados (nunca saíram do XI nem ficaram no banco) entram na fadiga. Camada 1 — chance de ser afetado: OVR 85+ 5% · 75–84 40% · <75 70%. Camada 2 — se afetado, a chance de oscilação **positiva** cai para 60% (85+) / 45% (75–84) / 30% (<75) do normal. Quem foi substituído/rodado em qualquer momento é imune.
+**Fadiga (duas camadas) nas semis/final:** jogadores de linha que chegam à semifinal sem nunca ter sido rodados (nunca saíram do XI nem ficaram no banco) entram na fadiga. Camada 1 — chance de ser afetado: OVR 85+ 5% · 75–84 40% · <75 70%. Camada 2 — se afetado, a chance de oscilação **positiva** cai para 60% (85+) / 45% (75–84) / 30% (<75) do normal. Quem foi substituído/rodado em qualquer momento é imune. O **goleiro** fica fora da fadiga (oscilação só-positiva própria, 9.3).
 
 **Cartão amarelo com suspensão:** amarelo a 15% por time/jogo (nunca no goleiro). 2 amarelos acumulados na copa → suspenso no jogo seguinte, substituído automaticamente pelo reserva do mesmo setor (ou do setor mais próximo). O usuário nunca começa um jogo com 10.
 
