@@ -73,6 +73,7 @@ export async function generateShareImage({
   stats,
   lastScore,
   themeEl,
+  modeLabel,
   strengthLabel = 'FORÇA',
   ctaLabel = 'Monte o seu',
 }) {
@@ -118,21 +119,31 @@ export async function generateShareImage({
   fitFont(ctx, verdict, '900', W - 120, 104)
   ctx.fillText(verdict, W / 2, 215)
 
-  // Nome do time + badge de Força na mesma linha (grupo centralizado)
+  // Nome do time + badge de Força + chip de modo na mesma linha (grupo
+  // centralizado): "Seleção  [FORÇA 88]  [MODO RÁPIDO]"
   if (teamName) {
     const rowY = 285
+    const badgeH = 50
+    const gap = 18
+
     ctx.font = '700 44px system-ui, sans-serif'
     const nameW = ctx.measureText(teamName).width
 
+    // Badge de Força: pílula preenchida (accent)
     const hasForca = forca != null
-    const badgeText = hasForca ? `${strengthLabel} ${forca}` : ''
+    const forcaText = `${strengthLabel} ${forca}`
     ctx.font = '800 30px system-ui, sans-serif'
-    const badgeTextW = hasForca ? ctx.measureText(badgeText).width : 0
-    const badgePadX = 22
-    const badgeW = hasForca ? badgeTextW + badgePadX * 2 : 0
-    const badgeH = 50
-    const gap = hasForca ? 20 : 0
-    const groupW = nameW + gap + badgeW
+    const forcaPadX = 22
+    const forcaW = hasForca ? ctx.measureText(forcaText).width + forcaPadX * 2 : 0
+
+    // Chip de modo: pílula contornada (accent), texto em maiúsculas
+    const hasMode = !!modeLabel
+    const modeText = hasMode ? modeLabel.toUpperCase() : ''
+    ctx.font = '800 28px system-ui, sans-serif'
+    const modePadX = 20
+    const modeW = hasMode ? ctx.measureText(modeText).width + modePadX * 2 : 0
+
+    const groupW = nameW + (hasForca ? gap + forcaW : 0) + (hasMode ? gap + modeW : 0)
     let gx = (W - groupW) / 2
 
     ctx.textAlign = 'left'
@@ -140,15 +151,28 @@ export async function generateShareImage({
     ctx.fillStyle = text
     ctx.font = '700 44px system-ui, sans-serif'
     ctx.fillText(teamName, gx, rowY)
-    gx += nameW + gap
+    gx += nameW
 
     if (hasForca) {
+      gx += gap
       ctx.fillStyle = accent
-      roundRect(ctx, gx, rowY - badgeH / 2, badgeW, badgeH, 25)
+      roundRect(ctx, gx, rowY - badgeH / 2, forcaW, badgeH, badgeH / 2)
       ctx.fill()
       ctx.fillStyle = bg
       ctx.font = '800 30px system-ui, sans-serif'
-      ctx.fillText(badgeText, gx + badgePadX, rowY + 1)
+      ctx.fillText(forcaText, gx + forcaPadX, rowY + 1)
+      gx += forcaW
+    }
+
+    if (hasMode) {
+      gx += gap
+      ctx.strokeStyle = accent
+      ctx.lineWidth = 3
+      roundRect(ctx, gx, rowY - badgeH / 2, modeW, badgeH, badgeH / 2)
+      ctx.stroke()
+      ctx.fillStyle = accent
+      ctx.font = '800 28px system-ui, sans-serif'
+      ctx.fillText(modeText, gx + modePadX, rowY + 1)
     }
 
     ctx.textAlign = 'center'

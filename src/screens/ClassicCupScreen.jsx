@@ -201,6 +201,7 @@ export default function ClassicCupScreen({ gameConfig, onFinish }) {
       players={game.getLineupPlayers()}
       formation={gameConfig.formation}
       teamName={gameConfig.teamName}
+      mode={gameConfig.mode}
       groupId={game.getGroupId()}
       groupTable={game.getGroupTable()}
       onPlayAgain={onFinish}

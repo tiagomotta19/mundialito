@@ -56,7 +56,7 @@ function Confetti() {
   )
 }
 
-export default function ResultScreen({ campaign, players, formation, teamName, groupId, groupTable, onPlayAgain }) {
+export default function ResultScreen({ campaign, players, formation, teamName, mode, groupId, groupTable, onPlayAgain }) {
   const { theme } = useTheme()
   const { play } = useSound()
   const { t } = useLang()
@@ -201,6 +201,7 @@ export default function ResultScreen({ campaign, players, formation, teamName, g
       resultLabel: champion ? t('share_champion') : t(stageLabelKey(campaign.stageReached)),
       teamName: teamName || t('your_team'),
       forca,
+      modeLabel: t(mode === 'classic' ? 'mode_classic' : 'mode_fast'),
       stats: statCards.map((s) => ({ label: t(s.key), value: s.value, tone: s.tone })),
       lastScore: buildLastScore(),
       strengthLabel: t('share_strength'),

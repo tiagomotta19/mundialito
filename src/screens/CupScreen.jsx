@@ -60,6 +60,7 @@ function FastCupScreen({ gameConfig, onFinish }) {
       players={gameConfig.players}
       formation={gameConfig.formation}
       teamName={gameConfig.teamName}
+      mode={gameConfig.mode}
       groupId={gameConfig.groupId}
       groupTable={tournament.groupStage.table}
       onPlayAgain={onFinish}
