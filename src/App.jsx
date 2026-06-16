@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import { ThemeProvider, useTheme } from './components/ThemeContext'
 import { LangProvider } from './i18n/LangContext'
 import { SoundProvider } from './audio/SoundContext'
@@ -96,6 +97,7 @@ function App() {
       <LangProvider>
         <SoundProvider>
           <AppShell />
+          <Analytics />
         </SoundProvider>
       </LangProvider>
     </ThemeProvider>
