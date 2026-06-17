@@ -52,11 +52,12 @@ const FRESH_CHANCE_RANDOM = 0.3
 
 // "Com moral": o reserva que entrou, teve o frescor CONFIRMADO e se firmou no XI
 // joga o(s) próximo(s) jogo(s) embalado — oscilação enviesada pro positivo
-// (negativos quase sempre anulados). NÃO é buff permanente: ~90% de pegar moral
+// (negativos sempre anulados: quem está com moral nunca cai). NÃO é buff
+// permanente: ~90% de pegar moral
 // no 1º jogo como titular pleno e só ~10% de esticar pra um 2º; depois normaliza.
 // Mesma força média de ~1 jogo do modelo fixo, porém com cauda (momentos raros de
 // "mão quente"). O momentum não sobrevive ao banco: sentar zera a moral.
-const MORALE_FACTOR = 0.8 // prob. de anular um delta NEGATIVO quando com moral
+const MORALE_FACTOR = 1.0 // prob. de anular um delta NEGATIVO quando com moral (nunca cai)
 const MORALE_GRANT_CHANCE = 0.9 // frescor pegou → moral no próximo jogo
 const MORALE_EXTEND_CHANCE = 0.1 // jogou com moral → estica mais um jogo
 
