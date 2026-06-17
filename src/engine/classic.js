@@ -20,8 +20,9 @@ import groupsData from '../data/groups.json'
 import { USER_TEAM_NAME, normalizeMatch, stageLabelKey } from './cup'
 import { FORMATION_LAYOUTS, ROLE_TO_POSITION } from '../components/formationLayouts'
 
-// Seleções que recebem o boost progressivo no mata-mata (lista fixa — não há
-// um limiar de força pronto no motor; o PEDIGREE é multiplicador, não limiar).
+// Seleções que recebem o boost progressivo (forte) no mata-mata (lista fixa — não
+// há um limiar de força pronto no motor; o PEDIGREE é multiplicador, não limiar).
+// As demais seleções pegam um empurrão menor e probabilístico (ver sampleMinorBoost).
 const MAIN_NATIONS = new Set([
   'Brasil', 'Argentina', 'França', 'Espanha', 'Alemanha',
   'Inglaterra', 'Portugal', 'Holanda', 'Bélgica',
@@ -42,12 +43,27 @@ const KNOCKOUT_BOOST_MEAN = {
   final: 1.9,
 }
 
-// Sorteia o boost da fase: uniforme nos passos de [mean-spread, mean+spread].
+// Sorteia o boost forte da fase (MAIN_NATIONS): uniforme nos passos de
+// [mean-spread, mean+spread].
 function sampleKnockoutBoost(round) {
   const mean = KNOCKOUT_BOOST_MEAN[round] || 0
   if (!mean) return 0
   const steps = Math.round((KNOCKOUT_BOOST_SPREAD * 2) / KNOCKOUT_BOOST_STEP) + 1
   const value = mean - KNOCKOUT_BOOST_SPREAD + Math.floor(Math.random() * steps) * KNOCKOUT_BOOST_STEP
+  return Math.round(value * 10) / 10
+}
+
+// Empurrão menor das seleções fora de MAIN_NATIONS: nas mesmas fases do boost
+// forte, MINOR_BOOST_CHANCE de pegar um valor em [MIN, MAX] (passo 0.1), sem
+// escalonar por fase. Mantém o mata-mata menos previsível mesmo contra times pequenos.
+const MINOR_BOOST_CHANCE = 0.6
+const MINOR_BOOST_MIN = 0.2
+const MINOR_BOOST_MAX = 0.5
+
+function sampleMinorBoost() {
+  if (Math.random() >= MINOR_BOOST_CHANCE) return 0
+  const steps = Math.round((MINOR_BOOST_MAX - MINOR_BOOST_MIN) / KNOCKOUT_BOOST_STEP) + 1
+  const value = MINOR_BOOST_MIN + Math.floor(Math.random() * steps) * KNOCKOUT_BOOST_STEP
   return Math.round(value * 10) / 10
 }
 
@@ -123,7 +139,7 @@ function goalkeeperDelta(cleanSheet) {
 // ---------------------------------------------------------------------------
 
 function applyBoost(team, boost) {
-  if (!boost || !MAIN_NATIONS.has(team.name)) return team
+  if (!boost) return team
   return { ...team, players: team.players.map((p) => ({ ...p, ovr: p.ovr + boost })) }
 }
 
@@ -400,10 +416,16 @@ export function createClassicGame(gameConfig) {
       gameOvr.set(p.id, clampOvr(p.ovr + gameDelta(p.ovr, factor, moraleFactor)))
     })
 
-    // Só as seleções de MAIN_NATIONS recebem boost; pra qualquer outra o valor é
-    // 0 (não some no OVR nem aparece na tela) — display sempre = o que é aplicado.
+    // Boost do adversário nas fases com boost (oitavas+): MAIN_NATIONS pegam o
+    // boost forte; as demais, o empurrão menor probabilístico. Fora dessas fases,
+    // 0. O valor é o que é aplicado E exibido — display sempre = o que é aplicado.
     const opponentRaw = isKnockout ? knockoutOpponent() : opponents[groupMatchday]
-    const boost = isKnockout && MAIN_NATIONS.has(opponentRaw.name) ? sampleKnockoutBoost(round) : 0
+    const isBoostPhase = isKnockout && (KNOCKOUT_BOOST_MEAN[round] || 0) > 0
+    const boost = !isBoostPhase
+      ? 0
+      : MAIN_NATIONS.has(opponentRaw.name)
+        ? sampleKnockoutBoost(round)
+        : sampleMinorBoost()
     const opponent = applyBoost(opponentRaw, boost)
 
     pending = {
