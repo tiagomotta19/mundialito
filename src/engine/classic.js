@@ -27,13 +27,28 @@ const MAIN_NATIONS = new Set([
   'Inglaterra', 'Portugal', 'Holanda', 'Bélgica',
 ])
 
-// Boost acumulado por fase (a partir das oitavas). 16-avos = round_of_32 = 0.
-const KNOCKOUT_BOOST = {
+// Boost do adversário por fase (a partir das oitavas). 16-avos = round_of_32 = 0.
+// Não é fixo: cada jogo sorteia um valor num range (passo 0.1) centrado na média
+// da fase, com amplitude ±0.3 → 7 valores possíveis. O boost é somado plano ao OVR
+// de TODOS os jogadores do adversário, então sobe a média de cada setor pelo valor
+// cheio (shift sistemático); o range só faz esse valor variar de jogo pra jogo.
+const KNOCKOUT_BOOST_SPREAD = 0.3
+const KNOCKOUT_BOOST_STEP = 0.1
+const KNOCKOUT_BOOST_MEAN = {
   round_of_32: 0,
-  round_of_16: 0.5,
-  quarterfinals: 1.0,
-  semifinals: 1.5,
-  final: 2.0,
+  round_of_16: 0.4,
+  quarterfinals: 0.9,
+  semifinals: 1.4,
+  final: 1.9,
+}
+
+// Sorteia o boost da fase: uniforme nos passos de [mean-spread, mean+spread].
+function sampleKnockoutBoost(round) {
+  const mean = KNOCKOUT_BOOST_MEAN[round] || 0
+  if (!mean) return 0
+  const steps = Math.round((KNOCKOUT_BOOST_SPREAD * 2) / KNOCKOUT_BOOST_STEP) + 1
+  const value = mean - KNOCKOUT_BOOST_SPREAD + Math.floor(Math.random() * steps) * KNOCKOUT_BOOST_STEP
+  return Math.round(value * 10) / 10
 }
 
 const MAX_SWAPS = 3
@@ -107,8 +122,7 @@ function goalkeeperDelta(cleanSheet) {
 // Boost do adversário (camada 3)
 // ---------------------------------------------------------------------------
 
-function applyBoost(team, round) {
-  const boost = KNOCKOUT_BOOST[round] || 0
+function applyBoost(team, boost) {
   if (!boost || !MAIN_NATIONS.has(team.name)) return team
   return { ...team, players: team.players.map((p) => ({ ...p, ovr: p.ovr + boost })) }
 }
@@ -386,7 +400,11 @@ export function createClassicGame(gameConfig) {
       gameOvr.set(p.id, clampOvr(p.ovr + gameDelta(p.ovr, factor, moraleFactor)))
     })
 
-    const opponent = isKnockout ? applyBoost(knockoutOpponent(), round) : opponents[groupMatchday]
+    // Só as seleções de MAIN_NATIONS recebem boost; pra qualquer outra o valor é
+    // 0 (não some no OVR nem aparece na tela) — display sempre = o que é aplicado.
+    const opponentRaw = isKnockout ? knockoutOpponent() : opponents[groupMatchday]
+    const boost = isKnockout && MAIN_NATIONS.has(opponentRaw.name) ? sampleKnockoutBoost(round) : 0
+    const opponent = applyBoost(opponentRaw, boost)
 
     pending = {
       isKnockout,
@@ -395,7 +413,7 @@ export function createClassicGame(gameConfig) {
       matchday: isKnockout ? null : groupMatchday + 1,
       opponent: { name: opponent.name, strength: teamStrengthValue(opponent) },
       opponentTeam: opponent,
-      boost: isKnockout ? KNOCKOUT_BOOST[round] || 0 : 0,
+      boost,
       gameOvr,
       afflicted,
       moraleActive,
